@@ -15,6 +15,6 @@ An application in LangStream can watch a message topic and process data through 
 * Leverage LLMs like OpenAI ChatGPT, inference APIs like HuggingFace, and chaining agents like LangChain with our included agents, no code required
 * Create your own real-time AI application pipelines with simple, declarative YAML files
 
-\*via Starlight for Kafka extension
+_\*via Starlight for Kafka extension_
 
 Get started [here!](installation/kubernetes.md)
