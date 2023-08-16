@@ -53,4 +53,4 @@ Read more about enabling Starlight for Kafka in Astra Streaming in the [document
 
 ### computeCluster
 
-<table><thead><tr><th width="163.33333333333331">Label</th><th width="108">Type</th><th>Description</th></tr></thead><tbody><tr><td>type</td><td>string</td><td>The type name of cluster where agents will process data. Refer to the instance clusters area for supported types.</td></tr></tbody></table>
+<table><thead><tr><th width="163.33333333333331">Label</th><th width="108">Type</th><th>Description</th></tr></thead><tbody><tr><td>type</td><td>string</td><td>The type name of cluster where agents will process data. Refer to the [instance clusters](../instance-clusters/compute/kubernetes.md) area for supported types.</td></tr></tbody></table>
