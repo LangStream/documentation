@@ -4,7 +4,7 @@
 
 When a developer deploys a new application to the LangStream control plane, a few steps are taken to ensure the application's success. Once the topics and agents are built, the control plane monitors the application's health and reports on issues.
 
-Here is the typical lifecycle of an SGAI application:
+Here is the typical lifecycle of a LangStream application:
 
 1. Deploy to control plane
 2. Download dependencies (if declared)
