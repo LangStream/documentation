@@ -4,7 +4,7 @@
 
 A pipeline is a manifest of topics and processing steps.
 
-The example manifest below defines a pipeline with 1 step. It receives messages via "input-topic", processes the messages, and sends processed messages to "output-topic".&#x20;
+The example manifest below defines a pipeline with 1 step. It receives messages via "input-topic", processes the messages, and sends processed messages to "output-topic".
 
 ```yaml
 module: "module-1"
@@ -33,4 +33,4 @@ pipeline:
 
 ### Pipeline Configuration Values
 
-<table><thead><tr><th width="163.33333333333331">Name</th><th width="171">Type</th><th>Description</th></tr></thead><tbody><tr><td>pipeline<br></td><td>object[]</td><td>The pipeline node holds the collection of processing steps. The order of the steps in the collection decides how the pipeline is arranged.</td></tr><tr><td>Name</td><td>String (required)</td><td></td></tr><tr><td>id</td><td>String (required)</td><td></td></tr><tr><td>type</td><td>String (required)</td><td>The type name of processing to be run. See [AI Actions](../pipeline-agents/ai-actions/README.md) for supported types.</td></tr><tr><td>input</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>output</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>configuration</td><td>object</td><td>Given the chosen type, these are the config values used. Refer to the configuration area of each type for more info.</td></tr></tbody></table>
+<table><thead><tr><th width="163.33333333333331">Name</th><th width="171">Type</th><th>Description</th></tr></thead><tbody><tr><td>pipeline<br></td><td>object[]</td><td>The pipeline node holds the collection of processing steps. The order of the steps in the collection decides how the pipeline is arranged.</td></tr><tr><td>Name</td><td>String (required)</td><td></td></tr><tr><td>id</td><td>String (required)</td><td></td></tr><tr><td>type</td><td>String (required)</td><td>The type name of processing to be run. See <a href="../pipeline-agents/ai-actions/">AI Actions</a> for supported types.</td></tr><tr><td>input</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>output</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>configuration</td><td>object</td><td>Given the chosen type, these are the config values used. Refer to the configuration area of each type for more info.</td></tr></tbody></table>
