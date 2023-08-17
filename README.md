@@ -1,5 +1,4 @@
 ---
-title: LangStream Documentation
 description: Streaming AI Applications
 ---
 
