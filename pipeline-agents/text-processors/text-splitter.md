@@ -8,11 +8,14 @@ Example of splitting the text into sections and outputting each as a message to 
 
 ```yaml
 - name: "Split into chunks"
-  type: "text-splitter"
-  input: "input-topic" # optional
-  output: "output-topic" # optional
-  configuration:
-    chunkSize: 1500
+    type: "text-splitter"
+    configuration:
+      splitter_type: "RecursiveCharacterTextSplitter"
+      chunk_size: 400
+      separators: ["\n\n", "\n", " ", ""]
+      keep_separator: false
+      chunk_overlap: 100
+      length_function: "cl100k_base"
 ```
 
 ### Topics
