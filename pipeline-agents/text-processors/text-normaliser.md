@@ -7,12 +7,11 @@ This is an agent that applies specific transformations on text.
 An example that lowercases the provided contents:
 
 ```yaml
-- name: "Normalize text"
-  type: "text-normaliser"
-  input: "input-topic" # optional
-  output: "output-topic" # optional
-  configuration:
-      makeLowercase: true
+  - name: "Normalise text"
+    type: "text-normaliser"
+    configuration:
+      make-lowercase: true
+      trim-spaces: true
 ```
 
 ### Topics

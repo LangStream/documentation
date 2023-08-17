@@ -8,7 +8,7 @@ Example of splitting the text into sections and outputting each as a message to 
 
 ```yaml
 - name: "Split into chunks"
-  type: "text-chunker"
+  type: "text-splitter"
   input: "input-topic" # optional
   output: "output-topic" # optional
   configuration:

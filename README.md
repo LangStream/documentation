@@ -12,7 +12,7 @@ An application in LangStream can watch a message topic and process data through 
 
 * Run in any Kubernetes cluster using our helm chart
 * Connect to popular event streaming platforms like Apache Kafka and Apache Pulsar\*
-* Leverage LLMs like OpenAI ChatGPT, inference APIs like HuggingFace, and chaining agents like LangChain with our included agents, no code required
+* Leverage LLMs like ChatGPT, inference APIs like HuggingFace, vector databases like A, and chaining agents like LangChain with our included agents, no code required
 * Create your own real-time AI application pipelines with simple, declarative YAML files
 
 _\*via Starlight for Kafka extension_
