@@ -27,7 +27,7 @@ LangStream uses Maven as its build system. When the below script is run the proj
 This will clone the latest code of the project into the "streaming-gen-ai" folder.
 
 ```
-git clone https://datastax.com/datastax/streaming-gen-ai
+git clone https://github.com/LangStream/langstream
 ```
 
 ### Build the project
@@ -35,7 +35,7 @@ git clone https://datastax.com/datastax/streaming-gen-ai
 This will compile source, build the cli, and install images.
 
 ```
-cd streaming-gen-ai
+cd langstream
 ./docker/build.sh
 ```
 
@@ -45,17 +45,17 @@ cd streaming-gen-ai
 If you are using Minikube load the new images with the following commands:
 
 ```bash
-minikube image load datastax/sga-cli:latest-dev
-minikube image load datastax/sga-deployer:latest-dev
-minikube image load datastax/sga-control-plane:latest-dev
-minikube image load datastax/sga-runtime:latest-dev
-minikube image load datastax/sga-api-gateway:latest-dev
+minikube image load datastax/langstream-cli:latest-dev
+minikube image load datastax/langstream-deployer:latest-dev
+minikube image load datastax/langstream-control-plane:latest-dev
+minikube image load datastax/langstream-runtime:latest-dev
+minikube image load datastax/langstream-api-gateway:latest-dev
 ```
 {% endhint %}
 
 ```bash
 kubectl apply -f ./helm/examples/minio-dev.yaml
-helm upgrade -i sga helm/sga --values ./helm/examples/local.yaml --wait
+helm upgrade -i langstream helm/langstream --values ./helm/examples/local.yaml --wait
 ```
 
 ### Locate the CLI
@@ -63,5 +63,5 @@ helm upgrade -i sga helm/sga --values ./helm/examples/local.yaml --wait
 During the build, the latest CLI has created in the "bin" folder.
 
 ```
-./bin/sga-cli --version
+./bin/langstream --version
 ```
