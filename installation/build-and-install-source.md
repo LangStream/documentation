@@ -24,7 +24,7 @@ LangStream uses Maven as its build system. When the below script is run the proj
 
 ### Clone the project
 
-This will clone the latest code of the project into the "streaming-gen-ai" folder.
+This will clone the latest code of the project into the "langstream" folder.
 
 ```
 git clone https://github.com/LangStream/langstream
