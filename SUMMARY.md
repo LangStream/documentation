@@ -23,6 +23,7 @@
 * [Secrets](building-applications/secrets.md)
 * [API Gateways](building-applications/api-gateways.md)
 * [Application Lifecycle](building-applications/application-lifecycle.md)
+* [Vector Databases](building-applications/vector-databases.md)
 
 ## Pipeline Agents
 
