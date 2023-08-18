@@ -32,11 +32,14 @@ kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/he
 helm upgrade -i sga helm/sga --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml --wait
 ```
 
-#### Open the control-plane and api-gateway ports
+#### Open the control-plane and api-gateway ports (in separate terminals)
 
 ```bash
 # Control plane
-kubectl port-forward svc/control-plane 8090:8090 &
+kubectl port-forward svc/control-plane 8090:8090
+```
+
+```bash
 # Api gateway
-kubectl port-forward svc/api-gateway 8091:8091 &
+kubectl port-forward svc/api-gateway 8091:8091
 ```
