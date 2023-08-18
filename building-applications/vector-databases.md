@@ -27,7 +27,7 @@ Let’s put this similarity search example in the context of a LangStream applic
 
 A LangStream application is a series of steps called a pipeline. At each step, an agent acts on messages streamed through the application.&#x20;
 
-Here’s how you would make a text similarity search application in LangStream. The full pipeline is available here (link)
+Here’s how you would make a text similarity search application in LangStream. The full pipeline yaml is available [here](https://github.com/LangStream/langstream/blob/main/examples/applications/text-processing/extract-text.yaml).
 
 The first section names the pipeline and declares a “chunks-topic” Kafka topic for message transport into the pipeline.
 
@@ -82,7 +82,7 @@ The language detector agent identifies a record’s language. In this case, non-
        property: "language"
 ```
 
-The records are split into chunks of text. This is an important part of the vectorization pipeline to understand, because it requires balancing between performance and accuracy.&#x20;
+The records are split into chunks of text. This is an important part of the vectorization pipeline to understand, because it requires balancing between performance and accuracy. chunk\_size controls the maximum number of characters of the chunked documents, and chunk\_overlap controls the amount of overlap between chunks. A little overlap keeps results more consistent. chunk\_size defaults to 1000 characters, and chunk\_overlap defaults to 200 characters.
 
 ```yaml
   - name: "Split into chunks"
@@ -140,7 +140,7 @@ Now that the text is processed and structured, an agent computes embeddings and 
       text: "{{% value.text }}"
 ```
 
-The final agent takes the embeddings from the "chunks-topic" and writes them to an Astra vector database.
+The final agent takes the embeddings from the "chunks-topic" and writes them to an Astra vector database. As with the S3 agent, these credentials are pulled from secrets.yaml.
 
 ```yaml
  - name: "Write to AstraDB"
