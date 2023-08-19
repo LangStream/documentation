@@ -78,7 +78,7 @@ fields:
 ```
 
 {% hint style="info" %}
-#### NOTE about mustache formatting
+#### NOTE
 
 Mustache will escape certain non-alphanumeric values if you use double braces “\{{ \}}“. To override the expanding and use the message exactly as provided use triple braces “\{{{ \}}}”.
 {% endhint %}
@@ -153,4 +153,77 @@ pipeline:
     output: "split-output"
     configuration:
       chunkSize: 1000
+```
+
+
+
+Adding input and output topics between agents also changes how many pods are deployed. For example, creating the below pipeline with no topics between agents feeds data directly to the next step, with all processing taking place in 1 pod. This offers better processing time, but is a trade off to needing more memory and compute.
+
+```yaml
+topics:
+  - name: input-topic
+    creation-mode: create-if-not-exists
+  - name: output-topic
+    creation-mode: create-if-not-exists
+pipeline:
+  - name: "Convert to structured data"
+    type: "document-to-json"
+    input: "input-topic"
+    configuration:
+      text-field: "text"
+      copy-properties: true
+  - name: "Normalize text"
+    type: "text-normaliser"
+    configuration:
+      makeLowercase: true
+  - name: "Split into chunks"
+    type: "text-splitter"
+    output: "output-topic"
+    configuration:
+      splitter_type: "RecursiveCharacterTextSplitter"
+      chunk_size: 3
+      separators: ["\n\n", "\n", " ", ""]
+      keep_separator: false
+      chunk_overlap: 1
+      length_function: "cl100k_base"
+```
+
+Creating the same pipeline with topics between agents creates 3 worker pods and splits processing across them:
+
+```yaml
+name: Text processing
+topics:
+  - name: input-topic1
+    creation-mode: create-if-not-exists
+  - name: input-topic2
+    creation-mode: create-if-not-exists
+  - name: output-topic1
+    creation-mode: create-if-not-exists
+  - name: output-topic2
+    creation-mode: create-if-not-exists
+pipeline:
+  - name: "Convert to structured data"
+    type: "text-extractor"
+    input: "input-topic1"
+    output: "output-topic1"
+    configuration:
+      text-field: "text"
+      copy-properties: true
+  - name: "Normalize text"
+    type: "text-normaliser"
+    input: "output-topic1"
+    output: "input-topic2"
+    configuration:
+      makeLowercase: true
+  - name: "Split into chunks"
+    type: "text-splitter"
+    input: "input-topic2"
+    output: "output-topic2"
+    configuration:
+      splitter_type: "RecursiveCharacterTextSplitter"
+      chunk_size: 3
+      separators: ["\n\n", "\n", " ", ""]
+      keep_separator: false
+      chunk_overlap: 1
+      length_function: "cl100k_base"
 ```
