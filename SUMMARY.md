@@ -7,6 +7,10 @@
 * [What is LangStream?](about/what-is-langstream.md)
 * [License](about/license.md)
 
+***
+
+* [Get Started](get-started.md)
+
 ## installation
 
 * [Kubernetes](installation/kubernetes.md)
