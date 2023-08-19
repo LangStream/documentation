@@ -24,3 +24,9 @@ The base image of a pod is custom to LangStream. There is quite a bit of additio
 ### Promoting an application through environments
 
 Once you have the application in a stable place, you’ll need to promote it off your desktop into a higher managed environment. Hopefully, your environments keep a minimum parity between them and the only addressable changes are to the infrastructure (urls, passwords, etc). This is the purpose of the secrets and instance manifests being separate from the application manifest. You can interchange these files while still using the same application and promote in a stable, known way.
+
+### Upgrading and Downtime
+
+When you update your application, all impacted agents in the pipeline are restarted at the same time, and if an agent has more than 1 replica, one replica is restarted at a time.&#x20;
+
+In Kubernetes terms, each agent is a StatefulSet, and updating agents behaves like a [rolling update](https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#rolling-update) of StatefulSets.
