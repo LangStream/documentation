@@ -4,6 +4,14 @@ Given a datasource specified in the application configuration, this agent enable
 
 ### Example
 
+Install PostgreSQL in a local minikube cluster:
+
+```
+minikube start
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-postgresql bitnami/postgresql --version 12.8.2
+```
+
 Specify a datasource in configuration.yaml:
 
 ```yaml

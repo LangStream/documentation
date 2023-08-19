@@ -27,6 +27,6 @@ Once you have the application in a stable place, you’ll need to promote it off
 
 ### Upgrading and Downtime
 
-When you update your application, all impacted agents in the pipeline are restarted at the same time, and if an agent has more than 1 replica, one replica is restarted at a time.&#x20;
+When you update your application, all impacted agents in the pipeline are restarted at the same time, and if an agent has more than 1 replica, 1 replica is restarted at a time.&#x20;
 
 In Kubernetes terms, each agent is a StatefulSet, and updating agents behaves like a [rolling update](https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#rolling-update) of StatefulSets.
