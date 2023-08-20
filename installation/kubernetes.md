@@ -29,7 +29,7 @@ To create a LangStream control plane, you will need [kubectl](https://kubernetes
 ```bash
 helm repo add langstream https://datastax.github.io/langstream
 kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
-helm upgrade -i langstream helm/langstream --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml --wait
+helm upgrade -i langstream langstream/langstream --wait --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml
 ```
 
 #### Open the control-plane and api-gateway ports (in separate terminals)
