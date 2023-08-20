@@ -10,14 +10,18 @@ To create a LangStream control plane, you will need [kubectl](https://kubernetes
 minikube start
 ```
 
+2. Install MinIO for local testing:
+
+```
+kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
+```
+
 2. Deploy Langstream from the Helm repository:
 
 ```bash
 helm repo add langstream https://langstream.github.io/charts
 helm repo update
-helm install -n langstream --create-namespace langstream langstream/langstream --values helm/examples/simple.yaml
-kubectl wait -n langstream deployment/langstream-control-plane --for condition=available --timeout=300s
-
+helm upgrade -i langstream langstream/langstream --wait --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml
 ```
 
 &#x20; 3\. Open the control-plane and api-gateway ports (in separate terminals):
@@ -34,13 +38,7 @@ kubectl port-forward svc/api-gateway 8091:8091
 
 ### Environment setup
 
-1. Install MinIO for local testing:
-
-```
-kubectl apply -f helm/examples/minio-dev.yaml
-```
-
-2. Port forward minio in a separate terminal:
+1. Port forward minio in a separate terminal:
 
 ```
 kubectl port-forward pod/minio 9000 9090 -n minio-dev  
