@@ -13,10 +13,9 @@ brew install langstream
 
 #### Linux
 
-<pre class="language-bash"><code class="lang-bash"><strong>curl https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh > ./get-cli.sh
-</strong>chmod u+x ./get-cli.sh
-./get-cli.sh
-</code></pre>
+```bash
+curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh" | bash
+```
 
 #### Windows
 
