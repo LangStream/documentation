@@ -1,8 +1,8 @@
 # webcrawler-source
 
-The webcrawler-source agent crawls a website and outputs the site's URL and an HTML document.&#x20;
+The webcrawler-source agent crawls a website and outputs the site's URL and an HTML document. Crawling a website is an ideal first step in a [text embeddings pipeline](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source).
 
-Crawling a website is an ideal first step in a [text embeddings pipeline](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source).
+The S3 bucket only stores metadata about the website and the status of the crawler -  it won’t contain a copy of the crawl data, but a single JSON file with a name computed from the name of the agent and the id of the LangStream application.
 
 ### Example
 
@@ -34,12 +34,12 @@ pipeline:
 
 **Output**
 
-* Structured text (string url and document.html) [?](../agent-messaging.md)
+* Structured text (JSON) [?](../agent-messaging.md)
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
 ### **Configuration**
 
-<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>allowed-domains</td><td>string </td><td><p>A combination of the file name and the class name.</p><p></p><p>Example: For the file my-python-func.py that has class MyFunction, the value would be my-python-func.MyFunction</p></td></tr><tr><td><p></p><p>allowedTags</p></td><td>string</td><td>Controls which HTML meta tags the crawler consumes. Default is "href".</td></tr><tr><td>idle-time</td><td>int</td><td>Time that the agent waits when there are no unprocessed documents (web pages) available to read from the <code>foundDocuments</code> queue before going to sleep.</td></tr><tr><td>max-unflushed-pages</td><td>int</td><td>Maximum number of unflushed pages before the agent persists the crawl data.</td></tr><tr><td>min-time-between-requests</td><td>int</td><td>Prevents getting banned from site for too many requests. Default value is 100 seconds.</td></tr><tr><td>seed-url</td><td>string</td><td>The URL to be crawled.</td></tr><tr><td>user-agent</td><td><br>string</td><td>Name of user agent used in connection to server. If none is present, defaults to "langstream.ai-webcrawler/1.0".</td></tr></tbody></table>
+<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>allowed-domains</td><td>string</td><td>Checks that seed-url belongs to a domain that is allowed for crawling.</td></tr><tr><td><p></p><p>allowedTags</p></td><td>string</td><td>Controls which HTML meta tags the crawler consumes. Default is "href".</td></tr><tr><td>idle-time</td><td>int</td><td>Time that the agent waits when there are no unprocessed documents available to read from the <code>foundDocuments</code> queue before going to sleep.</td></tr><tr><td>max-unflushed-pages</td><td>int</td><td>Maximum number of unflushed pages before the agent persists the crawl data.</td></tr><tr><td>min-time-between-requests</td><td>int</td><td>Prevents getting banned from site for too many requests. Default value is 100 seconds.</td></tr><tr><td>seed-url</td><td>string</td><td>The URL to be crawled.</td></tr><tr><td>user-agent</td><td><br>string</td><td>Name of user agent used in connection to server. If none is present, defaults to "langstream.ai-webcrawler/1.0".</td></tr></tbody></table>
 
 ### S3 source credentials
 
