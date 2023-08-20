@@ -12,9 +12,13 @@ minikube start
 
 2. Deploy Langstream from the Helm repository:
 
-<pre class="language-bash"><code class="lang-bash"><strong>helm repo add langstream https://datastax.github.io/langstream
-</strong>helm upgrade -i langstream helm/langstream --values https://raw.githubusercontent.com/LangStream/charts/main/charts/langstream/values.yaml
-</code></pre>
+```bash
+helm repo add langstream https://langstream.github.io/charts
+helm repo update
+helm install -n langstream --create-namespace langstream langstream/langstream --values helm/examples/simple.yaml
+kubectl wait -n langstream deployment/langstream-control-plane --for condition=available --timeout=300s
+
+```
 
 &#x20; 3\. Open the control-plane and api-gateway ports (in separate terminals):
 

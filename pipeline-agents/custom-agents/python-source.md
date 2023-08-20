@@ -25,15 +25,15 @@ from langchain.document_loaders.unstructured import UnstructuredFileLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 
-from sga_runtime.api import Source, Record
-from sga_runtime.simplerecord import SimpleRecord
+from langstream_runtime.api import Source, Record
+from langstream_runtime.simplerecord import SimpleRecord
 
 
 class ExampleSource(Source):
    # initialize the application
     def init(self, config):
         # example input args
-        # bucket_name = config.get('bucketName', 'sga-s3-langchain')
+        # bucket_name = config.get('bucketName', 'langstream-s3-langchain')
         # endpoint_url = config.get('endpoint', 'http://minio-endpoint.-not-set:9090')
 
 
@@ -65,7 +65,7 @@ Configure the agent to use the python class in configuration.yaml:
   output: "output-topic" # optional
   configuration:
     className: example.ExampleSource
-    bucketName: sga-langchain-source
+    bucketName: langstream-langchain-source
     endpoint: "https://s3.eu-west-2.amazonaws.com"
 
 ```
@@ -78,7 +78,7 @@ Configure the agent to use the python class in configuration.yaml:
 
 **Output**
 
-* Structured as a sga\_runtime.api.Record
+* Structured as a langstream\_runtime.api.Record
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
 ### **Configuration**

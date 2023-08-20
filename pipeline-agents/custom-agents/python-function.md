@@ -34,7 +34,7 @@ Configure the agent to use the python class
 The python application can optionally take in parameters from the application environment. The following is an example python application that is given a “config” object when it “inits”.
 
 ```python
-from sga_runtime.record import Record
+from langstream_runtime.record import Record
 import openai
 import json
 from openai.embeddings_utils import get_embedding
@@ -76,7 +76,7 @@ The config object is a map that is built from the agent's configuration.yaml:
 
 **Output**
 
-* Structured sga\_runtime.api.Record
+* Structured langstream\_runtime.api.Record
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
 ### **Configuration**
