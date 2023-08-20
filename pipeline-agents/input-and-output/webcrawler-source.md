@@ -8,8 +8,7 @@ Crawling a website is an ideal first step in a [text embeddings pipeline](https:
 
 Example webcrawler agent in a pipeline:
 
-````python
-```yaml
+```python
 pipeline:
   - name: "Crawl the WebSite"
     type: "webcrawler-source"
@@ -26,7 +25,6 @@ pipeline:
       region: "{{{secrets.s3-credentials.region}}}"
       idle-time: 5
 ```
-````
 
 ### Topics
 
@@ -41,7 +39,7 @@ pipeline:
 
 ### **Configuration**
 
-<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>allowed-domains</td><td>String </td><td><p>A combination of the file name and the class name.</p><p></p><p>Example: For the file my-python-func.py that has class MyFunction, the value would be my-python-func.MyFunction</p></td></tr><tr><td><p></p><p>allowedTags</p></td><td>String</td><td>Controls which HTML meta tags the crawler consumes. Default is "href".</td></tr><tr><td>idle-time</td><td>Int</td><td>Time that the agent waits when there are no unprocessed documents (web pages) available to read from the <code>foundDocuments</code> queue before going to sleep.</td></tr><tr><td>max-unflushed-pages</td><td>Int</td><td>Maximum number of unflushed pages before the agent persists the crawl data.</td></tr><tr><td>min-time-between-requests</td><td>Int</td><td>Prevents getting banned from site for too many requests. Default value is 100 seconds.</td></tr><tr><td>seed-url</td><td>String</td><td>The URL to be crawled.</td></tr><tr><td>user-agent</td><td><br>String</td><td>Default value is "langstream.ai-webcrawler/1.0".</td></tr></tbody></table>
+<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>allowed-domains</td><td>string </td><td><p>A combination of the file name and the class name.</p><p></p><p>Example: For the file my-python-func.py that has class MyFunction, the value would be my-python-func.MyFunction</p></td></tr><tr><td><p></p><p>allowedTags</p></td><td>string</td><td>Controls which HTML meta tags the crawler consumes. Default is "href".</td></tr><tr><td>idle-time</td><td>int</td><td>Time that the agent waits when there are no unprocessed documents (web pages) available to read from the <code>foundDocuments</code> queue before going to sleep.</td></tr><tr><td>max-unflushed-pages</td><td>int</td><td>Maximum number of unflushed pages before the agent persists the crawl data.</td></tr><tr><td>min-time-between-requests</td><td>int</td><td>Prevents getting banned from site for too many requests. Default value is 100 seconds.</td></tr><tr><td>seed-url</td><td>string</td><td>The URL to be crawled.</td></tr><tr><td>user-agent</td><td><br>string</td><td>Name of user agent used in connection to server. If none is present, defaults to "langstream.ai-webcrawler/1.0".</td></tr></tbody></table>
 
 ### S3 source credentials
 
