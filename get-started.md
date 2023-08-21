@@ -62,3 +62,10 @@ brew install langstream
 ```
 
 With LangStream installed and your environment set up, you're ready to build an application.
+
+### Your first application
+
+Here are a few ways to get started building LangStream applications:
+
+* [Set up your development environment](building-applications/development-environment.md) and learn how to build the needed manifests
+* [Install the VSCode extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) and use the provided starter applications & agent snippets
