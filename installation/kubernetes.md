@@ -34,12 +34,14 @@ helm upgrade -i langstream langstream/langstream --wait --values https://raw.git
 
 #### Open the control-plane and api-gateway ports (in separate terminals)
 
-```bash
-# Control plane
-kubectl port-forward svc/control-plane 8090:8090
-```
+Control plane:
 
 ```bash
-# Api gateway
-kubectl port-forward svc/api-gateway 8091:8091
+kubectl port-forward svc/langstream-control-plane 8090:8090 &
+```
+
+API gateway:
+
+```bash
+kubectl port-forward svc/langstream-api-gateway 8091:8091 &
 ```
