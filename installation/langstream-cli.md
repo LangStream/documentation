@@ -21,6 +21,10 @@ curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-c
 
 Use [WSL](https://learn.microsoft.com/en-us/windows/wsl/about).
 
+{% hint style="info" %}
+Want to get started a little quicker? Check out the [LangStream VSCode Extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) for pre-made applications and agent code snippets.
+{% endhint %}
+
 ### Confirm the installation
 
 Once installed you can test the CLI with the following command.
