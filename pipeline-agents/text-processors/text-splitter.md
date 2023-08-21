@@ -18,6 +18,14 @@ Example of splitting the text into sections and outputting each as a message to 
       length_function: "cl100k_base"
 ```
 
+With a chunk\_size of 3 and an input of Hi there, the output is:
+
+```
+output: "Hi "
+output: "the"
+output: "re"
+```
+
 ### Topics
 
 #### **Input**

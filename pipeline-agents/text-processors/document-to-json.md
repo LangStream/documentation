@@ -16,6 +16,8 @@ Example as a step in a pipeline
     copy-properties: true
 ```
 
+With the configuration above and an input of "Hello there", the output is `{"text": "Hello there"}`.
+
 ### Topics
 
 #### **Input**

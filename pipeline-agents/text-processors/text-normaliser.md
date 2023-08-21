@@ -14,6 +14,8 @@ An example that lowercases the provided contents:
       trim-spaces: true
 ```
 
+With the configuration above and an input of "HI there with a TRAILING space ", the output is `hi there with a trailing space.`
+
 ### Topics
 
 #### **Input**
