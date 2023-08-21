@@ -27,9 +27,16 @@ LangStream container images are available on Docker Hub. Current images can be d
 To create a LangStream control plane, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster.
 
 ```bash
-helm repo add langstream https://datastax.github.io/langstream
 kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
-helm upgrade -i langstream langstream/langstream --wait --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml
+helm repo add langstream https://datastax.github.io/langstream
+helm repo update
+helm upgrade \
+    -i langstream \
+    -n langstream \
+    --create-namespace \
+    --wait \
+    --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml \
+    langstream/langstream
 ```
 
 #### Open the control-plane and api-gateway ports (in separate terminals)
@@ -37,11 +44,11 @@ helm upgrade -i langstream langstream/langstream --wait --values https://raw.git
 Control plane:
 
 ```bash
-kubectl port-forward svc/langstream-control-plane 8090:8090 &
+kubectl -n langstream port-forward svc/langstream-control-plane 8090:8090 &
 ```
 
 API gateway:
 
 ```bash
-kubectl port-forward svc/langstream-api-gateway 8091:8091 &
+kubectl -n langstream port-forward svc/langstream-api-gateway 8091:8091 &
 ```

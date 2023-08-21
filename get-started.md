@@ -21,7 +21,13 @@ kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/he
 ```bash
 helm repo add langstream https://langstream.github.io/charts
 helm repo update
-helm upgrade -i langstream langstream/langstream --wait --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml
+helm upgrade \
+    -i langstream \
+    -n langstream \
+    --create-namespace \
+    --wait \
+    --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml \
+    langstream/langstream
 ```
 
 &#x20; 4\. Open the control-plane and api-gateway ports (in separate terminals):
@@ -29,13 +35,13 @@ helm upgrade -i langstream langstream/langstream --wait --values https://raw.git
 Control plane:
 
 ```bash
-kubectl port-forward svc/langstream-control-plane 8090:8090 &
+kubectl -n langstream port-forward svc/langstream-control-plane 8090:8090 &
 ```
 
 API gateway:
 
 ```bash
-kubectl port-forward svc/langstream-api-gateway 8091:8091 &
+kubectl -n langstream port-forward svc/langstream-api-gateway 8091:8091 &
 ```
 
 ### Environment setup
