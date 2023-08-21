@@ -33,6 +33,10 @@ The hierarchy should look like this:
 |- (optional) secrets.yaml
 ```
 
+{% hint style="info" %}
+Want to get started a little quicker? Check out the [LangStream VSCode Extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) for pre-made applications and agent code snippets.
+{% endhint %}
+
 #### Application directory
 
 This is referred to as the “application directory” because the main pipeline and its configuration are declared within.
