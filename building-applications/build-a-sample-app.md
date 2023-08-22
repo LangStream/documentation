@@ -1,9 +1,10 @@
-# Build a sample app
+# Sample App
 
 This sample application takes minimal configuration to get you started on your LangStream journey.
 
-1. Complete getting started.
+1. Complete the LangStream installation steps in [Get Started.](../get-started.md)
 2. Pass your OpenAI credentials to /tmp/secrets.yaml:
+
 ```bash
 export AZURE_URL=xx
 export OPEN_AI_ACCESS_KEY=xx
@@ -19,6 +20,7 @@ secrets:
 ```
 
 3. Create a project folder in examples/applications:
+
 ```
 mkdir sample-app && cd sample-app
 touch configuration.yaml instance.yaml
@@ -27,6 +29,7 @@ touch pipeline.yaml gateways.yaml
 ```
 
 It should look something like this:
+
 ```
 |- sample-app
 |- application
@@ -40,6 +43,7 @@ It should look something like this:
 4. Populate the yaml files:
 
 Instance.yaml declares the application's processing infrastructure, including where streaming and compute take place.
+
 ```yaml
 instance:
   streamingCluster:
@@ -50,6 +54,7 @@ instance:
 ```
 
 Configuration.yaml contains auth information.
+
 ```yaml
 configuration:
   resources:
@@ -63,6 +68,7 @@ configuration:
 ```
 
 Gateways.yaml contains API gateways for communicating with your application.
+
 ```yaml
 gateways:
   - id: produce-input
@@ -88,6 +94,7 @@ gateways:
 ```
 
 Pipeline.yaml contains the chain of agents that makes up your program, and the input and output topics that they communicate with.
+
 ```yaml
 topics:
   - name: "input-topic"
@@ -110,12 +117,14 @@ pipeline:
 Save all your files.
 
 5. Deploy your application:
+
 ```bash
 langstream apps deploy sample-app -app ./application -i ./instance.yaml -s /tmp/secrets.yaml
 langstream apps get sample-app
 ```
 
 Result:
+
 ```bash
 packaging app: /Users/mendon.kissling/sample-app/./application
 app packaged
@@ -127,6 +136,7 @@ sample-app       kafka            kubernetes       DEPLOYING        0/0
 
 6. Ensure your app is running - a Kubernetes pod should be deployed with your application, and STATUS will change to DEPLOYED.
 7. Send a query to OpenAI about "Barack Obama":
+
 ```bash
 session="$(uuidgen)"
 langstream gateway produce sample-app produce-input -p sessionId="$session" -v "Barack Obama"
@@ -138,6 +148,3 @@ langstream gateway consume sample-app consume-output -p sessionId="$session"
 Connected to ws://localhost:8091/v1/consume/default/sample-app/consume-output?&param:sessionId=0DB21293-0E77-4C89-8185-4F8D4C49E7C7&
 {"record":{"key":null,"value":"Barack Obama is an American politician and attorney who served as the 44th President of the United States from 2009 to 2017. He was born in Honolulu, Hawaii, in 1961 to a Kenyan father and an American mother. Obama is known for his policies on healthcare reform, economic stimulus, foreign policy, civil rights, and environmental regulation. He is also famous for his inspiring and charismatic speeches and his ability to connect with people from all backgrounds. Before his presidency, Obama served as a community organizer, civil rights attorney, and senator for the state of Illinois. He is also a published author, with several books to his name, including his memoir \"Dreams from My Father\" and \"The Audacity of Hope.\"","headers":{"langstream-client-session-id":"0DB21293-0E77-4C89-8185-4F8D4C49E7C7"}},"offset":"eyJvZmZzZXRzIjp7IjAiOiI0In19"}
 ```
-
-
-
