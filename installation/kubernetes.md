@@ -16,11 +16,11 @@ layout:
 
 LangStream container images are available on Docker Hub. Current images can be deployed to Kubernetes. The control plane is made up of the following images:
 
-* [datastax/langstream-deployer](https://public.ecr.aws/y3i6u2n7/datastax-public/langstream-deployer)
-* [datastax/langstream-control-plane](https://public.ecr.aws/y3i6u2n7/datastax-public/langstream-control-plane)
-* [datastax/langstream-runtime](https://public.ecr.aws/y3i6u2n7/datastax-public/langstream-runtime)
-* [datastax/langstream-api-gateway](https://public.ecr.aws/y3i6u2n7/datastax-public/langstream-api-gateway)
-* [datastax/langstream-cli](https://public.ecr.aws/y3i6u2n7/datastax-public/langstream-cli)
+* [datastax/langstream-deployer](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-deployer)
+* [datastax/langstream-control-plane](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-control-plane)
+* [datastax/langstream-runtime](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-runtime)
+* [datastax/langstream-api-gateway](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-api-gateway)
+* [datastax/langstream-cli](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-cli)
 
 ### Quick Start
 
