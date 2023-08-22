@@ -73,5 +73,6 @@ With LangStream installed and your environment set up, you're ready to build an 
 
 Here are a few ways to get started building LangStream applications:
 
+* [Build a sample application](building-applications/build-a-sample-app.md) to quickly create an OpenAI query with LangStream.
 * [Set up your development environment](building-applications/development-environment.md) and learn how to build the needed manifests
 * [Install the VSCode extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) and use the provided starter applications & agent snippets
