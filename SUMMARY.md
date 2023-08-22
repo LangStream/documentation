@@ -21,6 +21,7 @@
 
 * [Development Environment](building-applications/development-environment.md)
 * [Development Workflow](building-applications/development-workflow.md)
+* [Sample App](building-applications/build-a-sample-app.md)
 * [Pipelines](building-applications/pipelines.md)
 * [Instances](building-applications/instances.md)
 * [Configuration](building-applications/configuration.md)
