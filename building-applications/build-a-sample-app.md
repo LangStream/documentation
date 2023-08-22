@@ -20,22 +20,46 @@ secrets:
 
 3. Create a project folder in examples/applications:
 ```
-mkdir sample-app
-cd sample-app
-touch configuration.yaml gateways.yaml pipeline.yaml
+mkdir sample-app && cd sample-app
+touch configuration.yaml instance.yaml
+mkdir application && cd application
+touch pipeline.yaml gateways.yaml
 ```
+
+It should look something like this:
+```
+|- sample-app
+|- application
+    |- pipeline.yaml
+    |- gateways.yaml
+|- instance.yaml
+|- configuration.yaml
+|- (optional) secrets.yaml
+```
+
 4. Populate the yaml files:
+
+Instance.yaml declares the application's processing infrastructure, including where streaming and compute take place.
+```yaml
+instance:
+  streamingCluster:
+    type: "kafka"
+    configuration:
+      admin:
+        bootstrap.servers: my-cluster-kafka-bootstrap.kafka:9092
+```
 
 Configuration.yaml contains auth information.
 ```yaml
 configuration:
   resources:
-    - type: "open-ai-configuration"
-      name: "OpenAI Azure configuration"
+    - type: open-ai-configuration
+      name: OpenAI Azure configuration
       configuration:
-        url: "{{ secrets.open-ai.url }}"
-        access-key: "{{ secrets.open-ai.access-key }}"
-        provider: "azure"
+        url: "{{{ secrets.open-ai.url }}}"
+        access-key: "{{{ secrets.open-ai.access-key }}}"
+        provider: azure
+  dependencies: []
 ```
 
 Gateways.yaml contains API gateways for communicating with your application.
@@ -62,6 +86,7 @@ gateways:
           - key: langstream-client-session-id
             valueFromParameters: sessionId
 ```
+
 Pipeline.yaml contains the chain of agents that makes up your program, and the input and output topics that they communicate with.
 ```yaml
 topics:
@@ -86,26 +111,26 @@ Save all your files.
 
 5. Deploy your application:
 ```bash
-./bin/langstream apps deploy sample-app -app examples/applications/sample-app -i examples/instances/kafka-kubernetes.yaml -s /tmp/secrets.yaml
-./bin/langstream apps get sample-app
+langstream apps deploy sample-app -app ./application -i ./instance.yaml -s /tmp/secrets.yaml
+langstream apps get sample-app
 ```
 
 Result:
 ```bash
-packaging app: /Users/mendon.kissling/Documents/GitHub/langstream/examples/applications/sample-app
+packaging app: /Users/mendon.kissling/sample-app/./application
 app packaged
-deploying application: sample-app (2 KB)
+deploying application: sample-app (0 KB)
 application sample-app deployed
 ID               STREAMING        COMPUTE          STATUS           EXECUTORS        REPLICAS
 sample-app       kafka            kubernetes       DEPLOYING        0/0
 ```
 
-6. Ensure your app is running - a pod should be deployed with your application, and STATUS will change to DEPLOYED.
+6. Ensure your app is running - a Kubernetes pod should be deployed with your application, and STATUS will change to DEPLOYED.
 7. Send a query to OpenAI about "Barack Obama":
 ```bash
 session="$(uuidgen)"
-./bin/langstream gateway produce sample-app produce-input -p sessionId="$session" -v "Barack Obama"
-./bin/langstream gateway consume sample-app consume-output -p sessionId="$session"
+langstream gateway produce sample-app produce-input -p sessionId="$session" -v "Barack Obama"
+langstream gateway consume sample-app consume-output -p sessionId="$session"
 ```
 
 ```result
