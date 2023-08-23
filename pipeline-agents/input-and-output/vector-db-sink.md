@@ -48,5 +48,5 @@ pipeline:
 
 ### Configuration
 
-<table><thead><tr><th width="234.33333333333331">Label</th><th width="114">Type</th><th>Description</th></tr></thead><tbody><tr><td>datasource</td><td>String</td><td>The type of datasource</td></tr><tr><td>vector.id</td><td>String</td><td>The vector ID</td></tr><tr><td>vector.vector</td><td>Float</td><td>The vector value</td></tr><tr><td>vector.namespace</td><td>String</td><td>The vector DB's namespace</td></tr><tr><td>vector.metadata</td><td>String</td><td>Filter results by metadata type. For more, see the <a href="https://docs.pinecone.io/docs/metadata-filtering">Pinecone docs</a>.</td></tr></tbody></table>
+<table><thead><tr><th width="234.33333333333331">Label</th><th width="114">Type</th><th>Description</th></tr></thead><tbody><tr><td>datasource</td><td>String</td><td>The type of datasource</td></tr><tr><td>vector.id</td><td>String</td><td>The vector ID</td></tr><tr><td>vector.vector</td><td>String</td><td>The vector value</td></tr><tr><td>vector.namespace</td><td>String</td><td>The vector DB's namespace</td></tr><tr><td>vector.metadata</td><td>String</td><td>Filter results by metadata type. For more, see the <a href="https://docs.pinecone.io/docs/metadata-filtering">Pinecone docs</a>.</td></tr></tbody></table>
 
