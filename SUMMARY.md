@@ -50,6 +50,7 @@
 * [Text Processors](pipeline-agents/text-processors/README.md)
   * [document-to-json](pipeline-agents/text-processors/document-to-json.md)
   * [query](pipeline-agents/text-processors/query.md)
+  * [query-vector-db](pipeline-agents/text-processors/query-vector-db.md)
   * [text-normaliser](pipeline-agents/text-processors/text-normaliser.md)
   * [text-extractor](pipeline-agents/text-processors/text-extractor.md)
   * [text-splitter](pipeline-agents/text-processors/text-splitter.md)
