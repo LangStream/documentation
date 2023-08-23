@@ -4,7 +4,7 @@ This agent enables submitting queries to a vector datasource (like [Pinecone](ht
 
 ### Example
 
-Follow the [Pinecone Quickstart docs](https://docs.pinecone.io/docs/quickstart) to create your Pinecone API key, environment, vector index name, and project name, and add them to your secrets.yaml file.
+Follow the [Pinecone Quickstart docs](https://docs.pinecone.io/docs/quickstart) to create your Pinecone API key, environment, vector index name, and project name, and add them to your secrets.yaml file. These values are required.
 
 Specify a datasource in configuration.yaml:
 

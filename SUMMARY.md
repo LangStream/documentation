@@ -58,6 +58,7 @@
   * [webcrawler-source](pipeline-agents/input-and-output/webcrawler-source.md)
   * [s3-source](pipeline-agents/input-and-output/s3-source.md)
   * [sink](pipeline-agents/input-and-output/sink.md)
+  * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)
 
 ## Configuration Resources
 
