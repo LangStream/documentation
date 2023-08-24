@@ -30,7 +30,7 @@ helm upgrade \
     langstream/langstream
 ```
 
-&#x20; 4\. Open the control-plane and api-gateway ports (in separate terminals):
+4\. Open the control-plane and api-gateway ports (in separate terminals):
 
 Control plane:
 
@@ -49,7 +49,7 @@ kubectl -n langstream port-forward svc/langstream-api-gateway 8091:8091 &
 1. Port forward minio in a separate terminal:
 
 ```
-kubectl port-forward pod/minio 9000 9090 -n minio-dev  
+kubectl port-forward pod/minio 9000:9090 -n minio-dev  
 ```
 
 2. Install Kafka:
