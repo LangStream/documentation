@@ -1,7 +1,7 @@
 # Table of contents
 
 * [LangStream Documentation](README.md)
-* [GitHub Repo](github-repo.md)
+* [⭐ GitHub Repo](github-repo.md)
 
 ## about
 
