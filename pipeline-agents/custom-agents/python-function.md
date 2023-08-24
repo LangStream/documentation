@@ -9,15 +9,12 @@ The Python application needs to follow a specific directory structure for this a
 Example python class located at ./application/python/example.py:
 
 ```python
-from sga_runtime.record import Record
+from langstream.util import SimpleRecord, SingleRecordProcessor
 
 # Example Python processor that adds an exclamation mark to the end of the record value
-class Exclamation(object):
-  def process(self, records):
-    processed_records = []
-    for record in records:
-      processed_records.append(Record(record.value() + "!!"))
-    return processed_records
+class Exclamation(SingleRecordProcessor):
+  def process_record(self, record):
+      return [SimpleRecord(record.value() + "!!")]
 ```
 
 Configure the agent to use the python class
@@ -34,7 +31,7 @@ Configure the agent to use the python class
 The python application can optionally take in parameters from the application environment. The following is an example python application that is given a “config” object when it “inits”.
 
 ```python
-from langstream_runtime.record import Record
+from langstream.util import SimpleRecord
 import openai
 import json
 from openai.embeddings_utils import get_embedding
@@ -51,7 +48,7 @@ class Embedding(object):
       embedding = get_embedding(record.value(), engine='text-embedding-ada-002')
       result = {"input": str(record.value()), "embedding": embedding}
       new_value = json.dumps(result)
-      processed_records.append(Record(value=new_value))
+      processed_records.append((record, [SimpleRecord(value=new_value)]))
     return processed_records
 ```
 
