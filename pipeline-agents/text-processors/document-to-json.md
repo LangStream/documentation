@@ -9,8 +9,8 @@ Example as a step in a pipeline
 ```yaml
 - name: "Convert to structured data"
   type: "document-to-json"
-  output: "input-topic" # optional
-  output: "output-topic" # optional
+  intput: "input-topic"
+  output: "output-topic"
   configuration:
     text-field: text
     copy-properties: true
