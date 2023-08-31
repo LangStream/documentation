@@ -30,6 +30,7 @@
 * [API Gateways](building-applications/api-gateways.md)
 * [Application Lifecycle](building-applications/application-lifecycle.md)
 * [Vector Databases](building-applications/vector-databases.md)
+* [Error Handling](building-applications/error-handling.md)
 
 ## Pipeline Agents
 
