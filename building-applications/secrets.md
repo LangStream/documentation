@@ -28,7 +28,7 @@ Where do you find credentials for these items? Here's a little help:
 
 | Secret       | Location                                                                                                                  | Example Value                                                        |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| astra-token  | [Astra Streaming](https://astra.datastax.com/)                                                                            | token: eyXxx... (Pulsar token)                                       |
+| astra-token  | [Astra Streaming](https://astra.datastax.com/)                                                                            | token: eyXxx...                                                      |
 |              | [AS tenant](https://astra.datastax.com/)                                                                                  | tenant: mytenant                                                     |
 |              | [AS namespace](https://astra.datastax.com/)                                                                               | namespace: default                                                   |
 | open-ai      | [OpenAI Access Key](https://platform.openai.com/)                                                                         | access-key: xxx                                                      |
