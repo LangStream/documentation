@@ -1,10 +1,11 @@
 # vector-db-sink
 
-This agent writes to a vector database like [AstraDB](https://www.datastax.com/products/datastax-astra) or [Pinecone](https://docs.pinecone.io/).
+This agent writes vector data to vector databases.
+LangStream currently supports [AstraDB](https://www.datastax.com/products/datastax-astra) and [Pinecone](https://docs.pinecone.io/).
 
-Different vector databases are configured slightly differently, but the LangStream declaration of configuration and pipeline in the application remains the same.
+Astra DB and Pinecone are both of the type "vector-db-sink" in a LangStream pipeline, but the databases require different configuration values to map the vector data from the sink into the database.
 
-### Astra DB example
+## Astra DB example
 
 The Astra DB vector database connection is defined in configuration.yaml:
 
@@ -37,7 +38,23 @@ pipeline:
       mapping: "id=value.id,description=value.description,name=value.name"
 ```
 
-### Pinecone Example
+### AstraDB Topics
+
+**Input**
+
+* Structured and unstructured text [?](../agent-messaging.md#implicit-input-and-output-topics)
+* Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
+* Templating [?](../agent-messaging.md#json-text-input)
+
+**Output**
+
+* None, it’s a sink.
+
+### AstraDB Configuration
+
+<table><thead><tr><th width="234.33333333333331">Label</th><th width="114">Type</th><th>Description</th></tr></thead><tbody><tr><td>datasource</td><td>String</td><td>The datasource is defined in the Resources section of configuration.yaml.</td></tr><tr><td>table</td><td>String</td><td>The `keyspace.table-name` the vector data will be written to</td></tr><tr><td>mapping</td><td>String</td><td>How the data from the input records will be mapped to the corresponding columns in the database table. "id=value.id" maps the "id" value in the input record to the "id" value of the database. </td></tr></tbody></table>
+
+## Pinecone Example
 
 The "Write to Pinecone" pipeline step takes embeddings as input from "vectors-topic" and writes them to a Pinecone datasource.
 
@@ -73,7 +90,7 @@ pipeline:
       vector.metadata.genre: "value.genre"
 ```
 
-### Topics
+### Pinecone Topics
 
 **Input**
 
@@ -85,7 +102,7 @@ pipeline:
 
 * None, it’s a sink.
 
-### Configuration
+### Pinecone Configuration
 
-<table><thead><tr><th width="234.33333333333331">Label</th><th width="114">Type</th><th>Description</th></tr></thead><tbody><tr><td>datasource</td><td>String</td><td>The datasource is defined in the Resources section of configuration.yaml.</td></tr><tr><td>vector.id</td><td>String</td><td>Expression specifying how to extract the ID from the data record</td></tr><tr><td>vector.vector</td><td>String</td><td>Expression specifying how to extract the vector data from the data record.</td></tr><tr><td>vector.namespace</td><td>String</td><td>Expression specifying how to extract the namespace from the data record.</td></tr><tr><td>vector.metadata.{metadataField}</td><td>String</td><td>Expression specifying how to extract metadata fields from the data record.</td></tr></tbody></table>
+<table><thead><tr><th width="234.33333333333331">Label</th><th width="114">Type</th><th>Description</th></tr></thead><tbody><tr><td>datasource</td><td>String</td><td>The datasource is defined in the Resources section of configuration.yaml.</td></tr><tr><td>vector.id</td><td>String</td><td>Maps id to vector.id</td></tr><tr><td>vector.vector</td><td>String</td><td>Maps the input value "vector" to "vector.vector" in the database.</td></tr><tr><td>vector.namespace</td><td>String</td><td>Maps the input value "namespace" to "vector.namespace" in the database.</td></tr><tr><td>vector.metadata.{metadataField}</td><td>String</td><td>Maps the input value "metadata.{metadataField}" to "vector.metadata.{metadataField}"</td></tr></tbody></table>
 
