@@ -45,17 +45,17 @@ cd langstream
 If you are using Minikube load the new images with the following commands:
 
 ```bash
-minikube image load datastax/langstream-cli:latest-dev
-minikube image load datastax/langstream-deployer:latest-dev
-minikube image load datastax/langstream-control-plane:latest-dev
-minikube image load datastax/langstream-runtime:latest-dev
-minikube image load datastax/langstream-api-gateway:latest-dev
+minikube image load --overwrite langstream/langstream-deployer:latest-dev
+minikube image load --overwrite langstream/langstream-control-plane:latest-dev
+minikube image load --overwrite langstream/langstream-runtime:latest-dev
+minikube image load --overwrite langstream/langstream-api-gateway:latest-dev
+minikube image load --overwrite langstream/langstream-cli:latest-dev
 ```
 {% endhint %}
 
 ```bash
 kubectl apply -f ./helm/examples/minio-dev.yaml
-helm upgrade -i langstream helm/langstream --values ./helm/examples/local.yaml --wait
+helm upgrade -i langstream langstream/langstream --values helm/examples/local.yaml --wait
 ```
 
 ### Locate the CLI
