@@ -14,4 +14,4 @@ layout:
 
 # Input & Output
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>s3-source</td><td></td><td></td><td><a href="s3-source.md">s3-source.md</a></td></tr><tr><td>sink</td><td></td><td></td><td><a href="sink.md">sink.md</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>s3-source</td><td></td><td></td><td><a href="s3-source.md">s3-source.md</a></td></tr><tr><td>sink</td><td></td><td></td><td><a href="sink.md">sink.md</a></td></tr><tr><td>vector-db-sink</td><td></td><td></td><td><a href="vector-db-sink.md">vector-db-sink.md</a></td></tr><tr><td>webcrawler-source</td><td></td><td></td><td><a href="webcrawler-source.md">webcrawler-source.md</a></td></tr></tbody></table>
