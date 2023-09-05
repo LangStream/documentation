@@ -28,10 +28,10 @@ pipeline:
 
 ### Example webcrawler workflow
 
-Using the webcrawler source agent as a starting point, this workflow will crawl a website, get a page's HTML, create a document from the crawled HTML, etc...\
-The complete example code is available in the [Langstream repository.](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source)
+Using the webcrawler source agent as a starting point, this workflow will crawl a website, get a page's raw HTML, and process that information into chunks for embedding in a vector database.\
+The complete example code is available in the [LangStream repository.](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source)
 
-1. Topics necessary for the application are declared: we will need to chunk topics in the&#x20;
+1. Topics necessary for the application are declared: we will later pass the chunked embeddings to a vector database via the Kafka "chunks-topic".
 
 ```yaml
 name: "Crawl a website"
@@ -156,7 +156,7 @@ The webcrawler then passes the document on to the next agent.
       text: "{{% value.text }}"
 ```
 
-10. Where to next? If you've got an [Astra vector database](http://astra.datastax.com), you can use the [vector-db-sink](vector-db-sink.md) agent to sink the vectorized embeddings via the Kafka "chunks-topic" to your database. From there, you can [query](../text-processors/query-vector-db.md) your vector data, or ask questions with a [chatbot](https://github.com/LangStream/langstream/blob/main/examples/applications/webcrawler-source/chatbot.yaml). It's up to you!
+10\. Where to next? If you've got an [Astra vector database](http://astra.datastax.com), use the [vector-db-sink](vector-db-sink.md) agent to sink the vectorized embeddings via the Kafka "chunks-topic" to your database. From there, you can [query](../text-processors/query-vector-db.md) your vector data, or ask questions with a [chatbot](https://github.com/LangStream/langstream/blob/main/examples/applications/webcrawler-source/chatbot.yaml). It's up to you!
 
 ```yaml
   - name: "Write to AstraDB"
