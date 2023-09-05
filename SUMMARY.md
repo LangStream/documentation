@@ -40,6 +40,7 @@
   * [compute-ai-embeddings](pipeline-agents/ai-actions/compute-ai-embeddings.md)
   * [language-detector](pipeline-agents/ai-actions/language-detector.md)
 * [Custom Agents](pipeline-agents/custom-agents/README.md)
+  * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python function](pipeline-agents/custom-agents/python-function.md)
 * [Data Transform](pipeline-agents/data-transform/README.md)
