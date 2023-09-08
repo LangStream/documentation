@@ -30,3 +30,17 @@ Once you have the application in a stable place, you’ll need to promote it off
 When you update your application, all impacted agents in the pipeline are restarted at the same time, and if an agent has more than 1 replica, 1 replica is restarted at a time.&#x20;
 
 In Kubernetes terms, each agent is a StatefulSet, and updating agents behaves like a [rolling update](https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#rolling-update) of StatefulSets.
+
+### Deleting an application
+
+Deleting an application removes the application pod(s) and StatefulSet. \
+\
+If your application can't deploy and you attempt to clean things up, the custom resource can deadlock the removal of the namespace.&#x20;
+
+To remove the finalizer causing the deadlock:
+
+```
+appId="some-super-cool-app"
+kubectl -n langstream-default patch Application/${appId} \
+-p '{"metadata":{"finalizers":[]}}' --type=merge
+```
