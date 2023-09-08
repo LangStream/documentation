@@ -16,6 +16,35 @@ layout:
 
 This agent uses the configured AI model’s embedding feature to transform a string of text into a vector embedding. At present, it is assumed that only one AI mode will be set in configuration.yaml. This agent will discover its type (ie OpenAI, Hugging Face, Vertex) and use the corresponding library to generate the embedding. It is up to the developer to match the correct embedding model with the configured AI model.
 
+### JSON and String inputs
+
+This agent currently only accepts JSON-formatted inputs.&#x20;
+
+Either ensure the input is JSON, or put the [document-to-json](../text-processors/document-to-json.md) agent before the compute-ai-embeddings agent in your pipeline:
+
+```yaml
+pipeline:
+  - name: "convert-to-json"
+    type: "document-to-json"
+    input: "input-topic"
+    configuration:
+      text-field: "question"
+  - name: "compute-embeddings"
+    id: "step1"
+    type: "compute-ai-embeddings"
+    input: "input-topic"
+    output: "output-topic"
+    configuration:
+      model: "{{{secrets.open-ai.embeddings-model}}}" # This needs to match the name of the model deployment, not the base model
+      embeddings-field: "value.embeddings"
+      text: "{{% value.name }} {{% value.description }}"
+      batch-size: 10
+      # this is in milliseconds. It is important to take this value into consideration when using this agent in the chat response pipeline
+      # in fact this value impacts the latency of the response
+      # for latency sensitive applications, consider to set batch-size to 1 or flush-interval to 0
+      flush-interval: 500
+```
+
 ### Example
 
 If the configuration set Google Vertex as its AI model:
