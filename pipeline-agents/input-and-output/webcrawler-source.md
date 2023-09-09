@@ -88,7 +88,7 @@ The webcrawler then passes the document on to the next agent.
       trim-spaces: true
 ```
 
-5. The [language detector agent](../ai-actions/language-detector.md) identifies a record’s language. In this case, non-English records are skipped, and English records continue to the next step in the pipeline.
+5. The [language detector agent](../text-processors/language-detector.md) identifies a record’s language. In this case, non-English records are skipped, and English records continue to the next step in the pipeline.
 
 ```yaml
   - name: "Detect language"
