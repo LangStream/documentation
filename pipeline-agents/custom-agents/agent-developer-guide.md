@@ -12,27 +12,27 @@ LangStream offers 3 different types of agents. A [source](python-source.md) agen
 
 It’s typical to run the Control Plane as an internal service within an Organization. An agent’s outgoing access might be limited to the internal network, or might have internet access. This may create incompatibility with LangStream’s pre-built agents, or you may want to include domain knowledge specific to processing within the agent.&#x20;
 
-#### Agent types
+### Agent types
 
-[**Source**](python-source.md)
+#### Source
 
 A source agent is responsible for bringing data into the application’s pipeline.&#x20;
 
 A source agent is the first step of a pipeline and replaces the use of an input topic. A source can be anything. The agent is responsible for retrieving data from a service and uses the LangStream API to create a `Record` that encapsulates that data. LangStream will produce a message on the specified topic for other agents to consume.
 
-[**Sink**](python-sink.md)
+#### Sink
 
 A sink agent is responsible for writing data to a service outside the application pipeline.&#x20;
 
 The agent is responsible for accepting a list of `Record`s as input and writing the value to the given service. A sink agent may be the last step in a pipeline or may capture data and continue to the next steps in the pipeline.
 
-[**Processor**](python-function.md)
+#### Processor
 
 Processor agents are typically placed throughout an application’s pipeline.&#x20;
 
 A processor agent might manipulate data as it flows through the pipeline, or could add in context to help downstream agents make decisions. A processor agent is responsible for accepting a list of `Record`s as input, doing some processing as necessary, and returning a `Record` (or many `Record`s) as a result.
 
-#### Deploying the agent
+### Deploying the agent
 
 Once you have built, tested, and packaged the agent you will need to include it as a part of the LangStream application deployment. Within the “application” directory create a directory named “python”. Within that directory place all the files included in packaging.
 
@@ -52,7 +52,7 @@ To include the agent as a step in the pipeline, set the className to match the e
     className: main.MySourceAgent
 ```
 
-#### Agent records
+### Agent records
 
 When developing a custom agent, your contract with the LangStream runtime will be implementing the correct function(s) as well as working with the `Record` type. This is how LangStream moves data between agents and message topics.&#x20;
 
@@ -107,9 +107,9 @@ class SimpleRecord(Record):
 ...
 ```
 
-#### Creating agents
+### Creating agents
 
-**Source**
+#### **Source**
 
 If you are creating a source agent, all that is required is the “read” function. This function doesn’t have any input but returns a collection of `Record`s that will be passed to the next step in the pipeline. The LangStream runtime will call this function in a loop. Depending on the source type, care needs to be taken to not overwhelm the service being called.
 
@@ -155,7 +155,7 @@ class MySourceAgent(object):
     return results
 ```
 
-**Handling exceptions**
+Handling Exceptions
 
 It is left to the developer to handle errors in a source agent. The LangStream runtime is not expecting any errors from the agent process. If an unhandled exception occurs within a source agent, it will bubble up through the container, to the pod, where the Kubernetes scheduler will restart the pod. At a minimum, you can print to console and let Kubernetes direct the error message somewhere. This will prevent the pod restart.
 
@@ -170,7 +170,7 @@ It is left to the developer to handle errors in a source agent. The LangStream r
     return [] # gracefully return nothing because an exception occurred
 ```
 
-**Sink**
+#### **Sink**
 
 If you are creating a sink agent then you’ll need to implement the “write” function as well as the “set\_commit\_callback” function. The write function takes in a collection of `Record`s that were provided by the previous step in the pipeline. It is called whenever data is available for processing. The set\_commit\_callback commit function provides acknowledgment to LangStream that records have been successfully consumed and can be removed.
 
@@ -199,11 +199,11 @@ class MySinkAgent(Sink):
     pass
 ```
 
-**Handling exceptions**
+Handling Exceptions
 
 Ideally the python app catches and handles exceptions that occur while committing a record to a sink. If an exception goes uncaught in the agent process, the LangStream runtime will follow the failure management strategy declared in pipeline error spec. This gives the developer tools to prevent pod restarts.
 
-**Processor**
+#### **Processor**
 
 Finally, if you are creating a processor agent, you will implement the “process” function. This function takes in a collection of `Record`s that were provided by the previous step in the pipeline. It is called whenever data is available for processing.
 
@@ -255,11 +255,11 @@ If an exception occurred while processing the second record provided, the result
 
 Both of these returned collections would let the LangStream runtime gracefully handle issues and continue processing the next step(s).
 
-**Handling exceptions**
+Handling Exceptions
 
 The processor agent has a special return type `List[Tuple[Record, Union[List[Record], Exception]]]` that has provisions for including an Exception rather than the Record(s). If an exception is provided in the return, the LangStream runtime will follow the failure management strategy declared in pipeline error spec. This gives the developer tools to prevent pod restarts.
 
-**Single record processor**
+Single Record Processor
 
 The LangStream Python package offers an implementation of the full `Processor` interface, called `SingleRecordProcessor`. This class is a simplified way to create a processor where 1 `Record` will be received and N number of `Record`s will be returned. Exception handling will be done by agent processing.
 
@@ -284,7 +284,7 @@ class MyAgent(SingleRecordProcessor):
 Start with the `SingleRecordProcessor` and move into a full `Processor` as needed. Most use cases should fit `SingleRecordProcessor.`Only the most advanced batching and asynchronous processing need a full `Processor`.
 {% endhint %}
 
-#### Configuration
+### Configuration
 
 Normally it’s a best practice to not hardcode credentials, settings, and other dynamic information an application may need. The LangStream runtime offers a way to provide configuration values at runtime to the agent. The values are declared in the pipeline.yaml manifest where the agent step is created, and are made available during the startup of the agent process as a Dictionary.
 
@@ -312,13 +312,13 @@ pipeline:
       value2: "{{ secrets.my-app.some-secret-value}}" # as a secret ref
 ```
 
-#### Testing and packaging the agent
+### Testing and packaging the agent
 
 During development, it’s best to follow the [12 factors](https://12factor.net/) as closely as possible - specifically parity between environments. You should be developing an agent locally using the same (or near similar) environment it will run within on LangStream. Our approach to reach environment parity is to use Docker as a test and packaging environment.
 
 Python is a cross-platform runtime. Given a list of dependent packages (requirements.txt), the installation of an app should be augmented/fail based on what operating system is being used. While most installers offer the option of declaratively providing what platform the install should provision for, if you’ve ever attempted this you know there are quite a few caveats that come with that promise. To achieve a reproducible, iterable result, it’s best to package and test in an environment matching production.
 
-**Packaging**
+#### **Packaging**
 
 When you are creating a LangStream agent, you aren’t creating a proper Python package. It’s more akin to creating a cloud function (think Lambda). Given the [folder structure of a LangStream application](https://docs.langstream.ai/building-applications/development-environment), inside the “application” folder, your agent source code will go inside a “python” folder. It’s encouraged to develop the agent in that folder. Given that some agents are one simple .py file, there’s no need to create a separate development environment.
 
@@ -339,7 +339,7 @@ docker run --rm \
 Note the version of LangStream was provided as the image’s tag. This should match the version of LangStream you are developing for.
 {% endhint %}
 
-**Unit testing**
+#### **Unit testing**
 
 Similar to packaging, the below Docker command is a starting suggestion of how to run your unit tests against the same environment the agent will run in LangStream.
 
@@ -363,6 +363,6 @@ docker run --rm \
     /bin/bash -c 'tox'
 ```
 
-#### Multiple Python apps in one LangStream application
+### Multiple Python apps in one LangStream application
 
 If your LangStream application consists of more than one custom agent, it is recommended that you separate them into 2 different applications. They can share input or output topics or be put inline with one another indirectly by topic. Separating by application gives you two clear “python” folders to house your artifact. This will aid in dependency collisions and other effects of two apps trying to share the same folder.
