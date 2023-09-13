@@ -12,7 +12,10 @@ LangStream offers 3 different types of agents. A [source](../custom-agents/pytho
 
 It’s typical to run the Control Plane as an internal service within an Organization. An agent’s outgoing access might be limited to the internal network, or might have internet access. This may create incompatibility with LangStream’s pre-built agents, or you may want to include domain knowledge specific to processing within the agent.&#x20;
 
-The Agent Developer Guide is broken into three milestones:\
+### Get Started
+
+The Agent Developer Guide is broken into three milestones:
+
 1\. [Agent Types](agent-types.md) - Understand the three main Python agents you'll use in your applications.\
 2\. [Deploying Agents](agent-creation.md) - Create agents to process records. Handle exceptions for each agent type.\
 3\. [Configuration and Testing](configuration-and-testing.md) - Configure, test, and package your agents for production.
