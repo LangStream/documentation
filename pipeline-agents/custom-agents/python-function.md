@@ -1,8 +1,10 @@
-# Python function
+# Python processor
 
 Along with the pre-made agents, you can provide your own agent processing as a Python application. The agent will attempt to execute the provided class function and return its result.
 
 The Python application needs to follow a specific directory structure for this agent to successfully run. Within the “application” directory create a directory named “python”. Within that directory place the .py file with the class function that will be the entry point.
+
+For more on developing custom agents with the Python processor, see the [Agent Developer Guide.](agent-developer-guide.md)
 
 ### Example
 
