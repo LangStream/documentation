@@ -1,8 +1,8 @@
----
-description: Part 3 of the Agent Developer Guide
----
-
 # Configuration and Testing
+
+{% hint style="info" %}
+This is Part 3 of the Agent Developer Guide. Start at the beginning [here.](./)
+{% endhint %}
 
 ### Configuring the agent
 

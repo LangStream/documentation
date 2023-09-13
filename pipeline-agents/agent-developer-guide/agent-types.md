@@ -4,6 +4,10 @@ description: Part 1 of the Agent Developer Guide
 
 # Agent Types
 
+LangStream offers 3 different types of agents. A [source](../custom-agents/python-source.md) agent is the start of a pipeline, a [sink](../custom-agents/python-sink.md) agent writes pipeline results to another service, and a [processor](../custom-agents/python-function.md) agent is a step in the pipeline. The gist of developing an agent is to implement one of its APIs ([Source](../custom-agents/python-source.md), [Sink](../custom-agents/python-sink.md), or [Processor](../custom-agents/python-function.md)). You provide the application’s source (the .py) files when deploying to the Control Plane. All of Python’s constructs and [duck typing](https://towardsdatascience.com/duck-typing-python-7aeac97e11f8) can be used as you build the agent.
+
+It’s typical to run the Control Plane as an internal service within an Organization. An agent’s outgoing access might be limited to the internal network, or might have internet access. This may create incompatibility with LangStream’s pre-built agents, or you may want to include domain knowledge specific to processing within the agent.&#x20;
+
 ### Source
 
 A source agent is responsible for bringing data into the application’s pipeline.&#x20;

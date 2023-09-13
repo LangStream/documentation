@@ -1,8 +1,8 @@
----
-description: Part 2 of the Agent Developer Guide
----
-
 # Agent Creation
+
+{% hint style="info" %}
+This is Part 2 of the Agent Developer Guide. Start at the beginning [here.](./)
+{% endhint %}
 
 Once you have built, tested, and packaged the agent you will need to include it as a part of the LangStream application deployment. Within the “application” directory create a directory named “python”. Within that directory place all the files included in packaging.
 
