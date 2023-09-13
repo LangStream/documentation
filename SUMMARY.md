@@ -1,7 +1,8 @@
 # Table of contents
 
 * [LangStream Documentation](README.md)
-* [⭐ LangStream Project Repo](langstream-project-repo.md)
+* [❤ Langstream.ai](https://langstream.ai)
+* [⭐ LangStream Project Repo](https://github.com/LangStream/langstream)
 
 ## about
 
