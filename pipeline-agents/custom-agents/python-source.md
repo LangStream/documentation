@@ -8,7 +8,7 @@ Within the “application” directory, create a directory named “python”.&#
 
 Within that directory, place the .py file with the class function that will be the entry point.
 
-For more on developing custom agents with the Python source, see the [Agent Developer Guide. ](agent-developer-guide.md)
+For more on developing custom agents with the Python source, see the [Agent Developer Guide.](../agent-developer-guide/)
 
 ### Example
 

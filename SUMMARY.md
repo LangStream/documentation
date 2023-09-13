@@ -35,11 +35,14 @@
 ## Pipeline Agents
 
 * [Agent Messaging](pipeline-agents/agent-messaging.md)
+* [Agent Developer Guide](pipeline-agents/agent-developer-guide/README.md)
+  * [Agent Types](pipeline-agents/agent-developer-guide/agent-types.md)
+  * [Agent Creation](pipeline-agents/agent-developer-guide/agent-creation.md)
+  * [Configuration and Testing](pipeline-agents/agent-developer-guide/configuration-and-testing.md)
 * [AI Actions](pipeline-agents/ai-actions/README.md)
   * [ai-chat-completions](pipeline-agents/ai-actions/ai-chat-completions.md)
   * [compute-ai-embeddings](pipeline-agents/ai-actions/compute-ai-embeddings.md)
 * [Custom Agents](pipeline-agents/custom-agents/README.md)
-  * [Agent Developer Guide](pipeline-agents/custom-agents/agent-developer-guide.md)
   * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)

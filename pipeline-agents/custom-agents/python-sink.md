@@ -19,7 +19,7 @@ The directory will look like this:
 |- (optional) secrets.yaml
 ```
 
-For more on developing custom agents with the Python sink, see the [Agent Developer Guide. ](agent-developer-guide.md)
+For more on developing custom agents with the Python sink, see the [Agent Developer Guide.](../agent-developer-guide/)
 
 ## Python sink example
 
