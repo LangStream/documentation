@@ -2,11 +2,11 @@
 
 You can get started with LangStream in 5 minutes or less. This guide will walk you through the steps to get LangStream running on your local machine.
 
-This guide uses Docker to run all the components of LangStream locally, if you want to learn how to deploy a full LangStream cluster locally using minikube see [here](get-started-minikube.md).
+This guide uses Docker to run all the components of LangStream locally. If you want to learn how to deploy a full LangStream cluster locally using minikube, see [here.](installation/get-started-minikube.md)
 
 ### Installation
 
-1. Install the LangStream CLI
+1. Install the LangStream CLI:
 
 ```
 brew tap LangStream/langstream
@@ -26,17 +26,19 @@ export OPENAI_API_KEY=<your-openai-api-key>
 langstream docker run test  -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
 ```
 
-The first time you run the application it will take a few minutes to download the docker images.
+The first time you run the application, it will take a few minutes to download the Docker images.
 
 3. Chat with the bot
 
-Once the application is running you can chat with the bot using the LangStream CLI:
+Once the application is running, chat with the bot using the LangStream CLI:
 
 ```
 langstream gateway chat test -cg consume-output -pg produce-input -p sessionId=$(uuidgen)
 ```
 
-If you see an 'application not found' error, then probably LangStream is still not ready to accept the connections. Wait a few seconds and try again.
+{% hint style="info" %}
+If you see an 'application not found' error, LangStream is still not ready to accept the connections. Wait a few seconds and try again.
+{% endhint %}
 
 With LangStream installed and your environment set up, you're ready to build an application.
 

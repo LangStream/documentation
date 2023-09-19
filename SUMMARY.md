@@ -12,10 +12,10 @@
 ***
 
 * [Get Started](get-started.md)
-* [Get Started with Minikube](get-started-minikube.md)
 
 ## installation
 
+* [Minikube](installation/get-started-minikube.md)
 * [Kubernetes](installation/kubernetes.md)
 * [LangStream CLI](installation/langstream-cli.md)
 * [Build and install (source)](installation/build-and-install-source.md)

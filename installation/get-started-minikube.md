@@ -1,4 +1,4 @@
-# Get Started using Minikube
+# Minikube
 
 To create a LangStream cluster, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster (a default 4 CPU [minikube](https://minikube.sigs.k8s.io/docs/start/) is fine).
 
@@ -60,7 +60,7 @@ kubectl create -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
 kubectl apply -f https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml -n kafka
 ```
 
-3. Install the LangStream CLI with brew. Other options are available [here](installation/langstream-cli.md).
+3. Install the LangStream CLI with brew. Other options are available [here](langstream-cli.md).
 
 ```bash
 brew tap LangStream/langstream
@@ -73,6 +73,6 @@ With LangStream installed and your environment set up, you're ready to build an 
 
 Here are a few ways to get started building LangStream applications:
 
-* [Build a sample application](building-applications/build-a-sample-app.md) to quickly create an OpenAI query with LangStream.
-* [Set up your development environment](building-applications/development-environment.md) and learn how to build the needed manifests
+* [Build a sample application](../building-applications/build-a-sample-app.md) to quickly create an OpenAI query with LangStream.
+* [Set up your development environment](../building-applications/development-environment.md) and learn how to build the needed manifests
 * [Install the VSCode extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) and use the provided starter applications & agent snippets
