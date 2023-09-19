@@ -12,6 +12,7 @@
 ***
 
 * [Get Started](get-started.md)
+* [Get Started with Minikube](get-started-minikube.md)
 
 ## installation
 

@@ -1,71 +1,43 @@
 # Get Started
 
-To create a LangStream control plane, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster (a default 4 CPU [minikube](https://minikube.sigs.k8s.io/docs/start/) is fine).
+You can get started with LangStream in 5 minutes or less. This guide will walk you through the steps to get LangStream running on your local machine.
+
+This guide uses Docker to run all the components of LangStream locally, if you want to learn how to deploy a full LangStream cluster locally using minikube see [here](getting-started-minikube.md).
 
 ### Installation
 
-1. Start a minikube:
-
-```bash
-minikube start
-```
-
-2. Install MinIO for local testing:
+1. Install the LangStream CLI
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
-```
-
-3. Deploy Langstream from the Helm repository:
-
-```bash
-helm repo add langstream https://langstream.github.io/charts
-helm repo update
-helm upgrade \
-    -i langstream \
-    -n langstream \
-    --create-namespace \
-    --wait \
-    --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml \
-    langstream/langstream
-```
-
-4\. Open the control-plane and api-gateway ports (in separate terminals):
-
-Control plane:
-
-```bash
-kubectl -n langstream port-forward svc/langstream-control-plane 8090:8090 &
-```
-
-API gateway:
-
-```bash
-kubectl -n langstream port-forward svc/langstream-api-gateway 8091:8091 &
-```
-
-### Environment setup
-
-1. Port forward minio in a separate terminal:
-
-```
-kubectl port-forward pod/minio 9000:9090 -n minio-dev  
-```
-
-2. Install Kafka:
-
-```
-kubectl create namespace kafka 
-kubectl create -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka 
-kubectl apply -f https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml -n kafka
-```
-
-3. Install the LangStream CLI with brew. Other options are available [here](installation/langstream-cli.md).
-
-```bash
 brew tap LangStream/langstream
 brew install langstream
 ```
+
+If you are on Linux or Windows please refer to the [installation guide](installation/langstream-cli.md).
+
+
+2. Run the sample application
+
+Let's run a simple LangStream Application that implements a ChatBot using OpenAI's API.
+
+You need to get an OpenAI API key from [here](https://beta.openai.com/).
+
+```
+export OPENAI_API_KEY=<your-openai-api-key>
+langstream docker run test  -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
+```
+
+The first time you run the application it will take a few minutes to download the docker images.
+
+3. Chat with the bot
+
+Once the application is running you can chat with the bot using the LangStream CLI:
+
+```
+langstream gateway chat test -cg consume-output -pg produce-input -p sessionId=$(uuidgen)
+```
+
+If you see an 'application not found' error, then probably LangStream is still not ready to accept the connections. Wait a few seconds and try again.
 
 With LangStream installed and your environment set up, you're ready to build an application.
 
