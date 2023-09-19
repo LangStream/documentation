@@ -25,7 +25,6 @@ helm upgrade \
     -i langstream \
     -n langstream \
     --create-namespace \
-    --wait \
     --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml \
     langstream/langstream
 ```
