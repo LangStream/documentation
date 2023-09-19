@@ -29,19 +29,16 @@ helm upgrade \
     langstream/langstream
 ```
 
-4\. Open the control-plane and api-gateway ports (in separate terminals):
-
-Control plane:
+4\. Open the control-plane and api-gateway ports:
 
 ```bash
 kubectl -n langstream port-forward svc/langstream-control-plane 8090:8090 &
-```
-
-API gateway:
-
-```bash
 kubectl -n langstream port-forward svc/langstream-api-gateway 8091:8091 &
 ```
+
+{% hint style="info" %}
+The ampersand (&) keeps the port forward running as a background process.
+{% endhint %}
 
 ### Environment setup
 
