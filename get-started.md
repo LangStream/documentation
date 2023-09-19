@@ -2,7 +2,7 @@
 
 You can get started with LangStream in 5 minutes or less. This guide will walk you through the steps to get LangStream running on your local machine.
 
-This guide uses Docker to run all the components of LangStream locally, if you want to learn how to deploy a full LangStream cluster locally using minikube see [here](getting-started-minikube.md).
+This guide uses Docker to run all the components of LangStream locally, if you want to learn how to deploy a full LangStream cluster locally using minikube see [here](get-started-minikube.md).
 
 ### Installation
 
@@ -14,7 +14,6 @@ brew install langstream
 ```
 
 If you are on Linux or Windows please refer to the [installation guide](installation/langstream-cli.md).
-
 
 2. Run the sample application
 
