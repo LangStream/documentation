@@ -24,7 +24,7 @@ You need to get an OpenAI API key from [here](https://beta.openai.com/).
 
 ```
 export OPENAI_API_KEY=<your-openai-api-key>
-langstream docker run -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
+langstream docker run test  -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
 ```
 
 The first time you run the application it will take a few minutes to download the docker images.
@@ -36,6 +36,8 @@ Once the application is running you can chat with the bot using the LangStream C
 ```
 langstream gateway chat test -cg consume-output -pg produce-input -p sessionId=$(uuidgen)
 ```
+
+If you see an 'application not found' error, then probably LangStream is still not ready to accept the connections. Wait a few seconds and try again.
 
 With LangStream installed and your environment set up, you're ready to build an application.
 
