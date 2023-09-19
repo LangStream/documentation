@@ -7,7 +7,7 @@ To create a LangStream cluster, you will need [kubectl](https://kubernetes.io/do
 1. Start a minikube:
 
 ```bash
-minikube start
+minikube start --cpus 4
 ```
 
 2. Install MinIO for local testing:
