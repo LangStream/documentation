@@ -22,10 +22,10 @@ It should look something like this:
 
 ```
 |- sample-app
-|- application
-    |- chatbot.yaml
-    |- gateways.yaml
-    |- configuration.yaml
+    |- application
+        |- chatbot.yaml
+        |- gateways.yaml
+        |- configuration.yaml
 |- secrets.yaml
 ```
 
