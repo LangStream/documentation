@@ -14,7 +14,7 @@ layout:
 
 # Development Environment
 
-A LangStream application is composed of multiple yaml manifests. Each manifest complements the others to create a data processing environment. You will typically use the [LangStream CLI](../installation/langstream-cli.md) to interact with the Kubernetes control plane.&#x20;
+A LangStream application is composed of multiple yaml manifests. Each manifest complements the others to create a data processing environment. You will typically use the [LangStream CLI](../installation/langstream-cli.md) to interact with the Kubernetes control plane.
 
 Your development environment should follow a specific folder structure:
 
@@ -25,7 +25,6 @@ Your development environment should follow a specific folder structure:
 The hierarchy should look like this:
 
 ```
-|
 |- application
     |- pipeline.yaml
     |- (optional) configuration.yaml
@@ -54,11 +53,9 @@ Environment: local
 
 Filename: instance-local.yaml
 
-
 Environment: staging
 
 Filename: instance-staging.yaml
-
 
 Environment: production
 
@@ -66,8 +63,10 @@ Filename: instance-production.yaml
 
 #### Secrets.yaml
 
-This is a holder for secrets used within pipeline steps, configuration dependencies, and instance declarations. It is an optional value. Secrets are held separately to create a separation of information. It’s not a good practice to hard code tokens in pipeline manifests. Instead, include a pointer to a secret that is managed in different ways. [Learn more about secrets.](secrets.md)
+This is a holder for secrets used within pipeline steps, configuration dependencies, and instance declarations. It is an optional value.&#x20;
+
+Secrets are held separately to create a separation of information. It’s not a good practice to hard code tokens in pipeline manifests. Instead, include a pointer to a secret that is managed in different ways. [Learn more about secrets.](secrets.md)
 
 #### YAML file preprocessing and templating
 
-Check out here detailed information about [YAML file preprocessing and templating](yaml-templates.md).
+[Learn more about YAML file preprocessing and templating.](development-environment.md#yaml-file-preprocessing-and-templating)
