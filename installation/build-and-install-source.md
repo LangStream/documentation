@@ -36,29 +36,39 @@ git clone https://github.com/LangStream/langstream
 This will compile source, build the cli, and install images.
 
 ```
-pip install -r requirements.txt
 cd langstream
+pip install -r requirements.txt
 ./docker/build.sh
 ```
 
-### Deploy a store and the control plane
+### Deploy the LangStream runtime and an S3 compatible storage
 
 {% hint style="info" %}
-If you are using Minikube load the new images with the following commands:
+If you are using Minikube load the new images with the following command:
 
 ```bash
-minikube image load --overwrite langstream/langstream-deployer:latest-dev
-minikube image load --overwrite langstream/langstream-control-plane:latest-dev
-minikube image load --overwrite langstream/langstream-runtime:latest-dev
-minikube image load --overwrite langstream/langstream-api-gateway:latest-dev
-minikube image load --overwrite langstream/langstream-cli:latest-dev
+dev/deploy-minikube.sh
 ```
 {% endhint %}
 
+You also need to install MinIO for local testing:
+
 ```bash
 kubectl apply -f ./helm/examples/minio-dev.yaml
-helm upgrade -i langstream langstream/langstream --values helm/examples/local.yaml --wait
 ```
+
+Then you can install the LangStream runtime:
+
+```bash
+helm install -i langstream langstream/langstream --values helm/examples/local.yaml --wait
+```
+
+You can find a script that does everything for you and also starts the Kafka broker:
+
+```bash
+dev/start-local.sh
+```
+
 
 ### Locate the CLI
 
