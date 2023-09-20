@@ -35,6 +35,7 @@
 * [Application Lifecycle](building-applications/application-lifecycle.md)
 * [Vector Databases](building-applications/vector-databases.md)
 * [Error Handling](building-applications/error-handling.md)
+* [Langstreamignore](building-applications/langstreamignore.md)
 
 ## Pipeline Agents
 
