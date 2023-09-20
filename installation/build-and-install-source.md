@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ./docker/build.sh
 ```
 
-### Deploy the LangStream runtime and an S3 compatible storage
+### Deploy the LangStream runtime
 
 {% hint style="info" %}
 If you are using Minikube load the new images with the following command:
@@ -63,7 +63,7 @@ Then you can install the LangStream runtime:
 helm install -i langstream langstream/langstream --values helm/examples/local.yaml --wait
 ```
 
-You can find a script that does everything for you and also starts the Kafka broker:
+You can find a script that does everything for you and also starts a Kafka broker:
 
 ```bash
 dev/start-local.sh
