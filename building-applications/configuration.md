@@ -36,7 +36,9 @@ configuration:
       type: "java-library"
 ```
 
-LangStream has Cassandra (java-driver-core) v4.16.0 built in. Here is an example use (no need for dependency):
+LangStream has built-in support for a few Databases and Vector databases (no need for dependency), for example:
+
+Cassandra (with Vector support)
 
 ```yaml
 configuration:
@@ -44,11 +46,43 @@ configuration:
     - type: "datasource"
       name: "Cassandra"
       configuration:
-        service: "astra"
-        username: "{{ secrets.astra.username }}"
-        password: "{{ secrets.astra.password }}"
-        secure-connect-bundle: "{{ secrets.astra.secure-connect-bundle }}"
+        service: "cassandra"
+        username: ""
+        password: ""
+        contact-points: ""
+        loadBalancing-localDc: ""
 ```
+
+DataStax Astra DB
+
+```yaml
+configuration:
+  resources:
+    - type: "vector-database"
+      name: "AstraDBDatasource"
+      configuration:
+        service: "astra"
+        secret: ""
+        clientId: ""
+        token: ""
+        database: ""
+```
+
+Pinecone
+
+```yaml
+configuration:
+  resources:
+    - type: "vector-database"
+      name: "PineconeDatasource"
+      configuration:
+        api-key: ""
+        environment: ""
+        index-name: ""
+        project-name: ""
+```
+
+
 
 ### Manifest
 
@@ -60,6 +94,12 @@ The given artifact will be downloaded, validated, and made available to the pipe
 
 
 <table><thead><tr><th width="156.33333333333331">Label</th><th width="165">Type</th><th>Description</th></tr></thead><tbody><tr><td>type</td><td>string (required)</td><td><p>The type of dependency. Supported values are:</p><ul><li>java-library</li></ul><p>Example: “java-library”</p></td></tr><tr><td>name</td><td>string (required)</td><td><p>The name of the dependency. It is used for display and as a reference pointer.<br></p><p>Example: "Postgres JDBC Driver"</p></td></tr><tr><td>url</td><td>string (required)</td><td><p>A fully qualified URL to the dependency artifact.</p><p></p><p>Example: "https://jdbc.postgresql.org/download/postgresql-42.6.0.jar"</p></td></tr><tr><td>sha512sum</td><td>string (required)</td><td><p>The downloaded artifact is validated against this value.<br></p><p>Example: "ec3b57d8377715ef6286d457…”</p></td></tr></tbody></table>
+
+
+These dependencies are downloaded by the LangStream CLI when you run the "apps deploy", "docker run" and similar commands.
+This mechanism is especially useful for JDBC Drivers and for Kafka Connect connectors.
+
+In order to handle with Python dependencies checkout the documentation about developing [custom Python agents](../pipeline-agents/custom-agents/README.md).
 
 ### resources
 
