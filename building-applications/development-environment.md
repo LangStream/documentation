@@ -52,13 +52,12 @@ Typically the values for an instance are specific to the environment running the
 
 Environment: local
 
-Filename: instance-local.yaml\
+Filename: instance-local.yaml
 
 
 Environment: staging
 
 Filename: instance-staging.yaml
-
 
 
 Environment: production
@@ -69,6 +68,6 @@ Filename: instance-production.yaml
 
 This is a holder for secrets used within pipeline steps, configuration dependencies, and instance declarations. It is an optional value. Secrets are held separately to create a separation of information. It’s not a good practice to hard code tokens in pipeline manifests. Instead, include a pointer to a secret that is managed in different ways. [Learn more about secrets.](secrets.md)
 
-{% hint style="info" %}
-All the yaml files are processed through a [mustache template engine](https://mustache.github.io/). Therefore, you can reference values interchangeably between files. Refer to [mustache documentation](https://mustache.github.io/mustache.5.html) or [this example site](https://www.tsmean.com/articles/mustache/the-ultimate-mustache-tutorial/) to learn more about templating.
-{% endhint %}
+#### YAML file preprocessing and templating
+
+Check out here detailed information about [YAML file preprocessing and templating](yaml-templates.md).
