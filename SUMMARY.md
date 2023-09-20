@@ -23,6 +23,7 @@
 ## Building Applications
 
 * [Development Environment](building-applications/development-environment.md)
+* [YAML file preprocessing and templating](building-applications/yaml-templates.md)
 * [Development Workflow](building-applications/development-workflow.md)
 * [Sample App](building-applications/build-a-sample-app.md)
 * [Pipelines](building-applications/pipelines.md)
