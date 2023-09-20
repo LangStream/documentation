@@ -21,6 +21,7 @@ LangStream uses Maven as its build system. When the below script is run the proj
 * Docker
 * Java 17
 * Git
+* Python 3.11+ and PIP
 
 ### Clone the project
 
@@ -35,6 +36,7 @@ git clone https://github.com/LangStream/langstream
 This will compile source, build the cli, and install images.
 
 ```
+pip install -r requirements.txt
 cd langstream
 ./docker/build.sh
 ```
@@ -65,3 +67,5 @@ During the build, the latest CLI has created in the "bin" folder.
 ```
 ./bin/langstream --version
 ```
+
+Please note that this CLI uses the conf/cli.yaml file and it does not behave the same way as the CLI installed with brew, that uses the $HOME/.langstream/config file with a different format.
