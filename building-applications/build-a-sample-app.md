@@ -21,7 +21,7 @@ touch chatbot.yaml gateways.yaml configuration.yaml
 It should look something like this:
 
 ```
-|- sample-app
+|- project-folder
     |- application
         |- chatbot.yaml
         |- gateways.yaml
@@ -116,17 +116,13 @@ instance:
 
 **Save all your files.**
 
-5. Deploy your application:
+5. Deploy your application from project-folder, here we're calling the deployed application `sample-app`:
 
 ```bash
 langstream docker run sample-app -app ./application  -s ./secrets.yaml
 ```
 
-Now you should see the docker container starting and then running the application.
-
-6. Ensure your app is running - a docker container should be running:
-
-You can now open a new terminal an inspect the status of the application:
+6. You should see a docker container starting and then running the application. To ensure your app is running, open a new terminal an inspect the status of the application:
 
 ```bash
 docker ps
@@ -307,11 +303,3 @@ langstream gateway chat sample-app -cg consume-output -pg produce-input -p sessi
 ```
 
 At the prompt ask about "Italian pizza" and see the results.
-
-
-
-
-
-{% hint style="info" %}
-
-{% endhint %}

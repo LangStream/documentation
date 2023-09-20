@@ -25,7 +25,7 @@ Your development environment should follow a specific folder structure:
 The hierarchy should look like this:
 
 ```
-|- sample-app
+|- project-folder
     |- application
         |- pipeline.yaml
         |- gateways.yaml
@@ -33,6 +33,10 @@ The hierarchy should look like this:
 |- instance.yaml
 |- secrets.yaml (optional)
 ```
+
+This application would be deployed out of the project-folder directory with:
+
+`langstream apps deploy sample-app -app ./application -i ./instance.yaml -s ./secrets.yaml`
 
 {% hint style="info" %}
 Want to get started a little quicker? Check out the [LangStream VSCode Extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) for pre-made applications and agent code snippets.
