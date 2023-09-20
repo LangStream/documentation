@@ -160,7 +160,7 @@ If you don't add the percent character the Mustache syntax is processed by the p
 
 #### Using ENV variables in secrets and instance files
 
-As you can see in the example in the secrets.yaml and in the instance.yaml files you can use environment variables to define the values of the secrets and instance values. This is useful when you want to run the same application in different environments without using different secrets and instance files. For example, you can define the following environment variables:
+As you can see in the examples in the secrets.yaml and the instance.yaml files, you can use environment variables to define the values of the secrets and instance values. This is useful when you want to run the same application in different environments without using different secrets and instance files. For example, you can define the following environment variables:
 
 ```bash
 export OPEN_AI_ACCESS_KEY="my-access-key"
