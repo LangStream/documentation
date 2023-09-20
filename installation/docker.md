@@ -31,17 +31,17 @@ Using the [LangStream CLI](../installation/langstream-cli.md) you can run your a
 
 This commands starts a docker container using the same version of the CLI.
 
-The container by defaults runs all the LangStream components, a Kafka Broker and a S3 service (using Minio).
+The container by default runs all the LangStream components, a Kafka Broker, and an S3 service (using Minio).
 
 The docker container exposes the Control Plane on the default port (8090) and the API Gateway on the default port (8091),
-this way you can run most of the CLI commands against the local container, especially the commands to interact with the gateway.
+so you can run most of the CLI commands against the local container, especially the commands to interact with the API Gateway.
 
-When you kill the application with Ctrl-C the environment is automatically disposed.
+When you kill the application with Ctrl-C, the environment is automatically disposed of.
 If you need to persist your topics or the S3 environment then you have to build your own instance.yaml file and pass it using the "-i" flag.
 
 ### Selecting the services to run
 
-By default the docker container runs all the LangStream components, a Kafka Broker and a S3 service (using Minio).
+By default the docker container runs all the LangStream components, a Kafka Broker, and an S3 service (using Minio).
 
 You can use the following flags to select the services to run:
 
@@ -49,29 +49,29 @@ You can use the following flags to select the services to run:
 * --start-s3 true|false: starts the S3 service
 * --start-webservices true|false: starts the LangStream HTTP components (control plane and API gateway)
 
-For instance if you are using an external Apache Kafka or Pulsar broker you don't need to start Kafka in the container and you can save local resources.
+For example, if you are using an external Apache Kafka or Pulsar broker you don't need to start Kafka in the container and you can save local resources.
 
 ### Running a single agent
 
 By default the "docker run" mode runs all the agents in the application.
 If you want to debug or work on a single agent you can use the "--only-agent" flag to specify the agent to run.
 
-The id of the agent is the same id of the "executors" section in the application descriptor that you can see in the "langstram apps get -o yaml" command.
-Basically it is not the id of an agent in the pipeline.yaml file but it is the id of a pyshical executor. When you run your application in a Kubernetes cluster
+The id of the agent is the same id of the "executors" section in the application descriptor. You can see this id with the "langstream apps get -o yaml" command.
+This id is not the id of an agent in the pipeline.yaml file, but it is the id of the physical executor. When you run your application in a Kubernetes cluster
 the id would be the id of a Statefulset.
 
 ### Execution model
 
-When you run your application in "docker run" mode, the container runs a simplified enviroment that doesn't need Kubernetes, but this comes with a fews simplifications to the execution runtime.
+When you run your application in "docker run" mode, the container runs a simplified environment that doesn't need Kubernetes, but this comes with a few simplifications to the execution runtime.
 
-In production mode, on Kubernetes, the LangStream planner builds and execution plan from your pipeline files, and then it submits the execution plan to the Kubernetes cluster in the form of Statefulsets. Each Statefulset is responsible to run a single agent and you can usually configure the number of replicas for each agent in the pipeline file, in the "resources" section.
+In production mode, on Kubernetes, the LangStream planner builds an execution plan from your pipeline files, and then it submits the execution plan to the Kubernetes cluster in the form of Statefulsets. Each Statefulset is responsible for running a single agent. You can configure the number of replicas for each agent in the "resources" section of the pipeline.yaml file. 
 
-But in docker mode there is only one Java process that runs all the agents, and for each agent it starts only one execution flow, like having a statefulset with only one replica.
+In docker mode there is only one Java process that runs all the agents, and for each agent it starts only one execution flow, like having a Statefulset with only one replica.
 The resources (JVM and CPU) are shared between all the agents, so if you have a lot of agents in your application you may need to increase the resources of the docker container.
 
-The initialisation of the assets is always performed, for all the assets declared in the application, independently from the agents that are running. This is because the assets are shared between all the agents, even if they are declared in some pipeline file.
+The initialisation of the assets is always performed independently from the agents that are running, for all the assets declared in the application. This is because the assets are shared between all the agents, even if they are declared in some pipeline file.
 
-You cannot select the logs to show, as all the agents share the same output (but you can still run one agent at a time). The "langstream apps logs" command is not available in this mode.
+You cannot select which logs to display, as all the agents share the same output (but you can still run one agent at a time). The "langstream apps logs" command is not available in this mode.
 
 
 ### Tuning the docker container
@@ -82,7 +82,7 @@ As the resources are handled by docker and the JVM and the Python processes shar
 * --cpus: the number of CPUs to allocate to the docker container
 * --docker-args: additional arguments to pass to the docker run command
 
-You can also customizer the docker image that you want to use to run your application. By default the CLI uses the official LangStream docker image, but you can use your own image, maybe you want to test the same application with a different LangStream runtime version.
+You can also customize the docker image that you want to use to run your application. By default the CLI uses the official LangStream docker image, but you can use your own image, maybe to test the same application with a different LangStream runtime version.
 
 The following flags are available:
 
