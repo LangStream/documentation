@@ -3,7 +3,7 @@
 This sample application takes minimal configuration to get you started on your LangStream journey.
 
 1. Complete the LangStream installation steps in [Get Started.](../get-started.md)
-2. Pass your OpenAI credentials as an [ENV variable](../building-applications/yaml-templates.md):
+2. Pass your OpenAI credentials as an [ENV variable](yaml-templates.md):
 
 ```bash
 export OPEN_AI_ACCESS_KEY=xxxxx
@@ -101,7 +101,20 @@ pipeline:
           content: "What can you tell me about {{% value}} ?"
 ```
 
-Save all your files.
+{% hint style="info" %}
+You may notice that this "langstream docker run" command doesn't reference an instance.yaml file to define the application's runtime environment. Instead, "langstream docker run" uses a default instance.yaml with a Kafka broker inside the Docker container. This default configuration is:
+
+```yaml
+instance:
+  streamingCluster:
+    type: "kafka"
+    configuration:
+      admin:
+        bootstrap.servers: localhost:9092
+```
+{% endhint %}
+
+**Save all your files.**
 
 5. Deploy your application:
 
@@ -118,6 +131,7 @@ You can now open a new terminal an inspect the status of the application:
 ```bash
 docker ps
 ```
+
 Result:
 
 ```bash
@@ -126,7 +140,7 @@ CONTAINER ID   IMAGE                                                 COMMAND    
 
 ```
 
-And youn can use the CLI to inspect the status of the application
+And you can use the CLI to inspect the status of the application:
 
 ```bash
 langstream apps get sample-app
@@ -139,8 +153,7 @@ ID          STREAMING   COMPUTE     STATUS      EXECUTORS   REPLICAS
 sample-app  kafka       kubernetes  DEPLOYED    1/1         1/1   
 ```
 
-For the LangStream CLI the application appears to be running on "kubernetes", even if you are using the docker mode, this is because
-the docker container emulates partially the Kubernetes environment.
+For the LangStream CLI the application appears to be running on "kubernetes", even if you are using the docker mode, this is because the docker container emulates partially the Kubernetes environment.
 
 ```bash
 langstream apps get sample-app -o yaml
@@ -287,13 +300,18 @@ status:
 
 ```
 
-
 7. Send a query to OpenAI about "Italian pizza":
 
 ```bash
 langstream gateway chat sample-app -cg consume-output -pg produce-input -p sessionId=$(uuidgen)
 ```
 
-At the prompt ask about "Italian pizza" and see the results
+At the prompt ask about "Italian pizza" and see the results.
 
 
+
+
+
+{% hint style="info" %}
+
+{% endhint %}

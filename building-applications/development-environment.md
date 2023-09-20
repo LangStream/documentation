@@ -18,18 +18,20 @@ A LangStream application is composed of multiple yaml manifests. Each manifest c
 
 Your development environment should follow a specific folder structure:
 
-* At the root there should be instance.yaml and optionally a secrets.yaml.
+* At the root there should be instance.yaml and optionally a secrets.yaml. These files cannot be in the "application" directory, which is passed as a zip at runtime.
 * The root should also contain a directory for the application files. We typically name this “application”.
-* The “application” directory should contain a pipeline.yaml and optionally a configuration.yaml.
+* The “application” directory should contain a pipeline.yaml, and optionally a configuration.yaml and gateways.yaml.
 
 The hierarchy should look like this:
 
 ```
-|- application
-    |- pipeline.yaml
-    |- (optional) configuration.yaml
+|- sample-app
+    |- application
+        |- pipeline.yaml
+        |- gateways.yaml
+        |- configuration.yaml
 |- instance.yaml
-|- (optional) secrets.yaml
+|- secrets.yaml (optional)
 ```
 
 {% hint style="info" %}
@@ -41,6 +43,7 @@ Want to get started a little quicker? Check out the [LangStream VSCode Extension
 This is referred to as the “application directory” because the main pipeline and its configuration are declared within.
 
 * pipeline.yaml: this is the declaration of topics and pipeline steps. It is required. [Learn more about building pipelines.](../pipeline-agents/agent-messaging.md)
+* gateways: gateways interact with an agent via a message topic. [Learn more about gateways.](api-gateways.md)
 * configuration.yaml: this is the declaration of additional services a step in the pipeline depends on. It is optional. [Learn more about configurations.](configuration.md)
 
 #### Instance.yaml
