@@ -139,7 +139,7 @@ ID          STREAMING   COMPUTE     STATUS      EXECUTORS   REPLICAS
 sample-app  kafka       kubernetes  DEPLOYED    1/1         1/1   
 ```
 
-The the LangStream CLI the application is still running on kubernetes, even if you are using the docker run mode, this is because
+For the LangStream CLI the application appears to be running on "kubernetes", even if you are using the docker mode, this is because
 the docker container emulates partially the Kubernetes environment.
 
 ```bash
@@ -294,6 +294,6 @@ status:
 langstream gateway chat sample-app -cg consume-output -pg produce-input -p sessionId=$(uuidgen)
 ```
 
-At the prompt ask for an "Italian pizza" and see the results:
+At the prompt ask about "Italian pizza" and see the results
 
 
