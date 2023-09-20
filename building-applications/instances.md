@@ -48,7 +48,3 @@ To use your streaming tenant as the streaming cluster with LangStream, by enabli
 
 Read more about enabling Starlight for Kafka in Astra Streaming in the [documentation](https://docs.datastax.com/en/streaming/astra-streaming/developing/astream-kafka.html) and also in the [learning site](https://docs.datastax.com/en/streaming/streaming-learning/use-cases-architectures/starlight/kafka/index.html). Learn more about the Starlight for Kafka project [here](https://docs.datastax.com/en/streaming/starlight-for-kafka/2.10.1.x/index.html).
 {% endhint %}
-
-### computeCluster
-
-<table><thead><tr><th width="163.33333333333331">Label</th><th width="108">Type</th><th>Description</th></tr></thead><tbody><tr><td>type</td><td>string</td><td>The type name of cluster where agents will process data. Refer to the <a href="broken-reference">instance clusters</a> area for supported types.</td></tr></tbody></table>
