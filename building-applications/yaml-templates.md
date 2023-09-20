@@ -128,7 +128,7 @@ but this may lead to unexpected results. So the suggestion is to always use the 
 #### Nesting mustache template syntax
 
 Some agents, like the **ai-chat-completions** agent, require a configuration that is a Mustache template.
-In this case you can must add a percent character after the duoble (or triple) curly braces. For example:
+In this case you must add a percent character after the double (or triple) curly braces. For example:
 
 ```yaml
 pipeline:
