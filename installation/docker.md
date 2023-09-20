@@ -19,7 +19,7 @@ layout:
 LangStream is designed to be a cloud-native application. This means that it is designed to run on Kubernetes and to be deployed on a cloud environment.
 But sometimes you want to get started quickly and you don't need the full power of Kubernetes to see your Generative AI application in action.
 
-This is way the LangStream CLI provides a simple way to run your application locally using Docker.
+This is why the LangStream CLI provides a simple way to run your application locally using Docker.
 
 ### Running your application on docker
 
