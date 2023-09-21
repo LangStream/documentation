@@ -1,27 +1,48 @@
 ---
-description: LangStream is an open source project driving AI adoption
+description: Open-source framework for building and running event-driven Gen AI applications
 ---
 
 # What is LangStream?
 
-The LangStream project combines the intelligence of large language models with the agility of streaming processing, to create powerful processing applications.
+**LangStream** is a powerful framework for building and running Generative AI (Gen AI) applications. If you're a developer keen on leveraging the prowess of Large Language Models (LLMs) like GPT-4 or vector databases like Astra DB or Pinecone, all while maintaining the flexibility of stream processing, LangStream is your go-to solution. 
 
-An application in LangStream can watch a message topic and process data through multiple steps to output some useful generative AI results. Say you have a goal of creating a chatbot that can stay up-to-date with some dataset that is constantly changing. As someone interacts with the bot, they are provided with educated meaningful answers that help them navigate some workflow.
+## Why Choose LangStream?
 
-To build this kind of bot that is resilient and production ready. you are going to need quite a few “moving parts”. It will take a combination of multiple systems to complete the solution. Every component will need quite a bit of monitoring to ensure health and quick mitigation.
+### Easy Development to Production
+Develop and test robust Gen AI apps right on your laptop. When you're ready, deploy to a production environment powered by Kubernetes and Kafka—all through a single CLI command.
 
-LangStream can significantly reduce the overhead involved in developing a generative AI project like a chatbot by abstracting away the complexities. A developer can create an application that declares a pipeline of steps that vectorize data as it changes. They can also create an application that takes in a user’s question, compares it with the vectorized data, builds a contextualized prompt, and submits it for completion to an LLM. The result can be passed back to the user for further feedback.
+### Event-Driven Architecture
+LangStream is engineered event-driven computing by a team with decades of experience. Build reactive, scalable, and fault-tolerant Gen AI applications with ease.
 
-### Building LangStream applications
+### Configurable Agents
+Out of the box, LangStream offers configuration-driven agents designed for various tasks—be it AI chat completions, text processing, or working with vector databases. If they don't meet your unique needs, craft your own agents in Python.
 
-Each pipeline step is converted into an agent. An agent takes an input message, processes its data, and outputs the result as a new message. Processing could be as simple as setting data to all lowercase, or it could be an instruction to drop a labeled value. Or processing could be something more impactful like generative AI processing using an LLM to convert message data into an embedding, or submitting a prompt to an LLM and receiving a completion.
+### Up-to-Date Libraries
+The LangStream runtime is always stocked with the latest Gen AI libraries like LangChain and LlamaIndex, so you're never left behind.
 
-LangStream knows that there are combinations of agents that will process faster when combined. It discovers these opportunities internally while deploying the application. The output, of course, still matches the intended processing.
+### Open Source
+LangStream is an open source project under the Apache 2 licence, so you are free to use it in your projects. We also welcome contributions from the community.
 
-Every pipeline has a starting point and an end. In the context of streaming data, this is usually referred to as a source and a sink. Sources could be a database, another message topic, or an application that knows how to produce message data for the starting point topic. A pipeline could have one source or many sources. The boundaries of pipeline sources are left to the developer.
+## Notable Features
 
-Once a pipeline has successfully processed data, something needs to be done with it. This is where a sink is used. Like sources, sinks take all kinds of different shapes. Typically the sink is going to store the processed data in a database. A pipeline could have one sink attached or many. It’s up to the application developer to choose.
+- **Built on Solid Foundations**: Utilizes industry-tested technologies like [Kubernetes](https://kubernetes.io/) and [Apache Kafka](https://kafka.apache.org/).
+- **LLM Support**: Comes with support for LLM services such as [ChatGPT](https://openai.com/), [Google Vertex AI](https://cloud.google.com/vertex-ai), and [HuggingFace](https://huggingface.co/).
+- **Vector Embedding Support**: Seamless integration with vector databases like [Pinecone](https://www.pinecone.io/) and [Astra DB Vector](https://www.datastax.com/products/vector-search).
+- **Rich Prompt Templating**: Generate context-rich prompts through event data, semantic searches, and database queries.
+- **Versatile Data Processing**: Handle both unstructured and structured data formats.
+- **Real-time External Integration**: Kafka Connect sinks and sources for immediate system integration.
+- **Full Observability**: Comprehensive Prometheus metrics and Kubernetes logs.
+- **Developer-Friendly**: An exclusive [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) for development and debugging.
 
-Because LangStream uses message broker topics for transport, the given broker has built-in options for connecting topics to sources and sinks. The challenge is, pipelines can get complex. Adding in an additional dependency on a specific connector can make the project a little too much to manage.
+## Ideal Use Cases
 
-LangStream abstracts certain sources and sinks to help a pipeline developer get to something meaningful, faster. During the design of the pipeline, the developer simply declares the “compute type” as “Kubernetes”. LangStream will do all the work of a connector but with the added context of the overall application design.
+- Develop Q&A chatbots with advanced Retrieval-Augmented Generation (RAG).
+- Create and manage vector embedding pipelines.
+- Automated text summarization and personalized recommendation pipelines.
+
+**LangStream** is a toolkit for unlocking the full potential of Gen AI. 
+
+
+
+
+
