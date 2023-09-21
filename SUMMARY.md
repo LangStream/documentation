@@ -73,7 +73,8 @@
   * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)
 
 ## Configuration Resources
-
+* [Messaging](configuration-resources/messaging/README.md)
+  * [topics](configuration-resources/messaging/topics.md)
 * [Data storage](configuration-resources/data-storage/README.md)
   * [datasource](configuration-resources/data-storage/datasource.md)
 * [Large Language Models (LLMs)](configuration-resources/large-language-models-llms/README.md)
