@@ -4,7 +4,7 @@ description: Open-source framework for building and running event-driven Gen AI 
 
 # What is LangStream?
 
-**LangStream** is a powerful framework for building and running Generative AI (Gen AI) applications. If you're a developer keen on leveraging the prowess of Large Language Models (LLMs) like GTP-4 or vector databases like Pinecone, all while maintaining the flexibility of stream processing, LangStream is your go-to solution. 
+**LangStream** is a powerful framework for building and running Generative AI (Gen AI) applications. If you're a developer keen on leveraging the prowess of Large Language Models (LLMs) like GPT-4 or vector databases like Astra DB or Pinecone, all while maintaining the flexibility of stream processing, LangStream is your go-to solution. 
 
 ## Why Choose LangStream?
 
