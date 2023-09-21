@@ -20,26 +20,26 @@ You can define the same topic in different pipeline files, but the definition mu
 
 ### **Structure of a message**
 
-The topic is an ordered sequence of messages, each message in LangStream is interpreted as a Record, with the following properties:
+The topic is an ordered sequence of messages. Each message in LangStream is interpreted as a Record, with the following properties:
 - a value
 - a key
-- a set of properties (also named headers) 
+- a set of properties (also called headers) 
 
 The key and the value can be of any type, but by default LangStream interprets them as strings or JSON encoded structures, see below for the details.
 
-Both the key and the value can be null. In some pipelines, like with data coming from CDC (Capture Data Change) data flows or going to Database Sinks, a non null key with a null value represents a DELETION of a record from a database.
+Both the key and the value can be null. In some pipelines, like with data coming from CDC (Change Data Capture) data flows or going to database sinks, a non-null key with a null value represents a DELETION of a record from a database.
 
-The properties of the message are a set of key-value pairs, usually treated as strings. Some messaging brokers, like Kafka, allow to write binary content to headers. LangStream doesn't perform computations or transormations on the message properties if not directly implemented in agents. In case you are writing custom agents you may have to take this into account.
+The properties of the message are a set of key-value pairs, usually treated as strings. Some messaging brokers, like Kafka, allow binary content to be written to headers. LangStream doesn't perform computations or transformations on the message properties if this is not directly implemented in agents. If you are writing custom agents you may have to take this into account.
 
 ### **Partitioning**
 
 Most of the messaging brokers support the concept of partitioned topics, in Kafka each topic is always partitioned with one or more partitions.
 
-LangStream handles automatically the partitions.
+LangStream handles partitions automatically.
 
-Partitions are a way to increase the concurrency of the processing of the messages. Especially in Kafka, where only one consumer (agent in LangStream terms) can read from a partition at a time.
+Partitions are a way to increase message processing concurrency. This is especially important in Kafka, where only one consumer (an "agent" in LangStream terms) can read from a partition at a time.
 
-In many cases LangStream agents poll data from the topics and then perform perallel processing even with only one partition, using multi threading tecniques, but only one pod can still consume from a partition at a time, so even if you increase the parallelism of an agent and you have only 1 partition then you will see only one pod receiving messages at a time.
+In many cases, LangStream agents poll data from the topics and then perform parallel processing even with only one partition using multi-threading techniques, but only one pod can still consume from a partition at a time, so even if you increase the parallelism of an agent and you have only 1 partition, you will see only one pod receiving messages at a time.
 
 When you define a topic you can explicitly set the number of partitions:
 ```yaml
@@ -49,7 +49,7 @@ topics:
     partitions: 4
 ``` 
 
-In case you want to increase the number of partitions you have to use the tools of the messaging broker you are using.
+If you want to increase the number of partitions after setting them, you have to use your messaging broker's tools.
 
 ### **Creation and deletions of topics**
 
@@ -71,7 +71,7 @@ The valid values are:
 
 The default behaviour is "none".
 
-At the same way you can automatically delete your topics in case of deletion of the application, this is what 'deletion-mode' does.
+`deletion-mode' controls automatic deleting of your topics in case of deletion of the application.
 
 Valid values are:
 - "delete": the topic is deleted when the application is deleted
@@ -84,7 +84,7 @@ In fact, if you don't delete the topics, you can simply deploy the application a
 
 {% endhint %}
 
-You can also customise all the properties provided by the underlying broker:
+You can also customise all the properties provided by the underlying broker by setting values in the `options` and `config` configuration parameters.
 
 ```yaml
     topics:
@@ -99,32 +99,31 @@ You can also customise all the properties provided by the underlying broker:
             cleanup.policy: compact
 ```
 
-You do it by setting the `options` and the `config` configuration parameters.
 
 
-The `config` section is applyed while creating a topic, in the case of Kafka, they become additional configuration options for the topic. Please refer to the Kafka documentation about [topic configurations](https://kafka.apache.org/documentation/#topicconfigs).
+The `config` section is applyed while creating a topic. InKafka's case, the parameters become additional configuration options for the topic. Please refer to the Kafka documentation about [topic configurations](https://kafka.apache.org/documentation/#topicconfigs).
 
-The `options` is related to additional properties required to fine tune the client that connects to the topic.
+The `options` configuration is related to additional properties required to fine tune the client that connects to the topic.
 
 Available options are:
 - `consumer.xxx`: the option xxx is applied to the [Kafka Consumer configuration](https://kafka.apache.org/documentation/#consumerconfigs)
-- `producer.xxx`: the optin xxx is apploied to the [Kafka Producer configuratio](https://kafka.apache.org/documentation/#producerconfigs)
-- `replication-factor`: this is the replication-factor for the topic, when it is created
+- `producer.xxx`: the option xxx is applied to the [Kafka Producer configuration](https://kafka.apache.org/documentation/#producerconfigs)
+- `replication-factor`: this is the replication-factor for the topic, when it is created. For more on Kafka's replication factor, see the [Kafka documentation](https://docs.confluent.io/kafka/design/replication.html).
 
 
 ### **Ordering guarantees**
 
-LangStream handles all of the aspects you would have to deal with while building a messaging application, one of the most difficult points is to give strong ordering guarantees.
-For instance if you are implementing a chat bot you really want that the questions and the (streaming, chuncked) answers are processed in the natural order as perceived by the end user.
-This means that in spite of all the processing that is performed thru the pipeline the platform must guarantee that messages are delivered in the expected order.
+One of the most challenging parts of building a messaging application is providing strong ordering guarantees. LangStream guarantees that all the messages with the same key are processed in the same order as they have been written to the topic.
+For example, if you're implementing a chat bot, you want the questions and the (streaming, chunked) answers to be processed in their natural order from the end user's perspective.
+This means that in spite of all the processing performed throughout the pipeline, the platform must guarantee that messages are delivered in the expected order.
 
-This is pretty hard, considering that LangStream automatically deals with:
+This is pretty challenging, considering that LangStream automatically deals with:
 - temporary failures and retries
-- asyncronous processing
+- asynchronous processing
 - (micro) batching
 - scalability
 
-The good thing is that you don't have to care about all of these problems.
+Fortunately, you don't have to solve all of these problems.
 
 But you must be aware that the main way to control the ordering of messages is by means of the **message key**. 
 LangStream guarantees that all the messages with the same key are processed in the same order as they have been written to the topic. If one message enters a retry loop, then all the other messages with the same key are put put on hold until the message is done.
@@ -134,37 +133,37 @@ If the key is null then LangStream is free to process the messages in any order.
 ### **Implicit topics**
 
 The LangStream planner may decide to create additional topics to connect the agents.
-This is because most of the agents may run together in the same kubernetes pod, but under some conditions this is not possible, for instance:
+This is because most of the agents may run together in the same kubernetes pod, but under some conditions this is not possible, for example:
 
-- two agents in the same pipeline have different resource requirements, so they m,must live in separate pods 
-- some agents require to connect directly to a topic
+- two agents in the same pipeline have different resource requirements, so they must live in separate pods 
+- some agents require a direct connection to a topic
 - an agent is marked as not "composable"
 
 ### **Schema less topics**
 
 By default LangStream interprets the contents of the messages as Unicode encoded strings (UTF-8) and when an agent tries to access the message as a structure, it tries to parse the string as JSON.
 
-This means that you can write a message in the input topic as a string and read it as a JSON structure in the output topic.
+This means that you can write a message in the input topic as a string, and read it as a JSON structure in the output topic.
 
 When an agent that expects a structure as input encounters a string that cannot
-be parsed as JSON this is handled as a regular processing failure, and you can apply the standard failure management options (like skipping unparsable messages or posting them to the deadletter queue).
+be parsed as JSON, this is handled as a regular processing failure, and you can apply the standard failure management options (like skipping unparsable messages or posting them to the deadletter queue).
 
 ### **Schema management**
 
-LangStream can handle automatically the Schema associated to the topic, depending
+LangStream can automatically handle the schema associated to the topic, depending
 on the messaging broker you are using.
 
-If you are using Apache Pulsar then the Schema Registry is built-in on the Broker
-and you don't have to configure anything more.
+If you are using Apache Pulsar, then the Schema Registry is built-in on the Broker
+and you don't have to configure anything.
 
-If you are using Apache Kafka then you need to configure the URL and the credentials to access a Schema Registry.
+If you are using Apache Kafka, you need to configure the URL and the credentials to access a Schema Registry.
 
-This happens in the instance.yaml file in the streamingCluster configuration,
+These values are set in the instance.yaml file in the streamingCluster configuration,
 see the [kafka](../../instance-clusters/streaming/kafka.md) cluster documentation for the actual configuration of the Schema Registry client.
 
-LangStream comes with an abstraction of the Schema management systems and allows you to write portable applications.
+LangStream comes with an abstraction of the Schema management system that allows you to write portable applications.
 
-These are the supported schema types:
+The supported schema types are:
 - string
 - bytes
 - avro
@@ -210,15 +209,15 @@ topics:
 
 The runtime gets the schema from the registry while consuming.
 
-The same applies in case you write an AVRO record: the schema will be automatically registered in the registry.
+The same applies if you write an AVRO record: the schema will be automatically registered in the registry.
 
 
 ### **Dead letter queue topics**
 
-When you mark an agent with **on-failure: deadletter**, this means that in case of error the message that was read by the input topic has to be move to a side topic
-in order to not stop the pipeline while keeping the problematic message for further debugging.
+When you mark an agent with **on-failure: deadletter**, this means that in case of error the message that was read by the input topic has to be moved to a side topic
+to not stop the pipeline while keeping the problematic message for further debugging.
 
-In this case the LangStream planner automatically create a topic next to the
+In this case, the LangStream planner automatically creates a topic next to the
 input topic of the agent, with the same schema and with a name as `topicname + “-deadletter”`.
 
 You can read more about error handling [here](../../building-applications/error-handling.md).
