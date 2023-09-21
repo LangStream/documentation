@@ -53,6 +53,50 @@ API gateway:
 kubectl -n langstream port-forward svc/langstream-api-gateway 8091:8091 &
 ```
 
+### Alternate port forwarding
+
+You can instead open the control plane and API gateway ports in your Helm chart.
+
+This example uses traefik for ingress.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: control-plane
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+    - host: langstream.yourdomain.local  # Replace with your actual domain or host
+      http:
+        paths:
+            backend:
+              service:
+                name: langstream-control-plane
+                port:
+                  number: 8090
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-gateway
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+    - host: ws.langstream.yourdomain.local  # Replace with your actual domain or host
+      http:
+        paths:
+            backend:
+              service:
+                name:  langstream-api-gateway
+                port:
+                  number: 8091
+
+```
+
 ### Your first application
 
 Here are a few ways to get started building LangStream applications:
