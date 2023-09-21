@@ -8,65 +8,94 @@ Within the “application” directory, create a directory named “python”.&#
 
 Within that directory, place the .py file with the class function that will be the entry point.
 
+The directory will look something like this:
+
+```
+|- Project directory
+    |- application
+        |- python
+            |- application.py
+    |- pipeline.yaml
+    |- configuration.yaml
+|- (optional) secrets.yaml
+```
+
 For more on developing custom agents with the Python source, see the [Agent Developer Guide.](../agent-developer-guide/)
 
 ### Example
 
-Example python class located at ./application/python/example.py:
+Example python source located at ./application/python/example.py:
 
 ```python
-import tempfile
 import time
 from typing import List
-
+from urllib.parse import urlparse
 
 import boto3
-from langchain.docstore.document import Document
-from langchain.document_loaders.base import BaseLoader
-from langchain.document_loaders.unstructured import UnstructuredFileLoader
+from langchain.document_loaders import S3DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+from langstream import Source, SimpleRecord
 
-from langstream_runtime.api import Source, Record
-from langstream_runtime.simplerecord import SimpleRecord
+class S3Record(SimpleRecord):
+    def __init__(self, url, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = url
 
 
-class ExampleSource(Source):
-   # initialize the application
+class S3LangChain(Source):
+    def __init__(self):
+        self.loader = None
+        self.bucket = None
+
     def init(self, config):
-        # example input args
-        # bucket_name = config.get('bucketName', 'langstream-s3-langchain')
-        # endpoint_url = config.get('endpoint', 'http://minio-endpoint.-not-set:9090')
+        bucket_name = config.get("bucketName", "langstream-s3-langchain")
+        endpoint_url = config.get("endpoint", "http://minio-endpoint.-not-set:9090")
+        aws_access_key_id = config.get("username", "minioadmin")
+        aws_secret_access_key = config.get("password", "minioadmin")
+        s3 = boto3.resource(
+            "s3",
+            endpoint_url=endpoint_url,
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+        )
 
+        self.bucket = s3.Bucket(bucket_name)
+        self.loader = S3DirectoryLoader(
+            bucket_name,
+            endpoint_url=endpoint_url,
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+        )
 
-    # read from the source (like S3 or database)
-    def read(self) -> List[Record]:
+    def read(self) -> List[S3Record]:
         time.sleep(1)
         text_splitter = RecursiveCharacterTextSplitter(
-            # Set a really small chunk size, just to show.
             chunk_size=100,
             chunk_overlap=20,
             length_function=len,
             add_start_index=False,
         )
         docs = self.loader.load_and_split(text_splitter=text_splitter)
-        return [ S3Record(doc.metadata['s3_object_key'], value=doc.page_content) for doc in docs ]
+        return [
+            S3Record(doc.metadata["source"], value=doc.page_content) for doc in docs
+        ]
 
-
-    # finalize the read
     def commit(self, records: List[S3Record]):
-        objects_to_delete = [{'Key': f'{record.name}'} for record in records]
-        self.bucket.delete_objects(Delete={'Objects': objects_to_delete})
+        objects_to_delete = [
+            {"Key": f'{urlparse(record.url).path.lstrip("/")}'} for record in records
+        ]
+        self.bucket.delete_objects(Delete={"Objects": objects_to_delete})
 ```
 
-Configure the agent to use the python class in configuration.yaml:
+Configure the agent to use the python class in pipeline.yaml:
 
 ```yaml
 - name: "A custom python source"
   type: "python-source"
   output: "output-topic" # optional
   configuration:
-    className: example.ExampleSource
+    className: application.S3LangChain
     bucketName: langstream-langchain-source
     endpoint: "https://s3.eu-west-2.amazonaws.com"
 
@@ -80,11 +109,11 @@ Configure the agent to use the python class in configuration.yaml:
 
 **Output**
 
-* Structured as a langstream\_runtime.api.Record
+* Structured as a langstream SimpleRecord
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
 ### **Configuration**
 
-<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>className</td><td>String (required)</td><td><p>A combination of the file name and the class name.</p><p></p><p>Example: For the file my-python-func.py that has class MyFunction, the value would be my-python-func.MyFunction</p></td></tr><tr><td>&#x3C;any></td><td><br></td><td>Additional configuration properties specific to the application.</td></tr></tbody></table>
+<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>className</td><td>String (required)</td><td><p>A combination of the file name and the class name.</p><p></p><p>Example: For the file my-python-app.py that has class MySource, the value would be my-python-app.MySource</p></td></tr><tr><td>&#x3C;any></td><td><br></td><td>Additional configuration properties specific to the application.</td></tr></tbody></table>
 
 \

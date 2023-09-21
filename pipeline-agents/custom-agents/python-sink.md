@@ -11,11 +11,12 @@ Within that directory, place the .py file with the class function that will be t
 The directory will look like this:
 
 ```
-|- application
-    |- python
-        |- application.py
-|- pipeline.yaml
-|- configuration.yaml
+|- Project directory
+    |- application
+        |- python
+            |- application.py
+    |- pipeline.yaml
+    |- configuration.yaml
 |- (optional) secrets.yaml
 ```
 
@@ -54,7 +55,7 @@ class ExampleSink(Sink):
         pass
 ```
 
-Configure the agent to use the python class in configuration.yaml:
+Configure the agent to use the python class in pipeline.yaml:
 
 ```yaml
 pipeline:
@@ -80,4 +81,4 @@ pipeline:
 
 ### **Configuration**
 
-<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>className</td><td>String (required)</td><td><p>A combination of the file name and the class name.</p><p>Example: For the file my-python-func.py that has class MyFunction, the value would be my-python-func.MyFunction</p></td></tr><tr><td>&#x3C;any></td><td><br></td><td>Additional configuration properties specific to the application.</td></tr></tbody></table>
+<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>className</td><td>String (required)</td><td><p>A combination of the file name and the class name.</p><p>Example: For the file my-python-app.py that has class MySink, the value would be my-python-app.MySink</p></td></tr><tr><td>&#x3C;any></td><td><br></td><td>Additional configuration properties specific to the application.</td></tr></tbody></table>

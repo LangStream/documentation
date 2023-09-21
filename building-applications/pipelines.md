@@ -7,24 +7,24 @@ A pipeline is a manifest of topics and processing steps.
 The example manifest below defines a pipeline with 1 step. It receives messages via "input-topic", processes the messages, and sends processed messages to "output-topic".
 
 ```yaml
-module: "module-1"
-id: "pipeline-1"
 topics:
   - name: "input-topic"
     creation-mode: create-if-not-exists
   - name: "output-topic"
     creation-mode: create-if-not-exists
 pipeline:
-  - name: "compute-embeddings"
-    id: "step1"
-    type: "compute-ai-embeddings"
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
     input: "input-topic"
     output: "output-topic"
+    errors:
+      on-failure: skip
     configuration:
-      model: "text-embedding-ada-002"
-      embeddings-field: "value.embeddings"
-      text: "{{% value.name }} {{% value.description }}"
-
+      model: "gpt-3.5-turbo"
+      completion-field: "value"
+      messages:
+        - role: user
+          content: "What can you tell me about {{% value}} ?"
 ```
 
 ### Module and Topics Configuration Values
