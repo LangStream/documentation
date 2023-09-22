@@ -4,11 +4,20 @@ Vector databases are a crucial part of the generative AI workflow. They’re par
 
 Vectorization feeds text to a machine learning algorithm, which vectorizes the data so that the more similar the words are, the closer their vectors. This creates context for the search query, instead of just trying to match a string, and returns more useful results.&#x20;
 
-LangStream currently supports any database that supports [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html) or [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html).
+LangStream currently has native support for [DataStax Astra DB](https://www.datastax.com/products/datastax-astra), [Pinecone](https://www.pinecone.io/)
+and [Apache Cassandra](https://cassandra.apache.org).&#x20;
+
+Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for more information on how to use vector databases in your LangStream application.&#x20;
+
+There is also built-in support for for quering any Database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.&#x20;
+
+Please refer to the [Data Storage section](../configuration-resources/data-storage/README.md) section for more information on how to configure your vector database.&#x20;
+
+You can also connect to any database for which you can find a [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html) connector.&#x20;
+
 
 ### Vectorization example
 
-\
 A natural language processing (NLP) technique converts each document into a vector representation. These document vectors are stored in a vector database designed for similarity search.
 
 A user enters a query text related to a news article about technology trends. The query text is processed using the same NLP technique to obtain a vector representation.
@@ -143,18 +152,16 @@ Now that the text is processed and structured, an agent computes embeddings and 
 The final agent takes the embeddings from the "chunks-topic" and writes them to an Astra vector database. As with the S3 agent, these credentials are pulled from secrets.yaml.
 
 ```yaml
- - name: "Write to AstraDB"
-    type: "sink"
+  - name: "Write to vector database"
+    type: "vector-db-sink"
     input: "chunks-topic"
+    resources:
+      size: 2
     configuration:
-      connector.class: com.datastax.oss.kafka.sink.CassandraSinkConnector
-      key.converter: org.apache.kafka.connect.storage.StringConverter
-      value.converter: org.apache.kafka.connect.storage.StringConverter
-      cloud.secureConnectBundle: "{{{ secrets.cassandra.secure-connect-bundle }}}"
-      auth.username: "{{{ secrets.cassandra.username }}}"
-      auth.password: "{{{ secrets.cassandra.password }}}"
-      topic.chunks-topic.documents.documents.mapping: "filename=value.filename, chunk_id=value.chunk_id, language=value.language, text=value.text, embeddings_vector=value.embeddings_vector, num_tokens=value.chunk_num_tokens"
-      name: cassandra-sink
+      datasource: "AstraDatasource"
+      table-name: "documents"
+      keyspace: "documents"
+      mapping: "filename=value.filename, chunk_id=value.chunk_id, language=value.language, text=value.text, embeddings_vector=value.embeddings_vector, num_tokens=value.chunk_num_tokens"
 ```
 
 Now, all the information from your PDFs is embedded in a vector database. Try setting up a chatbot and asking questions about all the information you've made available!

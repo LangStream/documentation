@@ -1,17 +1,37 @@
----
-layout:
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: false
-  pagination:
-    visible: false
----
+# DataSources and Vector Databases
 
-# Data storage
+A data source resource used to interact with a database.
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>datasource</td><td></td><td></td><td><a href="datasource.md">datasource.md</a></td></tr></tbody></table>
+You define datasources in the configuration.yaml file.
+
+This is for a Vector Database datasource:
+
+```yaml
+resources:
+  - type: "vector-database"
+    name: "NameOfTheDatasource"
+    configuration:
+      service: "SERVICE-TYPE"
+      ...  other parameters depending on the service type
+      
+```
+
+This is for a generic datasource:
+
+```yaml
+resources:
+  - type: "datasource"
+    name: "NameOfTheDatasource"
+    configuration:
+      service: "SERVICE-TYPE"
+      ...  other parameters depending on the service type
+      
+```
+
+### Supported services
+
+- [Datastax Astra DB](astra.md)
+- [Apache Cassandra](cassandra.md)
+- [Pinecone](pinecone.md)
+- [JDBC](jdbc.md)
+
