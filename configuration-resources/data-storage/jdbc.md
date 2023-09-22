@@ -1,6 +1,6 @@
 ### Connecting to a JDBC Compliant Database
 
-You can connect to any JDBC compliant database using the "datasource" resource type.
+Connect to any JDBC-compliant database using the "datasource" resource type.
 
 ```yaml
 configuration:
@@ -21,11 +21,11 @@ configuration:
       
 ```
 
-You are required to provide the `driverClass` class parameter, that is the entry point for bootstrapping the JDBC driver.
+The `driverClass` class parameter is required - it is the entry point for bootstrapping the JDBC driver.
 
 ## Loading the JDBC driver
 
-In order to load the JDBC driver you have to provide a dependency to the driver jar file.
+To load the JDBC driver, provide a dependency to the driver jar file.
 
 ```yaml
   dependencies:
@@ -35,9 +35,9 @@ In order to load the JDBC driver you have to provide a dependency to the driver 
       type: "java-library"
 ```   
 
-With this syntax it is the LangStream CLI that downloads the file and stores it in the `java/lib` folder.
+With this syntax, the LangStream CLI downloads the file and stores it in the `java/lib` folder.
 
-You should add a .gitignore rule to avoid committing the jar file to your git repository.
+Add a .gitignore rule to avoid committing the jar file to your git repository.
 
 This is a sample .gitignore file to put at the root of your application directory in order to not commit the jar file to your git repository:
 

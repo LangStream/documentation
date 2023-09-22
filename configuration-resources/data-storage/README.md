@@ -1,6 +1,6 @@
 # DataSources and Vector Databases
 
-A data source resource used to interact with a database.
+A `datasource` resource used to interact with a database.
 
 You define datasources in the configuration.yaml file.
 

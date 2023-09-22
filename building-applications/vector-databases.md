@@ -9,11 +9,11 @@ and [Apache Cassandra](https://cassandra.apache.org).&#x20;
 
 Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for more information on how to use vector databases in your LangStream application.&#x20;
 
-There is also built-in support for for quering any Database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.&#x20;
+There is also built-in support for querying any Database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.
 
-Please refer to the [Data Storage section](../configuration-resources/data-storage/README.md) section for more information on how to configure your vector database.&#x20;
+Please refer to the [Data Storage section](../configuration-resources/data-storage/README.md) for more information on how to configure your vector database.
 
-You can also connect to any database for which you can find a [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html) connector.&#x20;
+You can also connect to any database with an available [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html) connector.
 
 
 ### Vectorization example

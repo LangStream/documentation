@@ -1,6 +1,6 @@
 ### Connecting to Apache Cassandra
 
-In order to use Apache Cassandra as a vector database you have to create a "vector-database" (or "datasource") resource in your configuration.yaml file.
+To use Apache Cassandra as a vector database, create a "vector-database" (or "datasource") resource in your configuration.yaml file.
 
 Support for Vector Search is available since Cassandra 5.0, so you need to use a version of Cassandra >= 5.0 or equivalent.
 
@@ -18,8 +18,8 @@ resources:
       
 ```
 
-You are required to provide the following parameters:
-- contact-points: the addess to connect to Cassandra
+Required parameters:
+- contact-points: the address to connect to Cassandra
 - loadBalancing-localDc: the datacenter to connect to
 
 Optional parameters:
@@ -30,11 +30,11 @@ Optional parameters:
 
 ## Special assets for Cassandra
 
-For a "Vector Database" resources based on Cassandra you can use the following special assets: "cassandra-keyspace" and "cassandra-table".
+For "Vector Database" resources based on Astra, you can use special `assets` in your pipeline: "cassandra-keyspace" and "cassandra-table".
 
 ```yaml
 assets:
-  - name: "lagstream-keyspace"
+  - name: "langstream-keyspace"
     asset-type: "cassandra-keyspace"
     creation-mode: create-if-not-exists    
     config:
@@ -56,7 +56,6 @@ assets:
         - "CREATE TABLE IF NOT EXISTS langstream.products (id int PRIMARY KEY,name TEXT,description TEXT, embeddings VECTOR<FLOAT,1536>);"
         - "CREATE CUSTOM INDEX IF NOT EXISTS documents_ann_index ON documents.documents(embeddings) USING 'StorageAttachedIndex';"
       delete-statements:
-        # optional, let's delete the records, but not the table
         - "TRUNCATE TABLE langstream.products;"
 ```
 

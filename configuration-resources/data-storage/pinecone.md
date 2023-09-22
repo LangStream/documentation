@@ -1,6 +1,6 @@
 ### Connecting to Pinecone.io
 
-In order to use Pinecone.io as a vector database you have to create a "vector-database" resource in your configuration.yaml file.
+To use Pinecone.io as a vector database, create a "vector-database" resource in your configuration.yaml file.
 
 ```yaml
 resources:
@@ -16,8 +16,8 @@ resources:
       
 ```
 
-You are required to provide the following parameters:
-- api-key: the addess to connect to Cassandra
+Required parameters:
+- api-key: your Pinecone API key
 - index-name: the name of the index
 - project-name: the name of the project
 - environment: the environment
