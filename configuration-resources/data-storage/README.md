@@ -30,8 +30,13 @@ resources:
 
 ### Supported services
 
-- [Datastax Astra DB](astra.md)
-- [Apache Cassandra](cassandra.md)
-- [Pinecone](pinecone.md)
-- [JDBC](jdbc.md)
+- [Datastax Astra DB](./astra.md)
+- [Apache Cassandra](./cassandra.md)
+- [Pinecone](./pinecone.md)
+- [JDBC](./jdbc.md)
 
+
+### Supporting a new service
+
+If your favourite database is not supported, you can add support for it by creating a new plugin.
+Feel free to open an issue on [GitHub](https://github.com/LangStream/langstream/issues) to ask for help or file a feature request.
