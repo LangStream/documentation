@@ -30,6 +30,7 @@
 * [Pipelines](building-applications/pipelines.md)
 * [Instances](building-applications/instances.md)
 * [Configuration](building-applications/configuration.md)
+* [Assets](building-applications/assets.md)
 * [Secrets](building-applications/secrets.md)
 * [API Gateways](building-applications/api-gateways.md)
 * [Application Lifecycle](building-applications/application-lifecycle.md)
