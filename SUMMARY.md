@@ -67,12 +67,14 @@
   * [text-extractor](pipeline-agents/text-processors/text-extractor.md)
   * [text-splitter](pipeline-agents/text-processors/text-splitter.md)
 * [Input & Output](pipeline-agents/input-and-output/README.md)
+  * [LlamaIndex Cassandra sink](pipeline-agents/input-and-output/llamaindex-cassandra-sink.md)
   * [webcrawler-source](pipeline-agents/input-and-output/webcrawler-source.md)
   * [s3-source](pipeline-agents/input-and-output/s3-source.md)
   * [sink](pipeline-agents/input-and-output/sink.md)
   * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)
 
 ## Configuration Resources
+
 * [Messaging](configuration-resources/messaging/README.md)
   * [topics](configuration-resources/messaging/topics.md)
 * [Data storage](configuration-resources/data-storage/README.md)
