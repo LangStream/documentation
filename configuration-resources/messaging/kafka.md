@@ -4,14 +4,14 @@ Configuration for a LangStream streaming instance.
 
 ### Configuration
 
-In order to connect to Kafka Broker you must provide the addess of the broker with the `bootstrap.servers` property.
+To connect to a Kafka Broker, provide the address of the broker with the `bootstrap.servers` property.
 
-Please refer to the Apache Kafka Java client documentation for more details about the configuration properties.
+Please refer to the Apache Kafka Java client [documentation](https://kafka.apache.org/10/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html)(external link) for more details about the configuration properties.
 
 
 ### Authentication
 
-Usually in Apache Kafka you provide Authentication using the JAAS configuration file, in LangStream you can provide the configuration directly in the instance.yaml file.
+Usually in Apache Kafka you would provide Authentication using the JAAS configuration file, but in LangStream you can provide the configuration directly in the instance.yaml file.
 
 - security.protocol: the security protocol to use, for example SASL_SSL
 - sasl.jaas.config: the JAAS configuration to use for authentication
@@ -52,4 +52,4 @@ Please always use secrets to store sensitive information like passwords and user
 
 ### Using Apache Kafka in "docker run"
 
-When you are running you application in [Docker](../../installation/docker.md) mode, you can use the default Kafka instance provided by the LangStream docker image and you don't need to provide any configuration.
+When you are running you application in [Docker](../../installation/docker.md) mode, you can use the default Kafka instance provided by the LangStream docker image, and you don't need to provide any configuration.

@@ -33,11 +33,11 @@ streamingCluster:
 
 ```
 
-LangStream runtime is pluggable and supports multiple message brokers. The current version supports Apache Kafka and Apache Pulsar but you can add your own implementation.
-In case you are using a different message broker, you have to provide the implementation of the "streamingCluster" interface, feel free to open a GitHub issue or reach out the
+The LangStream runtime is pluggable and supports multiple message brokers. The current version supports Apache Kafka and Apache Pulsar but you can add your own implementation.
+If you're using a different message broker, you have to provide the implementation of the "streamingCluster" interface, feel free to open a GitHub issue or reach out to the
 community on Slack if you need help.
 
 
 ## Reference
 
-Check out here the reference configuration for [Apache Kafka](./kafka.md) and for [Apache Pulsar](./pulsar.md)
+Check out the reference configurations for [Apache Kafka](./kafka.md) and [Apache Pulsar](./pulsar.md)

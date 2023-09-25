@@ -4,8 +4,8 @@ Configuration for a LangStream streaming instance.
 
 ### Configuration
 
-In order to connect to a Pulsar broken you must provide the following configuration:
-- the Pulsar Servicer URL
+To connect to a Pulsar broker, provide the following configuration:
+- the Pulsar Service URL
 - the Pulsar Admin URL
 - the credentials to connect to the Pulsar Admin API
 - a default tenant
@@ -13,12 +13,12 @@ In order to connect to a Pulsar broken you must provide the following configurat
 
 ### Schema Registry
 
-LangStream supports the Pulsar Schema Registry, you don't need to provide additional configuration.
+LangStream supports the Pulsar Schema Registry, and you don't need to provide any additional configuration.
 
 
 ### Examples
 
-This is how it looks like a configuration for a Pulsar instance:
+This is how a configuration for a Pulsar instance looks:
 
 ```yaml
     streamingCluster:
