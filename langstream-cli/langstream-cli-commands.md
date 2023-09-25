@@ -6,7 +6,7 @@ To install the CLI, see [Installation](../installation/langstream-cli.md).
 To configure the CLI, see [Configuration](./langstream-cli-configuration.md)
 
 * [apps](/langstream-cli/langstream-cli-commands.md#apps)
-* [configure](/langstream-cli/langstream-cli-commands.md#configure) [DEPRECATED]
+* [configure](/langstream-cli/langstream-cli-commands.md#configure) **DEPRECATED**
 * [docker run](/langstream-cli/langstream-cli-commands.md#docker-run)
 * [gateways](/langstream-cli/langstream-cli-commands.md#gateway)
 * [profiles](/langstream-cli/langstream-cli-commands.md#profiles)
