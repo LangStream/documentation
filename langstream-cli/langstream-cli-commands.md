@@ -5,6 +5,13 @@ Use the CLI to manage your control plane, deploy applications, and interact with
 To install the CLI, see [Installation](../installation/langstream-cli.md).
 To configure the CLI, see [Configuration](./langstream-cli-configuration.md)
 
+* [apps](/langstream-cli/langstream-cli-commands.md#apps)
+* [configure](/langstream-cli/langstream-cli-commands.md#configure) [DEPRECATED]
+* [docker run](/langstream-cli/langstream-cli-commands.md#docker-run)
+* [gateways](/langstream-cli/langstream-cli-commands.md#gateway)
+* [profiles](/langstream-cli/langstream-cli-commands.md#profiles)
+* [tenants](/langstream-cli/langstream-cli-commands.md#tenants)
+
 ## apps
 | Directive  | Description                       | Arguments and Example                                                                                                                                                |
 |------------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -19,9 +26,8 @@ To configure the CLI, see [Configuration](./langstream-cli-configuration.md)
 ## configure
 
 [NOTE]
-```
-Configuration is deprecated. Use `langstream profiles` instead.
-```
+Configuration is deprecated. Use [langstream profiles](/langstream-cli/langstream-cli-commands.md#profiles) instead.
+
 
 | Directive       | Description            | Arguments and Example                                                                                         |
 |-----------------|------------------------|---------------------------------------------------------------------------------------------------------------|
