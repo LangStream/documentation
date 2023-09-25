@@ -1,4 +1,4 @@
-# LangStream CLI Conmmands
+# LangStream CLI Commands
 
 Use the CLI to manage your control plane, deploy applications, and interact with an application's gateway.
 
