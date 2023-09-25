@@ -2,9 +2,9 @@
 
 Use the CLI to manage your control plane, deploy applications, and interact with an application's gateway.
 
-For LangStream CLI commands, see [CLI Commands](../langstream-cli/langstream-cli-commands.md).
+For LangStream CLI commands, see [CLI commands.](../langstream-cli/langstream-cli-commands.md)
 
-To configure the LangStream CLI, see [Configuration](../langstream-cli/langstream-cli-configuration.md)
+To configure the LangStream CLI, see [CLI configuration.](../langstream-cli/langstream-cli-configuration.md)
 
 ## Download the CLI
 
@@ -36,4 +36,3 @@ Once installed you can test the CLI with the following command.
 ```
 langstream -h
 ```
-
