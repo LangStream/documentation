@@ -40,6 +40,22 @@ To update these values in the "staging" profile, use `langstream profiles update
 | --tenant          | tenant of the profile        |
 | --token           | token of the profile         |
 
+Instead of manually setting values, you can use `langstream import` to create a new CLI profile from a JSON file.&#x20;
+
+```
+langstream profiles import staging -f <file.json>
+```
+
+To update this file:
+
+```
+langstream profiles import staging --file="my-file.json" --update="true"
+```
+
+{% hint style="info" %}
+The existing LangStream configuration file is OVERWRITTEN, not MERGED.
+{% endhint %}
+
 For more profile commands, see [Profiles](langstream-cli-commands.md#profiles).
 
 ## Multi tenancy
