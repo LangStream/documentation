@@ -91,6 +91,8 @@
 
 * [Messaging](configuration-resources/messaging/README.md)
   * [Topics](configuration-resources/messaging/topics.md)
+  * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
   * [Apache Kafka](configuration-resources/messaging/kafka.md)
-  * [Apache Pulsar](configuration-resources/messaging/kafka.md)
+
+
 

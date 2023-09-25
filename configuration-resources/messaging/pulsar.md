@@ -25,9 +25,9 @@ This is how it looks like a configuration for a Pulsar instance:
     type: "pulsar"
     configuration:
         admin:
-            serviceUrl: "pulsar://localhost:6650"
-        service:
             serviceUrl: "http://localhost:8080"
+        service:
+            serviceUrl: "pulsar://localhost:6650"
         defaultTenant: "public"
         defaultNamespace: "default"
 ```
