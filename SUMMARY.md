@@ -84,6 +84,11 @@
   * [s3-source](pipeline-agents/input-and-output/s3-source.md)
   * [sink](pipeline-agents/input-and-output/sink.md)
 
+## LangStream CLI
+
+* [CLI Commands](langstream-cli/langstream-cli-commands.md)
+* [CLI Configuration](langstream-cli/langstream-cli-configuration.md)
+
 ## Examples
 
 * [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)
