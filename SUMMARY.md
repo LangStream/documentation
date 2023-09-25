@@ -30,6 +30,7 @@
 * [Pipelines](building-applications/pipelines.md)
 * [Instances](building-applications/instances.md)
 * [Configuration](building-applications/configuration.md)
+* [Topics](building-applications/topics.md)
 * [Assets](building-applications/assets.md)
 * [Secrets](building-applications/secrets.md)
 * [API Gateways](building-applications/api-gateways.md)
@@ -90,7 +91,6 @@
 ## Messaging
 
 * [Messaging](configuration-resources/messaging/README.md)
-  * [Topics](configuration-resources/messaging/topics.md)
   * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
   * [Apache Kafka](configuration-resources/messaging/kafka.md)
 

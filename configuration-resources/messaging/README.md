@@ -18,7 +18,7 @@ LangStream supports both Apache Kafka and Apache Pulsar as message brokers to st
 
 A LangStream application chooses the message broker at deployment time, and the choice is made in the instance.yaml file.
 
-You can find [here](./topics.md) how to configure the topics in your application.
+You can find [here](../../building-applications/topics.md) how to configure the topics in your application.
 
 ## Choosing a message broker
 
