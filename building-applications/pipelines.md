@@ -79,7 +79,7 @@ pipeline:
 
 Inside the `pipeline` property, you must specify a list of agents. 
 
-Each agent can be configure with the following properties.
+Each agent can be configured with the following properties.
 
 <table><thead><tr><th width="163.33333333333331">Name</th><th width="171">Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String (required)</td><td></td></tr><tr><td>id</td><td>String (required)</td><td></td></tr><tr><td>type</td><td>String (required)</td><td>The type name of processing to be run. See <a href="../pipeline-agents/ai-actions/">AI Actions</a> for supported types.</td></tr><tr><td>input</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>output</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>configuration</td><td>object</td><td>Given the chosen type, these are the config values used. Refer to the configuration area of each type for more info.</td></tr></tbody></table>
 
@@ -102,9 +102,9 @@ pipeline:
   ...
 ```
 
-Setting `parallelism:` to 3 the pipeline will be deployed with 3 different replicas. Each replica will use the configured `size` for CPU and memory.
+Setting `parallelism` to 3 will deploy the pipeline with 3 different replicas. Each replica will use the configured `size` for CPU and memory.
 
-The `size` parameter comprehend both CPU and memory. The value is a multiplier factor that is computed at runtime, starting from a base cpu/memory value.
+The `size` parameter describes both CPU and memory. The value is a multiplier factor that is computed at runtime, starting from a base cpu/memory value.
 For example, if the default value for the memory - for a single replica - is 512 MB, specifying `size:  2` will make the pipeline to use 1024MB per-replica.
 
 The requested resources are implemented by using [Kubernetes limits](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/). 
