@@ -30,6 +30,7 @@
 * [Pipelines](building-applications/pipelines.md)
 * [Instances](building-applications/instances.md)
 * [Configuration](building-applications/configuration.md)
+* [Topics](building-applications/topics.md)
 * [Assets](building-applications/assets.md)
 * [Secrets](building-applications/secrets.md)
 * [API Gateways](building-applications/api-gateways.md)
@@ -38,6 +39,16 @@
 * [Error Handling](building-applications/error-handling.md)
 * [Langstreamignore](building-applications/langstreamignore.md)
 
+## Integrations
+* [Large Language Models (LLMs)](configuration-resources/large-language-models-llms/README.md)
+  * [open-ai-configuration](configuration-resources/large-language-models-llms/open-ai-configuration.md)
+  * [hugging-face-configuration](configuration-resources/large-language-models-llms/hugging-face-configuration.md)
+  * [vertex-configuration](configuration-resources/large-language-models-llms/vertex-configuration.md)
+* [Data storage](configuration-resources/data-storage/README.md)
+  * [Astra](configuration-resources/data-storage/astra.md)
+  * [Cassandra](configuration-resources/data-storage/cassandra.md)
+  * [Pinecone](configuration-resources/data-storage/pinecone.md)
+  * [JDBC](configuration-resources/data-storage/jdbc.md)
 ## Pipeline Agents
 
 * [Agent Developer Guide](pipeline-agents/agent-developer-guide/README.md)
@@ -68,29 +79,20 @@
   * [text-extractor](pipeline-agents/text-processors/text-extractor.md)
   * [text-splitter](pipeline-agents/text-processors/text-splitter.md)
 * [Input & Output](pipeline-agents/input-and-output/README.md)
-  * [LlamaIndex Cassandra sink](pipeline-agents/input-and-output/llamaindex-cassandra-sink.md)
+  * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)  
   * [webcrawler-source](pipeline-agents/input-and-output/webcrawler-source.md)
   * [s3-source](pipeline-agents/input-and-output/s3-source.md)
   * [sink](pipeline-agents/input-and-output/sink.md)
-  * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)
 
-## Configuration Resources
+## Examples
+
+* [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)
+
+## Messaging
 
 * [Messaging](configuration-resources/messaging/README.md)
-  * [topics](configuration-resources/messaging/topics.md)
-* [Data storage](configuration-resources/data-storage/README.md)
-  * [Astra](configuration-resources/data-storage/astra.md)
-  * [Cassandra](configuration-resources/data-storage/cassandra.md)
-  * [Pinecone](configuration-resources/data-storage/pinecone.md)
-  * [JDBC](configuration-resources/data-storage/jdbc.md)
-* [Large Language Models (LLMs)](configuration-resources/large-language-models-llms/README.md)
-  * [open-ai-configuration](configuration-resources/large-language-models-llms/open-ai-configuration.md)
-  * [hugging-face-configuration](configuration-resources/large-language-models-llms/hugging-face-configuration.md)
-  * [vertex-configuration](configuration-resources/large-language-models-llms/vertex-configuration.md)
+  * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
+  * [Apache Kafka](configuration-resources/messaging/kafka.md)
 
-## Instance Clusters
 
-* [Streaming](instance-clusters/streaming/README.md)
-  * [kafka](instance-clusters/streaming/kafka.md)
-* [Compute](instance-clusters/compute/README.md)
-  * [kubernetes](instance-clusters/compute/kubernetes.md)
+
