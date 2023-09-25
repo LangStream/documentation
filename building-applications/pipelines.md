@@ -38,43 +38,38 @@ pipeline:
    <tbody>
       <tr>
          <td>module</td>
-         <td>The module reference for this pipeline. If not specified, a default module will be used.</td>
          <td>String</td>
+         <td>The module reference for this pipeline. If not specified, a default module will be used.</td>
       </tr>
       <tr>
          <td>id</td>
-         <td>Unique id of the pipeline. If not specified, it will be computed automatically.</td>
          <td>String</td>
+         <td>Unique id of the pipeline. If not specified, it will be computed automatically.</td>
       </tr>
       <tr>
          <td>name</td>
-         <td></td>
-         <td>The name of the pipeline.</td>
          <td>String</td>
+         <td>The name of the pipeline.</td>
       </tr>
       <tr>
          <td>topics</td>
-         <td></td>
-         <td>A collection of topics that will be bound to the application lifecycle, and used to transport data between steps. See [Topics](../configuration-resources/messaging/topics.md) for more details</td>
          <td>object[]</td>
+         <td>A collection of topics that will be bound to the application lifecycle, and used to transport data between steps. See [Topics](../configuration-resources/messaging/topics.md) for more details</td>
       </tr>
       <tr>
          <td>assets</td>
-         <td></td>
-         <td>A collection of topics that will be bound to the application lifecycle. See [Assets](assets.md) for more details</td>
          <td>object[]</td>
+         <td>A collection of topics that will be bound to the application lifecycle. See [Assets](assets.md) for more details</td>
       </tr>
       <tr>
          <td>resources</td>
-         <td></td>
-         <td>Resources configuration for the pipeline agents. </td>
          <td>object</td>
+         <td>Resources configuration for the pipeline agents. </td>
       </tr>
       <tr>
          <td>pipeline</td>
-         <td></td>
-         <td>Pipeline agents configuration.</td>
          <td>object[] (Required)</td>
+         <td>Pipeline agents configuration.</td>
       </tr>
    </tbody>
 </table>
@@ -82,14 +77,15 @@ pipeline:
 
 ### Pipeline agents configuration
 
-<table><thead><tr><th width="163.33333333333331">Name</th><th width="171">Type</th><th>Description</th></tr></thead><tbody><tr><td>pipeline<br></td><td>object[]</td><td>The pipeline node holds the collection of processing steps. The order of the steps in the collection decides how the pipeline is arranged.</td></tr><tr><td>name</td><td>String (required)</td><td></td></tr><tr><td>id</td><td>String (required)</td><td></td></tr><tr><td>type</td><td>String (required)</td><td>The type name of processing to be run. See <a href="../pipeline-agents/ai-actions/">AI Actions</a> for supported types.</td></tr><tr><td>input</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>output</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>configuration</td><td>object</td><td>Given the chosen type, these are the config values used. Refer to the configuration area of each type for more info.</td></tr></tbody></table>
+Inside the `pipeline` property, you must specify a list of agents. 
+
+Each agent can be configure with the following properties.
+
+<table><thead><tr><th width="163.33333333333331">Name</th><th width="171">Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>String (required)</td><td></td></tr><tr><td>id</td><td>String (required)</td><td></td></tr><tr><td>type</td><td>String (required)</td><td>The type name of processing to be run. See <a href="../pipeline-agents/ai-actions/">AI Actions</a> for supported types.</td></tr><tr><td>input</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>output</td><td><br></td><td>Reference to the topic name</td></tr><tr><td>configuration</td><td>object</td><td>Given the chosen type, these are the config values used. Refer to the configuration area of each type for more info.</td></tr></tbody></table>
 
 ### Agent resources
 
-When deploying a pipeline, some agents might require additional CPU or memory to run properly. This might depends on the traffic load.
-Sometimes you need to scale the pipeline vertically or horizontally.
-
-LangStream allows you to do both.
+When deploying a pipeline, some agents might require additional CPU or memory to run properly. Depending on the traffic load and the agent architecture, you might need to scale the pipeline vertically or horizontally, or both.
 
 The `resources` property allows you to specify the `size` (scale vertically) and the `parallelism` (scale horizontally) for the pipeline.
 
