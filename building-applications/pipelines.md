@@ -99,9 +99,17 @@ topics:
   ...
 
 resources:
-  size: 2
   parallelism: 3
-
+  size: 2
+  
 pipeline:
   ...
 ```
+
+Setting `parallelism:` to 3 the pipeline will be deployed with 3 different replicas. Each replica will use the configured `size` for CPU and memory.
+
+The `size` parameter comprehend both CPU and memory. The value is a multiplier factor that is computed at runtime, starting from a base cpu/memory value.
+For example, if the default value for the memory - for a single replica - is 512 MB, specifying `size:  2` will make the pipeline to use 1024MB per-replica.
+
+The requested resources are implemented by using [Kubernetes limits](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/). 
+Be aware that if an agent tries to use more memory than the requested, the pipeline will fail with `OOMKilled` error. 
