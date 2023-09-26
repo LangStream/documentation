@@ -1,26 +1,30 @@
 # Vector Databases
 
-Vector databases are a crucial part of the generative AI workflow. They’re particularly suited for similarity searches, where an application searches for similar items like text, images, or audio.&#x20;
+Vector databases are a crucial part of the generative AI workflow. Vector databases store vector representations (embeddings) of text, images, sound, etc. They include search tools to enable similarity search across the vector representations to find semanitically similar data.   
 
-Vectorization feeds text to a machine learning algorithm, which vectorizes the data so that the more similar the words are, the closer their vectors. This creates context for the search query, instead of just trying to match a string, and returns more useful results.&#x20;
+Vector databases are typically used as part of retrieval augmented generation (RAG). In the RAG workflow, relevant documents or passages are retrieved from a vector database based on their semantic relevance. These documents or passages are then included in the LLM prompt to provide additional context for the LLM to use when generating a response. This pattern is used to:
 
-LangStream currently has native support for [DataStax Astra DB](https://www.datastax.com/products/datastax-astra), [Pinecone](https://www.pinecone.io/)
+* Reduce AI hallucinations
+* Provide more accurate, up-to-date, and context-aware responses
+* Extend the knowledge base of the LLM
+
+LangStream makes it easy to build applications using the RAG pattern. It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/)
 and [Apache Cassandra](https://cassandra.apache.org).&#x20;
 
-Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for more information on how to use vector databases in your LangStream application.&#x20;
+When working with a vector database you will either be writing vector embeddings to a vector database or performing semantic similarity queries across the vectors in the database. Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) for writing to vector databases and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for querying.&#x20;
 
-There is also built-in support for querying any Database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.
+There is also built-in support for querying and writing to any database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.
 
 Please refer to the [Data Storage section](../configuration-resources/data-storage/README.md) for more information on how to configure your vector database.
 
-You can also connect to any database with an available [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html) connector.
+You can also write to any database with an available [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html) connector.
 
 
 ### Vectorization example
 
-A natural language processing (NLP) technique converts each document into a vector representation. These document vectors are stored in a vector database designed for similarity search.
+An embedding model, such as OpenAI's `text-embedding-ada-002`, converts each document into a vector representation. These document vectors are stored in a vector database designed for similarity search.
 
-A user enters a query text related to a news article about technology trends. The query text is processed using the same NLP technique to obtain a vector representation.
+A user enters a query text related to a news article about technology trends. The query text is processed using the same embedding model to obtain a vector representation.
 
 A similarity search with this query is performed in the vector database. This involves calculating the cosine similarity or another suitable distance metric between the query vector and the vectors of all stored documents.
 
@@ -171,9 +175,7 @@ Now, all the information from your PDFs is embedded in a vector database. Try se
 Do you have a bunch of PDFs lying around, just waiting to be turned into useful, vectorized text?\
 This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/blob/main/examples/applications/text-processing/extract-text.yaml), and running it on your own is no sweat.&#x20;
 
-\
-\
-\
+
 
 
 [^1]: 
