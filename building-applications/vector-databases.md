@@ -2,7 +2,7 @@
 
 Vector databases are a crucial part of the generative AI workflow. Vector databases store vector representations (embeddings) of text, images, sound, etc. They include search tools to enable similarity search across the vector representations to find semanitically similar data.   
 
-Vector databases are typically used as part of retrieval augmented generation (RAG). In the RAG workflow, relevant documents or passages are retrieved from a vector database based on their semantic relevance. These documents or passgaes are then included in the LLM prompt to provide additional context for the LLM to use when generating a response. This pattern is used to:
+Vector databases are typically used as part of retrieval augmented generation (RAG). In the RAG workflow, relevant documents or passages are retrieved from a vector database based on their semantic relevance. These documents or passages are then included in the LLM prompt to provide additional context for the LLM to use when generating a response. This pattern is used to:
 
 * Reduce AI hallucinations
 * Provide more accurate, up-to-date, and context-aware responses
