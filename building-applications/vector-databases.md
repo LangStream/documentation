@@ -13,7 +13,7 @@ and [Apache Cassandra](https://cassandra.apache.org).&#x20;
 
 When working with a vector database you will either be writing vector embeddings to a vector database or performing semantic similarity queries across the vectors in the database. Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) for writing to vector databases and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for querying.&#x20;
 
-There is also built-in support for querying any database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.
+There is also built-in support for querying and writing to any database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.
 
 Please refer to the [Data Storage section](../configuration-resources/data-storage/README.md) for more information on how to configure your vector database.
 
