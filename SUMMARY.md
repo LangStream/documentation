@@ -48,6 +48,7 @@
   * [Astra](configuration-resources/data-storage/astra.md)
   * [Cassandra](configuration-resources/data-storage/cassandra.md)
   * [Pinecone](configuration-resources/data-storage/pinecone.md)
+  * [Milvus](configuration-resources/data-storage/milvus.md)
   * [JDBC](configuration-resources/data-storage/jdbc.md)
 ## Pipeline Agents
 
