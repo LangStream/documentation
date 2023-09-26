@@ -33,6 +33,7 @@ resources:
 - [Datastax Astra DB](./astra.md)
 - [Apache Cassandra](./cassandra.md)
 - [Pinecone](./pinecone.md)
+- [Milvus](./milvus.md)
 - [JDBC](./jdbc.md)
 
 
