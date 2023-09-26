@@ -50,7 +50,7 @@ pipeline:
       output-field: "value.query-result"
 ```
 
-In order to perform the Query you have to define the JSON for the request to the Pinecone API.
+To perform the query, define the JSON for the request to the Pinecone API.
 As usual you can use the '?' symbol as a placeholder for the fields that you specify in the "query" section.
 
 
@@ -70,5 +70,5 @@ pipeline:
       vector.metadata.genre: "value.genre"
 ```
 
-In order to write to Pinecone you need to define the values for the vector.id, vector.vector and vector.metadata fields.
+To write to Pinecone, define the values for the vector.id, vector.vector and vector.metadata fields.
 You can add as many vector.metadata fields as you want, but you need to specify the prefix "vector.metadata." for each field.

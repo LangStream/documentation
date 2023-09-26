@@ -13,7 +13,7 @@ resources:
         password: "{{{ secrets.milvus.password }}}"
         host: "{{{ secrets.milvus.host }}}"
         port: "{{{ secrets.milvus.port }}}"
-        ## Set to "upsert" for OSS Milvus, on Zills use "delete-insert"
+        ## Set to "upsert" for OSS Milvus, on Zilliz use "delete-insert"
         write-mode: "{{{ secrets.milvus.write-mode }}}"
         ## Zillis
         url: "{{{ secrets.milvus.url }}}"
@@ -105,10 +105,10 @@ assets:
           }
 ```
 
-As you can see in the "create-statements" you can configure a number of "commands", that translate to Milvus API calls.
+As you can see in the "create-statements" section above, you can configure a number of "commands" that translate to Milvus API calls.
 The available commands are:
 - create-collection: create a collection using the CreateCollection API
-- create-simple-collection: create a collection using the CreateSimpleCollection API, this doesn't need to explicitly specify the field types, create the index on the vector field and load the collection
+- create-simple-collection: create a collection using the CreateSimpleCollection API. This doesn't need to explicitly specify the field types, just create the index on the vector field and load the collection
 - load-collection: load the collection in Milvus, to allow searches
 - create-index: create a Vector index, this is required if you are using the "create-collection" command
 
@@ -161,6 +161,6 @@ When you use the "vector-db-sink" agent to write to Milvus, you can use the foll
           expression: "value.chunk_num_tokens"
 ```
 
-You can set the collection-name to the name of the collection you want to write to.
+Set the collection-name to the name of the collection you want to write to.
 Then you define the fields in the "fields" list.
-This works very like the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields.
+This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields.
