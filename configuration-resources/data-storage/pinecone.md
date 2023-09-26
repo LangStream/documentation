@@ -26,3 +26,49 @@ You can find the api-key, index-name, project-name and enviroment in the Pinecon
 
 Optional parameters:
 - server-side-timeout-sec: the timeout for any server-side operation (default is 10 seconds)
+
+
+### Querying Pinecone
+
+You can query Pinecone using the "vector-db-query" agent in your pipeline.
+
+```yaml
+pipeline:
+  - name: "Execute Query"
+    type: "query-vector-db"
+    configuration:
+      datasource: "PineconeDatasource"
+      query: |
+        {
+              "vector": ?,
+              "topK": 5,
+              "filter":
+                {"$or": [{"genre": "comedy"}, {"year":2019}]}
+         }
+      fields:
+        - "value.embeddings"
+      output-field: "value.query-result"
+```
+
+In order to perform the Query you have to define the JSON for the request to the Pinecone API.
+As usual you can use the '?' symbol as a placeholder for the fields that you specify in the "query" section.
+
+
+### Writing to Pinecone
+
+You can write to Pinecone using the "vector-db-sink" agent in your pipeline.
+
+```yaml
+pipeline:
+  - name: "Write to Pinecone"
+    type: "vector-db-sink"
+    configuration:
+      datasource: "PineconeDatasource"
+      vector.id: "value.id"
+      vector.vector: "value.embeddings"
+      vector.namespace: ""
+      vector.metadata.genre: "value.genre"
+```
+
+In order to write to Pinecone you need to define the values for the vector.id, vector.vector and vector.metadata fields.
+You can add as many vector.metadata fields as you want, but you need to specify the prefix "vector.metadata." for each field.

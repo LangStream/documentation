@@ -46,3 +46,22 @@ This is a sample .gitignore file to put at the root of your application director
 java/lib/*
 ```
 
+### Querying a JDBC datasource
+
+You can query a JDBC datasource using the "query" or the "query-vector-db" agent in your pipeline.
+
+```yaml
+pipeline:
+  - name: "Execute Query"
+    type: "query-vector-db"
+    input: "input-topic"
+    output: "output-topic"    
+    configuration:
+      datasource: "PGDataSource"
+      query: "SELECT * FROM products WHERE id = ?"
+      fields:
+        - "value.id"
+      output-field: "value.query-result"
+```
+
+As usual you can use the '?' symbol as a placeholder for the fields that you specify in the "query" section.
