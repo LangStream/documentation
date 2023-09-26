@@ -64,11 +64,11 @@ Configuration is deprecated. Use [langstream profiles](langstream-cli-commands.m
 
 ## gateway
 
-| Subcommand | Description                                                      | Arguments and Example                                                                                                                                                                                    |
-| ---------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| chat       | Produce and consume messages from gateway in a chat-like fashion | Example: langstream gateway chat my-app-id -cg “some-gateway-id” -pg “another-gateway-id” -p “key=value” -c “some-credentials” --connect-timeout: Connect timeout in seconds.                            |
-| consume    | Consume messages from a gateway                                  | Example: langstream gateway consume my-app-id “some-gateway-id” -p “key=value” -c “some-credentials” --position “latest” --connect-timeout: Connect timeout in seconds.                                  |
-| produce    | Produce messages to a gateway                                    | Example: langstream gateway produce my-app-id “some-gateway-id” -p “key=value” -c “some-credentials” -v “some-message” -k “some-key” --header “key=value” --connect-timeout: Connect timeout in seconds. |
+| Subcommand | Description                                                      | Arguments and Example                                                                                                                                                                                                                      |
+| ---------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| chat       | Produce and consume messages from gateway in a chat-like fashion | <p>Example: <code>langstream gateway chat my-app-id -cg “some-gateway-id” -pg “another-gateway-id” -p “key=value” -c “some-credentials”</code> </p><p></p><p>--connect-timeout: Connect timeout in seconds.</p>                            |
+| consume    | Consume messages from a gateway                                  | <p>Example: <code>langstream gateway consume my-app-id “some-gateway-id” -p “key=value” -c “some-credentials” --position “latest”</code></p><p></p><p>--connect-timeout: Connect timeout in seconds.</p>                                   |
+| produce    | Produce messages to a gateway                                    | <p>Example: <code>langstream gateway produce my-app-id “some-gateway-id” -p “key=value” -c “some-credentials” -v “some-message” -k “some-key” --header “key=value”</code> </p><p></p><p>--connect-timeout: Connect timeout in seconds.</p> |
 
 ## profiles
 
