@@ -109,7 +109,7 @@ You can specify any number of statements in the "create-statements" and in the "
 
 ### Writing to a JDBC datasource
 
-When you use the "vector-db-sink" agent to write to a JDBC database, you can use the following parameters:
+Use the "vector-db-sink" agent with the following parameters to write to a JDBC database:
 
 ```yaml
   - name: "Write"
@@ -136,6 +136,6 @@ When you use the "vector-db-sink" agent to write to a JDBC database, you can use
 ```
 
 Set the table-name to the name of the table you want to write to.
-Then you define the fields in the "fields" list.
+Define the fields in the "fields" list.
 This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields.
-It is important that you tag with "primary-key: true" the fields that are part of the primary key of the table, this is needed in order to correctly manage the upserts and the deletion from the table.
+It is important that you tag the fields that are part of the primary key of the table with "primary-key: true". This is needed to correctly manage upserts and deletion from the table.

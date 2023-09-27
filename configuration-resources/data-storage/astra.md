@@ -85,5 +85,4 @@ With the "cassandra-table" asset you can create a table in your Astra DB instanc
 
 ### Reading and writing to Astra
 
-Astra is compatible with Cassandra, so you can use the same agents you use for Cassandra to read and write to Astra,
-check out the documentation [here](./cassandra.md).
+Astra is compatible with Cassandra, so you can use the same agents you use for Cassandra to read and write to Astra. See the documentation [here](./cassandra.md).

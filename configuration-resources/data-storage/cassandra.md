@@ -66,7 +66,7 @@ With the "cassandra-table" asset you can create a table in your Astra DB instanc
 
 ### Writing to Cassandra
 
-When you use the "vector-db-sink" agent to write to a Cassandra database, you can use the following parameters:
+Use the "vector-db-sink" agent with the following parameters to write to a Cassandra database:
 
 ```yaml
 pipeline:
