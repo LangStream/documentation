@@ -16,7 +16,7 @@ layout:
 
 ### Agent message structure and templating
 
-All of the agents accept 2 message formats - plain text and json formatted text. Plain text is simply an unstructured string like “this is a string”. JSON formatted text is a string with a structure like “{a: \”this is\”, b:\”json string\”}”.
+All of the agents accept 2 message formats - plain text and json formatted text. Plain text is simply an unstructured string like “this is a string”. JSON formatted text is a string with a structure like `{"a": "this is a", "b":"json string"}.`
 
 #### Plain text input
 

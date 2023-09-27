@@ -13,18 +13,83 @@ pipeline:
   - name: "Crawl the WebSite"
     type: "webcrawler-source"
     configuration:
-      seed-urls: "https://docs.langstream.ai/"
-      allowed-domains: "https://docs.langstream.ai"
-      min-time-between-requests: 100
+      seed-urls: ["https://docs.langstream.ai/"]
+      allowed-domains: ["https://docs.langstream.ai"]
+      forbidden-paths: []
+      min-time-between-requests: 500
+      reindex-interval-seconds: 3600
+      max-error-count: 5
+      max-urls: 1000
+      max-depth: 50
+      handle-robots-file: true
+      user-agent: "" # this is computed automatically, but you can override it
+      scan-html-documents: true
+      http-timeout: 10000
+      handle-cookies: true
       max-unflushed-pages: 100
-      user-agent: "langstream.ai-webcrawler/1.0"
-      bucketName: "{{{secrets.s3-credentials.bucket-name}}}"
-      endpoint: "{{{secrets.s3-credentials.endpoint}}}"
-      access-key: "{{{secrets.s3-credentials.access-key}}}"
-      secret-key: "{{{secrets.s3-credentials.secret}}}"
-      region: "{{{secrets.s3-credentials.region}}}"
-      idle-time: 5
+      bucketName: "{{{secrets.s3.bucket-name}}}"
+      endpoint: "{{{secrets.s3.endpoint}}}"
+      access-key: "{{{secrets.s3.access-key}}}"
+      secret-key: "{{{secrets.s3.secret}}}"
+      region: "{{{secrets.s3.region}}}"
 ```
+
+#### Multiple URLs in pipeline
+
+Multiple seed-urls and allowed-domains are allowed.
+
+To add them to your pipeline, use this syntax:
+
+```yaml
+seed-urls:
+  - "http://example1.com"
+  - "http://example2.com"
+allowed-domains:
+  - "http://example1.com"
+  - "http://example2.com"  
+```
+
+### Topics
+
+**Input**
+
+* None, it’s a source
+
+**Output**
+
+* Structured text (JSON) [?](../agent-messaging.md)
+* Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
+
+### **Configuration**
+
+| Label                     | Type                   | Description                                                                                              |
+| ------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
+| seed-urls                 | List of Strings        | The starting URLs for the crawl.                                                                         |
+| allowed-domains           | List of Strings        | Domains that the crawler is allowed to access.                                                           |
+| forbidden-paths           | List of Strings        | Paths that the crawler is not allowed to access.                                                         |
+| min-time-between-requests | Integer (milliseconds) | Minimum time between two requests to the same domain.                                                    |
+| reindex-interval-seconds  | Integer (seconds)      | Time interval between reindexing of the pages.                                                           |
+| max-error-count           | Integer                | Maximum number of errors allowed before stopping.                                                        |
+| max-urls                  | Integer                | Maximum number of URLs that can be crawled. Defaults to 1000.                                            |
+| max-depth                 | Integer                | Maximum depth of the crawl.                                                                              |
+| handle-robots-file        | Boolean                | Whether to scan the HTML documents to find links to other pages (defaults to true)                       |
+| user-agent                | String                 | User-agent string, computed automatically unless overridden. Defaults to "langstream.ai-webcrawler/1.0". |
+| scan-html-documents       | Boolean                | Whether to scan HTML documents for links to other sites. Defaults to true.                               |
+| http-timeout              | Integer (milliseconds) | Timeout for HTTP requests.                                                                               |
+| handle-cookies            | Boolean                | Whether to handle cookies.                                                                               |
+| max-unflushed-pages       | Integer                | Maximum number of unflushed pages before the agent persists the crawl data.                              |
+
+### S3 credentials
+
+<table><thead><tr><th width="147.33333333333331">Label</th><th width="165">Type</th><th>Description</th></tr></thead><tbody><tr><td>bucketName</td><td>string (required)</td><td>The name of the bucket. Defaults to "langstream-source".</td></tr><tr><td>endpoint</td><td>string (required)</td><td>The URL of the S3 service.  Defaults to "<a href="http://minio-endpoint.-not-set:9090">http://minio-endpoint.-not-set:9090</a>".</td></tr><tr><td>access-key</td><td>string (optional)</td><td>Optional user name credential. Defaults to "minioadmin".</td></tr><tr><td>secret-key</td><td>string (optional)</td><td>Optional password credential. Defaults to "minioadmin".</td></tr><tr><td>region</td><td>string </td><td>Region of S3 bucket.</td></tr></tbody></table>
+
+### Webcrawler-status
+
+| Label         | Type   | Description                                                           |
+| ------------- | ------ | --------------------------------------------------------------------- |
+| pendingUrls   | String | Holds the URLs that have been discovered but are yet to be processed. |
+| remainingUrls | String | Holds the URLs that have been discovered but are yet to be processed. |
+| visitedUrls   | String | Holds all URLs that have been visited to prevent cyclic crawling.     |
 
 ### Example webcrawler workflow
 
@@ -44,20 +109,25 @@ topics:
 
 ```yaml
 pipeline:
-  - name: "Crawl the WebSite"
-    type: "webcrawler-source"
-    configuration:
-      seed-urls: "https://docs.langstream.ai/"
-      allowed-domains: "https://docs.langstream.ai"
-      min-time-between-requests: 100
+      seed-urls: ["https://docs.langstream.ai/"]
+      allowed-domains: ["https://docs.langstream.ai"]
+      forbidden-paths: []
+      min-time-between-requests: 500
+      reindex-interval-seconds: 3600
+      max-error-count: 5
+      max-urls: 1000
+      max-depth: 50
+      handle-robots-file: true
+      user-agent: "" # this is computed automatically, but you can override it
+      scan-html-documents: true
+      http-timeout: 10000
+      handle-cookies: true
       max-unflushed-pages: 100
-      user-agent: "langstream.ai-webcrawler/1.0"
-      bucketName: "{{{secrets.s3-credentials.bucket-name}}}"
-      endpoint: "{{{secrets.s3-credentials.endpoint}}}"
-      access-key: "{{{secrets.s3-credentials.access-key}}}"
-      secret-key: "{{{secrets.s3-credentials.secret}}}"
-      region: "{{{secrets.s3-credentials.region}}}"
-      idle-time: 5
+      bucketName: "{{{secrets.s3.bucket-name}}}"
+      endpoint: "{{{secrets.s3.endpoint}}}"
+      access-key: "{{{secrets.s3.access-key}}}"
+      secret-key: "{{{secrets.s3.secret}}}"
+      region: "{{{secrets.s3.region}}}"
 ```
 
 The webcrawler itself uses the [Jsoup](https://jsoup.org/) library to parse HTML with the [WHATWG HTML spec](https://html.spec.whatwg.org/multipage/). The webcrawler explores the web starting from a list of seed URLs and follows links within pages to discover more content.&#x20;
@@ -151,53 +221,24 @@ The webcrawler then passes the document on to the next agent.
     type: "compute-ai-embeddings"
     output: "chunks-topic"
     configuration:
-      model: "text-embedding-ada-002" 
+      model: "text-embedding-ada-002" # This needs to match the name of the model deployment, not the base model
       embeddings-field: "value.embeddings_vector"
       text: "{{% value.text }}"
+      batch-size: 10
+      flush-interval: 500
 ```
 
 10\. Where to next? If you've got an [Astra vector database](http://astra.datastax.com), use the [vector-db-sink](vector-db-sink.md) agent to sink the vectorized embeddings via the Kafka "chunks-topic" to your database. From there, you can [query](../text-processors/query-vector-db.md) your vector data, or ask questions with a [chatbot](https://github.com/LangStream/langstream/blob/main/examples/applications/webcrawler-source/chatbot.yaml). It's up to you!
 
 ```yaml
-  - name: "Write to AstraDB"
-    type: "sink"
+  - name: "Write to Astra"
+    type: "vector-db-sink"
     input: "chunks-topic"
     resources:
-       size: 2
+      size: 2
     configuration:
-      connector.class: com.datastax.oss.kafka.sink.CassandraSinkConnector
-      key.converter: org.apache.kafka.connect.storage.StringConverter
-      value.converter: org.apache.kafka.connect.storage.StringConverter
-      cloud.secureConnectBundle: "{{{ secrets.cassandra.secure-connect-bundle }}}"
-      auth.username: "{{{ secrets.cassandra.username }}}"
-      auth.password: "{{{ secrets.cassandra.password }}}"
-      topic.chunks-topic.documents.documents.mapping: "filename=value.filename, chunk_id=value.chunk_id, language=value.language, text=value.text, embeddings_vector=value.embeddings_vector, num_tokens=value.chunk_num_tokens"
-      name: cassandra-sink
+      datasource: "AstraDatasource"
+      table-name: "documents"
+      keyspace: "documents"
+      mapping: "filename=value.filename, chunk_id=value.chunk_id, language=value.language, text=value.text, embeddings_vector=value.embeddings_vector, num_tokens=value.chunk_num_tokens"
 ```
-
-### Topics
-
-**Input**
-
-* None, it’s a source
-
-**Output**
-
-* Structured text (JSON) [?](../agent-messaging.md)
-* Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
-
-### **Configuration**
-
-<table><thead><tr><th width="145.33333333333331">Label</th><th width="164">Type</th><th>Description</th></tr></thead><tbody><tr><td>allowed-domains</td><td>string</td><td>Checks that seed-url belongs to a domain that is allowed for crawling.</td></tr><tr><td>allowedTags</td><td>string</td><td>Controls which HTML meta tags the crawler consumes. Default is "href".</td></tr><tr><td>idle-time</td><td>int</td><td>Time that the agent waits when there are no unprocessed documents available to read from the <code>foundDocuments</code> queue before going to sleep.</td></tr><tr><td>max-unflushed-pages</td><td>int</td><td>Maximum number of unflushed pages before the agent persists the crawl data.</td></tr><tr><td>min-time-between-requests</td><td>int</td><td>Prevents getting banned from site for too many requests. Default value is 100 seconds.</td></tr><tr><td>seed-url</td><td>string</td><td>The URL to be crawled.</td></tr><tr><td>user-agent</td><td><br>string</td><td>Value of the [User-Agent request header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent) used in connection to crawled site. If none is present, defaults to "langstream.ai-webcrawler/1.0".</td></tr></tbody></table>
-
-### S3 credentials
-
-<table><thead><tr><th width="147.33333333333331">Label</th><th width="165">Type</th><th>Description</th></tr></thead><tbody><tr><td>bucketName</td><td>string (required)</td><td>The name of the bucket. Defaults to "langstream-source".</td></tr><tr><td>endpoint</td><td>string (required)</td><td>The URL of the S3 service.  Defaults to "<a href="http://minio-endpoint.-not-set:9090">http://minio-endpoint.-not-set:9090</a>".</td></tr><tr><td>secret-key</td><td>string (optional)</td><td>Optional user name credential. Defaults to "minioadmin".</td></tr><tr><td>password</td><td>string (optional)</td><td>Optional password credential. Defaults to "minioadmin".</td></tr><tr><td>region</td><td>string </td><td>Region of S3 bucket.</td></tr></tbody></table>
-
-### Webcrawler-status
-
-| Label         | Type   | Description                                                           |
-| ------------- | ------ | --------------------------------------------------------------------- |
-| pendingUrls   | String | Holds the URLs that have been discovered but are yet to be processed. |
-| remainingUrls | String | Holds the URLs that have been discovered but are yet to be processed. |
-| visitedUrls   | String | Holds all URLs that have been visited to prevent cyclic crawling.     |
