@@ -63,3 +63,27 @@ With the "cassandra-keyspace" asset you can create a keyspace in your Cassandra 
 
 With the "cassandra-table" asset you can create a table in your Astra DB instance. The table is a collection of rows that share a schema of columns. It is similar to a table in a relational database.
 
+
+### Writing to Cassandra
+
+Use the "vector-db-sink" agent with the following parameters to write to a Cassandra database:
+
+```yaml
+pipeline:
+  - name: "Write to Cassandra"
+    type: "vector-db-sink"
+    input: "chunks-topic"
+    resources:
+      size: 2
+    configuration:
+      datasource: "CassandraDataSource"
+      table-name: "documents"
+      keyspace: "documents"
+      mapping: "filename=value.filename, chunk_id=value.chunk_id, language=value.language, text=value.text, embeddings_vector=value.embeddings_vector, num_tokens=value.chunk_num_tokens"
+```
+
+Set the table-name to the name of the table you want to write to.
+Set the keyspace to the name of the keyspace you want to write to.
+The mapping field is a comma-separated list of field mappings, in the form "field-name=expression". The expression is a expression that can reference the value of the current message, for instance "value.filename".
+
+Internally LangStream is using the DataStax Connector for Apache Kafka and Pulsar to write to Cassandra. You can find more information about the mapping parameters in the [documentation](https://docs.datastax.com/en/pulsar-connector/docs/cfgPulsarMapTopicTable.html).
