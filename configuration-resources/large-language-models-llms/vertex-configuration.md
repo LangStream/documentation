@@ -6,23 +6,36 @@ A vertex-configuration resource is used for AI agents.
 Note that the following examples sets sensitive data as plain text. This is for education purpose only, it's highly recommended to use [secrets](../../building-applications/secrets.md).
 {% endhint %}
 
-
+`configuration.yaml`
 ```yaml
 configuration:
   resources:
     - type: "vertex-configuration"
       name: "Google Vertex AI configuration"
       configuration:
-        url: "https://us-central1-aiplatform.googleapis.com"
-        region: "us-central1"
-        project: "my-gcp-project"
+        url: "{{{ secrets.vertex.url }}}"
+        region: "{{{ secrets.vertex.region }}}"
+        project: "{{{ secrets.vertex.project }}}"
         # Authentication is done either via service account JSON
-        serviceAccountJson: "{\"type\":..........}"
+        serviceAccountJson: "{{{ secrets.vertex.service-account-json }}}"
         # or token
-        token: "{{ secrets.vertex-ai.token }}"
+        token: "{{{ secrets.vertex.token }}}"
+```
+
+`secrets.yaml`
+```yaml
+secrets:
+  - id: vertex
+    data:
+      url: "${VERTEX_URL:-https://us-central1-aiplatform.googleapis.com}"
+      region: "${VERTEX_REGION:-us-central1}"
+      project: "${VERTEX_PROJECT:-my-gcp-project}"
+      service-account-json: "<file:service-account-json.json>"
+      token: "${VERTEX_TOKEN:-xxx}"
 ```
 
 For authenticating it's suggested to use the service account JSON since tokens are normally generated with a short TTL.
+
 
 ## API Reference
 

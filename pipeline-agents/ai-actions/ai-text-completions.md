@@ -49,25 +49,6 @@ VertexAI text completions accepts only one `prompt` value.
 {% endhint %}
 
 
-## Using HuggingFace models
-
-{% hint style="info" %}
-`ai-chat-completions` and `ai-text-completions` are equivalent for Hugging Face models.
-{% endhint %}
-
-Refer to the [HugginFace documentation](https://huggingface.co/docs/api-inference/quicktour) to know more about HuggingFace inference API.
-
-```yaml
-pipeline:
-  - name: "ai-chat-completions"
-    type: "ai-chat-completions"
-    configuration:
-      model: "gpt2"
-      prompt:
-        - "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{% value.question}}"
-```
-
-
 ### Prompt limitations
 
 Most public LLMs have character limits on message content. It is up to the application developer to ensure the combination of preset prompt text and an input message stays under that limit.

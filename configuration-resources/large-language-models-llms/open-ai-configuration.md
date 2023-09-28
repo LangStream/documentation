@@ -2,33 +2,47 @@
 
 An OpenAI resource is used for AI agents.
 
-{% hint style="warning" %}
-Note that the following examples sets sensitive data as plain text. This is for education purpose only, it's highly recommended to use [secrets](../../building-applications/secrets.md).
-{% endhint %}
-
 ## OpenAI
 
+`configuration.yaml`
 ```yaml
 configuration:
   resources:
     - type: "open-ai-configuration"
       name: "OpenAI"
       configuration:
-        access-key: "open-ai-access-key"
+        access-key: "{{{ secrets.open-ai.access-key }}}"
 ```
 
+`secrets.yaml`
+```yaml
+secrets:
+  - id: open-ai
+    data:
+      access-key: ${OPEN_AI_ACCESS_KEY}
+```
 
 ## Azure OpenAI
 
+`configuration.yaml`
 ```yaml
 configuration:
   resources:
     - type: "open-ai-configuration"
       name: "OpenAI Azure"
       configuration:
-        url: "https://COMPANY.openai.azure.com"
-        access-key: "azure-open-ai-access-key"
+        url: "{{{ secrets.azure-open-ai.url }}}"
+        access-key: "{{{ secrets.azure-open-ai.access-key }}}"
         provider: "azure"
+```
+
+`secrets.yaml`
+```yaml
+secrets:
+  - id: azure-open-ai
+    data:
+      url: "${AZURE_URL:-https://COMPANY.openai.azure.com}"
+      access-key: "${AZURE_ACCESS_KEY}"
 ```
 
 
