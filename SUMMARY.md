@@ -47,9 +47,9 @@
 ## Integrations
 
 * [Large Language Models (LLMs)](configuration-resources/large-language-models-llms/README.md)
-  * [open-ai-configuration](configuration-resources/large-language-models-llms/open-ai-configuration.md)
-  * [hugging-face-configuration](configuration-resources/large-language-models-llms/hugging-face-configuration.md)
-  * [vertex-configuration](configuration-resources/large-language-models-llms/vertex-configuration.md)
+  * [OpenAI](configuration-resources/large-language-models-llms/open-ai-configuration.md)
+  * [Hugging Face Inference](configuration-resources/large-language-models-llms/hugging-face-configuration.md)
+  * [Google Vertex AI](configuration-resources/large-language-models-llms/vertex-configuration.md)
 * [Data storage](configuration-resources/data-storage/README.md)
   * [Astra](configuration-resources/data-storage/astra.md)
   * [Cassandra](configuration-resources/data-storage/cassandra.md)
