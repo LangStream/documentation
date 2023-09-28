@@ -1,21 +1,38 @@
 # vertex-configuration
 
-A Google vertex configuration.
+A vertex-configuration resource is used for AI agents.
 
+`configuration.yaml`
 ```yaml
 configuration:
   resources:
     - type: "vertex-configuration"
       name: "Google Vertex AI configuration"
       configuration:
-        url: "{{ secrets.vertex-ai.url }}"
-        # use triple quotes in order to turn off escaping
-        serviceAccountJson: "{{{ secrets.vertex-ai.serviceAccountJson }}}"
-        token: "{{ secrets.vertex-ai.token }}"
-        region: "{{ secrets.vertex-ai.region }}"
-        project: "{{ secrets.vertex-ai.project }}"
+        url: "{{{ secrets.vertex.url }}}"
+        region: "{{{ secrets.vertex.region }}}"
+        project: "{{{ secrets.vertex.project }}}"
+        # Authentication is done either via service account JSON
+        serviceAccountJson: "{{{ secrets.vertex.service-account-json }}}"
+        # or token
+        token: "{{{ secrets.vertex.token }}}"
 ```
 
-### **Configuration values**
+`secrets.yaml`
+```yaml
+secrets:
+  - id: vertex
+    data:
+      url: "${VERTEX_URL:-https://us-central1-aiplatform.googleapis.com}"
+      region: "${VERTEX_REGION:-us-central1}"
+      project: "${VERTEX_PROJECT:-my-gcp-project}"
+      service-account-json: "<file:service-account-json.json>"
+      token: "${VERTEX_TOKEN:-xxx}"
+```
 
-<table><thead><tr><th width="229.33333333333331">Label</th><th width="110">Type</th><th>Description</th></tr></thead><tbody><tr><td>url</td><td><br>String</td><td><p>Connection to Vertex API. Typically this is a reference to a secret.</p><p></p><p>Example: “{{ secrets.vertex-ai.url }}”</p></td></tr><tr><td>serviceAccountJson</td><td><br>String</td><td><p>Specify a custom service account. If you don't specify a service account, Vertex AI Pipelines runs your pipeline using the default Compute Engine service account.</p><p><br>Example: "{{{ secrets.vertex-ai.serviceAccountJson }}}"</p></td></tr><tr><td>token</td><td><br>String</td><td><p>Access key for the Vertex API. Typically this is a reference to a secret.</p><p><br>"{{ secrets.vertex-ai.token }}"</p></td></tr><tr><td>region</td><td>String<br></td><td><p>Region for the Vertex API. Typically this is a reference to a secret:</p><p><br>"{{ secrets.vertex-ai.region }}"<br><br>The region will look like this: </p><p>"us-central-1"</p></td></tr><tr><td>project</td><td>String<br></td><td>Project name for the Vertex API. Typically this is a reference to a secret:<br>"{{ secrets.vertex-ai.project }}"</td></tr></tbody></table>
+For authenticating it's suggested to use the service account JSON since tokens are normally generated with a short TTL.
+
+
+## API Reference
+
+<table><thead><tr><th width="229.33333333333331">Label</th><th width="110">Type</th><th>Description</th></tr></thead><tbody><tr><td>url</td><td><br>String</td><td><p>URL connection for the Vertex API.</p></td></tr><tr><td>serviceAccountJson</td><td><br>String</td><td><p>Specify a custom service account. Refer to the <a href="https://cloud.google.com/iam/docs/keys-create-delete">GCP documentation</a> on how to download it</p></td></tr><tr><td>token</td><td><br>String</td><td><p>Access key for the Vertex API. You can generate a short-life token with <code>gcloud auth print-access-token</code>.</p></td></tr><tr><td>region</td><td>String<br></td><td><p>GCP region for the Vertex API. </p></td></tr><tr><td>project</td><td>String<br></td><td>GCP project name for the Vertex API.</td></tr></tbody></table>

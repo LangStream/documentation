@@ -11,8 +11,7 @@ To configure the LangStream CLI, see [CLI configuration.](../langstream-cli/lang
 ### Mac
 
 ```
-brew tap LangStream/langstream
-brew install langstream
+brew install LangStream/langstream/langstream
 ```
 
 ### Linux

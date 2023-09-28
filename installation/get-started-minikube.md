@@ -1,71 +1,74 @@
 # Minikube
 
-To create a LangStream cluster, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster (a default 4 CPU [minikube](https://minikube.sigs.k8s.io/docs/start/) is fine).
+To create a LangStream cluster locally, it's recommended to use [minikube](https://minikube.sigs.k8s.io/docs/start/) - setting 4 CPUs is highly recommended.
+`mini-langstream` comes in help for installing and managing your local cluster.
 
-### Installation
 
-1. Start a minikube:
+## Install mini-langstream
 
-```bash
-minikube start --cpus 4
-```
-
-2. Install MinIO for local testing:
-
-```
-kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
-```
-
-3. Deploy Langstream from the Helm repository:
+MacOS:
 
 ```bash
-helm repo add langstream https://langstream.github.io/charts
-helm repo update
-helm upgrade \
-    -i langstream \
-    -n langstream \
-    --create-namespace \
-    --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml \
-    langstream/langstream
+brew install LangStream/langstream/mini-langstream
 ```
 
-4\. Open the control-plane and api-gateway ports:
+Unix:
 
 ```bash
-kubectl -n langstream port-forward svc/langstream-control-plane 8090:8090 &
-kubectl -n langstream port-forward svc/langstream-api-gateway 8091:8091 &
+curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/mini-langstream/get-mini-langstream.sh" | bash
 ```
+
+mini-langstream requires the following commands to be already installed:
+- Docker
+- Minikube
+- Helm
+- Kubectl
+- LangStream CLI
+
 
 {% hint style="info" %}
-The ampersand (&) keeps the port forward running as a background process.
+If you install mini-langstream using Brew, all the dependencies are automatically installed.
 {% endhint %}
 
-### Environment setup
 
-1. Port forward minio in a separate terminal:
+## Start the cluster
 
-```
-kubectl port-forward pod/minio 9000:9090 -n minio-dev  
-```
+mini-langstream will do all the setup for you, in particular:
+- it starts `minikube` in a dedicated context
+- it deploys LangStream components using `helm`
+- it runs a stateful Kafka broker as docker container
+- it runs a stateful s3-compatible storage (MinIO) as docker container
+- it forwards the control plane and API Gateways ports locally
+- it creates a dedicated LangStream CLI profile to interact with the cluster
+- it wraps all the common k8s tools to inspect the cluster (`mini-langstream kubectl`, `mini-langstream helm`, `mini-langstream k9s`)
 
-2. Install Kafka:
 
-```
-kubectl create namespace kafka 
-kubectl create -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka 
-kubectl apply -f https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml -n kafka
-```
-
-3. Install the LangStream CLI with brew. Other options are available [here](langstream-cli.md).
+Start or ensure the cluster is running:
 
 ```bash
-brew tap LangStream/langstream
-brew install langstream
+mini-langstream start
 ```
 
-With LangStream installed and your environment set up, you're ready to build an application.
+Now try to use the CLI:
 
-### Your first application
+```bash
+mini-langstream cli apps list
+```
+and deploy an application:
+
+```bash
+export OPENAI_API_KEY=<your-openai-api-key>
+mini-langstream cli apps deploy my-app -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
+```
+
+To delete all the storage and stop the cluster:
+
+```bash
+mini-langstream delete
+```
+
+
+## Your first application
 
 Here are a few ways to get started building LangStream applications:
 

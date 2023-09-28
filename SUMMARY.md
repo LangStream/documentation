@@ -15,11 +15,11 @@
 
 ## installation
 
-* [Minikube](installation/get-started-minikube.md)
+* [Minikube (mini-langstream)](installation/get-started-minikube.md)
 * [Kubernetes](installation/kubernetes.md)
 * [Docker](installation/docker.md)
 * [LangStream CLI](installation/langstream-cli.md)
-* [Build and install (source)](installation/build-and-install-source.md)
+* [Build and install from source](installation/build-and-install-source.md)
 
 ## Building Applications
 
@@ -47,9 +47,9 @@
 ## Integrations
 
 * [Large Language Models (LLMs)](configuration-resources/large-language-models-llms/README.md)
-  * [open-ai-configuration](configuration-resources/large-language-models-llms/open-ai-configuration.md)
-  * [hugging-face-configuration](configuration-resources/large-language-models-llms/hugging-face-configuration.md)
-  * [vertex-configuration](configuration-resources/large-language-models-llms/vertex-configuration.md)
+  * [OpenAI](configuration-resources/large-language-models-llms/open-ai-configuration.md)
+  * [Hugging Face](configuration-resources/large-language-models-llms/hugging-face-configuration.md)
+  * [Google Vertex AI](configuration-resources/large-language-models-llms/vertex-configuration.md)
 * [Data storage](configuration-resources/data-storage/README.md)
   * [Astra](configuration-resources/data-storage/astra.md)
   * [Cassandra](configuration-resources/data-storage/cassandra.md)
@@ -64,8 +64,9 @@
   * [Agent Creation](pipeline-agents/agent-developer-guide/agent-creation.md)
   * [Configuration and Testing](pipeline-agents/agent-developer-guide/configuration-and-testing.md)
 * [Agent Messaging](pipeline-agents/agent-messaging.md)
-* [AI Actions](pipeline-agents/ai-actions/README.md)
+* [AI Agents](pipeline-agents/ai-actions/README.md)
   * [ai-chat-completions](pipeline-agents/ai-actions/ai-chat-completions.md)
+  * [ai-text-completions](pipeline-agents/ai-actions/ai-text-completions.md)
   * [compute-ai-embeddings](pipeline-agents/ai-actions/compute-ai-embeddings.md)
 * [Text Processors](pipeline-agents/text-processors/README.md)
   * [document-to-json](pipeline-agents/text-processors/document-to-json.md)

@@ -4,8 +4,7 @@ Learn more about the LangStream project [here](../about/what-is-langstream.md).
 
 ## Secrets
 
-A place to hold secrets. Each label:value in this file is used as a reference in configuration and pipeline manifests. Their values carry on to a step’s environment where it is applied.\
-\
+A place to hold secrets. Each label:value in this file is used as a reference in configuration and pipeline manifests. Their values carry on to a step’s environment where it is applied.
 Secret values can be modified directly in secrets.yaml, or you can [pass secrets as environment variables.](secrets.md#pass-secrets-as-environmental-variables)
 
 ### Manifest

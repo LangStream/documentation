@@ -9,8 +9,7 @@ This guide uses Docker to run all the components of LangStream locally. If you w
 1. Install the LangStream CLI:
 
 ```
-brew tap LangStream/langstream
-brew install langstream
+brew install LangStream/langstream/langstream
 ```
 
 If you are on Linux or Windows please refer to the [installation guide](installation/langstream-cli.md).
@@ -23,7 +22,7 @@ You need to get an OpenAI API key from [here](https://beta.openai.com/).
 
 ```
 export OPENAI_API_KEY=<your-openai-api-key>
-langstream docker run test  -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
+langstream docker run test -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
 ```
 
 The first time you run the application, it will take a few minutes to download the Docker images.

@@ -14,13 +14,13 @@ layout:
 
 # Kubernetes
 
-LangStream container images are available on Docker Hub. Current images can be deployed to Kubernetes. The control plane is made up of the following images:
+LangStream container images are available on the (Github packages registry)[https://github.com/orgs/LangStream/packages?repo_name=langstream]. A LangStream cluster is made up of the following images:
 
-* [datastax/langstream-deployer](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-deployer)
-* [datastax/langstream-control-plane](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-control-plane)
-* [datastax/langstream-runtime](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-runtime)
-* [datastax/langstream-api-gateway](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-api-gateway)
-* [datastax/langstream-cli](https://gallery.ecr.aws/y3i6u2n7/datastax-public/langstream-cli)
+* [datastax/langstream-deployer](https://github.com/LangStream/langstream/pkgs/container/langstream-deployer)
+* [datastax/langstream-control-plane](https://github.com/LangStream/langstream/pkgs/container/langstream-control-plane)
+* [datastax/langstream-runtime](https://github.com/LangStream/langstream/pkgs/container/langstream-runtime)
+* [datastax/langstream-api-gateway](https://github.com/LangStream/langstream/pkgs/container/langstream-api-gateway)
+* [datastax/langstream-cli](https://github.com/LangStream/langstream/pkgs/container/langstream-cli)
 
 ### Quick Start
 
@@ -28,7 +28,7 @@ To create a LangStream control plane, you will need [kubectl](https://kubernetes
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
-helm repo add langstream https://datastax.github.io/langstream
+helm repo add langstream https://langstream.ai/charts
 helm repo update
 helm upgrade \
     -i langstream \
@@ -39,7 +39,7 @@ helm upgrade \
     langstream/langstream
 ```
 
-#### Open the control-plane and api-gateway ports (in separate terminals)
+#### Open the control-plane and api-gateway ports
 
 Control plane:
 
