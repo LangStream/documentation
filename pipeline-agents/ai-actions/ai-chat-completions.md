@@ -14,7 +14,56 @@ layout:
 
 # ai-chat-completions
 
-Given the AI model specified in an application's configuration resources, this agent will use its completion API to submit message prompts and return the result. At present, it is assumed that only one AI mode will be set in configuration.yaml. This agent will discover its type (ie OpenAI, Hugging Face, Vertex) and use the corresponding library to generate the embedding. It is up to the developer to match the correct mode name with the configured AI model.
+Given the AI model specified in an application's configuration resources, this agent will use its completion API to submit message prompts and return the result. This agent will discover its type (i.e. OpenAI, Hugging Face, VertexAI) and use the corresponding library to generate the embedding. It is up to the developer to match the correct mode name with the configured AI model.
+
+
+## Using OpenAI chat models
+
+The `ai-chat-completions` for OpenAI uses the /v1/chat/completions endpoint. Refer to the [OpenAI documentation](https://platform.openai.com/docs/models/model-endpoint-compatibility) to know which models are compatible.
+
+```yaml
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    configuration:
+      model: "gpt-3.5-turbo"
+      messages:
+        - role: user
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{% value.question}}"
+```
+
+## Using VertexAI text models
+
+Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
+
+```yaml
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    configuration:
+      model: "chat-bison"
+      max-tokens: 100
+      messages:
+        - role: user
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{% value.question}}"
+```
+
+
+## Using HuggingFace models
+
+Refer to the [HugginFace documentation](https://huggingface.co/docs/api-inference/quicktour) to know more about HuggingFace inference API.
+
+```yaml
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    configuration:
+      model: "gpt2"
+      messages:
+        - role: user
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{% value.question}}"
+```
+
 
 ### Prompt limitations
 

@@ -66,6 +66,7 @@
 * [Agent Messaging](pipeline-agents/agent-messaging.md)
 * [AI Actions](pipeline-agents/ai-actions/README.md)
   * [ai-chat-completions](pipeline-agents/ai-actions/ai-chat-completions.md)
+  * [ai-text-completions](pipeline-agents/ai-actions/ai-text-completions.md)
   * [compute-ai-embeddings](pipeline-agents/ai-actions/compute-ai-embeddings.md)
 * [Text Processors](pipeline-agents/text-processors/README.md)
   * [document-to-json](pipeline-agents/text-processors/document-to-json.md)

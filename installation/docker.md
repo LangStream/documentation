@@ -45,16 +45,17 @@ By default the docker container runs all the LangStream components, a Kafka Brok
 
 You can use the following flags to select the services to run:
 
-* --start-broker true|false: starts the Kafka broker
-* --start-s3 true|false: starts the S3 service
-* --start-webservices true|false: starts the LangStream HTTP components (control plane and API gateway)
+* --start-broker true|false: starts the Kafka broker (default is `true`)
+* --start-s3 true|false: starts the S3 service (default is `true`)
+* --start-webservices true|false: starts the LangStream HTTP components (control plane and API gateway) (default is `true`)
+* --start-database true|false: starts an embedded vector JDBC compliant database (HerdDB)
 
 For example, if you are using an external Apache Kafka or Pulsar broker you don't need to start Kafka in the container and you can save local resources.
 
 ### Running a single agent
 
 By default the "docker run" mode runs all the agents in the application.
-If you want to debug or work on a single agent you can use the "--only-agent" flag to specify the agent to run.
+If you want to debug or work on a single agent you can use the `--only-agent` flag to specify the agent to run.
 
 The id of the agent is the same id of the "executors" section in the application descriptor. You can see this id with the "langstream apps get -o yaml" command.
 This id is not the id of an agent in the pipeline.yaml file, but it is the id of the physical executor. When you run your application in a Kubernetes cluster
@@ -78,17 +79,17 @@ You cannot select which logs to display, as all the agents share the same output
 
 As the resources are handled by docker and the JVM and the Python processes share the same resources, you may need to increase the resources of the docker container. You can use the following flags to increase the resources:
 
-* --memory: the amount of memory to allocate to the docker container
-* --cpus: the number of CPUs to allocate to the docker container
-* --docker-args: additional arguments to pass to the docker run command
+* `--memory`: the amount of memory to allocate to the docker container
+* `--cpus`: the number of CPUs to allocate to the docker container
+* `--docker-args`: additional arguments to pass to the docker run command
 
 You can also customize the docker image that you want to use to run your application. By default the CLI uses the official LangStream docker image, but you can use your own image, maybe to test the same application with a different LangStream runtime version.
 
 The following flags are available:
 
-* --langstream-runtime-docker-image: the docker image to use to run the application
-* --langstream-runtime-version: the version of the docker image to use to run the applications
+* `--langstream-runtime-docker-image`: the docker image to use to run the application
+* `--langstream-runtime-version`: the version of the docker image to use to run the applications
 
 If you have built [the CLI locally from the sources](../installation/build-and-install-source.md) the docker image defaults to the local docker image
 
-You can also override the command used to launch the container, the default value is "docker", but you can use the "--docker-command" command to override it.
+You can also override the command used to launch the container, the default value is `docker`, but you can pass the `--docker-command` flag to use a different binary path.

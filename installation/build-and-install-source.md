@@ -33,48 +33,41 @@ git clone https://github.com/LangStream/langstream
 
 ### Build the project
 
-This will compile source, build the cli, and install images.
+These commands will compile source, build the CLI tarball, and install Docker images.
 
-```
+```bash
 cd langstream
 pip install -r requirements.txt
 ./docker/build.sh
 ```
 
-### Deploy the LangStream runtime
+### Test local changes with mini-langstream
 
-{% hint style="info" %}
-If you are using Minikube load the new images with the following command:
-
-```bash
-dev/deploy-minikube.sh
-```
-{% endhint %}
-
-You also need to install MinIO for local testing:
+If you want to test local code changes, you can use `mini-langstream`.
 
 ```bash
-kubectl apply -f ./helm/examples/minio-dev.yaml
+mini-langstream dev start
 ```
 
-Then you can install the LangStream runtime:
+This command will build the images in the `minikube` context and install all the LangStream services with the snapshot image.
+
+Once the cluster is running, if you want to build abd load a new version of a specific service you can run:
 
 ```bash
-helm install -i langstream langstream/langstream --values helm/examples/local.yaml --wait
+mini-langstream dev build <service>
 ```
 
-You can find a script that does everything for you and also starts a Kafka broker:
-
+or for all the services
 ```bash
-dev/start-local.sh
+mini-langstream dev build
 ```
 
 
 ### Locate the CLI
 
-During the build, the latest CLI has created in the "bin" folder.
+During the build, the latest CLI has created in the `bin` folder.
 
-```
+```bash
 ./bin/langstream --version
 ```
 
