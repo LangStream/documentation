@@ -24,11 +24,12 @@ To include the agent as a step in the pipeline, set the className to match the e
 
 ### Agent records
 
-When developing a custom agent, your contract with the LangStream runtime will be implementing the correct function(s) as well as working with the `Record` type. This is how LangStream moves data between agents and message topics.&#x20;
+When developing a custom agent, your contract with the LangStream runtime will be implementing the correct methods as well as working with the `Record` type.
+This is how LangStream moves data between agents and message topics.&#x20;
 
 Below is the definition of the Record interface.
 
-```
+```python
 from abc import abstractmethod
 from typing import Any, List, Tuple
 
@@ -61,9 +62,11 @@ class Record(ABC):
         pass
 ```
 
-The LangStream Python package also offers an implementation of the `Record` class, called a `SimpleRecord`. Its constructor makes creating a new Record easier to implement. All of the above properties & functions are available in `SimpleRecord` .
+The LangStream Python package offers an implementation of the `Record` class, called a `SimpleRecord`. 
+Its constructor makes creating a new Record easier to implement. 
+All of the above properties & functions are available in `SimpleRecord` .
 
-```
+```python
 from typing import Any, List, Tuple
 
 class SimpleRecord(Record):
@@ -81,178 +84,202 @@ class SimpleRecord(Record):
 
 #### **Source**
 
-If you are creating a source agent, all that is required is the “read” function. This function doesn’t have any input but returns a collection of `Record`s that will be passed to the next step in the pipeline. The LangStream runtime will call this function in a loop. Depending on the source type, care needs to be taken to not overwhelm the service being called.
+If you are creating a source agent, you need to implement the `read` method. 
+This method doesn’t have any input and returns a collection of `Record`s that will be passed to the next step in the pipeline. 
+The LangStream runtime will call this method in a loop. 
+Depending on the source type, care needs to be taken to not overwhelm the service being called.
+You can optionally implement the `commit` method that will be called by the framework to indicate that a source record has been processed by the downstream components of the pipeline. The `commit` method is called with a `Record` object that was previously returned by the `read` method.
 
-```
-from langstream import Source, Record
-from typing import Any, Dict
+```python
+from langstream import Source, Record, SimpleRecord
+from typing import Any, Dict, List
 
 class MySourceAgent(Source):
-  def init(self, config: Dict[str, Any]):
-    # On start, consume config values
-    pass
 
-  def read(self) -> List[Record]:
-    # The Source agent generates records and returns them as a list of records
-    
-    time.sleep(1)
-    results = []
-  
-    # Implement a read from service
-    # results.append(Record(value=XXXXX))
-   
-    return results
+    def read(self) -> List[Record]:
+        # The Source agent generates records and returns them as a list of records
+        time.sleep(1)
+        results = []
+      
+        # Implement a read from service
+        # results.append(SimpleRecord(value=XXXXX))
+      
+        return results
 
-  def close(self):
-    # Clean up before exiting
-    pass
-```
-
-An alternate way of creating a source is to import `SimpleRecord` from the LangStream Python package and implement a `read` function. The LangStream runtime will “sense” that you have created a source type agent.
-
-```
-from langstream import SimpleRecord
-
-class MySourceAgent(object):
-  def read(self) -> List[SimpleRecord]:
-    # The Source agent generates records and returns them as a list
-  
-    results = []
-  
-    # Implement a read from service
-    # results.append(SimpleRecord(value=XXXXX))
-   
-    return results
+    def commit(record: Record):
+        pass
 ```
 
 Handling Exceptions
 
-It is left to the developer to handle errors in a source agent. The LangStream runtime is not expecting any errors from the agent process. If an unhandled exception occurs within a source agent, it will bubble up through the container, to the pod, where the Kubernetes scheduler will restart the pod. At a minimum, you can print to console and let Kubernetes direct the error message somewhere. This will prevent the pod restart.
+It is left to the developer to handle errors in a source agent's read method.
+The LangStream runtime is not expecting any errors from the read method. 
+If an unhandled exception occurs within a read method, it will bubble up through the container, to the pod, where the Kubernetes scheduler will restart the pod.
+At a minimum, you can print to console and let Kubernetes direct the error message somewhere.
+This will prevent the pod restart.
 
+```python
+    def read(self) -> List[Record]:
+        try:
+            # do some work
+            return results
+        except Exception as e:
+            logging.error(f"Read error: {e}")
+        
+        return [] # gracefully return nothing because an exception occurred
 ```
-  def read(self) -> List[Record]:
-    try:
-      # do some work
-      return results
-    except Exception as e:
-      logging.error(f"Read error: {e}")
-    
-    return [] # gracefully return nothing because an exception occurred
+
+Building Records
+
+To build the record results, you can implement the `Record` interface or use the `SimpleRecord` implementation if it fills your needs.
+Alternatively, you can return a `dict` with the optional fields `value`, `key`, `headers`, `origin`, `timestamp`. A `Record` will be automatically built from this `dict`.
+
+Example
+```python
+    def read(self) -> List[Tuple]:
+        return [
+            {
+                "value": "my-value",
+                "key": "my-key"
+            }
+        ]
 ```
+It is also possible to return a `tuple` with the values `value`, `key`, `headers`, `origin`, `timestamp` in that strict order. A `Record` will be automatically built from this `tuple`.
+
+Example
+```python
+    def read(self) -> List[Tuple]:
+        return [("my-value",)]
+```
+
+{% hint style="warn" %}
+Note that if you return a `dict` or a `tuple`, the object you'll get in the `commit` will be the `Record` built from the returned object and not the object itself.
+{% endhint %}
 
 #### **Sink**
 
-If you are creating a sink agent then you’ll need to implement the “write” function as well as the “set\_commit\_callback” function. The write function takes in a collection of `Record`s that were provided by the previous step in the pipeline. It is called whenever data is available for processing. The set\_commit\_callback commit function provides acknowledgment to LangStream that records have been successfully consumed and can be removed.
+If you are creating a sink agent, you need to implement the `write` method.
+The write method takes in a `Record` that is provided by the previous step in the pipeline.
+It is called whenever data is available for processing.
+The write method can return `None` for successful synchronous processing or a `concurrent.futures.Future` that completes with `None` for successful asynchronous processing.
 
-```
-from langstream import Sink, Record, CommitCallback
-from typing import Any, Dict, List
+Example with synchronous result
+
+```python
+from langstream import Sink, Record
+from typing import Any, Dict
 
 class MySinkAgent(Sink):
-  def init(self, config: Dict[str, Any]):
-    # On start, consume config values
-    pass
 
-  def write(self, records: List[Record]):
-    # Receives records from the framework and typically writes them to an external service
-  
-    for record in records:
-      # use record.headers() for reference
-      # write record.value() to a service
-      self.commit_callback.commit(record)
-
-  def set_commit_callback(self, commit_callback: CommitCallback):
-    self.commit_callback = commit_callback
-
-  def close(self):
-    # Clean up before exiting
-    pass
+    def write(self, record: Record):
+        # Receives a record from the framework and typically write it to an external service
+      
+        # write the record to a service
+        return
 ```
 
-Handling Exceptions
+Example with asynchronous result
 
-Ideally the python app catches and handles exceptions that occur while committing a record to a sink. If an exception goes uncaught in the agent process, the LangStream runtime will follow the failure management strategy declared in pipeline error spec. This gives the developer tools to prevent pod restarts.
+```python
+from concurrent.futures import ThreadPoolExecutor, Future
+from langstream import Sink, Record
+from typing import Any, Dict
+
+class MySinkAgent(Sink):
+
+    def __init__(self):
+        self.executor = ThreadPoolExecutor(max_workers=10)
+
+    def write(self, record: Record) -> Future[None]:
+        # Receives a record from the framework and typically write it to an external service
+      
+        future = self.executor.submit(self.write_to_service, record)
+        return future
+
+    def write_to_service(self, record: Record):
+        # write the record to a service
+        return
+```
+
+Handling exceptions
+
+If the writing cannot be done, an Exception shall be raised and the framework will handle the failure according to the pipeline error handling rules.
 
 #### **Processor**
 
-Finally, if you are creating a processor agent, you will implement the “process” function. This function takes in a collection of `Record`s that were provided by the previous step in the pipeline. It is called whenever data is available for processing.
+If you are creating a processor agent, you need to implement the `process` method. 
+This method takes in a `Record` that was provided by the previous step in the pipeline and returns a list of `Record`s
+It is called whenever data is available for processing.
+The process method can return a list of `Record`s for synchronous processing or a `concurrent.futures.Future` that completes with the list of `Record`s for successful asynchronous processing.
 
-```
+Example with synchronous result
+
+```python
 from langstream import Processor, Record
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List
 
 class MyProcessorAgent(Processor):
-  def init(self, config: Dict[str, Any]):
-    # On start, consume config values
-    pass
 
-  def process(self, records: List[Record]) -> List[Tuple[Record, Union[List[Record], Exception]]]:
-    results = []
-  
-    for record in records:
-      try:
+    def process(self, record: Record) -> List[Record]:
         # do some work
-        # results.append((record, [Record(), Record(), ...]))
-      except Exception as e:
-        results.append((record, e))
+        result = []
+        # results.append(SimpleRecord(value=xxx))
 
-    return results
-
-  def close(self):
-    # Clean up before exiting
-    pass
+        return results
 ```
 
-The return of a processor agent is meant to be generic, so that the developer can optimize for batching. A simple processing rule might return one Record for each record provided. But in more advanced cases, the processing might result in multiple records returned from a single Record provided.
+Example with asynchronous result
 
-If you had 2 input records “record1” and “record2” and the processing resulted in 2 to 3 new records for each provided, then the result would be:
+```python
+from concurrent.futures import ThreadPoolExecutor, Future
+from langstream import Sink, Record
+from typing import Any, Dict
 
+class MyProcessorAgent(Processor):
+
+    def __init__(self):
+        self.executor = ThreadPoolExecutor(max_workers=10)
+
+    def process(self, record: Record) -> Future[List[Record]]:
+        future = self.executor.submit(self.do_process, record)
+        return future
+
+    def do_process(self, record: Record) -> List[Record]:
+        # do some work
+        result = []
+        # results.append(SimpleRecord(value=xxx))
+
+        return results
 ```
-[
-    (record1, [outputRecord1, outputRecord2]),
-    (record2, [outputRecord3, outputRecord4, outputRecord5])
-]
-```
-
-If an exception occurred while processing the second record provided, the result would include the caught `Exception`:
-
-```
-[
-    (record1, [outputRecord1, outputRecord2]),
-    (record2, Exception)
-]
-```
-
-Both of these returned collections would let the LangStream runtime gracefully handle issues and continue processing the next step(s).
 
 Handling Exceptions
 
-The processor agent has a special return type `List[Tuple[Record, Union[List[Record], Exception]]]` that has provisions for including an Exception rather than the Record(s). If an exception is provided in the return, the LangStream runtime will follow the failure management strategy declared in pipeline error spec. This gives the developer tools to prevent pod restarts.
+If an exception is raised, the LangStream runtime will follow the failure management strategy declared in pipeline error spec.
+This gives the developer tools to prevent pod restarts.
 
-Single Record Processor
+Building Records
 
-The LangStream Python package offers an implementation of the full `Processor` interface, called `SingleRecordProcessor`. This class is a simplified way to create a processor where 1 `Record` will be received and N number of `Record`s will be returned. Exception handling will be done by agent processing.
+To build the record results, you can implement the `Record` interface or use the `SimpleRecord` implementation if it fills your needs.
+Alternatively, you can return a `dict` with the optional fields `value`, `key`, `headers`, `origin`, `timestamp`. A `Record` will be automatically built from this `dict`.
 
+```python
+    def process(self, record: Record) -> List[Dict]:
+        # do some work
+        result = []
+        # results.append({value=xxx})
+
+        return results
 ```
-from langstream import Record, SimpleRecord, SingleRecordProcessor
-from typing import List
+It is also possible to return a `tuple` with the values `value`, `key`, `headers`, `origin`, `timestamp` in that strict order. A `Record` will be automatically built from this `tuple`.
 
-class MyAgent(SingleRecordProcessor):
-  def process_record(self, record: Record) -> List[Record]:
-    results = []
-  
-    try:
-      # do some work
-      # results.append( SimpleRecord(value="some value") )
-    except Exception as e:
-      results.append((record, e))
+```python
+    def process(self, record: Record) -> List[Tuple]:
+        # do some work
+        result = []
+        # results.append((xxx,))
 
-    return results
+        return results
 ```
-
-{% hint style="info" %}
-Start with the `SingleRecordProcessor` and move into a full `Processor` as needed. Most use cases should fit `SingleRecordProcessor.`Only the most advanced batching and asynchronous processing need a full `Processor`.
-{% endhint %}
 
 ### What's next?
 

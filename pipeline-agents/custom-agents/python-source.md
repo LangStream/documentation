@@ -1,12 +1,12 @@
 # Python source
 
-Along with the included pre-made agents, you can provide your own custom source agent as a Python application. The runtime will attempt to execute the provided class function and return its result.
+Along with the included pre-made agents, you can provide your own custom source agent as a Python application.
 
 The Python application needs to follow a specific directory structure for this agent to successfully run.&#x20;
 
 Within the “application” directory, create a directory named “python”.&#x20;
 
-Within that directory, place the .py file with the class function that will be the entry point.
+Within that directory, place the .py file with the class that will be the entry point.
 
 The directory will look something like this:
 
@@ -20,7 +20,7 @@ The directory will look something like this:
 |- (optional) secrets.yaml
 ```
 
-For more on developing custom agents with the Python source, see the [Agent Developer Guide.](../agent-developer-guide/)
+For more on developing custom Python source agents, see the [Agent Developer Guide.](../agent-developer-guide/)
 
 ### Example
 

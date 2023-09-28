@@ -1,12 +1,12 @@
 # Python sink
 
-Along with the included pre-made agents, you can provide your own custom sink agent as a Python application. The runtime will attempt to execute the provided class function and return its result.
+Along with the included pre-made agents, you can provide your own custom sink agent as a Python application.
 
 The Python application needs to follow a specific directory structure for this agent to successfully run.
 
 Within the “application” directory, create a directory named “python”.
 
-Within that directory, place the .py file with the class function that will be the entry point.
+Within that directory, place the .py file with the class that will be the entry point.
 
 The directory will look like this:
 
@@ -20,7 +20,7 @@ The directory will look like this:
 |- (optional) secrets.yaml
 ```
 
-For more on developing custom agents with the Python sink, see the [Agent Developer Guide.](../agent-developer-guide/)
+For more on developing custom Python sink agents, see the [Agent Developer Guide.](../agent-developer-guide/)
 
 ## Python sink example
 
@@ -29,20 +29,20 @@ from typing import List
 from langstream import Sink, Record
 
 class ExampleSink(Sink):
-    def init(self, config):
+
+    def start(self):
         # Initialize any necessary resources or connections here
         pass
 
-    def write(self, records: List[Record]):
+    def write(self, record: Record):
         # Process the records to the sink
-        for record in records:
-            # Perform your processing logic here
-            processed_data = self.process_data(record.value)
+        # Perform your processing logic here
+        processed_data = self.process_data(record.value)
 
-            # Print or log the processed data
-            print("Processed Data:", processed_data)
+        # Print or log the processed data
+        print("Processed Data:", processed_data)
 
-            # Implement any necessary logic for storing the processed data
+        # Implement any necessary logic for storing the processed data
 
     def process_data(self, data):
         # Placeholder for your data processing logic
@@ -50,7 +50,7 @@ class ExampleSink(Sink):
         processed_data = data.upper()  # Example: Convert text to uppercase
         return processed_data
 
-    def shutdown(self):
+    def close(self):
         # Clean up any resources or connections here
         pass
 ```
