@@ -32,7 +32,7 @@ pipeline:
           content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{% value.question}}"
 ```
 
-## Using VertexAI text models
+## Using VertexAI chat models
 
 Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
 
@@ -50,6 +50,10 @@ pipeline:
 
 
 ## Using HuggingFace models
+
+{% hint style="info" %}
+`ai-chat-completions` and `ai-text-completions` are equivalent for Hugging Face models.
+{% endhint %}
 
 Refer to the [HugginFace documentation](https://huggingface.co/docs/api-inference/quicktour) to know more about HuggingFace inference API.
 
