@@ -15,7 +15,7 @@
 
 ## installation
 
-* [Minikube](installation/get-started-minikube.md)
+* [Minikube (mini-langstream)](installation/get-started-minikube.md)
 * [Kubernetes](installation/kubernetes.md)
 * [Docker](installation/docker.md)
 * [LangStream CLI](installation/langstream-cli.md)
