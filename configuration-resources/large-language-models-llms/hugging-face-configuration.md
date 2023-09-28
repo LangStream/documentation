@@ -3,9 +3,6 @@
 A huggingface resource used for LLM functions.
 
 
-
-
-
 `configuration.yaml`
 ```yaml
 configuration:
