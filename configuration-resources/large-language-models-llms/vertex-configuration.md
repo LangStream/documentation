@@ -2,7 +2,9 @@
 
 A vertex-configuration resource is used for AI agents.
 
+{% hint style="warning" %}
 Note that the following examples sets sensitive data as plain text. This is for education purpose only, it's highly recommended to use [secrets](../../building-applications/secrets.md).
+{% endhint %}
 
 
 ```yaml
