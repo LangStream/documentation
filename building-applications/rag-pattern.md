@@ -19,11 +19,11 @@ Once you have your [vector database](./vector-databases.md) populated with text 
 The flow of a vector search application with the RAG pattern is as follows:
 
 - Start from a query text
-- Compute the embeddings of the query text
-- Query the vector database to get the most similar documents
-- Re-rank the results to get the most relevant documents
+- Compute the [embeddings](../pipeline-agents/ai-actions/compute-ai-embeddings.md) of the query text
+- [Query](../pipeline-agents/text-processors/query-vector-db.md) the vector database to get the most similar documents
+- [Re-rank](../pipeline-agents/text-processors/rerank.md) the results to get the most relevant documents
 - Build a prompt with the query text and the most relevant documents
-- Query the LLM with the prompt to get the final response
+- [Query the LLM](../pipeline-agents/ai-actions/ai-chat-completions.md) with the prompt to get the final response
 - Finally, return the response to the user
 
 ```yaml
