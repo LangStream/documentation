@@ -33,12 +33,16 @@
 | [unwrap-key-value](#unwrap-key-value) |  |  |
 | [vector-db-sink](#vector-db-sink) |  |  |
 | [webcrawler-source](#webcrawler-source) |  |  |
+
+
 ### drop
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | composable | Whether this step can be composed with other steps. | boolean |  | true |
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
+
+
 ### drop-fields
 
 | Key | Description | Type | Required | Default Value |
@@ -47,17 +51,23 @@
 | fields | Fields to drop from the input record. | array of object | ✓ |  |
 | part | Part to drop. (value or key) | string |  |  |
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
+
+
 #### drop-fields.fields
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | inner-composable | Whether this step can be composed with other steps. | boolean |  | true |
+
+
 ### merge-key-value
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | composable | Whether this step can be composed with other steps. | boolean |  | true |
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
+
+
 ### s3-source
 
 | Key | Description | Type | Required | Default Value |
