@@ -172,7 +172,7 @@ Now, all the information from your PDFs is embedded in a vector database. Try se
 
 ### What’s next?
 
-Do you have a website lying around, just waiting to be turned into useful, vectorized text?\
+Do you have a website lying around just waiting to be turned into useful, vectorized text?\
 This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.&#x20;
 
 

@@ -102,7 +102,7 @@ pipeline:
 
 ### What’s next?
 
-Do you have a website lying around, just waiting to be turned into an useful, chatbot ?\
+Do you have a website lying around just waiting to be turned into a useful chatbot ?\
 This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.&#x20;
 
 

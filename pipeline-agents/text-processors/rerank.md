@@ -2,25 +2,25 @@
 
 When you implement the RAG (Retrieval Agumented Generation) pattern you need to query a Vector Database to get documents related to the input text, then you need to re-rank the results to get the most relevant ones.
 
-The results from the Vector Database are a list of documents, each document is a text with a vector of floats.
+The results from the Vector Database are a list of documents, and each document is a text with a vector of floats.
 
-Usually you want to retrieve the top N documents, but you can also filter the results using a query, but you can still get documents that are not relevant to the input text.
+Usually when you want to retrieve the top N documents, you filter the results using a query, but you can still get documents that are not relevant to the input text using this method.
 This is because the typical Vector Database query is based on the cosine similarity between the input vector and the document vectors.
 
-The Re-ranking agent allows you to filter more the documents by performing additional processing in order to validate that the document is relevant to the input text
-and in order to keep only the most relevant documents.
+The Re-ranking agent allows you to further filter the documents with additional processing to validate that the document is relevant to the input text
+and to keep only the most relevant documents.
 
-The room in the prompt is usually limited, so you want to use as few documents as possible, but you also want to keep the most relevant ones.
+The room in the prompt is usually limited, so you want to use as few documents as possible while also keeping the most relevant ones.
 
 One of the most commonly used algorithms for re-ranking is Maximal Marginal Relevance (MMR).
 
-You can find here some references about MMR:
+You can find some reference material about MMR here:
 
 https://medium.com/tech-that-works/maximal-marginal-relevance-to-rerank-results-in-unsupervised-keyphrase-extraction-22d95015c7c5
 
 https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf
 
-The default implementation of MMR in LangStream is based on the paper above and it uses the B25 algorithm to compute the similarity between the input text and the document text. It also uses the cosine similarity between the query vector and the document vector.
+The default implementation of MMR in LangStream is based on the CMU paper above. It uses the B25 algorithm to compute the similarity between the input text and the document text. It also uses the cosine similarity between the query vector and the document vector.
 
 The BM25 algorithm needs a couple of parameters, `k1` and `b`, that you can configure in the agent.
 
@@ -31,7 +31,7 @@ https://en.wikipedia.org/wiki/Okapi_BM25
 
 ### How to use the re-rank agent
 
-This is a full example about how to run a vector search and the re-rank the results:
+Here is a full example of running a vector search and then re-ranking the results:
 
 ```yaml
 pipeline:
