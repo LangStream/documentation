@@ -2,6 +2,8 @@
 
 ## [ai-chat-completions](#my-anchor)
 
+<h3><a href="#my-anchor">ai-chat-completions</a></h3>
+
 <p>
 here <a href="#my-anchor">ai-chat-completions</a> <a href="#drop-fields">ai-chat-completions</a>.</p>
 
@@ -10,7 +12,7 @@ here <a href="#my-anchor">ai-chat-completions</a> <a href="#drop-fields">ai-chat
 
 | ID | Name | Description |
 | --- | --- | --- |
-| ## [ai-chat-completions](#my-anchor) |  |  |
+| <h3><a href="#my-anchor">ai-chat-completions</a></h3> |  |  |
 | [ai-text-completions](#ai-text-completions) |  |  |
 | [cast](#cast) |  |  |
 | [composite-agent](#composite-agent) |  |  |
