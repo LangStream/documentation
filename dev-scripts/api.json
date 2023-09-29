@@ -1,0 +1,138 @@
+{
+  "version" : "0.0.23-SNAPSHOT",
+  "agents" : {
+    "ai-chat-completions" : { },
+    "ai-text-completions" : { },
+    "cast" : { },
+    "composite-agent" : { },
+    "compute" : { },
+    "compute-ai-embeddings" : { },
+    "document-to-json" : { },
+    "drop" : {
+      "properties" : {
+        "composable" : {
+          "description" : "Whether this step can be composed with other steps.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "when" : {
+          "description" : "Execute the step only when the condition is met.\nYou can use the expression language to reference the message.\nExample: when: \"value.first == 'f1' && value.last.toUpperCase() == 'L1'\"",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "drop-fields" : {
+      "name" : "Drop fields from the input record",
+      "properties" : {
+        "composable" : {
+          "description" : "Whether this step can be composed with other steps.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "fields" : {
+          "description" : "Fields to drop from the input record.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields to drop from the input record.",
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "part" : {
+          "description" : "Part to drop. (value or key)",
+          "required" : false,
+          "type" : "string"
+        },
+        "when" : {
+          "description" : "Execute the step only when the condition is met.\nYou can use the expression language to reference the message.\nExample: when: \"value.first == 'f1' && value.last.toUpperCase() == 'L1'\"",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "flatten" : { },
+    "identity" : { },
+    "language-detector" : { },
+    "merge-key-value" : {
+      "properties" : {
+        "composable" : {
+          "description" : "Whether this step can be composed with other steps.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "when" : {
+          "description" : "Execute the step only when the condition is met.\nYou can use the expression language to reference the message.\nExample: when: \"value.first == 'f1' && value.last.toUpperCase() == 'L1'\"",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "noop" : { },
+    "python-function" : { },
+    "python-processor" : { },
+    "python-sink" : { },
+    "python-source" : { },
+    "query" : { },
+    "query-vector-db" : { },
+    "s3-source" : {
+      "name" : "S3 Source",
+      "description" : "Reads data from S3 bucket",
+      "properties" : {
+        "access-key" : {
+          "description" : "Access key for the S3 server.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "minioadmin"
+        },
+        "bucketName" : {
+          "description" : "The name of the bucket to read from.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "langstream-source"
+        },
+        "endpoint" : {
+          "description" : "The endpoint of the S3 server.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "http://minio-endpoint.-not-set:9090"
+        },
+        "file-extensions" : {
+          "description" : "Comma separated list of file extensions to filter by.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "pdf,docx,html,htm,md,txt"
+        },
+        "idle-time" : {
+          "description" : "Region for the S3 server.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "5"
+        },
+        "region" : {
+          "description" : "Region for the S3 server.",
+          "required" : false,
+          "type" : "string"
+        },
+        "secret-key" : {
+          "description" : "Secret key for the S3 server.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "minioadmin"
+        }
+      }
+    },
+    "sink" : { },
+    "source" : { },
+    "text-extractor" : { },
+    "text-normaliser" : { },
+    "text-splitter" : { },
+    "unwrap-key-value" : { },
+    "vector-db-sink" : { },
+    "webcrawler-source" : { }
+  }
+}
