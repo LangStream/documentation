@@ -33,5 +33,3 @@ With the configuration above and an input of "Hello there", the output is `{"tex
 ### **Configuration**
 
 <table><thead><tr><th width="171.33333333333331">Label</th><th width="165">Type</th><th>Description</th></tr></thead><tbody><tr><td>text-field</td><td>String (required)</td><td>The name of an additional field that will be added to the output message data containing the structured data.</td></tr><tr><td>copy-properties</td><td>Boolean (optional)</td><td><p>Include the input message headers in the output message.<br></p><p>Default is a value of “true”</p></td></tr></tbody></table>
-
-\

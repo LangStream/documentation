@@ -1,10 +1,71 @@
-# Agents API reference
+# API Reference
 
+## Agents
 
-<h2>Agents</h2><table><tr><th>ID</th><th>Name</th><th>Description</th></tr><tr><td>ai-chat-completions</td><td></td><td></td></tr><tr><td>ai-text-completions</td><td></td><td></td></tr><tr><td>cast</td><td></td><td></td></tr><tr><td>composite-agent</td><td></td><td></td></tr><tr><td>compute</td><td></td><td></td></tr><tr><td>compute-ai-embeddings</td><td></td><td></td></tr><tr><td>document-to-json</td><td></td><td></td></tr><tr><td><a href="#drop">drop</a></td><td></td><td></td></tr><tr><td><a href="#drop-fields">drop-fields</a></td><td>Drop fields from the input record</td><td></td></tr><tr><td>flatten</td><td></td><td></td></tr><tr><td>identity</td><td></td><td></td></tr><tr><td>language-detector</td><td></td><td></td></tr><tr><td><a href="api-reference.md#merge-key-value">merge-key-value</a></td><td></td><td></td></tr><tr><td>noop</td><td></td><td></td></tr><tr><td>python-function</td><td></td><td></td></tr><tr><td>python-processor</td><td></td><td></td></tr><tr><td>python-sink</td><td></td><td></td></tr><tr><td>python-source</td><td></td><td></td></tr><tr><td>query</td><td></td><td></td></tr><tr><td>query-vector-db</td><td></td><td></td></tr><tr><td><a href="#s3-source">s3-source</a></td><td>S3 Source</td><td>Reads data from S3 bucket</td></tr><tr><td>sink</td><td></td><td></td></tr><tr><td>source</td><td></td><td></td></tr><tr><td>text-extractor</td><td></td><td></td></tr><tr><td>text-normaliser</td><td></td><td></td></tr><tr><td>text-splitter</td><td></td><td></td></tr><tr><td>unwrap-key-value</td><td></td><td></td></tr><tr><td>vector-db-sink</td><td></td><td></td></tr><tr><td>webcrawler-source</td><td></td><td></td></tr></table><h3 id=drop>drop</h3><table><table><tr><th>Key</th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr><tr><td>composable</td><td>Whether this step can be composed with other steps.</td><td>boolean</td><td>False</td><td>true</td></tr><tr><td>when</td><td>Execute the step only when the condition is met.
-You can use the expression language to reference the message.
-Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'"</td><td>string</td><td>False</td><td></td></tr></table></table><h3 id=drop-fields>drop-fields</h3><table><table><tr><th>Key</th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr><tr><td>composable</td><td>Whether this step can be composed with other steps.</td><td>boolean</td><td>False</td><td>true</td></tr><tr><td>fields</td><td>Fields to drop from the input record.</td><td>array</td><td>True</td><td></td></tr><tr><td>part</td><td>Part to drop. (value or key)</td><td>string</td><td>False</td><td></td></tr><tr><td>when</td><td>Execute the step only when the condition is met.
-You can use the expression language to reference the message.
-Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'"</td><td>string</td><td>False</td><td></td></tr></table></table><h3 id=merge-key-value>merge-key-value</h3><table><table><tr><th>Key</th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr><tr><td>composable</td><td>Whether this step can be composed with other steps.</td><td>boolean</td><td>False</td><td>true</td></tr><tr><td>when</td><td>Execute the step only when the condition is met.
-You can use the expression language to reference the message.
-Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'"</td><td>string</td><td>False</td><td></td></tr></table></table><h3 id=s3-source>s3-source</h3><table><table><tr><th>Key</th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr><tr><td>access-key</td><td>Access key for the S3 server.</td><td>string</td><td>False</td><td>minioadmin</td></tr><tr><td>bucketName</td><td>The name of the bucket to read from.</td><td>string</td><td>False</td><td>langstream-source</td></tr><tr><td>endpoint</td><td>The endpoint of the S3 server.</td><td>string</td><td>False</td><td>http://minio-endpoint.-not-set:9090</td></tr><tr><td>file-extensions</td><td>Comma separated list of file extensions to filter by.</td><td>string</td><td>False</td><td>pdf,docx,html,htm,md,txt</td></tr><tr><td>idle-time</td><td>Region for the S3 server.</td><td>integer</td><td>False</td><td>5</td></tr><tr><td>region</td><td>Region for the S3 server.</td><td>string</td><td>False</td><td></td></tr><tr><td>secret-key</td><td>Secret key for the S3 server.</td><td>string</td><td>False</td><td>minioadmin</td></tr></table></table>
+| ID | Name | Description |
+| --- | --- | --- |
+| [ai-chat-completions](#ai-chat-completions) |  |  |
+| [ai-text-completions](#ai-text-completions) |  |  |
+| [cast](#cast) |  |  |
+| [composite-agent](#composite-agent) |  |  |
+| [compute](#compute) |  |  |
+| [compute-ai-embeddings](#compute-ai-embeddings) |  |  |
+| [document-to-json](#document-to-json) |  |  |
+| [drop](#drop) |  |  |
+| [drop-fields](#drop-fields) | Drop fields from the input record |  |
+| [flatten](#flatten) |  |  |
+| [identity](#identity) |  |  |
+| [language-detector](#language-detector) |  |  |
+| [merge-key-value](#merge-key-value) |  |  |
+| [noop](#noop) |  |  |
+| [python-function](#python-function) |  |  |
+| [python-processor](#python-processor) |  |  |
+| [python-sink](#python-sink) |  |  |
+| [python-source](#python-source) |  |  |
+| [query](#query) |  |  |
+| [query-vector-db](#query-vector-db) |  |  |
+| [s3-source](#s3-source) | S3 Source | Reads data from S3 bucket |
+| [sink](#sink) |  |  |
+| [source](#source) |  |  |
+| [text-extractor](#text-extractor) |  |  |
+| [text-normaliser](#text-normaliser) |  |  |
+| [text-splitter](#text-splitter) |  |  |
+| [unwrap-key-value](#unwrap-key-value) |  |  |
+| [vector-db-sink](#vector-db-sink) |  |  |
+| [webcrawler-source](#webcrawler-source) |  |  |
+### drop
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| composable | Whether this step can be composed with other steps. | boolean |  | true |
+| when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
+### drop-fields
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| composable | Whether this step can be composed with other steps. | boolean |  | true |
+| fields | Fields to drop from the input record. | array of object | ✓ |  |
+| part | Part to drop. (value or key) | string |  |  |
+| when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
+#### drop-fields.fields
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| inner-composable | Whether this step can be composed with other steps. | boolean |  | true |
+### merge-key-value
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| composable | Whether this step can be composed with other steps. | boolean |  | true |
+| when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
+### s3-source
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| access-key | Access key for the S3 server. | string |  | minioadmin |
+| bucketName | The name of the bucket to read from. | string |  | langstream-source |
+| endpoint | The endpoint of the S3 server. | string |  | http://minio-endpoint.-not-set:9090 |
+| file-extensions | Comma separated list of file extensions to filter by. | string |  | pdf,docx,html,htm,md,txt |
+| idle-time | Region for the S3 server. | integer |  | 5 |
+| region | Region for the S3 server. | string |  |  |
+| secret-key | Secret key for the S3 server. | string |  | minioadmin |

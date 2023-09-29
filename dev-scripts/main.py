@@ -1,41 +1,50 @@
 import json
 import argparse
 
-def generate_agent_table(agent_name, agent_data):
-    table = f"<h3 id={agent_name}>{agent_name}</h3>"
-    table += "<table>"
 
-    properties = agent_data.get('properties', {})
+def escape_markdown(text):
+    if type(text) == bool:
+        if text:
+            return "✓"
+        else:
+            return ""
+    if not text:
+        return ''
+    text = str(text)
+    return text.replace('|', '\|').replace('\n', '<br>')
+
+
+def generate_agent_table(agent_name, properties, is_nested=False):
+    result = []
+    if is_nested:
+        table = f"#### {agent_name}\n\n"
+    else:
+        table = f"### {agent_name}\n\n"
+    table += "| Key | Description | Type | Required | Default Value |\n"
+    table += "| --- | --- | --- | --- | --- |\n"
+
     if properties:
-        table += generate_properties_table(properties)
+        for key, value in properties.items():
+            prop_type = value.get('type', '')
+            if prop_type == "array":
+                items = value.get('items', {})
+                if items:
+                    prop_type = f"array of {items.get('type', '')}"
+            table += f"| {escape_markdown(key)} | {escape_markdown(value.get('description', ''))} | {escape_markdown(prop_type)} | {escape_markdown(value.get('required', ''))} | {escape_markdown(value.get('defaultValue', ''))} |\n"
 
-    table += "</table>"
-    nested_tables = []
+    result.append(table)
 
-    return table, nested_tables
+    if properties:
+        for key, value in properties.items():
+            nested_properties = value.get('properties', {})
+            if nested_properties:
+                nested_tables = generate_agent_table(f"{agent_name}.{key}", nested_properties, is_nested)
+                result.extend(nested_tables)
+            items = value.get('items', {})
+            if items and items.get('properties', {}):
+                result.extend(generate_agent_table(f"{agent_name}.{key}", items.get('properties', {}), True))
 
-def generate_properties_table(properties):
-    table = "<table>"
-
-    # Properties table headers
-    table += "<tr><th>Key</th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr>"
-
-    for key, value in properties.items():
-        table += "<tr>"
-        table += f"<td>{key}</td>"
-        table += f"<td>{value.get('description', '')}</td>"
-        table += f"<td>{value.get('type', '')}</td>"
-        table += f"<td>{value.get('required', '')}</td>"
-        table += f"<td>{value.get('defaultValue', '')}</td>"
-        table += "</tr>"
-
-        nested_properties = value.get('properties', {})
-        if nested_properties:
-            nested_table = generate_properties_table(nested_properties)
-            table += f"<tr><td colspan='5'>{nested_table}</td></tr>"
-
-    table += "</table>"
-    return table
+    return result
 
 def generate_agent_tables(input_file, output_file):
     # Read the JSON file
@@ -44,45 +53,33 @@ def generate_agent_tables(input_file, output_file):
 
     agents_data = data.get('agents', {})
 
-    # Generate HTML tables for each agent entry
-    html_content = "<h2>Agents</h2><table>"
-    html_content += "<tr><th>ID</th><th>Name</th><th>Description</th></tr>"
+    markdown_content = "# API Reference\n\n"
+    markdown_content += "## Agents\n\n"
+    markdown_content += "| ID | Name | Description |\n"
+    markdown_content += "| --- | --- | --- |\n"
 
-    
     for agent_name, agent_data in agents_data.items():
-        
-
-        html_content += "<tr>"
-        if agent_data:
-            html_content += f"<td><a href=\"#{agent_name}\">{agent_name}</a></td>"
-        else:
-            html_content += f"<td>{agent_name}</td>"
-        html_content += f"<td>{agent_data.get('name', '')}</td>"
-        html_content += f"<td>{agent_data.get('description', '')}</td>"
-        html_content += "</tr>"
-        
-
-    html_content += "</table>"
+        markdown_content += f"| [{escape_markdown(agent_name)}](#{agent_name}) | {escape_markdown(agent_data.get('name', ''))} | {escape_markdown(agent_data.get('description', ''))} |\n"
 
     for agent_name, agent_data in agents_data.items():
         if agent_data:
-            table, nested_tables = generate_agent_table(agent_name, agent_data)
-            html_content += table
+            tables = generate_agent_table(agent_name, agent_data.get("properties", {}))
+            for nested_table in tables:
+                markdown_content += nested_table
 
-            # Append nested tables after the current agent's table
-            for nested_table in nested_tables:
-                html_content += nested_table
 
-    # Save the HTML content to a file
+            
+
+    # Save the Markdown content to a file
     with open(output_file, 'w') as file:
-        file.write(html_content)
+        file.write(markdown_content)
 
-    print(f"HTML tables generated and saved to {output_file}")
+    print(f"Markdown tables generated and saved to {output_file}")
 
 def main():
-    parser = argparse.ArgumentParser(description='Generate HTML tables from JSON data.')
+    parser = argparse.ArgumentParser(description='Generate Markdown tables from JSON data.')
     parser.add_argument('input_file', type=str, help='Path to the input JSON file')
-    parser.add_argument('output_file', type=str, help='Path to save the output HTML file')
+    parser.add_argument('output_file', type=str, help='Path to save the output Markdown file')
 
     args = parser.parse_args()
 

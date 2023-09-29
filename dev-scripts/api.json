@@ -39,7 +39,15 @@
           "items" : {
             "description" : "Fields to drop from the input record.",
             "required" : true,
-            "type" : "string"
+            "type" : "object",
+            "properties" : {
+              "inner-composable" : {
+                "description" : "Whether this step can be composed with other steps.",
+                "required" : false,
+                "type" : "boolean",
+                "defaultValue" : "true"
+              }
+            }
           }
         },
         "part" : {
