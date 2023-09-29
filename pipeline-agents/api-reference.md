@@ -1,5 +1,8 @@
 # API Reference
 
+## [ai-chat-completions](#my-anchor)
+
+<p>here [ai-chat-completions](#my-anchor).</p>
 ## Agents
 
 | ID | Name | Description |
