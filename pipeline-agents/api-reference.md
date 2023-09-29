@@ -23,9 +23,9 @@
 | [python-sink](#python-sink) |  |  |
 | [python-source](#python-source) |  |  |
 | [query](#query) |  |  |
-| [query-vector-db](#query-vector-db) |  |  |
-| [s3-source](../pipeline-agents/api-reference.md#s3-source) | S3 Source | Reads data from S3 bucket |
-| [sink](#sink) |  |  |
+| [query-vector-db](../get-started.md) |  |  |
+| [s3-source](../pipeline-agents/api-reference.md#agents) | S3 Source | Reads data from S3 bucket |
+| [sink](../pipeline-agents/api-reference.md) |  |  |
 | [source](#source) |  |  |
 | [text-extractor](#text-extractor) |  |  |
 | [text-normaliser](#text-normaliser) |  |  |
