@@ -1,8 +1,12 @@
 # Python processor
 
-Along with the pre-made agents, you can provide your own agent processing as a Python application. The agent will attempt to execute the provided class function and return its result.
+Along with the pre-made agents, you can provide your own processor agent as a Python application.
 
-The Python application needs to follow a specific directory structure for this agent to successfully run. Within the “application” directory create a directory named “python”. Within that directory place the .py file with the class function that will be the entry point.
+The Python application needs to follow a specific directory structure for this agent to successfully run. 
+
+Within the “application” directory create a directory named “python”. 
+
+Within that directory place the .py file with the class that will be the entry point.
 
 The directory will look something like this:
 
@@ -16,18 +20,18 @@ The directory will look something like this:
 |- (optional) secrets.yaml
 ```
 
-For more on developing custom agents with the Python processor, see the [Agent Developer Guide.](../agent-developer-guide/)
+For more on developing custom Python processor agents, see the [Agent Developer Guide.](../agent-developer-guide/)
 
 ### Example
 
 Example python class located at ./application/python/example.py:
 
 ```python
-from langstream import SimpleRecord, SingleRecordProcessor
+from langstream import SimpleRecord
 
 # Example Python processor that adds an exclamation mark to the end of the record value
-class Exclamation(SingleRecordProcessor):
-  def process_record(self, record):
+class Exclamation(Processor):
+  def process(self, record):
       return [SimpleRecord(record.value() + "!!")]
 ```
 
@@ -42,7 +46,7 @@ Configure the agent to use the python class:
     className: example.Exclamation
 ```
 
-The python application can optionally take in parameters from the application environment. The following is an example python application that is given a “config” object when it “inits”.
+The python application can optionally take in parameters from the application environment. The following is an example python application that is given a “config” object in its `init` method.
 
 ```python
 from langstream import SimpleRecord
@@ -56,14 +60,11 @@ class Embedding(object):
     print('init', config)
     openai.api_key = config["openaiKey"]
 
-  def process(self, records):
-    processed_records = []
-    for record in records:
-      embedding = get_embedding(record.value(), engine='text-embedding-ada-002')
-      result = {"input": str(record.value()), "embedding": embedding}
-      new_value = json.dumps(result)
-      processed_records.append((record, [SimpleRecord(value=new_value)]))
-    return processed_records
+  def process(self, record):
+    embedding = get_embedding(record.value(), engine='text-embedding-ada-002')
+    result = {"input": str(record.value()), "embedding": embedding}
+    new_value = json.dumps(result)
+    return [SimpleRecord(value=new_value)]
 ```
 
 The config object is a map that is built from the agent's pipeline.yaml:
