@@ -2,7 +2,7 @@
 
 * [LangStream Documentation](README.md)
 * [❤ Langstream.ai](https://langstream.ai)
-* [⭐ LangStream GitHub Repo](https://github.com/LangStream/langstream)
+* [:octocat: LangStream GitHub Repo](https://github.com/LangStream/langstream)
 
 ## about
 
