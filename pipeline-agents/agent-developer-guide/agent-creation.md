@@ -156,6 +156,45 @@ Example
 Note that if you return a `dict` or a `tuple`, the object you'll get in the `commit` will be the `Record` built from the returned object and not the object itself.
 {% endhint %}
 
+Workflow
+```mermaid
+---
+title: Source workflow
+---
+sequenceDiagram
+    participant Runtime
+    participant Source
+    participant ES1 as External Service
+    participant SC as Streaming Cluster
+
+    loop
+        Runtime->>Source: read
+        activate Source
+        Source->>ES1: read
+        activate ES1
+        deactivate ES1
+        ES1-->>Source: 
+        Source-->>Runtime: 
+        deactivate Source
+        loop retry until success or retry number reached
+            Runtime->>SC: write
+            activate SC
+            SC-->>Runtime: 
+            deactivate SC
+        end
+        alt write success
+            Runtime->>Source: commit
+            activate Source
+            Source->>ES1: commit
+            activate ES1
+            deactivate ES1
+            deactivate Source
+        else write error not skipped
+            Runtime->>Source: permanent_failure
+        end
+    end
+```
+
 #### **Sink**
 
 If you are creating a sink agent, you need to implement the `write` method.
@@ -204,6 +243,42 @@ class MySinkAgent(Sink):
 Handling exceptions
 
 If the writing cannot be done, an Exception shall be raised and the framework will handle the failure according to the pipeline error handling rules.
+
+Workflow
+```mermaid
+---
+title: Sink workflow
+---
+sequenceDiagram
+    participant Runtime
+    participant SC as Streaming Cluster
+    participant Sink
+    participant ES1 as External Service
+
+    loop
+        Runtime->>SC: read
+        activate SC
+        SC-->>Runtime: 
+        deactivate SC
+        loop retry until success or retry number reached
+            Runtime->>Sink: write
+            activate Sink
+            Sink->>ES1: write
+            activate ES1
+            deactivate ES1
+            ES1-->>Sink: 
+            Sink-->>Runtime: 
+            deactivate Sink
+        end
+        alt write success
+            Runtime->>SC: commit
+        else write error not skipped with dead-letter topic
+            Runtime->>SC: send to dead-letter topic
+        else write error not skipped and no dead-letter topic
+            Note right of Runtime: runtime failure
+        end
+    end
+```
 
 #### **Processor**
 
@@ -279,6 +354,41 @@ It is also possible to return a `tuple` with the values `value`, `key`, `headers
         # results.append((xxx,))
 
         return results
+```
+
+Workflow
+```mermaid
+---
+title: Processor workflow
+---
+sequenceDiagram
+    participant Runtime
+    participant SC as Streaming Cluster
+    participant Processor
+
+    loop
+        Runtime->>SC: read
+        activate SC
+        SC-->>Runtime: 
+        deactivate SC
+        Runtime->>Processor: process
+        activate Processor
+        Processor-->>Runtime: 
+        deactivate Processor
+        loop retry until success or retry number reached
+            Runtime->>SC: write
+            activate SC
+            SC-->>Runtime: 
+            deactivate SC
+        end
+        alt write success
+            Runtime->>SC: commit
+        else write error not skipped with dead-letter topic
+            Runtime->>SC: send to dead-letter topic
+        else write error not skipped and no dead-letter topic
+            Note right of Runtime: runtime failure
+        end
+    end
 ```
 
 ### What's next?
