@@ -2,8 +2,8 @@ import json
 import argparse
 
 def generate_agent_table(agent_name, agent_data):
-    table = f"<h2 id={agent_name}>{agent_name}</h2>"
-    table += "<table border='1'>"
+    table = f"<h3 id={agent_name}>{agent_name}</h3>"
+    table += "<table>"
 
     properties = agent_data.get('properties', {})
     if properties:
@@ -15,7 +15,7 @@ def generate_agent_table(agent_name, agent_data):
     return table, nested_tables
 
 def generate_properties_table(properties):
-    table = "<table border='1'>"
+    table = "<table>"
 
     # Properties table headers
     table += "<tr><th>Key</th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr>"
@@ -45,14 +45,14 @@ def generate_agent_tables(input_file, output_file):
     agents_data = data.get('agents', {})
 
     # Generate HTML tables for each agent entry
-    html_content = "<table border='1'>"
+    html_content = "<h2>Agents</h2><table>"
     html_content += "<tr><th>ID</th><th>Name</th><th>Description</th></tr>"
 
     
     for agent_name, agent_data in agents_data.items():
 
         html_content += "<tr>"
-        html_content += f"<td>{agent_name}</td>"
+        html_content += f"<td><a href=\"{agent_name}\">{agent_name}</a></td>"
         html_content += f"<td>{agent_data.get('name', '')}</td>"
         html_content += f"<td>{agent_data.get('description', '')}</td>"
         html_content += "</tr>"
