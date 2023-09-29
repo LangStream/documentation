@@ -48,7 +48,7 @@
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | composable | Whether this step can be composed with other steps. | boolean |  | true |
-| fields | Fields to drop from the input record. | array of object | ✓ |  |
+| fields | Fields to drop from the input record. | array of [object](#drop-fields.fields) | ✓ |  |
 | part | Part to drop. (value or key) | string |  |  |
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 

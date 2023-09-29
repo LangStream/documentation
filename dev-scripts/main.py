@@ -29,7 +29,11 @@ def generate_agent_table(agent_name, properties, is_nested=False):
             if prop_type == "array":
                 items = value.get('items', {})
                 if items:
-                    prop_type = f"array of {items.get('type', '')}"
+                    if items.get('type', '') == "object":
+                        link = f"{agent_name}.{key}"
+                        prop_type = f"array of [object](#{link})"
+                    else:
+                        prop_type = f"array of {items.get('type', '')}"
             table += f"| {escape_markdown(key)} | {escape_markdown(value.get('description', ''))} | {escape_markdown(prop_type)} | {escape_markdown(value.get('required', ''))} | {escape_markdown(value.get('defaultValue', ''))} |\n"
 
     result.append(table)
