@@ -50,9 +50,13 @@ def generate_agent_tables(input_file, output_file):
 
     
     for agent_name, agent_data in agents_data.items():
+        
 
         html_content += "<tr>"
-        html_content += f"<td><a href=\"{agent_name}\">{agent_name}</a></td>"
+        if agent_data:
+            html_content += f"<td><a href=\"#{agent_name}\">{agent_name}</a></td>"
+        else:
+            html_content += f"<td>{agent_name}</td>"
         html_content += f"<td>{agent_data.get('name', '')}</td>"
         html_content += f"<td>{agent_data.get('description', '')}</td>"
         html_content += "</tr>"
