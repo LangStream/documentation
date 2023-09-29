@@ -24,7 +24,7 @@
 | [python-source](#python-source) |  |  |
 | [query](#query) |  |  |
 | [query-vector-db](#query-vector-db) |  |  |
-| [s3-source](#s3-source) | S3 Source | Reads data from S3 bucket |
+| [s3-source](../pipeline-agents/api-reference.md#s3-source) | S3 Source | Reads data from S3 bucket |
 | [sink](#sink) |  |  |
 | [source](#source) |  |  |
 | [text-extractor](#text-extractor) |  |  |
