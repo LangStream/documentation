@@ -2,7 +2,8 @@
 
 ## [ai-chat-completions](#my-anchor)
 
-<p>here [ai-chat-completions](#my-anchor).</p>
+<p>
+here <a href="#my-anchor">ai-chat-completions</a> <a href="#drop-fields">ai-chat-completions</a>.</p>
 
 
 ## Agents
@@ -58,7 +59,7 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-#### <a name="drop-fields.fields"></a>drop-fields.fields
+#### <a name="drop-fields"></a>drop-fields.fields
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
