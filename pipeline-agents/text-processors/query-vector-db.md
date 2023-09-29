@@ -41,6 +41,17 @@ Reference the "vector-database" datasource and submit a query using input messag
     output-field: "value.query-result"
 ```
 
+The query language depends on the underlying vector database. For example, Pinecone uses a JSON query language. See the [Pinecone Query Language docs](https://docs.pinecone.io/docs/query-language) for more information.
+
+Please refer to the documentation of the vector database you are using for more information on how to write queries:
+
+- [Astra DB](../../configuration-resources/data-storage/astra.md)
+- [Apache Cassandra](../../configuration-resources/data-storage/cassandra.md)
+- [Pinecone.io](../../configuration-resources/data-storage/pinecone.md)
+- [Milvus.io](../../configuration-resources/data-storage/milvus.md)
+- [JDBC](../../configuration-resources/data-storage/jdbc.md)
+
+
 ### **Topics**
 
 #### **Input**

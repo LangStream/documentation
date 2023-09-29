@@ -2,6 +2,8 @@
 
 Given a datasource specified in the application configuration, this agent enables submitting queries to that source and outputting the results.
 
+This is very similar to the [query-vector-db](query-vector-db.md) agent, but it is not limited to vector databases.
+
 ### Example
 
 Install PostgreSQL in a local minikube cluster:

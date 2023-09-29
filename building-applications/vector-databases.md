@@ -8,7 +8,7 @@ Vector databases are typically used as part of retrieval augmented generation (R
 * Provide more accurate, up-to-date, and context-aware responses
 * Extend the knowledge base of the LLM
 
-LangStream makes it easy to build applications using the RAG pattern. It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/)
+LangStream makes it easy to build applications using the [RAG pattern](./rag-pattern.md). It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/)
 and [Apache Cassandra](https://cassandra.apache.org).&#x20;
 
 When working with a vector database you will either be writing vector embeddings to a vector database or performing semantic similarity queries across the vectors in the database. Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) for writing to vector databases and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for querying.&#x20;
@@ -40,7 +40,7 @@ Let’s put this similarity search example in the context of a LangStream applic
 
 A LangStream application is a series of steps called a pipeline. At each step, an agent acts on messages streamed through the application.&#x20;
 
-Here’s how you would make a text similarity search application in LangStream. The full pipeline yaml is available [here](https://github.com/LangStream/langstream/blob/main/examples/applications/text-processing/extract-text.yaml).
+Here’s how you would make a text similarity search application in LangStream. The full pipeline yaml is available [here](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot).
 
 The first section names the pipeline and declares a “chunks-topic” Kafka topic for message transport into the pipeline.
 
@@ -172,8 +172,8 @@ Now, all the information from your PDFs is embedded in a vector database. Try se
 
 ### What’s next?
 
-Do you have a bunch of PDFs lying around, just waiting to be turned into useful, vectorized text?\
-This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/blob/main/examples/applications/text-processing/extract-text.yaml), and running it on your own is no sweat.&#x20;
+Do you have a website lying around just waiting to be turned into useful, vectorized text?\
+This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.&#x20;
 
 
 
