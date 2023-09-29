@@ -10,7 +10,7 @@ here <a href="#my-anchor">ai-chat-completions</a> <a href="#drop-fields">ai-chat
 
 | ID | Name | Description |
 | --- | --- | --- |
-| [ai-chat-completions](#my-anchor) |  |  |
+| ## [ai-chat-completions](#my-anchor) |  |  |
 | [ai-text-completions](#ai-text-completions) |  |  |
 | [cast](#cast) |  |  |
 | [composite-agent](#composite-agent) |  |  |
