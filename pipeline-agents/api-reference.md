@@ -1,46 +1,38 @@
 # API Reference
 
-## [ai-chat-completions](#my-anchor)
-
-<h3><a href="#my-anchor">ai-chat-completions</a></h3>
-
-<p>
-here <a href="#my-anchor">ai-chat-completions</a> <a href="#drop-fields">ai-chat-completions</a>.</p>
-
-
 ## Agents
 
 | ID | Name | Description |
 | --- | --- | --- |
-| <h3><a href="#my-anchor">ai-chat-completions</a></h3> |  |  |
-| [ai-text-completions](#ai-text-completions) |  |  |
-| [cast](#cast) |  |  |
-| [composite-agent](#composite-agent) |  |  |
-| [compute](#compute) |  |  |
-| [compute-ai-embeddings](#compute-ai-embeddings) |  |  |
-| [document-to-json](#document-to-json) |  |  |
-| [drop](#drop) |  |  |
-| [drop-fields](#drop-fields) | Drop fields from the input record |  |
-| [flatten](#flatten) |  |  |
-| [identity](#identity) |  |  |
-| [language-detector](#language-detector) |  |  |
-| [merge-key-value](#merge-key-value) |  |  |
-| [noop](#noop) |  |  |
-| [python-function](#python-function) |  |  |
-| [python-processor](#python-processor) |  |  |
-| [python-sink](#python-sink) |  |  |
-| [python-source](#python-source) |  |  |
-| [query](#query) |  |  |
-| [query-vector-db](../get-started.md) |  |  |
-| [s3-source](../pipeline-agents/api-reference.md#agents) | S3 Source | Reads data from S3 bucket |
-| [sink](../pipeline-agents/api-reference.md) |  |  |
-| [source](#source) |  |  |
-| [text-extractor](#text-extractor) |  |  |
-| [text-normaliser](#text-normaliser) |  |  |
-| [text-splitter](#text-splitter) |  |  |
-| [unwrap-key-value](#unwrap-key-value) |  |  |
-| [vector-db-sink](#vector-db-sink) |  |  |
-| [webcrawler-source](#webcrawler-source) |  |  |
+| <h3><a href="#ai-chat-completions">ai-chat-completions</a></h3>() |  |  |
+| <h3><a href="#ai-text-completions">ai-text-completions</a></h3>() |  |  |
+| <h3><a href="#cast">cast</a></h3>() |  |  |
+| <h3><a href="#composite-agent">composite-agent</a></h3>() |  |  |
+| <h3><a href="#compute">compute</a></h3>() |  |  |
+| <h3><a href="#compute-ai-embeddings">compute-ai-embeddings</a></h3>() |  |  |
+| <h3><a href="#document-to-json">document-to-json</a></h3>() |  |  |
+| <h3><a href="#drop">drop</a></h3>() |  |  |
+| <h3><a href="#drop-fields">drop-fields</a></h3>() | Drop fields from the input record |  |
+| <h3><a href="#flatten">flatten</a></h3>() |  |  |
+| <h3><a href="#identity">identity</a></h3>() |  |  |
+| <h3><a href="#language-detector">language-detector</a></h3>() |  |  |
+| <h3><a href="#merge-key-value">merge-key-value</a></h3>() |  |  |
+| <h3><a href="#noop">noop</a></h3>() |  |  |
+| <h3><a href="#python-function">python-function</a></h3>() |  |  |
+| <h3><a href="#python-processor">python-processor</a></h3>() |  |  |
+| <h3><a href="#python-sink">python-sink</a></h3>() |  |  |
+| <h3><a href="#python-source">python-source</a></h3>() |  |  |
+| <h3><a href="#query">query</a></h3>() |  |  |
+| <h3><a href="#query-vector-db">query-vector-db</a></h3>() |  |  |
+| <h3><a href="#s3-source">s3-source</a></h3>() | S3 Source | Reads data from S3 bucket |
+| <h3><a href="#sink">sink</a></h3>() |  |  |
+| <h3><a href="#source">source</a></h3>() |  |  |
+| <h3><a href="#text-extractor">text-extractor</a></h3>() |  |  |
+| <h3><a href="#text-normaliser">text-normaliser</a></h3>() |  |  |
+| <h3><a href="#text-splitter">text-splitter</a></h3>() |  |  |
+| <h3><a href="#unwrap-key-value">unwrap-key-value</a></h3>() |  |  |
+| <h3><a href="#vector-db-sink">vector-db-sink</a></h3>() |  |  |
+| <h3><a href="#webcrawler-source">webcrawler-source</a></h3>() |  |  |
 
 
 ### drop
@@ -56,19 +48,19 @@ here <a href="#my-anchor">ai-chat-completions</a> <a href="#drop-fields">ai-chat
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | composable | Whether this step can be composed with other steps. | boolean |  | true |
-| fields | Fields to drop from the input record. | array of [object](#drop-fields.fields) | ✓ |  |
+| fields | Fields to drop from the input record. | <h3><a href="#drop-fields.fields">array of object</a></h3> | ✓ |  |
 | part | Part to drop. (value or key) | string |  |  |
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-#### <a name="drop-fields"></a>drop-fields.fields
+#### <a name="drop-fields.fields"></a>drop-fields.fields
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | inner-composable | Whether this step can be composed with other steps. | boolean |  | true |
 
 
-### merge-key-value {#my-anchor}
+### merge-key-value
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |

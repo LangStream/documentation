@@ -2,7 +2,7 @@ import json
 import argparse
 
 
-def escape_markdown(text):
+def escape_markdown(text, link = None):
     if type(text) == bool:
         if text:
             return "✓"
@@ -11,7 +11,11 @@ def escape_markdown(text):
     if not text:
         return ''
     text = str(text)
-    return text.replace('|', '\|').replace('\n', '<br>')
+    text = text.replace('|', '\|').replace('\n', '<br>')
+    if link:
+        return f"<h3><a href=\"{link}\">{text}</a></h3>"
+    return text
+    
 
 
 def generate_agent_table(agent_name, properties, is_nested=False):
@@ -26,15 +30,16 @@ def generate_agent_table(agent_name, properties, is_nested=False):
     if properties:
         for key, value in properties.items():
             prop_type = value.get('type', '')
+            link = ""
             if prop_type == "array":
                 items = value.get('items', {})
                 if items:
                     if items.get('type', '') == "object":
-                        link = f"{agent_name}.{key}"
-                        prop_type = f"array of [object](#{link})"
+                        link = f"#{agent_name}.{key}"
+                        prop_type = f"array of object"
                     else:
                         prop_type = f"array of {items.get('type', '')}"
-            table += f"| {escape_markdown(key)} | {escape_markdown(value.get('description', ''))} | {escape_markdown(prop_type)} | {escape_markdown(value.get('required', ''))} | {escape_markdown(value.get('defaultValue', ''))} |\n"
+            table += f"| {escape_markdown(key)} | {escape_markdown(value.get('description', ''))} | {escape_markdown(prop_type, link)} | {escape_markdown(value.get('required', ''))} | {escape_markdown(value.get('defaultValue', ''))} |\n"
 
     result.append(table)
 
@@ -63,7 +68,8 @@ def generate_agent_tables(input_file, output_file):
     markdown_content += "| --- | --- | --- |\n"
 
     for agent_name, agent_data in agents_data.items():
-        markdown_content += f"| [{escape_markdown(agent_name)}](#{agent_name}) | {escape_markdown(agent_data.get('name', ''))} | {escape_markdown(agent_data.get('description', ''))} |\n"
+        link = f"#{agent_name}"
+        markdown_content += f"| {escape_markdown(agent_name, link)}() | {escape_markdown(agent_data.get('name', ''))} | {escape_markdown(agent_data.get('description', ''))} |\n"
 
     for agent_name, agent_data in agents_data.items():
         if agent_data:
