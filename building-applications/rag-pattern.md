@@ -60,8 +60,8 @@ pipeline:
       embeddings-field: "record.embeddings_vector"
       algorithm: "MMR"
       lambda: 0.5
-      k1: 1.5
-      b: 0.7
+      k1: 1.52
+      b: 0.75
   - name: "ai-chat-completions"
     type: "ai-chat-completions"
 
