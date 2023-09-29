@@ -40,7 +40,7 @@ Let’s put this similarity search example in the context of a LangStream applic
 
 A LangStream application is a series of steps called a pipeline. At each step, an agent acts on messages streamed through the application.&#x20;
 
-Here’s how you would make a text similarity search application in LangStream. The full pipeline yaml is available [here](https://github.com/LangStream/langstream/blob/main/examples/applications/text-processing/extract-text.yaml).
+Here’s how you would make a text similarity search application in LangStream. The full pipeline yaml is available [here](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot).
 
 The first section names the pipeline and declares a “chunks-topic” Kafka topic for message transport into the pipeline.
 
@@ -172,8 +172,8 @@ Now, all the information from your PDFs is embedded in a vector database. Try se
 
 ### What’s next?
 
-Do you have a bunch of PDFs lying around, just waiting to be turned into useful, vectorized text?\
-This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/blob/main/examples/applications/text-processing/extract-text.yaml), and running it on your own is no sweat.&#x20;
+Do you have a website lying around, just waiting to be turned into useful, vectorized text?\
+This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.&#x20;
 
 
 

@@ -23,6 +23,8 @@
 
 ## Building Applications
 
+* [Vector Databases](building-applications/vector-databases.md)
+* [RAG pattern](building-applications/rag-pattern.md)
 * [Development Environment](building-applications/development-environment.md)
 * [YAML file preprocessing and templating](building-applications/yaml-templates.md)
 * [Development Workflow](building-applications/development-workflow.md)
@@ -35,7 +37,6 @@
 * [Secrets](building-applications/secrets.md)
 * [API Gateways](building-applications/api-gateways.md)
 * [Application Lifecycle](building-applications/application-lifecycle.md)
-* [Vector Databases](building-applications/vector-databases.md)
 * [Error Handling](building-applications/error-handling.md)
 * [Langstreamignore](building-applications/langstreamignore.md)
 
@@ -73,6 +74,7 @@
   * [language-detector](pipeline-agents/text-processors/language-detector.md)
   * [query](pipeline-agents/text-processors/query.md)
   * [query-vector-db](pipeline-agents/text-processors/query-vector-db.md)
+  * [re-rank](pipeline-agents/text-processors/rerank.md)
   * [text-normaliser](pipeline-agents/text-processors/text-normaliser.md)
   * [text-extractor](pipeline-agents/text-processors/text-extractor.md)
   * [text-splitter](pipeline-agents/text-processors/text-splitter.md)
