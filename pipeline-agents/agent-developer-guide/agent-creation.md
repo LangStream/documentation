@@ -208,7 +208,7 @@ If the writing cannot be done, an Exception shall be raised and the framework wi
 #### **Processor**
 
 If you are creating a processor agent, you need to implement the `process` method. 
-This method takes in a `Record` that was provided by the previous step in the pipeline and returns a list of `Record`s
+This method takes in a `Record` that was provided by the previous step in the pipeline and returns a list of `Record`s.
 It is called whenever data is available for processing.
 The process method can return a list of `Record`s for synchronous processing or a `concurrent.futures.Future` that completes with the list of `Record`s for successful asynchronous processing.
 
@@ -228,7 +228,7 @@ class MyProcessorAgent(Processor):
         return results
 ```
 
-Example with asynchronous result
+Example with asynchronous result:
 
 ```python
 from concurrent.futures import ThreadPoolExecutor, Future
