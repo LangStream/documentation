@@ -17,7 +17,7 @@ def escape_markdown(text):
 def generate_agent_table(agent_name, properties, is_nested=False):
     result = []
     if is_nested:
-        table = f"\n\n#### {agent_name}\n\n"
+        table = f"\n\n#### <a name=\"{agent_name}\"></a>{agent_name}\n\n"
     else:
         table = f"\n\n### {agent_name}\n\n"
     table += "| Key | Description | Type | Required | Default Value |\n"
