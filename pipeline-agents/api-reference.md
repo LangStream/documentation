@@ -4,7 +4,7 @@
 
 | ID | Name | Description |
 | --- | --- | --- |
-| [ai-chat-completions](#ai-chat-completions) |  |  |
+| [ai-chat-completions](#my-anchor) |  |  |
 | [ai-text-completions](#ai-text-completions) |  |  |
 | [cast](#cast) |  |  |
 | [composite-agent](#composite-agent) |  |  |
@@ -60,7 +60,7 @@
 | inner-composable | Whether this step can be composed with other steps. | boolean |  | true |
 
 
-### merge-key-value
+### merge-key-value {#my-anchor}
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
