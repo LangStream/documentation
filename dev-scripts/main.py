@@ -13,7 +13,7 @@ def escape_markdown(text, link = None):
     text = str(text)
     text = text.replace('|', '\|').replace('\n', '<br>')
     if link:
-        return f"<h3><a href=\"{link}\">{text}</a></h3>"
+        return f"<a href=\"{link}\">{text}</a>"
     return text
     
 
