@@ -29,7 +29,7 @@ pipeline:
     configuration:
       className: example.MyAgent
       value1: "some-config-value" # as string
-      value2: "{{ secrets.my-app.some-secret-value}}" # as a secret ref
+      value2: "${ secrets.my-app.some-secret-value}" # as a secret ref
 ```
 
 ### Testing and packaging the agent

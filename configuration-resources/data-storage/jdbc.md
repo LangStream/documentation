@@ -11,8 +11,8 @@ configuration:
         service: "jdbc"
         driverClass: "org.postgresql.Driver"
         url: "jdbc:postgresql://postgresql.default.svc.cluster.local:5432/"
-        user: "{{secrets.postgres.user}}"
-        password: "{{secrets.postgres.password}}"
+        user: "${secrets.postgres.user}"
+        password: "${secrets.postgres.password}"
   resources:
     - type: "datasource"
       name: "JdbcDatasource"

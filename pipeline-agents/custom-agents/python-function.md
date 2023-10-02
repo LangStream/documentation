@@ -76,7 +76,7 @@ The config object is a map that is built from the agent's pipeline.yaml:
   output: "output-topic" # optional
   configuration:
     className: embeddings.Embedding
-    openaiKey: "{{ secrets.open-ai.access-key }}"
+    openaiKey: "${ secrets.open-ai.access-key }"
 ```
 
 ### Topics

@@ -14,8 +14,8 @@ Example of reading from an S3 bucket, extracting the document text, splitting th
     bucketName: documents
     endpoint: "https://s3.eu-west-2.amazonaws.com" # aws s3
     #endpoint: "http://minio.minio-dev.svc.cluster.local:9000" # compatible s3
-    username: "{{ secrets.s3.username }}"
-    password: "{{ secrets.s3.password }}"
+    username: "${ secrets.s3.username }"
+    password: "${ secrets.s3.password }"
 ```
 
 Example aws S3 command to upload a local document to the bucket:

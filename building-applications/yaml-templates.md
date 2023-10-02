@@ -14,10 +14,6 @@ layout:
 
 #### Template variables in YAML files
 
-{% hint style="info" %}
-All the yaml files are processed through a [mustache template engine](https://mustache.github.io/). Therefore, you can reference values interchangeably between files. Refer to [mustache documentation](https://mustache.github.io/mustache.5.html) or [this example site](https://www.tsmean.com/articles/mustache/the-ultimate-mustache-tutorial/) to learn more about templating.
-{% endhint %}
-
 
 In the pipeline definion you can reference values from the instance and secrets files. For example, if you have a secret.yaml file with the following content:
 
@@ -49,9 +45,9 @@ instance:
     type: "kafka"
     configuration:
       admin:
-        bootstrap.servers: "{{{ secrets.kafka.bootstrap-servers }}}"
+        bootstrap.servers: "${ secrets.kafka.bootstrap-servers }"
         security.protocol: SASL_SSL
-        sasl.jaas.config: "org.apache.kafka.common.security.plain.PlainLoginModule required username='{{{ secrets.kafka.username }}}' password='{{{ secrets.kafka.password }}}';"
+        sasl.jaas.config: "org.apache.kafka.common.security.plain.PlainLoginModule required username='${ secrets.kafka.username }' password='${ secrets.kafka.password }';"
         sasl.mechanism: PLAIN
         session.timeout.ms: "45000"
 ```
@@ -63,14 +59,14 @@ This is a pipeline.yaml file:
 ```yaml
 name: "Write to AstraDB"
 topics:
-  - name: "{{{globals.topic-name}}}"
+  - name: "${globals.topic-name}"
     creation-mode: create-if-not-exists
 assets:
   - name: "documents-table"
     asset-type: "cassandra-table"
     creation-mode: create-if-not-exists
     config:
-      table-name: "{{{globals.table-name}}}"
+      table-name: "${globals.table-name}"
       keyspace: "documents"
       datasource: "AstraDatasource"
       .......
@@ -80,7 +76,7 @@ pipeline:
     input: "chunks-topic"
     configuration:
       datasource: "AstraDatasource"
-      table-name: "{{{globals.table-name}}}"
+      table-name: "${globals.table-name}"
       ....
 ```
 
@@ -93,42 +89,31 @@ configuration:
   - type: "open-ai-configuration"
     name: "OpenAI Azure configuration"
     configuration:
-      url: "{{{ secrets.open-ai.url }}}"
-      access-key: "{{{ secrets.open-ai.access-key }}}"
-      provider: "{{{ secrets.open-ai.provider }}}"
+      url: "${ secrets.open-ai.url }"
+      access-key: "${ secrets.open-ai.access-key }"
+      provider: "${ secrets.open-ai.provider }"
   - type: "datasource"
     name: "AstraDatasource"
     configuration:
       service: "astra"
-      clientId: "{{{ secrets.astra.clientId }}}"
-      secret: "{{{ secrets.astra.secret }}}"
-      secureBundle: "{{{ secrets.astra.secureBundle }}}"
-      database: "{{{ secrets.astra.database }}}"
-      token: "{{{ secrets.astra.token }}}"
-      environment: "{{{ secrets.astra.environment }}}"
+      clientId: "${ secrets.astra.clientId }"
+      secret: "${ secrets.astra.secret }"
+      secureBundle: "${ secrets.astra.secureBundle }"
+      database: "${ secrets.astra.database }"
+      token: "${ secrets.astra.token }"
+      environment: "${ secrets.astra.environment }"
 ```
 
-{% hint style="warning" %}
-In the Mustache language the syntax with double curly brances implies that the value is escaped. If you want to use the value as is, without escaping it, you need to use triple curly braces.
-{% endhint %}
 
  For example, in the secrets.yaml file you can see the following syntax:
 
 ```yaml
-access-key: "{{{ secrets.open-ai.access-key }}}"
-```
+access-key: "${ secrets.open-ai.access-key }"
 
-The value of the access-key is not escaped. If you want to escape the value you can use the following syntax:
-
-```yaml
-access-key: "{{ secrets.open-ai.access-key }}"
-```
-but this may lead to unexpected results. So the suggestion is to always use the triple curly braces syntax.
-
-#### Nesting mustache template syntax
+#### Mustache templates in YAML files
 
 Some agents, like the **ai-chat-completions** agent, require a configuration that is a Mustache template.
-In this case you must add a percent character after the double (or triple) curly braces. For example:
+For example:
 
 ```yaml
 pipeline:
@@ -148,14 +133,12 @@ pipeline:
               Do not provide information that is not related to the LangStream project.
             
               Documents:
-              {{%# value.related_documents}}
-              {{{% text}}}
-              {{%/ value.related_documents}}
+              {{# value.related_documents}}
+              {{{ text}}}
+              {{/ value.related_documents}}
         - role: user
-          content: "{{{% value.question}}}"
+          content: "{{ value.question}}"
 ```
-
-If you don't add the percent character the Mustache syntax is processed by the preprocesing step that applies the secrets and global variables.
 
 
 #### Using ENV variables in secrets and instance files

@@ -43,7 +43,7 @@ pipeline:
   - name: "compute-embeddings"
     type: "compute-ai-embeddings"
     configuration:
-      model: "{{{secrets.open-ai.embeddings-model}}}" # This needs to match the name of the model deployment, not the base model
+      model: "${secrets.open-ai.embeddings-model}" # This needs to match the name of the model deployment, not the base model
       embeddings-field: "value.question_embeddings"
       text: "{{% value.question }}"
       flush-interval: 0

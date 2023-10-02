@@ -11,7 +11,7 @@ configuration:
     - type: "open-ai-configuration"
       name: "OpenAI"
       configuration:
-        access-key: "{{{ secrets.open-ai.access-key }}}"
+        access-key: "${ secrets.open-ai.access-key }"
 ```
 
 `secrets.yaml`
@@ -31,8 +31,8 @@ configuration:
     - type: "open-ai-configuration"
       name: "OpenAI Azure"
       configuration:
-        url: "{{{ secrets.azure-open-ai.url }}}"
-        access-key: "{{{ secrets.azure-open-ai.access-key }}}"
+        url: "${ secrets.azure-open-ai.url }"
+        access-key: "${ secrets.azure-open-ai.access-key }"
         provider: "azure"
 ```
 

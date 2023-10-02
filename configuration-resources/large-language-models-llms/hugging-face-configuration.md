@@ -10,7 +10,7 @@ configuration:
     - type: "hugging-face-configuration"
       name: "Hugging Face AI configuration"
       configuration:
-        access-key: "{{{ secrets.hugging-face.access-key }}}"
+        access-key: "${ secrets.hugging-face.access-key }"
 ```
 
 `secrets.yaml`
