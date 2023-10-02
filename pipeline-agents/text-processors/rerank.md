@@ -14,17 +14,16 @@ One of the most commonly used algorithms for re-ranking is Maximal Marginal Rele
 
 You can find some reference material about MMR here:
 
-\[Maximal Marginal Relevance to Re-rank results in Unsupervised KeyPhrase Extraction]\(https://medium.com/tech-that-works/maximal-marginal-relevance-to-rerank-results-in-unsupervised-keyphrase-extraction-22d95015c7c5)
+Maximal Marginal Relevance to Re-rank results in Unsupervised KeyPhrase Extraction
 
-\[The Use of MMR, Diversity-Based Reranking for Reordering Documents and Producing Summaries]\(https://www.cs.cmu.edu/\~jgc/publication/The\_Use\_MMR\_Diversity\_Based\_LTMIR\_1998.pdf)
+* [Maximal Marginal Relevance to Re-rank results in Unsupervised KeyPhrase Extraction](https://medium.com/tech-that-works/maximal-marginal-relevance-to-rerank-results-in-unsupervised-keyphrase-extraction-22d95015c7c5)
+* [The Use of MMR, Diversity-Based Reranking for Reordering Documents and Producing Summaries](https://www.cs.cmu.edu/\~jgc/publication/The\_Use\_MMR\_Diversity\_Based\_LTMIR\_1998.pdf) (PDF)
 
 The default implementation of MMR in LangStream is based on the CMU paper above. It uses the B25 algorithm to compute the similarity between the input text and the document text. It also uses the cosine similarity between the query vector and the document vector.
 
 The BM25 algorithm needs a couple of parameters, `k1` and `b`, that you can configure in the agent.
 
-You can find more information about BM25 here:
-
-\[BM25]\(https://en.wikipedia.org/wiki/Okapi\_BM25)
+You can find more information about BM25 [here](https://en.wikipedia.org/wiki/Okapi\_BM25).
 
 ### How to use the re-rank agent
 
