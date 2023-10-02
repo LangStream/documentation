@@ -513,10 +513,50 @@
         }
       }
     },
-    "python-function" : { },
-    "python-processor" : { },
-    "python-sink" : { },
-    "python-source" : { },
+    "python-function" : {
+      "name" : "Python custom processor",
+      "description" : "Run a your own Python processor.\nAll the configuration properties are available to in the class init method.",
+      "properties" : {
+        "className" : {
+          "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "python-processor" : {
+      "name" : "Python custom processor",
+      "description" : "Run a your own Python processor.\nAll the configuration properties are available to in the class init method.",
+      "properties" : {
+        "className" : {
+          "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "python-sink" : {
+      "name" : "Python custom sink",
+      "description" : "Run a your own Python sink.\nAll the configuration properties are available to in the class init method.",
+      "properties" : {
+        "className" : {
+          "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "python-source" : {
+      "name" : "Python custom source",
+      "description" : "Run a your own Python source.\nAll the configuration properties are available to in the class init method.",
+      "properties" : {
+        "className" : {
+          "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
     "query" : {
       "name" : "Query",
       "description" : "Perform a vector search or simple query against a datasource.",
@@ -853,6 +893,136 @@
         }
       }
     },
-    "webcrawler-source" : { }
+    "webcrawler-source" : {
+      "name" : "Web crawler source",
+      "description" : "Crawl a website and extract the content of the pages.",
+      "properties" : {
+        "access-key" : {
+          "description" : "Configuration for handling the agent status.\nAccess key for the S3 server.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "minioadmin"
+        },
+        "allowed-domains" : {
+          "description" : "Domains that the crawler is allowed to access.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "Domains that the crawler is allowed to access.",
+            "required" : false,
+            "type" : "string"
+          }
+        },
+        "bucketName" : {
+          "description" : "Configuration for handling the agent status.\nThe name of the bucket.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "langstream-source"
+        },
+        "endpoint" : {
+          "description" : "Configuration for handling the agent status.\nThe S3 endpoint.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "http://minio-endpoint.-not-set:9090"
+        },
+        "forbidden-paths" : {
+          "description" : "Paths that the crawler is not allowed to access.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "Paths that the crawler is not allowed to access.",
+            "required" : false,
+            "type" : "string"
+          }
+        },
+        "handle-cookies" : {
+          "description" : "Whether to handle cookies.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "handle-robots-file" : {
+          "description" : "Whether to scan the HTML documents to find links to other pages.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "http-timeout" : {
+          "description" : "Timeout for HTTP requests. (in milliseconds)",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "10000"
+        },
+        "max-depth" : {
+          "description" : "Maximum depth of the crawl.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "50"
+        },
+        "max-error-count" : {
+          "description" : "Maximum number of errors allowed before stopping.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "5"
+        },
+        "max-unflushed-pages" : {
+          "description" : "Maximum number of unflushed pages before the agent persists the crawl data.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "100"
+        },
+        "max-urls" : {
+          "description" : "Maximum number of URLs that can be crawled.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "1000"
+        },
+        "min-time-between-requests" : {
+          "description" : "Minimum time between two requests to the same domain. (in milliseconds)",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "500"
+        },
+        "region" : {
+          "description" : "Configuration for handling the agent status.\nRegion for the S3 server.",
+          "required" : false,
+          "type" : "string"
+        },
+        "reindex-interval-seconds" : {
+          "description" : "Time interval between reindexing of the pages.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "86400"
+        },
+        "scan-html-documents" : {
+          "description" : "Whether to scan HTML documents for links to other sites.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "secret-key" : {
+          "description" : "Configuration for handling the agent status.\nSecret key for the S3 server.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "minioadmin"
+        },
+        "seed-urls" : {
+          "description" : "The starting URLs for the crawl.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "The starting URLs for the crawl.",
+            "required" : false,
+            "type" : "string"
+          }
+        },
+        "user-agent" : {
+          "description" : "User agent to use for the requests.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "Mozilla/5.0 (compatible; LangStream.ai/0.1; +https://langstream.ai)"
+        }
+      }
+    }
   }
 }

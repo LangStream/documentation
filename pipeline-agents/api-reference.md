@@ -16,10 +16,10 @@
 | <a href="#identity">identity</a> | Identity function | Simple agent to move data from the input to the output. Could be used for testing or sample applications. |
 | <a href="#language-detector">language-detector</a> | Language detector | Detect the language of a message’s data and limit further processing based on language codes. |
 | <a href="#merge-key-value">merge-key-value</a> | Merge key-value format | Merges the fields of KeyValue records where both the key and value are structured types of the same schema type. Only AVRO and JSON are supported. |
-| <a href="#python-function">python-function</a> |  |  |
-| <a href="#python-processor">python-processor</a> |  |  |
-| <a href="#python-sink">python-sink</a> |  |  |
-| <a href="#python-source">python-source</a> |  |  |
+| <a href="#python-function">python-function</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available to in the class init method. |
+| <a href="#python-processor">python-processor</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available to in the class init method. |
+| <a href="#python-sink">python-sink</a> | Python custom sink | Run a your own Python sink.<br>All the configuration properties are available to in the class init method. |
+| <a href="#python-source">python-source</a> | Python custom source | Run a your own Python source.<br>All the configuration properties are available to in the class init method. |
 | <a href="#query">query</a> | Query | Perform a vector search or simple query against a datasource. |
 | <a href="#query-vector-db">query-vector-db</a> | Query a vector database | Query a vector database using Vector Search capabilities. |
 | <a href="#re-rank">re-rank</a> | Re-rank | Agent for re-ranking documents based on a query. |
@@ -31,7 +31,7 @@
 | <a href="#text-splitter">text-splitter</a> | Text splitter | Split message content in chunks. |
 | <a href="#unwrap-key-value">unwrap-key-value</a> | Unwrap key-value format | If the record value is in KeyValue format, extracts the KeyValue's key or value and make it the record value. |
 | <a href="#vector-db-sink">vector-db-sink</a> | Vector database sink | Store vectors in a vector database.<br>Configuration properties depends on the vector database implementation, specified by the "datasource" property. |
-| <a href="#webcrawler-source">webcrawler-source</a> |  |  |
+| <a href="#webcrawler-source">webcrawler-source</a> | Web crawler source | Crawl a website and extract the content of the pages. |
 
 
 ### <a name="ai-chat-completions"></a>ai-chat-completions
@@ -194,6 +194,34 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
+### <a name="python-function"></a>python-function
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
+
+
+### <a name="python-processor"></a>python-processor
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
+
+
+### <a name="python-sink"></a>python-sink
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
+
+
+### <a name="python-source"></a>python-source
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
+
+
 ### <a name="query"></a>query
 
 | Key | Description | Type | Required | Default Value |
@@ -304,3 +332,28 @@
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | datasource | The defined datasource ID to use to store the vectors. | string | ✓ |  |
+
+
+### <a name="webcrawler-source"></a>webcrawler-source
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| access-key | Configuration for handling the agent status.<br>Access key for the S3 server. | string |  | minioadmin |
+| allowed-domains | Domains that the crawler is allowed to access. | array of string |  |  |
+| bucketName | Configuration for handling the agent status.<br>The name of the bucket. | string |  | langstream-source |
+| endpoint | Configuration for handling the agent status.<br>The S3 endpoint. | string |  | http://minio-endpoint.-not-set:9090 |
+| forbidden-paths | Paths that the crawler is not allowed to access. | array of string |  |  |
+| handle-cookies | Whether to handle cookies. | boolean |  | true |
+| handle-robots-file | Whether to scan the HTML documents to find links to other pages. | boolean |  | true |
+| http-timeout | Timeout for HTTP requests. (in milliseconds) | integer |  | 10000 |
+| max-depth | Maximum depth of the crawl. | integer |  | 50 |
+| max-error-count | Maximum number of errors allowed before stopping. | integer |  | 5 |
+| max-unflushed-pages | Maximum number of unflushed pages before the agent persists the crawl data. | integer |  | 100 |
+| max-urls | Maximum number of URLs that can be crawled. | integer |  | 1000 |
+| min-time-between-requests | Minimum time between two requests to the same domain. (in milliseconds) | integer |  | 500 |
+| region | Configuration for handling the agent status.<br>Region for the S3 server. | string |  |  |
+| reindex-interval-seconds | Time interval between reindexing of the pages. | integer |  | 86400 |
+| scan-html-documents | Whether to scan HTML documents for links to other sites. | boolean |  | true |
+| secret-key | Configuration for handling the agent status.<br>Secret key for the S3 server. | string |  | minioadmin |
+| seed-urls | The starting URLs for the crawl. | array of string |  |  |
+| user-agent | User agent to use for the requests. | string |  | Mozilla/5.0 (compatible; LangStream.ai/0.1; +https://langstream.ai) |
