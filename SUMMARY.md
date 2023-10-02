@@ -2,7 +2,7 @@
 
 * [LangStream Documentation](README.md)
 * [❤ Langstream.ai](https://langstream.ai)
-* [![Github logo](./github-mark.svg) LangStream GitHub Repo](https://github.com/LangStream/langstream)
+* [![Github logo](./github-mark.png) LangStream GitHub Repo](https://github.com/LangStream/langstream)
 
 ## about
 
