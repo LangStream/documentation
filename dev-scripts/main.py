@@ -13,7 +13,7 @@ def escape_markdown(text, link = None):
     text = str(text)
     text = text.replace('|', '\|').replace('\n', '<br>')
     if link:
-        return f"<h3><a href=\"{link}\">{text}</a></h3>"
+        return f"<a href=\"{link}\">{text}</a>"
     return text
     
 
@@ -23,7 +23,8 @@ def generate_agent_table(agent_name, properties, is_nested=False):
     if is_nested:
         table = f"\n\n#### <a name=\"{agent_name}\"></a>{agent_name}\n\n"
     else:
-        table = f"\n\n### {agent_name}\n\n"
+        table = f"\n\n### <a name=\"{agent_name}\"></a>{agent_name}\n\n"
+
     table += "| Key | Description | Type | Required | Default Value |\n"
     table += "| --- | --- | --- | --- | --- |\n"
 
@@ -69,7 +70,7 @@ def generate_agent_tables(input_file, output_file):
 
     for agent_name, agent_data in agents_data.items():
         link = f"#{agent_name}"
-        markdown_content += f"| {escape_markdown(agent_name, link)}() | {escape_markdown(agent_data.get('name', ''))} | {escape_markdown(agent_data.get('description', ''))} |\n"
+        markdown_content += f"| {escape_markdown(agent_name, link)} | {escape_markdown(agent_data.get('name', ''))} | {escape_markdown(agent_data.get('description', ''))} |\n"
 
     for agent_name, agent_data in agents_data.items():
         if agent_data:
