@@ -4,11 +4,9 @@ When you implement the RAG (Retrieval Agumented Generation) pattern you need to 
 
 The results from the Vector Database are a list of documents, and each document is a text with a vector of floats.
 
-Usually when you want to retrieve the top N documents, you filter the results using a query, but you can still get documents that are not relevant to the input text using this method.
-This is because the typical Vector Database query is based on the cosine similarity between the input vector and the document vectors.
+Usually when you want to retrieve the top N documents, you filter the results using a query, but you can still get documents that are not relevant to the input text using this method. This is because the typical Vector Database query is based on the cosine similarity between the input vector and the document vectors.
 
-The Re-ranking agent allows you to further filter the documents with additional processing to validate that the document is relevant to the input text
-and to keep only the most relevant documents.
+The Re-ranking agent allows you to further filter the documents with additional processing to validate that the document is relevant to the input text and to keep only the most relevant documents.
 
 The room in the prompt is usually limited, so you want to use as few documents as possible while also keeping the most relevant ones.
 
@@ -16,9 +14,9 @@ One of the most commonly used algorithms for re-ranking is Maximal Marginal Rele
 
 You can find some reference material about MMR here:
 
-https://medium.com/tech-that-works/maximal-marginal-relevance-to-rerank-results-in-unsupervised-keyphrase-extraction-22d95015c7c5
+\[Maximal Marginal Relevance to Re-rank results in Unsupervised KeyPhrase Extraction]\(https://medium.com/tech-that-works/maximal-marginal-relevance-to-rerank-results-in-unsupervised-keyphrase-extraction-22d95015c7c5)
 
-https://www.cs.cmu.edu/~jgc/publication/The_Use_MMR_Diversity_Based_LTMIR_1998.pdf
+\[The Use of MMR, Diversity-Based Reranking for Reordering Documents and Producing Summaries]\(https://www.cs.cmu.edu/\~jgc/publication/The\_Use\_MMR\_Diversity\_Based\_LTMIR\_1998.pdf)
 
 The default implementation of MMR in LangStream is based on the CMU paper above. It uses the B25 algorithm to compute the similarity between the input text and the document text. It also uses the cosine similarity between the query vector and the document vector.
 
@@ -26,8 +24,7 @@ The BM25 algorithm needs a couple of parameters, `k1` and `b`, that you can conf
 
 You can find more information about BM25 here:
 
-https://en.wikipedia.org/wiki/Okapi_BM25
-
+\[BM25]\(https://en.wikipedia.org/wiki/Okapi\_BM25)
 
 ### How to use the re-rank agent
 
@@ -85,20 +82,4 @@ pipeline:
 
 ### **Configuration**
 
-<table><thead><tr><th width="155.33333333333331">Label</th><th width="115">Type</th><th>Description</th></tr></thead><tbody>
-<tr><td>max</td><td>integer</td><td>Maximum number of documents to keep.</td></tr>
-<tr><td>field</td><td>string</td><td>Reference to the field that contains the documents to sort (for instance `value.query_results``)</td></tr>
-<tr><td>output-field</td><td>string</td><td>Reference to the field that will contain the sorted documents (for instance `value.sorted_results``). You can also use same value as the field **parameter** in order to override it</td></tr>
-<tr><td>query-text</td><td>string</td><td>Reference to the field that contains the original query (i.e. the question from the user)</td></tr>
-<tr><td>query-embeddings</td><td>string</td><td>Reference to the field that contains the embeddings vector computed on the  query</td></tr>
-<tr><td>text-field</td><td>string</td><td>Reference to the field in each record that contains text of the document (for instance `record.text`)</td></tr>
-<tr><td>embeddings-field</td><td>string</td><td>Reference to the field in each record that contains the embeddings vector computed on the text (for instance `record.embeddings`)</td></tr>
-<tr><td>algoritm</td><td>string</td><td>This can be `MMR` to use the MMR algorithm or `none` to disable the ranking</td></tr>
-<tr><td>lamdba</td><td>number</td><td>This is the `lamda` parameter in the MMR algorithm</td></tr>
-<tr><td>b</td><td>number</td><td>This is the `b` parameter in the B25 algorithm</td></tr>
-<tr><td>k1</td><td>number</td><td>This is the `k1` parameter in the B25 algorithm</td></tr>
-
-
-</tbody></table>
-
-\
+<table><thead><tr><th width="155.33333333333331">Label</th><th width="115">Type</th><th>Description</th></tr></thead><tbody><tr><td>max</td><td>integer</td><td>Maximum number of documents to keep.</td></tr><tr><td>field</td><td>string</td><td>Reference to the field that contains the documents to sort (for instance `value.query_results``)</td></tr><tr><td>output-field</td><td>string</td><td>Reference to the field that will contain the sorted documents (for instance `value.sorted_results``). You can also use same value as the field **parameter** in order to override it</td></tr><tr><td>query-text</td><td>string</td><td>Reference to the field that contains the original query (i.e. the question from the user)</td></tr><tr><td>query-embeddings</td><td>string</td><td>Reference to the field that contains the embeddings vector computed on the query</td></tr><tr><td>text-field</td><td>string</td><td>Reference to the field in each record that contains text of the document (for instance `record.text`)</td></tr><tr><td>embeddings-field</td><td>string</td><td>Reference to the field in each record that contains the embeddings vector computed on the text (for instance `record.embeddings`)</td></tr><tr><td>algoritm</td><td>string</td><td>This can be `MMR` to use the MMR algorithm or `none` to disable the ranking</td></tr><tr><td>lamdba</td><td>number</td><td>This is the `lamda` parameter in the MMR algorithm</td></tr><tr><td>b</td><td>number</td><td>This is the `b` parameter in the B25 algorithm</td></tr><tr><td>k1</td><td>number</td><td>This is the `k1` parameter in the B25 algorithm</td></tr></tbody></table>
