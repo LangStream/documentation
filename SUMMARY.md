@@ -98,7 +98,8 @@
   * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
-
+* [API Reference](building-applications/api-reference.md)
+ 
 ## Examples
 
 * [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)
