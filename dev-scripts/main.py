@@ -28,7 +28,7 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
     if description:
         table += f"{escape_markdown(description)}\n\n"
 
-    table += "| Key | Description | Type | Required | Default Value |\n"
+    table += "|  | Description | Type | Required | Default Value |\n"
     table += "| --- | --- | --- | --- | --- |\n"
 
     if properties:
@@ -66,13 +66,16 @@ def generate_entity_tables(input_file, output_file):
 
     agents_data = data.get('agents', {})
     resources_data = data.get('resources', {})
+    assets_data = data.get('assets', {})
 
     markdown_content = "# API Reference\n\n"
     markdown_content += "- [Resources](#resources)\n"
     markdown_content += "- [Agents](#agents)\n"
+    markdown_content += "- [Assets](#assets)\n"
     markdown_content += "\n\n"
     markdown_content += gen_entity("Resources", resources_data)
     markdown_content += gen_entity("Agents", agents_data)
+    markdown_content += gen_entity("Assets", assets_data)
             
 
     # Save the Markdown content to a file
@@ -83,7 +86,7 @@ def generate_entity_tables(input_file, output_file):
 
 def gen_entity(title, data):
     markdown_content = f"## {title}\n\n"
-    markdown_content += "| ID | Name | Description |\n"
+    markdown_content += "| Type | Name | Description |\n"
     markdown_content += "| --- | --- | --- |\n"
 
     for key, value in data.items():

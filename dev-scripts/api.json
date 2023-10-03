@@ -530,7 +530,7 @@
     },
     "python-function" : {
       "name" : "Python custom processor",
-      "description" : "Run a your own Python processor.\nAll the configuration properties are available to in the class init method.",
+      "description" : "Run a your own Python processor.\nAll the configuration properties are available the class init method.",
       "properties" : {
         "className" : {
           "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
@@ -541,7 +541,7 @@
     },
     "python-processor" : {
       "name" : "Python custom processor",
-      "description" : "Run a your own Python processor.\nAll the configuration properties are available to in the class init method.",
+      "description" : "Run a your own Python processor.\nAll the configuration properties are available the class init method.",
       "properties" : {
         "className" : {
           "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
@@ -552,7 +552,7 @@
     },
     "python-sink" : {
       "name" : "Python custom sink",
-      "description" : "Run a your own Python sink.\nAll the configuration properties are available to in the class init method.",
+      "description" : "Run a your own Python sink.\nAll the configuration properties are available in the class init method.",
       "properties" : {
         "className" : {
           "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
@@ -563,7 +563,7 @@
     },
     "python-source" : {
       "name" : "Python custom source",
-      "description" : "Run a your own Python source.\nAll the configuration properties are available to in the class init method.",
+      "description" : "Run a your own Python source.\nAll the configuration properties are available in the class init method.",
       "properties" : {
         "className" : {
           "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
@@ -1072,14 +1072,14 @@
           "required" : false,
           "type" : "string"
         },
-        "token" : {
-          "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
-          "required" : false,
-          "type" : "string"
-        },
         "service" : {
           "description" : "Service type. Set to 'astra'",
           "required" : true,
+          "type" : "string"
+        },
+        "token" : {
+          "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
+          "required" : false,
           "type" : "string"
         }
       }
@@ -1106,17 +1106,18 @@
         },
         "port" : {
           "description" : "Cassandra port.",
-          "required" : true,
-          "type" : "integer"
-        },
-        "username" : {
-          "description" : "User username.",
           "required" : false,
-          "type" : "string"
+          "type" : "integer",
+          "defaultValue" : "9042"
         },
         "service" : {
           "description" : "Service type. Set to 'cassandra'",
           "required" : true,
+          "type" : "string"
+        },
+        "username" : {
+          "description" : "User username.",
+          "required" : false,
           "type" : "string"
         }
       }
@@ -1124,20 +1125,20 @@
     "datasource_jdbc" : {
       "type" : "datasource",
       "name" : "JDBC",
-      "description" : "Connect to any JDBC compatible database. The driver must be provided as dependency",
+      "description" : "Connect to any JDBC compatible database. The driver must be provided as dependency. All the extra configuration properties are passed as is to the JDBC driver.",
       "properties" : {
         "driverClass" : {
           "description" : "JDBC entry-point driver class.",
           "required" : true,
           "type" : "string"
         },
-        "url" : {
-          "description" : "JDBC connection url.",
+        "service" : {
+          "description" : "Service type. Set to 'jdbc'",
           "required" : true,
           "type" : "string"
         },
-        "service" : {
-          "description" : "Service type. Set to 'jdbc'",
+        "url" : {
+          "description" : "JDBC connection url.",
           "required" : true,
           "type" : "string"
         }
@@ -1227,14 +1228,14 @@
           "required" : false,
           "type" : "string"
         },
-        "token" : {
-          "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
-          "required" : false,
-          "type" : "string"
-        },
         "service" : {
           "description" : "Service type. Set to 'astra'",
           "required" : true,
+          "type" : "string"
+        },
+        "token" : {
+          "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
+          "required" : false,
           "type" : "string"
         }
       }
@@ -1261,17 +1262,18 @@
         },
         "port" : {
           "description" : "Cassandra port.",
-          "required" : true,
-          "type" : "integer"
-        },
-        "username" : {
-          "description" : "User username.",
           "required" : false,
-          "type" : "string"
+          "type" : "integer",
+          "defaultValue" : "9042"
         },
         "service" : {
           "description" : "Service type. Set to 'cassandra'",
           "required" : true,
+          "type" : "string"
+        },
+        "username" : {
+          "description" : "User username.",
+          "required" : false,
           "type" : "string"
         }
       }
@@ -1302,6 +1304,11 @@
           "type" : "integer",
           "defaultValue" : "19530"
         },
+        "service" : {
+          "description" : "Service type. Set to 'milvus'",
+          "required" : true,
+          "type" : "string"
+        },
         "token" : {
           "description" : "Token parameter for connecting to Zillis service.",
           "required" : false,
@@ -1312,11 +1319,6 @@
           "required" : false,
           "type" : "string",
           "defaultValue" : "default"
-        },
-        "service" : {
-          "description" : "Service type. Set to 'milvus'",
-          "required" : true,
-          "type" : "string"
         }
       }
     },
@@ -1395,5 +1397,102 @@
         }
       }
     }
+  },
+  "assets" : {
+    "astra-keyspace" : {
+      "name" : "Astra keyspace",
+      "description" : "Manage a DataStax Astra keyspace.",
+      "properties" : {
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        },
+        "keyspace" : {
+          "description" : "Name of the keyspace to create.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "cassandra-keyspace" : {
+      "name" : "Cassandra keyspace",
+      "description" : "Manage a Cassandra keyspace.",
+      "properties" : {
+        "create-statements" : {
+          "description" : "List of the statement to execute to create the keyspace. They will be executed every time the application is deployed or upgraded.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to create the keyspace. They will be executed every time the application is deployed or upgraded.",
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        },
+        "delete-statements" : {
+          "description" : "List of the statement to execute to cleanup the keyspace. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to cleanup the keyspace. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.",
+            "required" : false,
+            "type" : "string"
+          }
+        },
+        "keyspace" : {
+          "description" : "Name of the keyspace to create.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "cassandra-table" : {
+      "name" : "Cassandra table",
+      "description" : "Manage a Cassandra table in existing keyspace.",
+      "properties" : {
+        "create-statements" : {
+          "description" : "List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.",
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        },
+        "delete-statements" : {
+          "description" : "List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.",
+            "required" : false,
+            "type" : "string"
+          }
+        },
+        "keyspace" : {
+          "description" : "Name of the keyspace where the table is located.",
+          "required" : true,
+          "type" : "string"
+        },
+        "table-name" : {
+          "description" : "Name of the table.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "jdbc-table" : { },
+    "milvus-collection" : { }
   }
 }
