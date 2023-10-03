@@ -14,9 +14,9 @@ layout:
 
 # API Reference
 
-* [Agents](building-applications/api-reference/agents.md)
-* [Resources](building-applications/api-reference/resources.md)
-* [Assets](building-applications/api-reference/assets.md)
+* [Agents](agents.md)
+* [Resources](resources.md)
+* [Assets](assets.md)
 
 
 
