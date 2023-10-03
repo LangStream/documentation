@@ -1,4 +1,4 @@
-# API Reference
+# API Reference (Version 0.0.23-SNAPSHOT)
 
 - [Resources](#resources)
 - [Agents](#agents)
