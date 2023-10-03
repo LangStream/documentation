@@ -1,5 +1,5 @@
 {
-  "version" : "0.0.23-SNAPSHOT",
+  "version" : "0.0.23",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
