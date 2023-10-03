@@ -2,6 +2,8 @@
 description: Build and run Gen AI applications with ease
 ---
 
+<i class="fab fa-github"></i>
+
 # LangStream Documentation
 
 LangStream is a framework for building and running Generative AI (Gen AI) applications. It is designed to make it easy to build and run Gen AI applications that can process data in real-time. You can combine the power of Large Language Models (LLMs) like GPT-4 and vector databases like Astra DB and Pinecone with the agility of stream processing to create powerful Gen AI applications.
