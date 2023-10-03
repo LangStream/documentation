@@ -1,5 +1,6 @@
 import json
 import argparse
+import os
 
 
 def escape_markdown(text, link = None):
@@ -59,35 +60,22 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
 
     return result
 
-def generate_entity_tables(input_file, output_file):
-    # Read the JSON file
-    with open(input_file, 'r') as file:
-        data = json.load(file)
+def generate_entity_tables(title, version, data, output_file):
 
-    agents_data = data.get('agents', {})
-    resources_data = data.get('resources', {})
-    assets_data = data.get('assets', {})
-    version = data.get('version', '?')
-
-    markdown_content = "# API Reference\n\n"
+    markdown_content = f"# {title}\n\n"
     markdown_content += f"LangStream Version: **{version}**\n\n"
-    markdown_content += "- [Resources](#resources)\n"
-    markdown_content += "- [Agents](#agents)\n"
-    markdown_content += "- [Assets](#assets)\n"
-    markdown_content += "\n\n"
-    markdown_content += gen_entity("Resources", resources_data)
-    markdown_content += gen_entity("Agents", agents_data)
-    markdown_content += gen_entity("Assets", assets_data)
+    markdown_content += gen_entity("", data)
             
-
-    # Save the Markdown content to a file
     with open(output_file, 'w') as file:
         file.write(markdown_content)
 
     print(f"Markdown tables generated and saved to {output_file}")
 
 def gen_entity(title, data):
-    markdown_content = f"## {title}\n\n"
+    if title:
+        markdown_content = f"## {title}\n\n"
+    else: 
+        markdown_content = ""
     markdown_content += "| Type | Name | Description |\n"
     markdown_content += "| --- | --- | --- |\n"
 
@@ -109,11 +97,21 @@ def gen_entity(title, data):
 def main():
     parser = argparse.ArgumentParser(description='Generate Markdown tables from JSON data.')
     parser.add_argument('input_file', type=str, help='Path to the input JSON file')
-    parser.add_argument('output_file', type=str, help='Path to save the output Markdown file')
+    parser.add_argument('output_directory', type=str, help='Path to save the output Markdown file')
 
     args = parser.parse_args()
 
-    generate_entity_tables(args.input_file, args.output_file)
+    with open(args.input_file, 'r') as file:
+        data = json.load(file)
+
+    agents_data = data.get('agents', {})
+    resources_data = data.get('resources', {})
+    assets_data = data.get('assets', {})
+    version = data.get('version', '?')
+
+    generate_entity_tables("Agents", version, agents_data, os.path.join(args.output_directory, 'agents.md'))
+    generate_entity_tables("Resources", version, resources_data, os.path.join(args.output_directory, 'resources.md'))
+    generate_entity_tables("Assets", version, assets_data, os.path.join(args.output_directory, 'assets.md'))
 
 if __name__ == '__main__':
     main()
