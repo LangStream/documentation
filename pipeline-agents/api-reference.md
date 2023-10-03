@@ -51,7 +51,7 @@ Connect to Apache cassandra.
 
 ### <a name="datasource_jdbc"></a>JDBC (`datasource`)
 
-Connect to any JDBC compatible database. The driver must be provided as dependency.
+Connect to any JDBC compatible database. The driver must be provided as dependency
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -202,7 +202,7 @@ Sends the messages to the AI Service to compute chat completions. The result is 
 | `log-field` | Field to use to store the log of the completion results in the output topic. Use "value" to write the result without a structured schema. Use "value.<field>" to write the result in a specific field.<br>The log contains useful information for debugging the completion prompts. | string |  |  |
 | `logit-bias` | Parameter for the completion request. The parameters are passed to the AI Service as is. | object |  |  |
 | `max-tokens` | Parameter for the completion request. The parameters are passed to the AI Service as is. | integer |  |  |
-| `messages` | Messages to use for chat completions. You can use the Mustache syntax. | <a href="#Compute chat completions (`ai-chat-completions`).messages">array of object</a> | ✓ |  |
+| `messages` | Messages to use for chat completions. You can use the Mustache syntax. | <a href="#ai-chat-completions.messages">array of object</a> | ✓ |  |
 | `min-chunks-per-message` | Minimum number of chunks to send to the stream-to-topic topic. The chunks are sent as soon as they are available.<br>The chunks are sent in the order they are received from the AI Service.<br>To improve the TTFB (Time-To-First-Byte), the chunk size starts from 1 and doubles until it reaches the max-chunks-per-message value. | integer |  | 20 |
 | `model` | The model to use for chat completions. The model must be available in the AI Service. | string | ✓ |  |
 | `presence-penalty` | Parameter for the completion request. The parameters are passed to the AI Service as is. | number |  |  |
@@ -270,7 +270,7 @@ Computes new properties, values or field values based on an expression evaluated
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | `composable` | Whether this step can be composed with other steps. | boolean |  | true |
-| `fields` | An array of objects describing how to calculate the field values | <a href="#Compute values from the record (`compute`).fields">array of object</a> | ✓ |  |
+| `fields` | An array of objects describing how to calculate the field values | <a href="#compute.fields">array of object</a> | ✓ |  |
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 

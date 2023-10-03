@@ -39,7 +39,7 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
                 items = value.get('items', {})
                 if items:
                     if items.get('type', '') == "object":
-                        link = f"#{entity_name}.{key}"
+                        link = f"#{entity_ref}.{key}"
                         prop_type = f"array of object"
                     else:
                         prop_type = f"array of {items.get('type', '')}"
