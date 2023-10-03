@@ -2,7 +2,11 @@
 
 LangStream Version: **0.0.23**
 
-## Agents
+<a href="#ai-chat-completions">Compute chat completions</a>
+
+## Agents1
+
+<a href="#ai-chat-completions">Compute chat completions</a>
 
 | Name | Type |
 | --- | --- |

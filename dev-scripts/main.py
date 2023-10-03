@@ -84,7 +84,7 @@ def gen_entity(title, data):
            
         link = f"#{key}"
         name = value.get('name', '')
-        markdown_content += f"| {escape_markdown(name, link)} | {escape_markdown(label)} |\n"
+        markdown_content += f"| {escape_markdown(name, link)} | `{escape_markdown(label)}` |\n"
 
     for key, value in data.items():
         if value:
