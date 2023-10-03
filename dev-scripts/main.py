@@ -69,7 +69,8 @@ def generate_entity_tables(input_file, output_file):
     assets_data = data.get('assets', {})
     version = data.get('version', '?')
 
-    markdown_content = f"# API Reference (Version {version})\n\n"
+    markdown_content = "# API Reference\n\n"
+    markdown_content += f"LangStream Version: **{version}**\n\n"
     markdown_content += "- [Resources](#resources)\n"
     markdown_content += "- [Agents](#agents)\n"
     markdown_content += "- [Assets](#assets)\n"

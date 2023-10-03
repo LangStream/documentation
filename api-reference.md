@@ -1,4 +1,6 @@
-# API Reference (Version 0.0.23)
+# API Reference
+
+LangStream Version: **0.0.23**
 
 - [Resources](#resources)
 - [Agents](#agents)
