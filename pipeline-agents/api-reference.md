@@ -1,40 +1,171 @@
 # API Reference
 
+## Resources
+
+| ID | Name | Description |
+| --- | --- | --- |
+| <a href="#datasource (Astra)">datasource_astra</a> | Astra | Connect to DataStax Astra Database service. |
+| <a href="#datasource (Cassandra)">datasource_cassandra</a> | Cassandra | Connect to Apache cassandra. |
+| <a href="#datasource (JDBC)">datasource_jdbc</a> | JDBC | Connect to any JDBC compatible database. The driver must be provided as dependency |
+| <a href="#hugging-face-configuration (Hugging Face)">hugging-face-configuration</a> | Hugging Face | Connect to Hugging Face service. |
+| <a href="#open-ai-configuration (Open AI)">open-ai-configuration</a> | Open AI | Connect to OpenAI API or Azure OpenAI API. |
+| <a href="#datasource (Astra)">vector-database_astra</a> | Astra | Connect to DataStax Astra Database service. |
+| <a href="#datasource (Cassandra)">vector-database_cassandra</a> | Cassandra | Connect to Apache cassandra. |
+| <a href="#vector-database (Milvus)">vector-database_milvus</a> | Milvus | Connect to Milvus/Zillis service. |
+| <a href="#vector-database (Pinecone)">vector-database_pinecone</a> | Pinecone | Connect to Pinecone service. |
+| <a href="#vertex-configuration (Vertex AI)">vertex-configuration</a> | Vertex AI | Connect to VertexAI API. |
+
+
+### <a name="datasource (Astra)"></a>datasource
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| clientId | Astra Token clientId to use. | string | ✓ |  |
+| database | Astra Database name to connect to. If secureBundle is provided, this field is ignored. | string |  |  |
+| environment | Astra environment. | string |  | PROD |
+| secret | Astra Token secret to use. | string | ✓ |  |
+| secureBundle | Secure bundle of the database. Must be encoded in base64. | string |  |  |
+| token | Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored. | string |  |  |
+| service | Service type. Set to 'astra' | string | ✓ |  |
+
+
+### <a name="datasource (Cassandra)"></a>datasource
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| contact-points | Contact points of the cassandra cluster. | string | ✓ |  |
+| loadBalancing-localDc | Load balancing local datacenter. | string | ✓ |  |
+| password | User password. | string |  |  |
+| port | Cassandra port. | integer | ✓ |  |
+| username | User username. | string |  |  |
+| service | Service type. Set to 'cassandra' | string | ✓ |  |
+
+
+### <a name="datasource (JDBC)"></a>datasource
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| driverClass | JDBC entry-point driver class. | string | ✓ |  |
+| url | JDBC connection url. | string | ✓ |  |
+| service | Service type. Set to 'jdbc' | string | ✓ |  |
+
+
+### <a name="hugging-face-configuration (Hugging Face)"></a>hugging-face-configuration
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| access-key | The access key to use for "api" provider. | string |  |  |
+| api-url | The URL of the Hugging Face API. Relevant only if provider is "api". | string |  | https://api-inference.huggingface.co/pipeline/feature-extraction/ |
+| model-check-url | The model url to use. Relevant only if provider is "api". | string |  | https://huggingface.co/api/models/ |
+| provider | The provider to use. Either "local" or "api". | string |  | api |
+
+
+### <a name="open-ai-configuration (Open AI)"></a>open-ai-configuration
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| access-key | The access key to use. | string | ✓ |  |
+| provider | The provider to use. Either "openai" or "azure". | string |  | openai |
+| url | Url for Azure OpenAI API. Required only if provider is "azure". | string |  |  |
+
+
+### <a name="datasource (Astra)"></a>datasource
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| clientId | Astra Token clientId to use. | string | ✓ |  |
+| database | Astra Database name to connect to. If secureBundle is provided, this field is ignored. | string |  |  |
+| environment | Astra environment. | string |  | PROD |
+| secret | Astra Token secret to use. | string | ✓ |  |
+| secureBundle | Secure bundle of the database. Must be encoded in base64. | string |  |  |
+| token | Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored. | string |  |  |
+| service | Service type. Set to 'astra' | string | ✓ |  |
+
+
+### <a name="datasource (Cassandra)"></a>datasource
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| contact-points | Contact points of the cassandra cluster. | string | ✓ |  |
+| loadBalancing-localDc | Load balancing local datacenter. | string | ✓ |  |
+| password | User password. | string |  |  |
+| port | Cassandra port. | integer | ✓ |  |
+| username | User username. | string |  |  |
+| service | Service type. Set to 'cassandra' | string | ✓ |  |
+
+
+### <a name="vector-database (Milvus)"></a>vector-database
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| host | Host parameter for connecting to Milvus. | string |  |  |
+| index-name | Url parameter for connecting to Zillis service. | string |  |  |
+| password | Password parameter for connecting to Milvus. | string |  |  |
+| port | Port parameter for connecting to Milvus. | integer |  | 19530 |
+| token | Token parameter for connecting to Zillis service. | string |  |  |
+| user | User parameter for connecting to Milvus. | string |  | default |
+| service | Service type. Set to 'milvus' | string | ✓ |  |
+
+
+### <a name="vector-database (Pinecone)"></a>vector-database
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| api-key | Api key for connecting to the Pinecone service. | string | ✓ |  |
+| endpoint | Endpoint of the Pinecone service. | string |  |  |
+| environment | Environment parameter for connecting to the Pinecone service. | string | ✓ |  |
+| index-name | Index name parameter for connecting to the Pinecone service. | string | ✓ |  |
+| project-name | Project name parameter for connecting to the Pinecone service. | string | ✓ |  |
+| server-side-timeout-sec | Server side timeout parameter for connecting to the Pinecone service. | integer |  | 10 |
+| service | Service type. Set to 'pinecone' | string | ✓ |  |
+
+
+### <a name="vertex-configuration (Vertex AI)"></a>vertex-configuration
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| project | GCP project name for the Vertex API. | string | ✓ |  |
+| region | GCP region for the Vertex API. | string | ✓ |  |
+| serviceAccountJson | Specify service account credentials. Refer to the GCP documentation on how to download it | string |  |  |
+| token | Access key for the Vertex API. | string |  |  |
+| url | URL connection for the Vertex API. | string | ✓ |  |
+
+
 ## Agents
 
 | ID | Name | Description |
 | --- | --- | --- |
-| <a href="#ai-chat-completions">ai-chat-completions</a> | Compute chat completions | Sends the messages to the AI Service to compute chat completions. The result is stored in the specified field. |
-| <a href="#ai-text-completions">ai-text-completions</a> | Compute text completions | Sends the text to the AI Service to compute text completions. The result is stored in the specified field. |
-| <a href="#cast">cast</a> | Cast record to another schema | Transforms the data to a target compatible schema.<br>Some step operations like cast or compute involve conversions from a type to another. When this happens the rules are:<br>    - timestamp, date and time related object conversions assume UTC time zone if it is not explicit.<br>    - date and time related object conversions to/from STRING use the RFC3339 format.<br>    - timestamp related object conversions to/from LONG and DOUBLE are done using the number of milliseconds since EPOCH (1970-01-01T00:00:00Z).<br>    - date related object conversions to/from INTEGER, LONG, FLOAT and DOUBLE are done using the number of days since EPOCH (1970-01-01).<br>    - time related object conversions to/from INTEGER, LONG and DOUBLE are done using the number of milliseconds since midnight (00:00:00). |
-| <a href="#compute">compute</a> | Compute values from the record | Computes new properties, values or field values based on an expression evaluated at runtime. If the field already exists, it will be overwritten. |
-| <a href="#compute-ai-embeddings">compute-ai-embeddings</a> | Compute embeddings of the record | Compute embeddings of the record. The embeddings are stored in the record under a specific field. |
-| <a href="#document-to-json">document-to-json</a> | Document to JSON | Convert raw text document to JSON. The result will be a JSON object with the text content in the specified field. |
-| <a href="#drop">drop</a> | Drop the record | Drops the record from further processing. Use in conjunction with when to selectively drop records. |
-| <a href="#drop-fields">drop-fields</a> | Drop fields | Drops the record fields. |
-| <a href="#flatten">flatten</a> | Flatten record fields | Converts structured nested data into a new single-hierarchy-level structured data. The names of the new fields are built by concatenating the intermediate level field names. |
-| <a href="#identity">identity</a> | Identity function | Simple agent to move data from the input to the output. Could be used for testing or sample applications. |
-| <a href="#language-detector">language-detector</a> | Language detector | Detect the language of a message’s data and limit further processing based on language codes. |
-| <a href="#merge-key-value">merge-key-value</a> | Merge key-value format | Merges the fields of KeyValue records where both the key and value are structured types of the same schema type. Only AVRO and JSON are supported. |
-| <a href="#python-function">python-function</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available to in the class init method. |
-| <a href="#python-processor">python-processor</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available to in the class init method. |
-| <a href="#python-sink">python-sink</a> | Python custom sink | Run a your own Python sink.<br>All the configuration properties are available to in the class init method. |
-| <a href="#python-source">python-source</a> | Python custom source | Run a your own Python source.<br>All the configuration properties are available to in the class init method. |
-| <a href="#query">query</a> | Query | Perform a vector search or simple query against a datasource. |
-| <a href="#query-vector-db">query-vector-db</a> | Query a vector database | Query a vector database using Vector Search capabilities. |
-| <a href="#re-rank">re-rank</a> | Re-rank | Agent for re-ranking documents based on a query. |
-| <a href="#s3-source">s3-source</a> | S3 Source | Reads data from S3 bucket |
-| <a href="#sink">sink</a> | Kafka Connect Sink agent | Run any Kafka Connect Sink.<br>    All the configuration properties are passed to the Kafka Connect Sink. |
-| <a href="#source">source</a> | Kafka Connect Source agent | Run any Kafka Connect Source.<br>    All the configuration properties are passed to the Kafka Connect Source. |
-| <a href="#text-extractor">text-extractor</a> | Text extractor | Extracts text content from different document formats like PDF, JSON, XML, ODF, HTML and many others. |
-| <a href="#text-normaliser">text-normaliser</a> | Text normaliser | Apply normalisation to the text. |
-| <a href="#text-splitter">text-splitter</a> | Text splitter | Split message content in chunks. |
-| <a href="#unwrap-key-value">unwrap-key-value</a> | Unwrap key-value format | If the record value is in KeyValue format, extracts the KeyValue's key or value and make it the record value. |
-| <a href="#vector-db-sink">vector-db-sink</a> | Vector database sink | Store vectors in a vector database.<br>Configuration properties depends on the vector database implementation, specified by the "datasource" property. |
-| <a href="#webcrawler-source">webcrawler-source</a> | Web crawler source | Crawl a website and extract the content of the pages. |
+| <a href="#ai-chat-completions (Compute chat completions)">ai-chat-completions</a> | Compute chat completions | Sends the messages to the AI Service to compute chat completions. The result is stored in the specified field. |
+| <a href="#ai-text-completions (Compute text completions)">ai-text-completions</a> | Compute text completions | Sends the text to the AI Service to compute text completions. The result is stored in the specified field. |
+| <a href="#cast (Cast record to another schema)">cast</a> | Cast record to another schema | Transforms the data to a target compatible schema.<br>Some step operations like cast or compute involve conversions from a type to another. When this happens the rules are:<br>    - timestamp, date and time related object conversions assume UTC time zone if it is not explicit.<br>    - date and time related object conversions to/from STRING use the RFC3339 format.<br>    - timestamp related object conversions to/from LONG and DOUBLE are done using the number of milliseconds since EPOCH (1970-01-01T00:00:00Z).<br>    - date related object conversions to/from INTEGER, LONG, FLOAT and DOUBLE are done using the number of days since EPOCH (1970-01-01).<br>    - time related object conversions to/from INTEGER, LONG and DOUBLE are done using the number of milliseconds since midnight (00:00:00). |
+| <a href="#compute (Compute values from the record)">compute</a> | Compute values from the record | Computes new properties, values or field values based on an expression evaluated at runtime. If the field already exists, it will be overwritten. |
+| <a href="#compute-ai-embeddings (Compute embeddings of the record)">compute-ai-embeddings</a> | Compute embeddings of the record | Compute embeddings of the record. The embeddings are stored in the record under a specific field. |
+| <a href="#document-to-json (Document to JSON)">document-to-json</a> | Document to JSON | Convert raw text document to JSON. The result will be a JSON object with the text content in the specified field. |
+| <a href="#drop (Drop the record)">drop</a> | Drop the record | Drops the record from further processing. Use in conjunction with when to selectively drop records. |
+| <a href="#drop-fields (Drop fields)">drop-fields</a> | Drop fields | Drops the record fields. |
+| <a href="#flatten (Flatten record fields)">flatten</a> | Flatten record fields | Converts structured nested data into a new single-hierarchy-level structured data. The names of the new fields are built by concatenating the intermediate level field names. |
+| <a href="#identity (Identity function)">identity</a> | Identity function | Simple agent to move data from the input to the output. Could be used for testing or sample applications. |
+| <a href="#language-detector (Language detector)">language-detector</a> | Language detector | Detect the language of a message’s data and limit further processing based on language codes. |
+| <a href="#merge-key-value (Merge key-value format)">merge-key-value</a> | Merge key-value format | Merges the fields of KeyValue records where both the key and value are structured types of the same schema type. Only AVRO and JSON are supported. |
+| <a href="#python-function (Python custom processor)">python-function</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available to in the class init method. |
+| <a href="#python-processor (Python custom processor)">python-processor</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available to in the class init method. |
+| <a href="#python-sink (Python custom sink)">python-sink</a> | Python custom sink | Run a your own Python sink.<br>All the configuration properties are available to in the class init method. |
+| <a href="#python-source (Python custom source)">python-source</a> | Python custom source | Run a your own Python source.<br>All the configuration properties are available to in the class init method. |
+| <a href="#query (Query)">query</a> | Query | Perform a vector search or simple query against a datasource. |
+| <a href="#query-vector-db (Query a vector database)">query-vector-db</a> | Query a vector database | Query a vector database using Vector Search capabilities. |
+| <a href="#re-rank (Re-rank)">re-rank</a> | Re-rank | Agent for re-ranking documents based on a query. |
+| <a href="#s3-source (S3 Source)">s3-source</a> | S3 Source | Reads data from S3 bucket |
+| <a href="#sink (Kafka Connect Sink agent)">sink</a> | Kafka Connect Sink agent | Run any Kafka Connect Sink.<br>    All the configuration properties are passed to the Kafka Connect Sink. |
+| <a href="#source (Kafka Connect Source agent)">source</a> | Kafka Connect Source agent | Run any Kafka Connect Source.<br>    All the configuration properties are passed to the Kafka Connect Source. |
+| <a href="#text-extractor (Text extractor)">text-extractor</a> | Text extractor | Extracts text content from different document formats like PDF, JSON, XML, ODF, HTML and many others. |
+| <a href="#text-normaliser (Text normaliser)">text-normaliser</a> | Text normaliser | Apply normalisation to the text. |
+| <a href="#text-splitter (Text splitter)">text-splitter</a> | Text splitter | Split message content in chunks. |
+| <a href="#unwrap-key-value (Unwrap key-value format)">unwrap-key-value</a> | Unwrap key-value format | If the record value is in KeyValue format, extracts the KeyValue's key or value and make it the record value. |
+| <a href="#vector-db-sink (Vector database sink)">vector-db-sink</a> | Vector database sink | Store vectors in a vector database.<br>Configuration properties depends on the vector database implementation, specified by the "datasource" property. |
+| <a href="#webcrawler-source (Web crawler source)">webcrawler-source</a> | Web crawler source | Crawl a website and extract the content of the pages. |
 
 
-### <a name="ai-chat-completions"></a>ai-chat-completions
+### <a name="ai-chat-completions (Compute chat completions)"></a>ai-chat-completions
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -59,7 +190,7 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-#### <a name="ai-chat-completions.messages"></a>ai-chat-completions.messages
+#### <a name="ai-chat-completions (Compute chat completions).messages"></a>ai-chat-completions.messages
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -67,7 +198,7 @@
 | content | Content of the message. You can use the Mustache syntax. | string | ✓ |  |
 
 
-### <a name="ai-text-completions"></a>ai-text-completions
+### <a name="ai-text-completions (Compute text completions)"></a>ai-text-completions
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -92,7 +223,7 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="cast"></a>cast
+### <a name="cast (Cast record to another schema)"></a>cast
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -102,7 +233,7 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="compute"></a>compute
+### <a name="compute (Compute values from the record)"></a>compute
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -111,7 +242,7 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-#### <a name="compute.fields"></a>compute.fields
+#### <a name="compute (Compute values from the record).fields"></a>compute.fields
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -121,22 +252,25 @@
 | type | The type of the computed field. This<br> will translate to the schema type of the new field in the transformed message.<br> The following types are currently supported :STRING, INT8, INT16, INT32, INT64, FLOAT, DOUBLE, BOOLEAN, DATE, TIME, TIMESTAMP, LOCAL_DATE_TIME, LOCAL_TIME, LOCAL_DATE, INSTANT.<br>  The type field is not required for the message headers [destinationTopic, messageKey, properties.] and STRING will be used.<br>  For the value and key, if it is not provided, then the type will be inferred from the result of the expression evaluation. | string | ✓ |  |
 
 
-### <a name="compute-ai-embeddings"></a>compute-ai-embeddings
+### <a name="compute-ai-embeddings (Compute embeddings of the record)"></a>compute-ai-embeddings
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | ai-service | In case of multiple AI services configured, specify the id of the AI service to use. | string |  |  |
+| arguments | Additional arguments to pass to the AI Service. (HuggingFace only) | object |  |  |
 | batch-size | Batch size for submitting the embeddings requests. | integer |  | 10 |
 | composable | Whether this step can be composed with other steps. | boolean |  | true |
 | concurrency | Max number of concurrent requests to the AI Service. | integer |  | 4 |
 | embeddings-field | Field where to store the embeddings. | string | ✓ |  |
 | flush-interval | Flushing is disabled by default in order to avoid latency spikes.<br>You should enable this feature in the case of background processing. | integer |  | 0 |
 | model | Model to use for the embeddings. The model must be available in the configured AI Service. | string |  | text-embedding-ada-002 |
+| modelUrl | URL of the model to use. (HuggingFace only). The default is computed from the model: "djl://ai.djl.huggingface.pytorch{model}" | string |  |  |
+| options | Additional options to pass to the AI Service. (HuggingFace only) | object |  |  |
 | text | Text to create embeddings from. You can use Mustache syntax to compose multiple fields into a single text. Example:<br>text: "{{{ value.field1 }}} {{{ value.field2 }}}" | string | ✓ |  |
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="document-to-json"></a>document-to-json
+### <a name="document-to-json (Document to JSON)"></a>document-to-json
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -144,7 +278,7 @@
 | text-field | Field name to write the text content to. | string |  | text |
 
 
-### <a name="drop"></a>drop
+### <a name="drop (Drop the record)"></a>drop
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -152,7 +286,7 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="drop-fields"></a>drop-fields
+### <a name="drop-fields (Drop fields)"></a>drop-fields
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -162,7 +296,7 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="flatten"></a>flatten
+### <a name="flatten (Flatten record fields)"></a>flatten
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -172,13 +306,13 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="identity"></a>identity
+### <a name="identity (Identity function)"></a>identity
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 
 
-### <a name="language-detector"></a>language-detector
+### <a name="language-detector (Language detector)"></a>language-detector
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -186,7 +320,7 @@
 | property | The name of the message header to write the language code to. | string |  | language |
 
 
-### <a name="merge-key-value"></a>merge-key-value
+### <a name="merge-key-value (Merge key-value format)"></a>merge-key-value
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -194,48 +328,35 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="python-function"></a>python-function
+### <a name="python-function (Python custom processor)"></a>python-function
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="python-processor"></a>python-processor
+### <a name="python-processor (Python custom processor)"></a>python-processor
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="python-sink"></a>python-sink
+### <a name="python-sink (Python custom sink)"></a>python-sink
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="python-source"></a>python-source
+### <a name="python-source (Python custom source)"></a>python-source
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | className | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="query"></a>query
-
-| Key | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| composable | Whether this step can be composed with other steps. | boolean |  | true |
-| datasource | Reference to a datasource id configured in the application. | string | ✓ |  |
-| fields | Fields of the record to use as input parameters for the query. | array of string |  |  |
-| only-first | If true, only the first result of the query is stored in the output field. | boolean |  | false |
-| output-field | The name of the field to use to store the query result. | string | ✓ |  |
-| query | The query to use to extract the data. | string | ✓ |  |
-| when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
-
-
-### <a name="query-vector-db"></a>query-vector-db
+### <a name="query (Query)"></a>query
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -248,7 +369,20 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="re-rank"></a>re-rank
+### <a name="query-vector-db (Query a vector database)"></a>query-vector-db
+
+| Key | Description | Type | Required | Default Value |
+| --- | --- | --- | --- | --- |
+| composable | Whether this step can be composed with other steps. | boolean |  | true |
+| datasource | Reference to a datasource id configured in the application. | string | ✓ |  |
+| fields | Fields of the record to use as input parameters for the query. | array of string |  |  |
+| only-first | If true, only the first result of the query is stored in the output field. | boolean |  | false |
+| output-field | The name of the field to use to store the query result. | string | ✓ |  |
+| query | The query to use to extract the data. | string | ✓ |  |
+| when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
+
+
+### <a name="re-rank (Re-rank)"></a>re-rank
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -265,7 +399,7 @@
 | text-field | Result field for the text. | string |  |  |
 
 
-### <a name="s3-source"></a>s3-source
+### <a name="s3-source (S3 Source)"></a>s3-source
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -278,27 +412,27 @@
 | secret-key | Secret key for the S3 server. | string |  | minioadmin |
 
 
-### <a name="sink"></a>sink
+### <a name="sink (Kafka Connect Sink agent)"></a>sink
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | connector.class | Java main class for the Kafka Sink connector. | string | ✓ |  |
 
 
-### <a name="source"></a>source
+### <a name="source (Kafka Connect Source agent)"></a>source
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | connector.class | Java main class for the Kafka Source connector. | string | ✓ |  |
 
 
-### <a name="text-extractor"></a>text-extractor
+### <a name="text-extractor (Text extractor)"></a>text-extractor
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 
 
-### <a name="text-normaliser"></a>text-normaliser
+### <a name="text-normaliser (Text normaliser)"></a>text-normaliser
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -306,7 +440,7 @@
 | trim-spaces | Whether to trim spaces from the text. | boolean |  | true |
 
 
-### <a name="text-splitter"></a>text-splitter
+### <a name="text-splitter (Text splitter)"></a>text-splitter
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -318,7 +452,7 @@
 | splitter_type | Splitter implementation to use. Currently supported: RecursiveCharacterTextSplitter. | string |  | RecursiveCharacterTextSplitter |
 
 
-### <a name="unwrap-key-value"></a>unwrap-key-value
+### <a name="unwrap-key-value (Unwrap key-value format)"></a>unwrap-key-value
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -327,14 +461,14 @@
 | when | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="vector-db-sink"></a>vector-db-sink
+### <a name="vector-db-sink (Vector database sink)"></a>vector-db-sink
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
 | datasource | The defined datasource ID to use to store the vectors. | string | ✓ |  |
 
 
-### <a name="webcrawler-source"></a>webcrawler-source
+### <a name="webcrawler-source (Web crawler source)"></a>webcrawler-source
 
 | Key | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -357,3 +491,5 @@
 | secret-key | Configuration for handling the agent status.<br>Secret key for the S3 server. | string |  | minioadmin |
 | seed-urls | The starting URLs for the crawl. | array of string |  |  |
 | user-agent | User agent to use for the requests. | string |  | Mozilla/5.0 (compatible; LangStream.ai/0.1; +https://langstream.ai) |
+
+
