@@ -1062,6 +1062,11 @@
           "type" : "string",
           "defaultValue" : "PROD"
         },
+        "password" : {
+          "description" : "DEPRECATED: use secret instead.",
+          "required" : false,
+          "type" : "string"
+        },
         "secret" : {
           "description" : "Astra Token secret to use.",
           "required" : true,
@@ -1079,6 +1084,11 @@
         },
         "token" : {
           "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
+        "username" : {
+          "description" : "DEPRECATED: use clientId instead.",
           "required" : false,
           "type" : "string"
         }
@@ -1218,6 +1228,11 @@
           "type" : "string",
           "defaultValue" : "PROD"
         },
+        "password" : {
+          "description" : "DEPRECATED: use secret instead.",
+          "required" : false,
+          "type" : "string"
+        },
         "secret" : {
           "description" : "Astra Token secret to use.",
           "required" : true,
@@ -1235,6 +1250,11 @@
         },
         "token" : {
           "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
+        "username" : {
+          "description" : "DEPRECATED: use clientId instead.",
           "required" : false,
           "type" : "string"
         }
@@ -1492,7 +1512,72 @@
         }
       }
     },
-    "jdbc-table" : { },
-    "milvus-collection" : { }
+    "jdbc-table" : {
+      "name" : "JDBC table",
+      "description" : "Manage a JDBC table.",
+      "properties" : {
+        "create-statements" : {
+          "description" : "List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.",
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        },
+        "delete-statements" : {
+          "description" : "List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.",
+            "required" : false,
+            "type" : "string"
+          }
+        },
+        "table-name" : {
+          "description" : "Name of the table.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "milvus-collection" : {
+      "name" : "Milvus collection",
+      "description" : "Manage a Milvus collection.",
+      "properties" : {
+        "collection-name" : {
+          "description" : "Name of the collection.",
+          "required" : true,
+          "type" : "string"
+        },
+        "create-statements" : {
+          "description" : "List of the statement to execute to create the collection. They will be executed every time the application is deployed or upgraded.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to create the collection. They will be executed every time the application is deployed or upgraded.",
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "database-name" : {
+          "description" : "Name of the database where to create the collection.",
+          "required" : false,
+          "type" : "string"
+        },
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    }
   }
 }
