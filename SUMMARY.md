@@ -38,7 +38,11 @@
 * [API Gateways](building-applications/api-gateways.md)
 * [Application Lifecycle](building-applications/application-lifecycle.md)
 * [Error Handling](building-applications/error-handling.md)
-* [Langstreamignore](building-applications/langstreamignore.md)
+* [.langstreamignore](building-applications/langstreamignore.md)
+* [API Reference](building-applications/api-reference/README.md)
+  * [Agents](building-applications/api-reference/agents.md)
+  * [Resources](building-applications/api-reference/resources.md)
+  * [Assets](building-applications/api-reference/assets.md)
 
 ## LangStream CLI
 
@@ -94,8 +98,8 @@
   * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
-* [API Reference](pipeline-agents/api-reference.md)
 
+ 
 ## Examples
 
 * [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)
