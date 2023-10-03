@@ -98,7 +98,7 @@
   * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
-* [API Reference](building-applications/api-reference.md)
+* [API Reference test](pipeline-agents/api-reference-test.md)
  
 ## Examples
 
