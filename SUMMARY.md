@@ -39,7 +39,7 @@
 * [Application Lifecycle](building-applications/application-lifecycle.md)
 * [Error Handling](building-applications/error-handling.md)
 * [.langstreamignore](building-applications/langstreamignore.md)
-* [API Reference](api-reference.md)
+* [API Reference](building-applications/api-reference.md)
 
 ## LangStream CLI
 

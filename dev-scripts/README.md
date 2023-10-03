@@ -3,5 +3,5 @@
 ## Produce API reference
 
 1. Get the latest api.json from LangStream release
-2. Run `python3 dev-scripts/api.json api-reference.md`
+2. Run `python3 dev-scripts/api.json building-applications/api-reference.md`
 3. Commit
