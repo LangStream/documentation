@@ -76,14 +76,14 @@ def gen_entity(title, data):
         markdown_content = f"## {title}\n\n"
     else: 
         markdown_content = ""
-    markdown_content += "| Type | Name | Description |\n"
-    markdown_content += "| --- | --- | --- |\n"
+    markdown_content += "| Type | Name |\n"
+    markdown_content += "| --- | --- |\n"
 
     for key, value in data.items():
         label = value.get('type', key)
            
         link = f"#{key}"
-        markdown_content += f"| {escape_markdown(label, link)} | {escape_markdown(value.get('name', ''))} | {escape_markdown(value.get('description', ''))} |\n"
+        markdown_content += f"| {escape_markdown(label, link)} | {escape_markdown(value.get('name', ''))} |\n"
 
     for key, value in data.items():
         if value:

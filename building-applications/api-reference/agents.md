@@ -2,36 +2,36 @@
 
 LangStream Version: **0.0.23**
 
-| Type | Name | Description |
-| --- | --- | --- |
-| <a href="#ai-chat-completions">ai-chat-completions</a> | Compute chat completions | Sends the messages to the AI Service to compute chat completions. The result is stored in the specified field. |
-| <a href="#ai-text-completions">ai-text-completions</a> | Compute text completions | Sends the text to the AI Service to compute text completions. The result is stored in the specified field. |
-| <a href="#cast">cast</a> | Cast record to another schema | Transforms the data to a target compatible schema.<br>Some step operations like cast or compute involve conversions from a type to another. When this happens the rules are:<br>    - timestamp, date and time related object conversions assume UTC time zone if it is not explicit.<br>    - date and time related object conversions to/from STRING use the RFC3339 format.<br>    - timestamp related object conversions to/from LONG and DOUBLE are done using the number of milliseconds since EPOCH (1970-01-01T00:00:00Z).<br>    - date related object conversions to/from INTEGER, LONG, FLOAT and DOUBLE are done using the number of days since EPOCH (1970-01-01).<br>    - time related object conversions to/from INTEGER, LONG and DOUBLE are done using the number of milliseconds since midnight (00:00:00). |
-| <a href="#compute">compute</a> | Compute values from the record | Computes new properties, values or field values based on an expression evaluated at runtime. If the field already exists, it will be overwritten. |
-| <a href="#compute-ai-embeddings">compute-ai-embeddings</a> | Compute embeddings of the record | Compute embeddings of the record. The embeddings are stored in the record under a specific field. |
-| <a href="#document-to-json">document-to-json</a> | Document to JSON | Convert raw text document to JSON. The result will be a JSON object with the text content in the specified field. |
-| <a href="#drop">drop</a> | Drop the record | Drops the record from further processing. Use in conjunction with when to selectively drop records. |
-| <a href="#drop-fields">drop-fields</a> | Drop fields | Drops the record fields. |
-| <a href="#flatten">flatten</a> | Flatten record fields | Converts structured nested data into a new single-hierarchy-level structured data. The names of the new fields are built by concatenating the intermediate level field names. |
-| <a href="#identity">identity</a> | Identity function | Simple agent to move data from the input to the output. Could be used for testing or sample applications. |
-| <a href="#language-detector">language-detector</a> | Language detector | Detect the language of a message’s data and limit further processing based on language codes. |
-| <a href="#merge-key-value">merge-key-value</a> | Merge key-value format | Merges the fields of KeyValue records where both the key and value are structured types of the same schema type. Only AVRO and JSON are supported. |
-| <a href="#python-function">python-function</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available the class init method. |
-| <a href="#python-processor">python-processor</a> | Python custom processor | Run a your own Python processor.<br>All the configuration properties are available the class init method. |
-| <a href="#python-sink">python-sink</a> | Python custom sink | Run a your own Python sink.<br>All the configuration properties are available in the class init method. |
-| <a href="#python-source">python-source</a> | Python custom source | Run a your own Python source.<br>All the configuration properties are available in the class init method. |
-| <a href="#query">query</a> | Query | Perform a vector search or simple query against a datasource. |
-| <a href="#query-vector-db">query-vector-db</a> | Query a vector database | Query a vector database using Vector Search capabilities. |
-| <a href="#re-rank">re-rank</a> | Re-rank | Agent for re-ranking documents based on a query. |
-| <a href="#s3-source">s3-source</a> | S3 Source | Reads data from S3 bucket |
-| <a href="#sink">sink</a> | Kafka Connect Sink agent | Run any Kafka Connect Sink.<br>    All the configuration properties are passed to the Kafka Connect Sink. |
-| <a href="#source">source</a> | Kafka Connect Source agent | Run any Kafka Connect Source.<br>    All the configuration properties are passed to the Kafka Connect Source. |
-| <a href="#text-extractor">text-extractor</a> | Text extractor | Extracts text content from different document formats like PDF, JSON, XML, ODF, HTML and many others. |
-| <a href="#text-normaliser">text-normaliser</a> | Text normaliser | Apply normalisation to the text. |
-| <a href="#text-splitter">text-splitter</a> | Text splitter | Split message content in chunks. |
-| <a href="#unwrap-key-value">unwrap-key-value</a> | Unwrap key-value format | If the record value is in KeyValue format, extracts the KeyValue's key or value and make it the record value. |
-| <a href="#vector-db-sink">vector-db-sink</a> | Vector database sink | Store vectors in a vector database.<br>Configuration properties depends on the vector database implementation, specified by the "datasource" property. |
-| <a href="#webcrawler-source">webcrawler-source</a> | Web crawler source | Crawl a website and extract the content of the pages. |
+| Type | Name |
+| --- | --- |
+| <a href="#ai-chat-completions">ai-chat-completions</a> | Compute chat completions |
+| <a href="#ai-text-completions">ai-text-completions</a> | Compute text completions |
+| <a href="#cast">cast</a> | Cast record to another schema |
+| <a href="#compute">compute</a> | Compute values from the record |
+| <a href="#compute-ai-embeddings">compute-ai-embeddings</a> | Compute embeddings of the record |
+| <a href="#document-to-json">document-to-json</a> | Document to JSON |
+| <a href="#drop">drop</a> | Drop the record |
+| <a href="#drop-fields">drop-fields</a> | Drop fields |
+| <a href="#flatten">flatten</a> | Flatten record fields |
+| <a href="#identity">identity</a> | Identity function |
+| <a href="#language-detector">language-detector</a> | Language detector |
+| <a href="#merge-key-value">merge-key-value</a> | Merge key-value format |
+| <a href="#python-function">python-function</a> | Python custom processor |
+| <a href="#python-processor">python-processor</a> | Python custom processor |
+| <a href="#python-sink">python-sink</a> | Python custom sink |
+| <a href="#python-source">python-source</a> | Python custom source |
+| <a href="#query">query</a> | Query |
+| <a href="#query-vector-db">query-vector-db</a> | Query a vector database |
+| <a href="#re-rank">re-rank</a> | Re-rank |
+| <a href="#s3-source">s3-source</a> | S3 Source |
+| <a href="#sink">sink</a> | Kafka Connect Sink agent |
+| <a href="#source">source</a> | Kafka Connect Source agent |
+| <a href="#text-extractor">text-extractor</a> | Text extractor |
+| <a href="#text-normaliser">text-normaliser</a> | Text normaliser |
+| <a href="#text-splitter">text-splitter</a> | Text splitter |
+| <a href="#unwrap-key-value">unwrap-key-value</a> | Unwrap key-value format |
+| <a href="#vector-db-sink">vector-db-sink</a> | Vector database sink |
+| <a href="#webcrawler-source">webcrawler-source</a> | Web crawler source |
 
 
 ### <a name="ai-chat-completions"></a>Compute chat completions (`ai-chat-completions`)

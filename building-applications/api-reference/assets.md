@@ -2,13 +2,13 @@
 
 LangStream Version: **0.0.23**
 
-| Type | Name | Description |
-| --- | --- | --- |
-| <a href="#astra-keyspace">astra-keyspace</a> | Astra keyspace | Manage a DataStax Astra keyspace. |
-| <a href="#cassandra-keyspace">cassandra-keyspace</a> | Cassandra keyspace | Manage a Cassandra keyspace. |
-| <a href="#cassandra-table">cassandra-table</a> | Cassandra table | Manage a Cassandra table in existing keyspace. |
-| <a href="#jdbc-table">jdbc-table</a> | JDBC table | Manage a JDBC table. |
-| <a href="#milvus-collection">milvus-collection</a> | Milvus collection | Manage a Milvus collection. |
+| Type | Name |
+| --- | --- |
+| <a href="#astra-keyspace">astra-keyspace</a> | Astra keyspace |
+| <a href="#cassandra-keyspace">cassandra-keyspace</a> | Cassandra keyspace |
+| <a href="#cassandra-table">cassandra-table</a> | Cassandra table |
+| <a href="#jdbc-table">jdbc-table</a> | JDBC table |
+| <a href="#milvus-collection">milvus-collection</a> | Milvus collection |
 
 
 ### <a name="astra-keyspace"></a>Astra keyspace (`astra-keyspace`)
