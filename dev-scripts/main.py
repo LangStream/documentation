@@ -22,9 +22,9 @@ def escape_markdown(text, link = None):
 def generate_single_entity_table(entity_name, entity_ref, description, properties, is_nested=False):
     result = []
     if is_nested:
-        table = f"\n\n### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
+        table = f"\n\n#### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
     else:
-        table = f"\n\n## <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
+        table = f"\n\n### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
 
     if description:
         table += f"{escape_markdown(description)}\n\n"
@@ -64,7 +64,7 @@ def generate_entity_tables(title, version, data, output_file):
 
     markdown_content = f"# {title}\n\n"
     markdown_content += f"LangStream Version: **{version}**\n\n"
-    markdown_content += gen_entity("", data)
+    markdown_content += gen_entity(title, data)
             
     with open(output_file, 'w') as file:
         file.write(markdown_content)

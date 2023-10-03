@@ -39,7 +39,7 @@
 * [Application Lifecycle](building-applications/application-lifecycle.md)
 * [Error Handling](building-applications/error-handling.md)
 * [.langstreamignore](building-applications/langstreamignore.md)
-* API Reference
+* [API Reference](building-applications/api-reference/README.md)
   * [Agents](building-applications/api-reference/agents.md)
   * [Resources](building-applications/api-reference/resources.md)
   * [Assets](building-applications/api-reference/assets.md)
