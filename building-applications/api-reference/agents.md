@@ -2,39 +2,39 @@
 
 LangStream Version: **0.0.23**
 
-| Type | Name |
+| Name | Type |
 | --- | --- |
-| <a href="#ai-chat-completions">ai-chat-completions</a> | Compute chat completions |
-| <a href="#ai-text-completions">ai-text-completions</a> | Compute text completions |
-| <a href="#cast">cast</a> | Cast record to another schema |
-| <a href="#compute">compute</a> | Compute values from the record |
-| <a href="#compute-ai-embeddings">compute-ai-embeddings</a> | Compute embeddings of the record |
-| <a href="#document-to-json">document-to-json</a> | Document to JSON |
-| <a href="#drop">drop</a> | Drop the record |
-| <a href="#drop-fields">drop-fields</a> | Drop fields |
-| <a href="#flatten">flatten</a> | Flatten record fields |
-| <a href="#identity">identity</a> | Identity function |
-| <a href="#language-detector">language-detector</a> | Language detector |
-| <a href="#merge-key-value">merge-key-value</a> | Merge key-value format |
-| <a href="#python-function">python-function</a> | Python custom processor |
-| <a href="#python-processor">python-processor</a> | Python custom processor |
-| <a href="#python-sink">python-sink</a> | Python custom sink |
-| <a href="#python-source">python-source</a> | Python custom source |
-| <a href="#query">query</a> | Query |
-| <a href="#query-vector-db">query-vector-db</a> | Query a vector database |
-| <a href="#re-rank">re-rank</a> | Re-rank |
-| <a href="#s3-source">s3-source</a> | S3 Source |
-| <a href="#sink">sink</a> | Kafka Connect Sink agent |
-| <a href="#source">source</a> | Kafka Connect Source agent |
-| <a href="#text-extractor">text-extractor</a> | Text extractor |
-| <a href="#text-normaliser">text-normaliser</a> | Text normaliser |
-| <a href="#text-splitter">text-splitter</a> | Text splitter |
-| <a href="#unwrap-key-value">unwrap-key-value</a> | Unwrap key-value format |
-| <a href="#vector-db-sink">vector-db-sink</a> | Vector database sink |
-| <a href="#webcrawler-source">webcrawler-source</a> | Web crawler source |
+| <a href="#ai-chat-completions">Compute chat completions</a> | ai-chat-completions |
+| <a href="#ai-text-completions">Compute text completions</a> | ai-text-completions |
+| <a href="#cast">Cast record to another schema</a> | cast |
+| <a href="#compute">Compute values from the record</a> | compute |
+| <a href="#compute-ai-embeddings">Compute embeddings of the record</a> | compute-ai-embeddings |
+| <a href="#document-to-json">Document to JSON</a> | document-to-json |
+| <a href="#drop">Drop the record</a> | drop |
+| <a href="#drop-fields">Drop fields</a> | drop-fields |
+| <a href="#flatten">Flatten record fields</a> | flatten |
+| <a href="#identity">Identity function</a> | identity |
+| <a href="#language-detector">Language detector</a> | language-detector |
+| <a href="#merge-key-value">Merge key-value format</a> | merge-key-value |
+| <a href="#python-function">Python custom processor</a> | python-function |
+| <a href="#python-processor">Python custom processor</a> | python-processor |
+| <a href="#python-sink">Python custom sink</a> | python-sink |
+| <a href="#python-source">Python custom source</a> | python-source |
+| <a href="#query">Query</a> | query |
+| <a href="#query-vector-db">Query a vector database</a> | query-vector-db |
+| <a href="#re-rank">Re-rank</a> | re-rank |
+| <a href="#s3-source">S3 Source</a> | s3-source |
+| <a href="#sink">Kafka Connect Sink agent</a> | sink |
+| <a href="#source">Kafka Connect Source agent</a> | source |
+| <a href="#text-extractor">Text extractor</a> | text-extractor |
+| <a href="#text-normaliser">Text normaliser</a> | text-normaliser |
+| <a href="#text-splitter">Text splitter</a> | text-splitter |
+| <a href="#unwrap-key-value">Unwrap key-value format</a> | unwrap-key-value |
+| <a href="#vector-db-sink">Vector database sink</a> | vector-db-sink |
+| <a href="#webcrawler-source">Web crawler source</a> | webcrawler-source |
 
 
-### <a name="ai-chat-completions"></a>Compute chat completions (`ai-chat-completions`)
+## <a name="ai-chat-completions"></a>Compute chat completions (`ai-chat-completions`)
 
 Sends the messages to the AI Service to compute chat completions. The result is stored in the specified field.
 
@@ -61,7 +61,7 @@ Sends the messages to the AI Service to compute chat completions. The result is 
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-#### <a name="ai-chat-completions.messages"></a>Compute chat completions (`ai-chat-completions`).messages
+### <a name="ai-chat-completions.messages"></a>Compute chat completions (`ai-chat-completions`).messages
 
 |  | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -69,7 +69,7 @@ Sends the messages to the AI Service to compute chat completions. The result is 
 | `content` | Content of the message. You can use the Mustache syntax. | string | ✓ |  |
 
 
-### <a name="ai-text-completions"></a>Compute text completions (`ai-text-completions`)
+## <a name="ai-text-completions"></a>Compute text completions (`ai-text-completions`)
 
 Sends the text to the AI Service to compute text completions. The result is stored in the specified field.
 
@@ -96,7 +96,7 @@ Sends the text to the AI Service to compute text completions. The result is stor
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="cast"></a>Cast record to another schema (`cast`)
+## <a name="cast"></a>Cast record to another schema (`cast`)
 
 Transforms the data to a target compatible schema.<br>Some step operations like cast or compute involve conversions from a type to another. When this happens the rules are:<br>    - timestamp, date and time related object conversions assume UTC time zone if it is not explicit.<br>    - date and time related object conversions to/from STRING use the RFC3339 format.<br>    - timestamp related object conversions to/from LONG and DOUBLE are done using the number of milliseconds since EPOCH (1970-01-01T00:00:00Z).<br>    - date related object conversions to/from INTEGER, LONG, FLOAT and DOUBLE are done using the number of days since EPOCH (1970-01-01).<br>    - time related object conversions to/from INTEGER, LONG and DOUBLE are done using the number of milliseconds since midnight (00:00:00).
 
@@ -108,7 +108,7 @@ Transforms the data to a target compatible schema.<br>Some step operations like 
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="compute"></a>Compute values from the record (`compute`)
+## <a name="compute"></a>Compute values from the record (`compute`)
 
 Computes new properties, values or field values based on an expression evaluated at runtime. If the field already exists, it will be overwritten.
 
@@ -119,7 +119,7 @@ Computes new properties, values or field values based on an expression evaluated
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-#### <a name="compute.fields"></a>Compute values from the record (`compute`).fields
+### <a name="compute.fields"></a>Compute values from the record (`compute`).fields
 
 |  | Description | Type | Required | Default Value |
 | --- | --- | --- | --- | --- |
@@ -129,7 +129,7 @@ Computes new properties, values or field values based on an expression evaluated
 | `type` | The type of the computed field. This<br> will translate to the schema type of the new field in the transformed message.<br> The following types are currently supported :STRING, INT8, INT16, INT32, INT64, FLOAT, DOUBLE, BOOLEAN, DATE, TIME, TIMESTAMP, LOCAL_DATE_TIME, LOCAL_TIME, LOCAL_DATE, INSTANT.<br>  The type field is not required for the message headers [destinationTopic, messageKey, properties.] and STRING will be used.<br>  For the value and key, if it is not provided, then the type will be inferred from the result of the expression evaluation. | string | ✓ |  |
 
 
-### <a name="compute-ai-embeddings"></a>Compute embeddings of the record (`compute-ai-embeddings`)
+## <a name="compute-ai-embeddings"></a>Compute embeddings of the record (`compute-ai-embeddings`)
 
 Compute embeddings of the record. The embeddings are stored in the record under a specific field.
 
@@ -149,7 +149,7 @@ Compute embeddings of the record. The embeddings are stored in the record under 
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="document-to-json"></a>Document to JSON (`document-to-json`)
+## <a name="document-to-json"></a>Document to JSON (`document-to-json`)
 
 Convert raw text document to JSON. The result will be a JSON object with the text content in the specified field.
 
@@ -159,7 +159,7 @@ Convert raw text document to JSON. The result will be a JSON object with the tex
 | `text-field` | Field name to write the text content to. | string |  | text |
 
 
-### <a name="drop"></a>Drop the record (`drop`)
+## <a name="drop"></a>Drop the record (`drop`)
 
 Drops the record from further processing. Use in conjunction with when to selectively drop records.
 
@@ -169,7 +169,7 @@ Drops the record from further processing. Use in conjunction with when to select
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="drop-fields"></a>Drop fields (`drop-fields`)
+## <a name="drop-fields"></a>Drop fields (`drop-fields`)
 
 Drops the record fields.
 
@@ -181,7 +181,7 @@ Drops the record fields.
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="flatten"></a>Flatten record fields (`flatten`)
+## <a name="flatten"></a>Flatten record fields (`flatten`)
 
 Converts structured nested data into a new single-hierarchy-level structured data. The names of the new fields are built by concatenating the intermediate level field names.
 
@@ -193,7 +193,7 @@ Converts structured nested data into a new single-hierarchy-level structured dat
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="identity"></a>Identity function (`identity`)
+## <a name="identity"></a>Identity function (`identity`)
 
 Simple agent to move data from the input to the output. Could be used for testing or sample applications.
 
@@ -201,7 +201,7 @@ Simple agent to move data from the input to the output. Could be used for testin
 | --- | --- | --- | --- | --- |
 
 
-### <a name="language-detector"></a>Language detector (`language-detector`)
+## <a name="language-detector"></a>Language detector (`language-detector`)
 
 Detect the language of a message’s data and limit further processing based on language codes.
 
@@ -211,7 +211,7 @@ Detect the language of a message’s data and limit further processing based on 
 | `property` | The name of the message header to write the language code to. | string |  | language |
 
 
-### <a name="merge-key-value"></a>Merge key-value format (`merge-key-value`)
+## <a name="merge-key-value"></a>Merge key-value format (`merge-key-value`)
 
 Merges the fields of KeyValue records where both the key and value are structured types of the same schema type. Only AVRO and JSON are supported.
 
@@ -221,7 +221,7 @@ Merges the fields of KeyValue records where both the key and value are structure
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="python-function"></a>Python custom processor (`python-function`)
+## <a name="python-function"></a>Python custom processor (`python-function`)
 
 Run a your own Python processor.<br>All the configuration properties are available the class init method.
 
@@ -230,7 +230,7 @@ Run a your own Python processor.<br>All the configuration properties are availab
 | `className` | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="python-processor"></a>Python custom processor (`python-processor`)
+## <a name="python-processor"></a>Python custom processor (`python-processor`)
 
 Run a your own Python processor.<br>All the configuration properties are available the class init method.
 
@@ -239,7 +239,7 @@ Run a your own Python processor.<br>All the configuration properties are availab
 | `className` | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="python-sink"></a>Python custom sink (`python-sink`)
+## <a name="python-sink"></a>Python custom sink (`python-sink`)
 
 Run a your own Python sink.<br>All the configuration properties are available in the class init method.
 
@@ -248,7 +248,7 @@ Run a your own Python sink.<br>All the configuration properties are available in
 | `className` | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="python-source"></a>Python custom source (`python-source`)
+## <a name="python-source"></a>Python custom source (`python-source`)
 
 Run a your own Python source.<br>All the configuration properties are available in the class init method.
 
@@ -257,7 +257,7 @@ Run a your own Python source.<br>All the configuration properties are available 
 | `className` | Python class name to instantiate. This class must be present in the application's "python" files. | string | ✓ |  |
 
 
-### <a name="query"></a>Query (`query`)
+## <a name="query"></a>Query (`query`)
 
 Perform a vector search or simple query against a datasource.
 
@@ -272,7 +272,7 @@ Perform a vector search or simple query against a datasource.
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="query-vector-db"></a>Query a vector database (`query-vector-db`)
+## <a name="query-vector-db"></a>Query a vector database (`query-vector-db`)
 
 Query a vector database using Vector Search capabilities.
 
@@ -287,7 +287,7 @@ Query a vector database using Vector Search capabilities.
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="re-rank"></a>Re-rank (`re-rank`)
+## <a name="re-rank"></a>Re-rank (`re-rank`)
 
 Agent for re-ranking documents based on a query.
 
@@ -306,7 +306,7 @@ Agent for re-ranking documents based on a query.
 | `text-field` | Result field for the text. | string |  |  |
 
 
-### <a name="s3-source"></a>S3 Source (`s3-source`)
+## <a name="s3-source"></a>S3 Source (`s3-source`)
 
 Reads data from S3 bucket
 
@@ -321,7 +321,7 @@ Reads data from S3 bucket
 | `secret-key` | Secret key for the S3 server. | string |  | minioadmin |
 
 
-### <a name="sink"></a>Kafka Connect Sink agent (`sink`)
+## <a name="sink"></a>Kafka Connect Sink agent (`sink`)
 
 Run any Kafka Connect Sink.<br>    All the configuration properties are passed to the Kafka Connect Sink.
 
@@ -330,7 +330,7 @@ Run any Kafka Connect Sink.<br>    All the configuration properties are passed t
 | `connector.class` | Java main class for the Kafka Sink connector. | string | ✓ |  |
 
 
-### <a name="source"></a>Kafka Connect Source agent (`source`)
+## <a name="source"></a>Kafka Connect Source agent (`source`)
 
 Run any Kafka Connect Source.<br>    All the configuration properties are passed to the Kafka Connect Source.
 
@@ -339,7 +339,7 @@ Run any Kafka Connect Source.<br>    All the configuration properties are passed
 | `connector.class` | Java main class for the Kafka Source connector. | string | ✓ |  |
 
 
-### <a name="text-extractor"></a>Text extractor (`text-extractor`)
+## <a name="text-extractor"></a>Text extractor (`text-extractor`)
 
 Extracts text content from different document formats like PDF, JSON, XML, ODF, HTML and many others.
 
@@ -347,7 +347,7 @@ Extracts text content from different document formats like PDF, JSON, XML, ODF, 
 | --- | --- | --- | --- | --- |
 
 
-### <a name="text-normaliser"></a>Text normaliser (`text-normaliser`)
+## <a name="text-normaliser"></a>Text normaliser (`text-normaliser`)
 
 Apply normalisation to the text.
 
@@ -357,7 +357,7 @@ Apply normalisation to the text.
 | `trim-spaces` | Whether to trim spaces from the text. | boolean |  | true |
 
 
-### <a name="text-splitter"></a>Text splitter (`text-splitter`)
+## <a name="text-splitter"></a>Text splitter (`text-splitter`)
 
 Split message content in chunks.
 
@@ -371,7 +371,7 @@ Split message content in chunks.
 | `splitter_type` | Splitter implementation to use. Currently supported: RecursiveCharacterTextSplitter. | string |  | RecursiveCharacterTextSplitter |
 
 
-### <a name="unwrap-key-value"></a>Unwrap key-value format (`unwrap-key-value`)
+## <a name="unwrap-key-value"></a>Unwrap key-value format (`unwrap-key-value`)
 
 If the record value is in KeyValue format, extracts the KeyValue's key or value and make it the record value.
 
@@ -382,7 +382,7 @@ If the record value is in KeyValue format, extracts the KeyValue's key or value 
 | `when` | Execute the step only when the condition is met.<br>You can use the expression language to reference the message.<br>Example: when: "value.first == 'f1' && value.last.toUpperCase() == 'L1'" | string |  |  |
 
 
-### <a name="vector-db-sink"></a>Vector database sink (`vector-db-sink`)
+## <a name="vector-db-sink"></a>Vector database sink (`vector-db-sink`)
 
 Store vectors in a vector database.<br>Configuration properties depends on the vector database implementation, specified by the "datasource" property.
 
@@ -391,7 +391,7 @@ Store vectors in a vector database.<br>Configuration properties depends on the v
 | `datasource` | The defined datasource ID to use to store the vectors. | string | ✓ |  |
 
 
-### <a name="webcrawler-source"></a>Web crawler source (`webcrawler-source`)
+## <a name="webcrawler-source"></a>Web crawler source (`webcrawler-source`)
 
 Crawl a website and extract the content of the pages.
 

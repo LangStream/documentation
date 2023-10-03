@@ -2,16 +2,16 @@
 
 LangStream Version: **0.0.23**
 
-| Type | Name |
+| Name | Type |
 | --- | --- |
-| <a href="#astra-keyspace">astra-keyspace</a> | Astra keyspace |
-| <a href="#cassandra-keyspace">cassandra-keyspace</a> | Cassandra keyspace |
-| <a href="#cassandra-table">cassandra-table</a> | Cassandra table |
-| <a href="#jdbc-table">jdbc-table</a> | JDBC table |
-| <a href="#milvus-collection">milvus-collection</a> | Milvus collection |
+| <a href="#astra-keyspace">Astra keyspace</a> | astra-keyspace |
+| <a href="#cassandra-keyspace">Cassandra keyspace</a> | cassandra-keyspace |
+| <a href="#cassandra-table">Cassandra table</a> | cassandra-table |
+| <a href="#jdbc-table">JDBC table</a> | jdbc-table |
+| <a href="#milvus-collection">Milvus collection</a> | milvus-collection |
 
 
-### <a name="astra-keyspace"></a>Astra keyspace (`astra-keyspace`)
+## <a name="astra-keyspace"></a>Astra keyspace (`astra-keyspace`)
 
 Manage a DataStax Astra keyspace.
 
@@ -21,7 +21,7 @@ Manage a DataStax Astra keyspace.
 | `keyspace` | Name of the keyspace to create. | string | ✓ |  |
 
 
-### <a name="cassandra-keyspace"></a>Cassandra keyspace (`cassandra-keyspace`)
+## <a name="cassandra-keyspace"></a>Cassandra keyspace (`cassandra-keyspace`)
 
 Manage a Cassandra keyspace.
 
@@ -33,7 +33,7 @@ Manage a Cassandra keyspace.
 | `keyspace` | Name of the keyspace to create. | string | ✓ |  |
 
 
-### <a name="cassandra-table"></a>Cassandra table (`cassandra-table`)
+## <a name="cassandra-table"></a>Cassandra table (`cassandra-table`)
 
 Manage a Cassandra table in existing keyspace.
 
@@ -46,7 +46,7 @@ Manage a Cassandra table in existing keyspace.
 | `table-name` | Name of the table. | string | ✓ |  |
 
 
-### <a name="jdbc-table"></a>JDBC table (`jdbc-table`)
+## <a name="jdbc-table"></a>JDBC table (`jdbc-table`)
 
 Manage a JDBC table.
 
@@ -58,7 +58,7 @@ Manage a JDBC table.
 | `table-name` | Name of the table. | string | ✓ |  |
 
 
-### <a name="milvus-collection"></a>Milvus collection (`milvus-collection`)
+## <a name="milvus-collection"></a>Milvus collection (`milvus-collection`)
 
 Manage a Milvus collection.
 

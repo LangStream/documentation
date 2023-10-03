@@ -2,21 +2,21 @@
 
 LangStream Version: **0.0.23**
 
-| Type | Name |
+| Name | Type |
 | --- | --- |
-| <a href="#datasource_astra">datasource</a> | Astra |
-| <a href="#datasource_cassandra">datasource</a> | Cassandra |
-| <a href="#datasource_jdbc">datasource</a> | JDBC |
-| <a href="#hugging-face-configuration">hugging-face-configuration</a> | Hugging Face |
-| <a href="#open-ai-configuration">open-ai-configuration</a> | Open AI |
-| <a href="#vector-database_astra">datasource</a> | Astra |
-| <a href="#vector-database_cassandra">datasource</a> | Cassandra |
-| <a href="#vector-database_milvus">vector-database</a> | Milvus |
-| <a href="#vector-database_pinecone">vector-database</a> | Pinecone |
-| <a href="#vertex-configuration">vertex-configuration</a> | Vertex AI |
+| <a href="#datasource_astra">Astra</a> | datasource |
+| <a href="#datasource_cassandra">Cassandra</a> | datasource |
+| <a href="#datasource_jdbc">JDBC</a> | datasource |
+| <a href="#hugging-face-configuration">Hugging Face</a> | hugging-face-configuration |
+| <a href="#open-ai-configuration">Open AI</a> | open-ai-configuration |
+| <a href="#vector-database_astra">Astra</a> | datasource |
+| <a href="#vector-database_cassandra">Cassandra</a> | datasource |
+| <a href="#vector-database_milvus">Milvus</a> | vector-database |
+| <a href="#vector-database_pinecone">Pinecone</a> | vector-database |
+| <a href="#vertex-configuration">Vertex AI</a> | vertex-configuration |
 
 
-### <a name="datasource_astra"></a>Astra (`datasource`)
+## <a name="datasource_astra"></a>Astra (`datasource`)
 
 Connect to DataStax Astra Database service.
 
@@ -33,7 +33,7 @@ Connect to DataStax Astra Database service.
 | `username` | DEPRECATED: use clientId instead. | string |  |  |
 
 
-### <a name="datasource_cassandra"></a>Cassandra (`datasource`)
+## <a name="datasource_cassandra"></a>Cassandra (`datasource`)
 
 Connect to Apache cassandra.
 
@@ -47,7 +47,7 @@ Connect to Apache cassandra.
 | `username` | User username. | string |  |  |
 
 
-### <a name="datasource_jdbc"></a>JDBC (`datasource`)
+## <a name="datasource_jdbc"></a>JDBC (`datasource`)
 
 Connect to any JDBC compatible database. The driver must be provided as dependency. All the extra configuration properties are passed as is to the JDBC driver.
 
@@ -58,7 +58,7 @@ Connect to any JDBC compatible database. The driver must be provided as dependen
 | `url` | JDBC connection url. | string | ✓ |  |
 
 
-### <a name="hugging-face-configuration"></a>Hugging Face (`hugging-face-configuration`)
+## <a name="hugging-face-configuration"></a>Hugging Face (`hugging-face-configuration`)
 
 Connect to Hugging Face service.
 
@@ -70,7 +70,7 @@ Connect to Hugging Face service.
 | `provider` | The provider to use. Either "local" or "api". | string |  | api |
 
 
-### <a name="open-ai-configuration"></a>Open AI (`open-ai-configuration`)
+## <a name="open-ai-configuration"></a>Open AI (`open-ai-configuration`)
 
 Connect to OpenAI API or Azure OpenAI API.
 
@@ -81,7 +81,7 @@ Connect to OpenAI API or Azure OpenAI API.
 | `url` | Url for Azure OpenAI API. Required only if provider is "azure". | string |  |  |
 
 
-### <a name="vector-database_astra"></a>Astra (`datasource`)
+## <a name="vector-database_astra"></a>Astra (`datasource`)
 
 Connect to DataStax Astra Database service.
 
@@ -98,7 +98,7 @@ Connect to DataStax Astra Database service.
 | `username` | DEPRECATED: use clientId instead. | string |  |  |
 
 
-### <a name="vector-database_cassandra"></a>Cassandra (`datasource`)
+## <a name="vector-database_cassandra"></a>Cassandra (`datasource`)
 
 Connect to Apache cassandra.
 
@@ -112,7 +112,7 @@ Connect to Apache cassandra.
 | `username` | User username. | string |  |  |
 
 
-### <a name="vector-database_milvus"></a>Milvus (`vector-database`)
+## <a name="vector-database_milvus"></a>Milvus (`vector-database`)
 
 Connect to Milvus/Zillis service.
 
@@ -127,7 +127,7 @@ Connect to Milvus/Zillis service.
 | `user` | User parameter for connecting to Milvus. | string |  | default |
 
 
-### <a name="vector-database_pinecone"></a>Pinecone (`vector-database`)
+## <a name="vector-database_pinecone"></a>Pinecone (`vector-database`)
 
 Connect to Pinecone service.
 
@@ -142,7 +142,7 @@ Connect to Pinecone service.
 | `service` | Service type. Set to 'pinecone' | string | ✓ |  |
 
 
-### <a name="vertex-configuration"></a>Vertex AI (`vertex-configuration`)
+## <a name="vertex-configuration"></a>Vertex AI (`vertex-configuration`)
 
 Connect to VertexAI API.
 

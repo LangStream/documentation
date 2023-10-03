@@ -22,9 +22,9 @@ def escape_markdown(text, link = None):
 def generate_single_entity_table(entity_name, entity_ref, description, properties, is_nested=False):
     result = []
     if is_nested:
-        table = f"\n\n#### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
-    else:
         table = f"\n\n### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
+    else:
+        table = f"\n\n## <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
 
     if description:
         table += f"{escape_markdown(description)}\n\n"
@@ -76,14 +76,15 @@ def gen_entity(title, data):
         markdown_content = f"## {title}\n\n"
     else: 
         markdown_content = ""
-    markdown_content += "| Type | Name |\n"
+    markdown_content += "| Name | Type |\n"
     markdown_content += "| --- | --- |\n"
 
     for key, value in data.items():
         label = value.get('type', key)
            
         link = f"#{key}"
-        markdown_content += f"| {escape_markdown(label, link)} | {escape_markdown(value.get('name', ''))} |\n"
+        name = value.get('name', '')
+        markdown_content += f"| {escape_markdown(name, link)} | {escape_markdown(label)} |\n"
 
     for key, value in data.items():
         if value:
