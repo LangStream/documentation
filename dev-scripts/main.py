@@ -18,12 +18,15 @@ def escape_markdown(text, link = None):
     
 
 
-def generate_single_entity_table(entity_name, entity_ref, properties, is_nested=False):
+def generate_single_entity_table(entity_name, entity_ref, description, properties, is_nested=False):
     result = []
     if is_nested:
         table = f"\n\n#### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
     else:
         table = f"\n\n### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
+
+    if description:
+        table += f"{escape_markdown(description)}\n\n"
 
     table += "| Key | Description | Type | Required | Default Value |\n"
     table += "| --- | --- | --- | --- | --- |\n"
@@ -40,7 +43,7 @@ def generate_single_entity_table(entity_name, entity_ref, properties, is_nested=
                         prop_type = f"array of object"
                     else:
                         prop_type = f"array of {items.get('type', '')}"
-            table += f"| {escape_markdown(key)} | {escape_markdown(value.get('description', ''))} | {escape_markdown(prop_type, link)} | {escape_markdown(value.get('required', ''))} | {escape_markdown(value.get('defaultValue', ''))} |\n"
+            table += f"| `{escape_markdown(key)}` | {escape_markdown(value.get('description', ''))} | {escape_markdown(prop_type, link)} | {escape_markdown(value.get('required', ''))} | {escape_markdown(value.get('defaultValue', ''))} |\n"
 
     result.append(table)
 
@@ -48,11 +51,11 @@ def generate_single_entity_table(entity_name, entity_ref, properties, is_nested=
         for key, value in properties.items():
             nested_properties = value.get('properties', {})
             if nested_properties:
-                nested_tables = generate_single_entity_table(f"{entity_name}.{key}", f"{entity_ref}.{key}", nested_properties, is_nested)
+                nested_tables = generate_single_entity_table(f"{entity_name}.{key}", f"{entity_ref}.{key}", '', nested_properties, is_nested)
                 result.extend(nested_tables)
             items = value.get('items', {})
             if items and items.get('properties', {}):
-                result.extend(generate_single_entity_table(f"{entity_name}.{key}", f"{entity_ref}.{key}", items.get('properties', {}), True))
+                result.extend(generate_single_entity_table(f"{entity_name}.{key}", f"{entity_ref}.{key}", '', items.get('properties', {}), True))
 
     return result
 
@@ -92,7 +95,7 @@ def gen_entity(title, data):
     for key, value in data.items():
         if value:
             label = f"{value.get('name')} (`{value.get('type', key)}`)"
-            tables = generate_single_entity_table(label, key, value.get("properties", {}))
+            tables = generate_single_entity_table(label, key, value.get('description', ''), value.get("properties", {}))
             for nested_table in tables:
                 markdown_content += nested_table
     markdown_content += "\n\n"
