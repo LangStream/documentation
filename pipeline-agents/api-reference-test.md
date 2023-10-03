@@ -1,4 +1,4 @@
-# API Reference
+# API Reference test
 
 - [Resources](#resources)
 
@@ -7,15 +7,6 @@
 | ID | Name | Description |
 | --- | --- | --- |
 | <a href="#datasource_astra">datasource</a> | Astra | Connect to DataStax Astra Database service. |
-| <a href="#datasource_cassandra">datasource</a> | Cassandra | Connect to Apache cassandra. |
-| <a href="#datasource_jdbc">datasource</a> | JDBC | Connect to any JDBC compatible database. The driver must be provided as dependency |
-| <a href="#hugging-face-configuration">hugging-face-configuration</a> | Hugging Face | Connect to Hugging Face service. |
-| <a href="#open-ai-configuration">open-ai-configuration</a> | Open AI | Connect to OpenAI API or Azure OpenAI API. |
-| <a href="#vector-database_astra">datasource</a> | Astra | Connect to DataStax Astra Database service. |
-| <a href="#vector-database_cassandra">datasource</a> | Cassandra | Connect to Apache cassandra. |
-| <a href="#vector-database_milvus">vector-database</a> | Milvus | Connect to Milvus/Zillis service. |
-| <a href="#vector-database_pinecone">vector-database</a> | Pinecone | Connect to Pinecone service. |
-| <a href="#vertex-configuration">vertex-configuration</a> | Vertex AI | Connect to VertexAI API. |
 
 
 ### <a name="datasource_astra"></a>Astra (`datasource`)
