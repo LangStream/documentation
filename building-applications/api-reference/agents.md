@@ -3,42 +3,32 @@
 LangStream Version: **0.0.23**
 
 <a href="#ai-chat-completions">Compute chat completions</a>
+<a href="#ai-chat-completions2">Compute chat completions</a>
+<a href="#ai-chat-completions3">Compute chat completions</a>
+<a href="#ai-chat-completions4">Compute chat completions</a>
+
+
+[Compute chat completions](#ai-chat-completions)
+[Compute chat completions2](#ai-chat-completions2)
+[Compute chat completions2](#ai-chat-completions3)
+[Compute chat completions2](#ai-chat-completions4)
 
 ## Agents1
 
 <a href="#ai-chat-completions">Compute chat completions</a>
 
-| Name | Type |
-| --- | --- |
-| <a href="#ai-chat-completions">Compute chat completions</a> | ai-chat-completions |
-| <a href="#ai-text-completions">Compute text completions</a> | ai-text-completions |
-| <a href="#cast">Cast record to another schema</a> | cast |
-| <a href="#compute">Compute values from the record</a> | compute |
-| <a href="#compute-ai-embeddings">Compute embeddings of the record</a> | compute-ai-embeddings |
-| <a href="#document-to-json">Document to JSON</a> | document-to-json |
-| <a href="#drop">Drop the record</a> | drop |
-| <a href="#drop-fields">Drop fields</a> | drop-fields |
-| <a href="#flatten">Flatten record fields</a> | flatten |
-| <a href="#identity">Identity function</a> | identity |
-| <a href="#language-detector">Language detector</a> | language-detector |
-| <a href="#merge-key-value">Merge key-value format</a> | merge-key-value |
-| <a href="#python-function">Python custom processor</a> | python-function |
-| <a href="#python-processor">Python custom processor</a> | python-processor |
-| <a href="#python-sink">Python custom sink</a> | python-sink |
-| <a href="#python-source">Python custom source</a> | python-source |
-| <a href="#query">Query</a> | query |
-| <a href="#query-vector-db">Query a vector database</a> | query-vector-db |
-| <a href="#re-rank">Re-rank</a> | re-rank |
-| <a href="#s3-source">S3 Source</a> | s3-source |
-| <a href="#sink">Kafka Connect Sink agent</a> | sink |
-| <a href="#source">Kafka Connect Source agent</a> | source |
-| <a href="#text-extractor">Text extractor</a> | text-extractor |
-| <a href="#text-normaliser">Text normaliser</a> | text-normaliser |
-| <a href="#text-splitter">Text splitter</a> | text-splitter |
-| <a href="#unwrap-key-value">Unwrap key-value format</a> | unwrap-key-value |
-| <a href="#vector-db-sink">Vector database sink</a> | vector-db-sink |
-| <a href="#webcrawler-source">Web crawler source</a> | webcrawler-source |
 
+#### <a name="ai-chat-completions2"></a>test
+
+help
+
+##### <a name="ai-chat-completions3"></a>test
+
+help
+
+## <a name="ai-chat-completions4"></a>test
+
+help
 
 ### <a name="ai-chat-completions"></a>Compute chat completions (`ai-chat-completions`)
 
