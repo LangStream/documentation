@@ -65,6 +65,9 @@ def generate_entity_tables(input_file, output_file):
     resources_data = data.get('resources', {})
 
     markdown_content = "# API Reference\n\n"
+    markdown_content += "- [Resources](#resources)\n"
+    markdown_content += "- [Agents](#agents)\n"
+    markdown_content += "\n\n"
     markdown_content += gen_entity("Resources", resources_data)
     markdown_content += gen_entity("Agents", agents_data)
             
@@ -83,14 +86,13 @@ def gen_entity(title, data):
     for key, value in data.items():
         label = value.get('type', key)
            
-        link = f"#{label} ({value.get('name', '')})"
-        markdown_content += f"| {escape_markdown(key, link)} | {escape_markdown(value.get('name', ''))} | {escape_markdown(value.get('description', ''))} |\n"
+        link = f"#{key}"
+        markdown_content += f"| {escape_markdown(label, link)} | {escape_markdown(value.get('name', ''))} | {escape_markdown(value.get('description', ''))} |\n"
 
     for key, value in data.items():
         if value:
-            label = value.get('type', key)
-            ref = f"{label} ({value.get('name', '')})"
-            tables = generate_single_entity_table(label, ref, value.get("properties", {}))
+            label = f"{value.get('name')} (`{value.get('type', key)}`)"
+            tables = generate_single_entity_table(label, key, value.get("properties", {}))
             for nested_table in tables:
                 markdown_content += nested_table
     markdown_content += "\n\n"
