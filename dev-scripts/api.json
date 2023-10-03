@@ -1208,7 +1208,7 @@
       }
     },
     "vector-database_astra" : {
-      "type" : "datasource",
+      "type" : "vector-database",
       "name" : "Astra",
       "description" : "Connect to DataStax Astra Database service.",
       "properties" : {
@@ -1261,7 +1261,7 @@
       }
     },
     "vector-database_cassandra" : {
-      "type" : "datasource",
+      "type" : "vector-database",
       "name" : "Cassandra",
       "description" : "Connect to Apache cassandra.",
       "properties" : {

@@ -71,7 +71,7 @@ Connect to OpenAI API or Azure OpenAI API.
 | `url` | Url for Azure OpenAI API. Required only if provider is "azure". | string |  |  |
 
 
-### <a name="vector-database_astra"></a>Astra (`datasource`)
+### <a name="vector-database_astra"></a>Astra (`vector-database`)
 
 Connect to DataStax Astra Database service.
 
@@ -88,7 +88,7 @@ Connect to DataStax Astra Database service.
 | `username` | DEPRECATED: use clientId instead. | string |  |  |
 
 
-### <a name="vector-database_cassandra"></a>Cassandra (`datasource`)
+### <a name="vector-database_cassandra"></a>Cassandra (`vector-database`)
 
 Connect to Apache cassandra.
 
