@@ -327,6 +327,11 @@
           "required" : false,
           "type" : "string"
         },
+        "arguments" : {
+          "description" : "Additional arguments to pass to the AI Service. (HuggingFace only)",
+          "required" : false,
+          "type" : "object"
+        },
         "batch-size" : {
           "description" : "Batch size for submitting the embeddings requests.",
           "required" : false,
@@ -361,6 +366,16 @@
           "required" : false,
           "type" : "string",
           "defaultValue" : "text-embedding-ada-002"
+        },
+        "modelUrl" : {
+          "description" : "URL of the model to use. (HuggingFace only). The default is computed from the model: \"djl://ai.djl.huggingface.pytorch{model}\"",
+          "required" : false,
+          "type" : "string"
+        },
+        "options" : {
+          "description" : "Additional options to pass to the AI Service. (HuggingFace only)",
+          "required" : false,
+          "type" : "object"
         },
         "text" : {
           "description" : "Text to create embeddings from. You can use Mustache syntax to compose multiple fields into a single text. Example:\ntext: \"{{{ value.field1 }}} {{{ value.field2 }}}\"",
@@ -1021,6 +1036,362 @@
           "required" : false,
           "type" : "string",
           "defaultValue" : "Mozilla/5.0 (compatible; LangStream.ai/0.1; +https://langstream.ai)"
+        }
+      }
+    }
+  },
+  "resources" : {
+    "datasource_astra" : {
+      "type" : "datasource",
+      "name" : "Astra",
+      "description" : "Connect to DataStax Astra Database service.",
+      "properties" : {
+        "clientId" : {
+          "description" : "Astra Token clientId to use.",
+          "required" : true,
+          "type" : "string"
+        },
+        "database" : {
+          "description" : "Astra Database name to connect to. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
+        "environment" : {
+          "description" : "Astra environment.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "PROD"
+        },
+        "secret" : {
+          "description" : "Astra Token secret to use.",
+          "required" : true,
+          "type" : "string"
+        },
+        "secureBundle" : {
+          "description" : "Secure bundle of the database. Must be encoded in base64.",
+          "required" : false,
+          "type" : "string"
+        },
+        "token" : {
+          "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'astra'",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "datasource_cassandra" : {
+      "type" : "datasource",
+      "name" : "Cassandra",
+      "description" : "Connect to Apache cassandra.",
+      "properties" : {
+        "contact-points" : {
+          "description" : "Contact points of the cassandra cluster.",
+          "required" : true,
+          "type" : "string"
+        },
+        "loadBalancing-localDc" : {
+          "description" : "Load balancing local datacenter.",
+          "required" : true,
+          "type" : "string"
+        },
+        "password" : {
+          "description" : "User password.",
+          "required" : false,
+          "type" : "string"
+        },
+        "port" : {
+          "description" : "Cassandra port.",
+          "required" : true,
+          "type" : "integer"
+        },
+        "username" : {
+          "description" : "User username.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'cassandra'",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "datasource_jdbc" : {
+      "type" : "datasource",
+      "name" : "JDBC",
+      "description" : "Connect to any JDBC compatible database. The driver must be provided as dependency",
+      "properties" : {
+        "driverClass" : {
+          "description" : "JDBC entry-point driver class.",
+          "required" : true,
+          "type" : "string"
+        },
+        "url" : {
+          "description" : "JDBC connection url.",
+          "required" : true,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'jdbc'",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "hugging-face-configuration" : {
+      "type" : "hugging-face-configuration",
+      "name" : "Hugging Face",
+      "description" : "Connect to Hugging Face service.",
+      "properties" : {
+        "access-key" : {
+          "description" : "The access key to use for \"api\" provider.",
+          "required" : false,
+          "type" : "string"
+        },
+        "api-url" : {
+          "description" : "The URL of the Hugging Face API. Relevant only if provider is \"api\".",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "https://api-inference.huggingface.co/pipeline/feature-extraction/"
+        },
+        "model-check-url" : {
+          "description" : "The model url to use. Relevant only if provider is \"api\".",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "https://huggingface.co/api/models/"
+        },
+        "provider" : {
+          "description" : "The provider to use. Either \"local\" or \"api\".",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "api"
+        }
+      }
+    },
+    "open-ai-configuration" : {
+      "type" : "open-ai-configuration",
+      "name" : "Open AI",
+      "description" : "Connect to OpenAI API or Azure OpenAI API.",
+      "properties" : {
+        "access-key" : {
+          "description" : "The access key to use.",
+          "required" : true,
+          "type" : "string"
+        },
+        "provider" : {
+          "description" : "The provider to use. Either \"openai\" or \"azure\".",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "openai"
+        },
+        "url" : {
+          "description" : "Url for Azure OpenAI API. Required only if provider is \"azure\".",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-database_astra" : {
+      "type" : "datasource",
+      "name" : "Astra",
+      "description" : "Connect to DataStax Astra Database service.",
+      "properties" : {
+        "clientId" : {
+          "description" : "Astra Token clientId to use.",
+          "required" : true,
+          "type" : "string"
+        },
+        "database" : {
+          "description" : "Astra Database name to connect to. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
+        "environment" : {
+          "description" : "Astra environment.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "PROD"
+        },
+        "secret" : {
+          "description" : "Astra Token secret to use.",
+          "required" : true,
+          "type" : "string"
+        },
+        "secureBundle" : {
+          "description" : "Secure bundle of the database. Must be encoded in base64.",
+          "required" : false,
+          "type" : "string"
+        },
+        "token" : {
+          "description" : "Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'astra'",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-database_cassandra" : {
+      "type" : "datasource",
+      "name" : "Cassandra",
+      "description" : "Connect to Apache cassandra.",
+      "properties" : {
+        "contact-points" : {
+          "description" : "Contact points of the cassandra cluster.",
+          "required" : true,
+          "type" : "string"
+        },
+        "loadBalancing-localDc" : {
+          "description" : "Load balancing local datacenter.",
+          "required" : true,
+          "type" : "string"
+        },
+        "password" : {
+          "description" : "User password.",
+          "required" : false,
+          "type" : "string"
+        },
+        "port" : {
+          "description" : "Cassandra port.",
+          "required" : true,
+          "type" : "integer"
+        },
+        "username" : {
+          "description" : "User username.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'cassandra'",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-database_milvus" : {
+      "type" : "vector-database",
+      "name" : "Milvus",
+      "description" : "Connect to Milvus/Zillis service.",
+      "properties" : {
+        "host" : {
+          "description" : "Host parameter for connecting to Milvus.",
+          "required" : false,
+          "type" : "string"
+        },
+        "index-name" : {
+          "description" : "Url parameter for connecting to Zillis service.",
+          "required" : false,
+          "type" : "string"
+        },
+        "password" : {
+          "description" : "Password parameter for connecting to Milvus.",
+          "required" : false,
+          "type" : "string"
+        },
+        "port" : {
+          "description" : "Port parameter for connecting to Milvus.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "19530"
+        },
+        "token" : {
+          "description" : "Token parameter for connecting to Zillis service.",
+          "required" : false,
+          "type" : "string"
+        },
+        "user" : {
+          "description" : "User parameter for connecting to Milvus.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "default"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'milvus'",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-database_pinecone" : {
+      "type" : "vector-database",
+      "name" : "Pinecone",
+      "description" : "Connect to Pinecone service.",
+      "properties" : {
+        "api-key" : {
+          "description" : "Api key for connecting to the Pinecone service.",
+          "required" : true,
+          "type" : "string"
+        },
+        "endpoint" : {
+          "description" : "Endpoint of the Pinecone service.",
+          "required" : false,
+          "type" : "string"
+        },
+        "environment" : {
+          "description" : "Environment parameter for connecting to the Pinecone service.",
+          "required" : true,
+          "type" : "string"
+        },
+        "index-name" : {
+          "description" : "Index name parameter for connecting to the Pinecone service.",
+          "required" : true,
+          "type" : "string"
+        },
+        "project-name" : {
+          "description" : "Project name parameter for connecting to the Pinecone service.",
+          "required" : true,
+          "type" : "string"
+        },
+        "server-side-timeout-sec" : {
+          "description" : "Server side timeout parameter for connecting to the Pinecone service.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "10"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'pinecone'",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vertex-configuration" : {
+      "type" : "vertex-configuration",
+      "name" : "Vertex AI",
+      "description" : "Connect to VertexAI API.",
+      "properties" : {
+        "project" : {
+          "description" : "GCP project name for the Vertex API.",
+          "required" : true,
+          "type" : "string"
+        },
+        "region" : {
+          "description" : "GCP region for the Vertex API.",
+          "required" : true,
+          "type" : "string"
+        },
+        "serviceAccountJson" : {
+          "description" : "Specify service account credentials. Refer to the GCP documentation on how to download it",
+          "required" : false,
+          "type" : "string"
+        },
+        "token" : {
+          "description" : "Access key for the Vertex API.",
+          "required" : false,
+          "type" : "string"
+        },
+        "url" : {
+          "description" : "URL connection for the Vertex API.",
+          "required" : true,
+          "type" : "string"
         }
       }
     }
