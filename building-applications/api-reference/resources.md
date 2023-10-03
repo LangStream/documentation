@@ -2,20 +2,8 @@
 
 LangStream Version: **0.0.23**
 
-## Resources
 
-| Name | Type |
-| --- | --- |
-| <a href="#datasource_astra">Astra</a> | datasource |
-| <a href="#datasource_cassandra">Cassandra</a> | datasource |
-| <a href="#datasource_jdbc">JDBC</a> | datasource |
-| <a href="#hugging-face-configuration">Hugging Face</a> | hugging-face-configuration |
-| <a href="#open-ai-configuration">Open AI</a> | open-ai-configuration |
-| <a href="#vector-database_astra">Astra</a> | datasource |
-| <a href="#vector-database_cassandra">Cassandra</a> | datasource |
-| <a href="#vector-database_milvus">Milvus</a> | vector-database |
-| <a href="#vector-database_pinecone">Pinecone</a> | vector-database |
-| <a href="#vertex-configuration">Vertex AI</a> | vertex-configuration |
+
 
 
 ### <a name="datasource_astra"></a>Astra (`datasource`)

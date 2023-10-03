@@ -64,7 +64,7 @@ def generate_entity_tables(title, version, data, output_file):
 
     markdown_content = f"# {title}\n\n"
     markdown_content += f"LangStream Version: **{version}**\n\n"
-    markdown_content += gen_entity(title, data)
+    markdown_content += gen_entity("", data)
             
     with open(output_file, 'w') as file:
         file.write(markdown_content)
@@ -75,16 +75,7 @@ def gen_entity(title, data):
     if title:
         markdown_content = f"## {title}\n\n"
     else: 
-        markdown_content = ""
-    markdown_content += "| Name | Type |\n"
-    markdown_content += "| --- | --- |\n"
-
-    for key, value in data.items():
-        label = value.get('type', key)
-           
-        link = f"#{key}"
-        name = value.get('name', '')
-        markdown_content += f"| {escape_markdown(name, link)} | `{escape_markdown(label)}` |\n"
+        markdown_content = "\n\n"
 
     for key, value in data.items():
         if value:

@@ -2,15 +2,8 @@
 
 LangStream Version: **0.0.23**
 
-## Assets
 
-| Name | Type |
-| --- | --- |
-| <a href="#astra-keyspace">Astra keyspace</a> | astra-keyspace |
-| <a href="#cassandra-keyspace">Cassandra keyspace</a> | cassandra-keyspace |
-| <a href="#cassandra-table">Cassandra table</a> | cassandra-table |
-| <a href="#jdbc-table">JDBC table</a> | jdbc-table |
-| <a href="#milvus-collection">Milvus collection</a> | milvus-collection |
+
 
 
 ### <a name="astra-keyspace"></a>Astra keyspace (`astra-keyspace`)
