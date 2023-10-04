@@ -53,7 +53,7 @@ topics:
 
 The first step of the pipeline is to read our data from an S3 bucket.
 
-This part of the pipeline pulls credentials from a secrets.yaml file with refences to secrets.
+This part of the pipeline pulls credentials from a secrets.yaml file with references to secrets.
 
 ```yaml
 pipeline:
