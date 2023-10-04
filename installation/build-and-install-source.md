@@ -27,7 +27,7 @@ LangStream uses Maven as its build system. When the below script is run the proj
 
 This will clone the latest code of the [project](https://github.com/LangStream/langstream) into the "langstream" folder.
 
-```
+```bash
 git clone https://github.com/LangStream/langstream
 ```
 

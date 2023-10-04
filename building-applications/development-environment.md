@@ -36,7 +36,9 @@ The hierarchy should look like this:
 
 This application would be deployed out of the project-folder directory with:
 
-`langstream apps deploy sample-app -app ./application -i ./instance.yaml -s ./secrets.yaml`
+```bash
+langstream apps deploy sample-app -app ./application -i ./instance.yaml -s ./secrets.yaml
+```
 
 {% hint style="info" %}
 Want to get started a little quicker? Check out the [LangStream VSCode Extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) for pre-made applications and agent code snippets.

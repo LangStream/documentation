@@ -14,7 +14,7 @@ Profiles are created by users to interact with different LangStream environments
 
 The default LangStream profile values for a local deployment are:
 
-```
+```yaml
 webServiceUrl: "http://localhost:8090"
 apiGatewayUrl: "ws://localhost:8091"
 tenant: "default"
@@ -23,7 +23,7 @@ token: null
 
 To create a new profile for a staging environment and set it as the current LangStream profile, use:
 
-```
+```bash
 langstream profiles create staging \
 --web-service-url="https://pulsar-gcp-useast1.api.streaming.datastax.com" \
 --tenant="staging-tenant" \
@@ -42,13 +42,13 @@ To update these values in the "staging" profile, use `langstream profiles update
 
 Instead of manually setting values, you can use `langstream import` to create a new CLI profile from a JSON file.&#x20;
 
-```
+```bash
 langstream profiles import staging -f <file.json>
 ```
 
 To update this file:
 
-```
+```bash
 langstream profiles import staging --file="my-file.json" --update="true"
 ```
 
@@ -71,7 +71,7 @@ The CLI is able to handle multiple profiles, and each profile defines:
 
 These commands will help you manage your profiles and the tenant you are currenly using:
 
-```
+```bash
 langstream profiles list
 langstream profiles get-current
 langstream profiles get default

@@ -6,7 +6,7 @@ The LangStream deployer creates resources during the `app-setup` job. If the job
 
 For example, when you initialize an Astra DB database, you might want to also create a keyspace and a table to save time. To do this, add the astra-keyspace and cassandra-table as assets to your pipeline.yaml:
 
-```
+```yaml
 name: "Write to Astra DB"
 topics:
   - name: "input-topic"

@@ -10,7 +10,7 @@ Normally it’s a best practice to not hardcode credentials, settings, and other
 
 Given the labels declared in init:
 
-```
+```python
 from typing import Dict, Any
 
 def init(self, config: Dict[str, Any]):
@@ -20,7 +20,7 @@ def init(self, config: Dict[str, Any]):
 
 The values would be passed to the agent in pipeline.yaml:
 
-```
+```yaml
 pipeline:
   - name: "Load S3 documents and chunk them with LangChain"
     type: "python-source|python-sink|python-processor"
@@ -47,7 +47,7 @@ To build an application in Python means to use an installer that downloads the n
 When you are ready to package the agent for deployment to LangStream, use the following Docker commands to ensure the downloaded dependencies are compatible with the LangStream runtime environment (not your development environment). \
 The command assumes you are running it from the “application” folder and your dependencies are declared in "python/requirements.txt"
 
-```
+```bash
 docker run --rm \
     -v $(pwd)/python:/app-code-download \
     --entrypoint "" \
@@ -65,7 +65,7 @@ Similar to packaging, the below Docker command is a starting suggestion of how t
 
 Using unittest:
 
-```
+```bash
 docker run --rm \
     -v $(pwd)/python:/app-code-download \
     --entrypoint "" \
@@ -75,7 +75,7 @@ docker run --rm \
 
 Using tox:
 
-```
+```bash
 docker run --rm \
     -v ${app_path}:/app-code-download \
     --entrypoint "" \

@@ -22,7 +22,7 @@ All of the agents accept 2 message formats - plain text and json formatted text.
 
 If the input message to an agent is in plain text, then you refer to it as “\{\{% value\}}”. For example, in the ai-chat-completions agent, if you wanted to append the text from the input message to a pre-formatted prompt, you would set the message configuration as:
 
-```
+```yaml
 messages:
   - role: user
     content: "What can you tell me about {{% value}} ?"
@@ -30,7 +30,7 @@ messages:
 
 Or in the query agent if you wanted to include the input message as a part of the query you would:
 
-```
+```yaml
 query: "SELECT col1, col2 FROM my-table WHERE col3 like ‘?’"
 fields:
   - "value"
@@ -70,7 +70,7 @@ Then you would have the following references available in the agent:
 
 The same query from the previous example could be expanded:
 
-```
+```yaml
 query: "SELECT col1, col2 FROM my-table WHERE firstName like '?' && lastName like '?'"
 fields:
   - "value.first-name"

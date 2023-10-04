@@ -39,7 +39,7 @@ If your application can't deploy and you attempt to clean things up, the custom 
 
 To remove the finalizer causing the deadlock:
 
-```
+```bash
 appId="some-super-cool-app"
 kubectl -n langstream-default patch Application/${appId} \
 -p '{"metadata":{"finalizers":[]}}' --type=merge

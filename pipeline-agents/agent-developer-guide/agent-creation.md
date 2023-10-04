@@ -14,7 +14,7 @@ Once you have built, tested, and packaged the agent you will need to include it 
 
 To include the agent as a step in the pipeline, set the className to match the entry coordinates in the “python” folder. For example, if the entry to a source agent was “main.py” and the class was “MySourceAgent”, then the pipeline step would be:
 
-```
+```yaml
 - name: "Process using custom source"
   type: "python-source"
   output: "output-topic"

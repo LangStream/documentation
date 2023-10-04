@@ -11,7 +11,7 @@ export OPEN_AI_ACCESS_KEY=xxxxx
 
 3. Create a project folder in examples/applications:
 
-```
+```bash
 mkdir sample-app && cd sample-app
 touch secrets.yaml
 mkdir application && cd application
