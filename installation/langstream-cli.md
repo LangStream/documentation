@@ -10,7 +10,7 @@ To configure the LangStream CLI, see [CLI configuration.](../langstream-cli/lang
 
 ### Mac
 
-```
+```bash
 brew install LangStream/langstream/langstream
 ```
 
@@ -32,7 +32,7 @@ Want to get started a little quicker? Check out the [LangStream VSCode Extension
 
 Once installed you can test the CLI with the following command.
 
-```
+```bash
 langstream -h
 ```
 

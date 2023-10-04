@@ -8,7 +8,7 @@ This is very similar to the [query-vector-db](query-vector-db.md) agent, but it 
 
 Install PostgreSQL in a local minikube cluster:
 
-```
+```bash
 minikube start
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install my-postgresql bitnami/postgresql --version 12.8.2

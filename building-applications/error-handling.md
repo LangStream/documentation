@@ -2,19 +2,17 @@
 
 Processor and sink agents can have failure behavior configured in their pipeline.yaml file:
 
-```
+```yaml
 errors:
     on-failure: skip|fail|dead-letter
     retries: 1
 ```
 
-The default behavior is "on-failure: fail" with 0 retries.
+The default behavior is `on-failure: fail` with 0 retries.
 
-\
 You can configure error behavior at the top of the pipeline file, and then that behavior will apply to all agents in the pipeline. Both agents in this pipeline will skip errors:
 
-````yaml
-```
+```yaml
 errors:
     on-failure: "skip"
 pipeline:
@@ -30,7 +28,6 @@ pipeline:
       embeddings-field: "value.question_embeddings"
       text: "{{% value.question }}"
 ```
-````
 
 Source agents do not have configurable error handling.
 
