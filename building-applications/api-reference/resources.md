@@ -1,6 +1,6 @@
 # Resources
 
-LangStream Version: **0.0.23**
+LangStream Version: **0.1.0**
 
 
 
