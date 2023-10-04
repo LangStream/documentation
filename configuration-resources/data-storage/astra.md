@@ -8,12 +8,12 @@ resources:
     name: "AstraDatasource"
     configuration:
       service: "astra"
-      clientId: "{{{ secrets.astra.clientId }}}"
-      secret: "{{{ secrets.astra.secret }}}"
-      secureBundle: "{{{ secrets.astra.secureBundle }}}"
-      database: "{{{ secrets.astra.database }}}"
-      token: "{{{ secrets.astra.token }}}"
-      environment: "{{{ secrets.astra.environment }}}"
+      clientId: "${ secrets.astra.clientId }"
+      secret: "${ secrets.astra.secret }"
+      secureBundle: "${ secrets.astra.secureBundle }"
+      database: "${ secrets.astra.database }"
+      token: "${ secrets.astra.token }"
+      environment: "${ secrets.astra.environment }"
 ```
 
 Required parameters:
@@ -47,7 +47,7 @@ But you can also provide the secure bundle as a file, in this case you have to u
 
 With this syntax the LangStream CLI will read the file and encode it in base64 for you. The path name is relative to the file that mentions this value.
 This syntax works only if used in a secrets.yaml file or an instance.yaml file. It doesn't work directly in a configuration.yaml file, because
-it is not recommended to store secrets in a configuration file, but only references to secrets (`{{{secrets.xxx}}}`) and to global variables (`{{{globals.xxx}}}`).
+it is not recommended to store secrets in a configuration file, but only references to secrets (`${secrets.xxx}`) and to global variables (`${globals.xxx}`).
 
 
 

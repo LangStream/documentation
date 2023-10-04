@@ -27,11 +27,11 @@ pipeline:
       http-timeout: 10000
       handle-cookies: true
       max-unflushed-pages: 100
-      bucketName: "{{{secrets.s3.bucket-name}}}"
-      endpoint: "{{{secrets.s3.endpoint}}}"
-      access-key: "{{{secrets.s3.access-key}}}"
-      secret-key: "{{{secrets.s3.secret}}}"
-      region: "{{{secrets.s3.region}}}"
+      bucketName: "${secrets.s3.bucket-name}"
+      endpoint: "${secrets.s3.endpoint}"
+      access-key: "${secrets.s3.access-key}"
+      secret-key: "${secrets.s3.secret}"
+      region: "${secrets.s3.region}"
 ```
 
 #### Multiple URLs in pipeline
@@ -123,11 +123,11 @@ pipeline:
       http-timeout: 10000
       handle-cookies: true
       max-unflushed-pages: 100
-      bucketName: "{{{secrets.s3.bucket-name}}}"
-      endpoint: "{{{secrets.s3.endpoint}}}"
-      access-key: "{{{secrets.s3.access-key}}}"
-      secret-key: "{{{secrets.s3.secret}}}"
-      region: "{{{secrets.s3.region}}}"
+      bucketName: "${secrets.s3.bucket-name}"
+      endpoint: "${secrets.s3.endpoint}"
+      access-key: "${secrets.s3.access-key}"
+      secret-key: "${secrets.s3.secret}"
+      region: "${secrets.s3.region}"
 ```
 
 The webcrawler itself uses the [Jsoup](https://jsoup.org/) library to parse HTML with the [WHATWG HTML spec](https://html.spec.whatwg.org/multipage/). The webcrawler explores the web starting from a list of seed URLs and follows links within pages to discover more content.&#x20;

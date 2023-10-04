@@ -10,11 +10,11 @@ resources:
     name: "CassandraDataSource"
     configuration:
       service: "cassandra"
-      username: "{{{ secrets.cassandra.username }}}"
-      password: "{{{ secrets.cassandra.password }}}"
-      port: "{{{ secrets.cassandra.port }}}"
-      contact-points: "{{{ secrets.cassandra.contact-points }}}"
-      loadBalancing-localDc: "{{{ secrets.cassandra.loadBalancing-localDc }}}"
+      username: "${ secrets.cassandra.username }"
+      password: "${ secrets.cassandra.password }"
+      port: "${ secrets.cassandra.port }"
+      contact-points: "${ secrets.cassandra.contact-points }"
+      loadBalancing-localDc: "${ secrets.cassandra.loadBalancing-localDc }"
       
 ```
 

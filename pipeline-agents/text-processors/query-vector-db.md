@@ -15,10 +15,10 @@ configuration:
       name: "PineconeDatasource"
       configuration:
         service: "pinecone"
-        api-key: "{{{secrets.pinecone.api-key}}}"
-        environment: "{{{secrets.pinecone.environment}}}"
-        index-name: "{{{secrets.pinecone.index-name}}}"
-        project-name: "{{{secrets.pinecone.project-name}}}"
+        api-key: "${secrets.pinecone.api-key}"
+        environment: "${secrets.pinecone.environment}"
+        index-name: "${secrets.pinecone.index-name}"
+        project-name: "${secrets.pinecone.project-name}"
         server-side-timeout-sec: 10
 ```
 

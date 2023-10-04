@@ -35,9 +35,9 @@ pipeline:
     input: "input-topic"
     output: "output-topic"
     configuration:
-      model: "{{{secrets.open-ai.embeddings-model}}}" # This needs to match the name of the model deployment, not the base model
+      model: "${secrets.open-ai.embeddings-model}" # This needs to match the name of the model deployment, not the base model
       embeddings-field: "value.embeddings"
-      text: "{{% value.name }} {{% value.description }}"
+      text: "{{ value.name }} {{ value.description }}"
       batch-size: 10
       # this is in milliseconds. It is important to take this value into consideration when using this agent in the chat response pipeline
       # in fact this value impacts the latency of the response
@@ -55,12 +55,12 @@ configuration:
     - type: "vertex-configuration"
       name: "Google Vertex AI configuration"
       configuration:
-        url: "{{ secrets.vertex-ai.url }}"
+        url: "${ secrets.vertex-ai.url }"
         # use triple quotes in order to turn off escaping
-        serviceAccountJson: "{{{ secrets.vertex-ai.serviceAccountJson }}}"
-        token: "{{ secrets.vertex-ai.token }}"
-        region: "{{ secrets.vertex-ai.region }}"
-        project: "{{ secrets.vertex-ai.project }}"
+        serviceAccountJson: "${ secrets.vertex-ai.serviceAccountJson }"
+        token: "${ secrets.vertex-ai.token }"
+        region: "${ secrets.vertex-ai.region }"
+        project: "${ secrets.vertex-ai.project }"
 ```
 
 Then the agent should be:

@@ -9,15 +9,15 @@ resources:
       configuration:
         service: "milvus"
         ## OSS Milvus
-        username: "{{{ secrets.milvus.username }}}"
-        password: "{{{ secrets.milvus.password }}}"
-        host: "{{{ secrets.milvus.host }}}"
-        port: "{{{ secrets.milvus.port }}}"
+        username: "${ secrets.milvus.username }"
+        password: "${ secrets.milvus.password }"
+        host: "${ secrets.milvus.host }"
+        port: "${ secrets.milvus.port }"
         ## Set to "upsert" for OSS Milvus, on Zilliz use "delete-insert"
-        write-mode: "{{{ secrets.milvus.write-mode }}}"
+        write-mode: "${ secrets.milvus.write-mode }"
         ## Zillis
-        url: "{{{ secrets.milvus.url }}}"
-        token: "{{{ secrets.milvus.token }}}"
+        url: "${ secrets.milvus.url }"
+        token: "${ secrets.milvus.token }"
       
 ```
 

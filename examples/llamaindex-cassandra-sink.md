@@ -19,11 +19,11 @@ pipeline:
     input: "input-topic"
     configuration:
       className: llamaindex_cassandra.LlamaIndexCassandraSink
-      openaiKey: "{{ secrets.open-ai.access-key }}"
+      openaiKey: "${ secrets.open-ai.access-key }"
       cassandra:
-        username: "{{{ secrets.astra.clientId }}}"
-        password: "{{{ secrets.astra.secret }}}"
-        secureBundle: "{{{ secrets.astra.secureBundle }}}"
+        username: "${ secrets.astra.clientId }"
+        password: "${ secrets.astra.secret }"
+        secureBundle: "${ secrets.astra.secureBundle }"
         keyspace: ks1
         table: vs_ll_openai
 ```

@@ -77,12 +77,6 @@ fields:
   - "value.last-name"
 ```
 
-{% hint style="info" %}
-#### NOTE
-
-Mustache will escape certain non-alphanumeric values if you use double braces “\{{ \}}“. To override the expanding and use the message exactly as provided use triple braces “\{{{ \}}}”.
-{% endhint %}
-
 #### Output
 
 All agents output results as JSON text, regardless if the input was plain text or not.&#x20;

@@ -53,18 +53,18 @@ topics:
 
 The first step of the pipeline is to read our data from an S3 bucket.
 
-This part of the pipeline pulls credentials from a secrets.yaml file with Mustache templating.
+This part of the pipeline pulls credentials from a secrets.yaml file with references to secrets.
 
 ```yaml
 pipeline:
   - name: "Read from S3"
     type: "s3-source"
     configuration:
-      bucketName: "{{{secrets.s3-credentials.bucket-name}}}"
-      endpoint: "{{{secrets.s3-credentials.endpoint}}}"
-      access-key: "{{{secrets.s3-credentials.access-key}}}"
-      secret-key: "{{{secrets.s3-credentials.secret}}}"
-      region: "{{{secrets.s3-credentials.region}}}"
+      bucketName: "${secrets.s3-credentials.bucket-name}"
+      endpoint: "${secrets.s3-credentials.endpoint}"
+      access-key: "${secrets.s3-credentials.access-key}"
+      secret-key: "${secrets.s3-credentials.secret}"
+      region: "${secrets.s3-credentials.region}"
       idle-time: 5
 ```
 

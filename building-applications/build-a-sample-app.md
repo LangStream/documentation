@@ -39,7 +39,7 @@ configuration:
     - type: open-ai-configuration
       name: OpenAI Azure configuration
       configuration:       
-        access-key: "{{{ secrets.open-ai.access-key }}}"
+        access-key: "${ secrets.open-ai.access-key }"
         provider: openai
 ```
 
@@ -167,7 +167,7 @@ application:
       name: "OpenAI Azure configuration"
       type: "open-ai-configuration"
       configuration:
-        access-key: "{{{ secrets.open-ai.access-key }}}"
+        access-key: "${ secrets.open-ai.access-key }"
         provider: "openai"
   modules:
   - id: "default"

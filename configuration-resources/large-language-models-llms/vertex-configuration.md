@@ -9,13 +9,13 @@ configuration:
     - type: "vertex-configuration"
       name: "Google Vertex AI configuration"
       configuration:
-        url: "{{{ secrets.vertex.url }}}"
-        region: "{{{ secrets.vertex.region }}}"
-        project: "{{{ secrets.vertex.project }}}"
+        url: "${ secrets.vertex.url }"
+        region: "${ secrets.vertex.region }"
+        project: "${ secrets.vertex.project }"
         # Authentication is done either via service account JSON
-        serviceAccountJson: "{{{ secrets.vertex.service-account-json }}}"
+        serviceAccountJson: "${ secrets.vertex.service-account-json }"
         # or token
-        token: "{{{ secrets.vertex.token }}}"
+        token: "${ secrets.vertex.token }"
 ```
 
 `secrets.yaml`

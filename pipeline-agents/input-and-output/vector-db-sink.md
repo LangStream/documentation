@@ -16,9 +16,9 @@ configuration:
       name: "AstraDatasource"
       configuration:
         service: "astra"
-        username: "{{{ secrets.astra.username }}}"
-        password: "{{{ secrets.astra.password }}}"
-        secureBundle: "{{{ secrets.astra.secureBundle }}}"
+        username: "${ secrets.astra.username }"
+        password: "${ secrets.astra.password }"
+        secureBundle: "${ secrets.astra.secureBundle }"
 ```
 
 The "Write to Astra DB" pipeline step takes embeddings as input from "input-topic" and writes them to the configured datasource "AstraDatasource":
@@ -65,10 +65,10 @@ The Pinecone vector database connection is defined in configuration.yaml:
       name: "PineconeDatasource"
       configuration:
         service: "pinecone"
-        api-key: "{{{secrets.pinecone.api-key}}}"
-        environment: "{{{secrets.pinecone.environment}}}"
-        index-name: "{{{secrets.pinecone.index-name}}}"
-        project-name: "{{{secrets.pinecone.project-name}}}"
+        api-key: "${secrets.pinecone.api-key}"
+        environment: "${secrets.pinecone.environment}"
+        index-name: "${secrets.pinecone.index-name}"
+        project-name: "${secrets.pinecone.project-name}"
         server-side-timeout-sec: 10
 ```
 

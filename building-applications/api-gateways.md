@@ -87,7 +87,7 @@ Example
 
 #### authentication
 
-<table><thead><tr><th width="171.33333333333331">Label</th><th width="133">Type</th><th>Description</th></tr></thead><tbody><tr><td>provider</td><td>string</td><td><p>The name of the identity provider. Supported values are:</p><ul><li>“google”</li><li>“github”</li></ul></td></tr><tr><td>configuration</td><td><br></td><td><p>For the google provider, follow the “<a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">Get your Google API client ID</a>” guide.</p><p>For the github provider, follow the “<a href="https://docs.github.com/en/apps/creating-github-apps/writing-code-for-a-github-app/building-a-login-with-github-button-with-a-github-app">Building a "Login with GitHub" button with a GitHub App</a>” guide.</p></td></tr><tr><td>clientId<br></td><td>string</td><td><p>The token to use for interacting with the given identity provider. Typically this is a pointer to a secret.</p><p><br></p><p>Example: “{{ secrets.google.client-id }}”</p></td></tr></tbody></table>
+<table><thead><tr><th width="171.33333333333331">Label</th><th width="133">Type</th><th>Description</th></tr></thead><tbody><tr><td>provider</td><td>string</td><td><p>The name of the identity provider. Supported values are:</p><ul><li>“google”</li><li>“github”</li></ul></td></tr><tr><td>configuration</td><td><br></td><td><p>For the google provider, follow the “<a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">Get your Google API client ID</a>” guide.</p><p>For the github provider, follow the “<a href="https://docs.github.com/en/apps/creating-github-apps/writing-code-for-a-github-app/building-a-login-with-github-button-with-a-github-app">Building a "Login with GitHub" button with a GitHub App</a>” guide.</p></td></tr><tr><td>clientId<br></td><td>string</td><td><p>The token to use for interacting with the given identity provider. Typically this is a pointer to a secret.</p><p><br></p><p>Example: “${ secrets.google.client-id }”</p></td></tr></tbody></table>
 
 #### chat-options
 
@@ -162,7 +162,7 @@ gateways:
     authentication:
       provider: google
       configuration:
-        clientId: "{{ secrets.google.client-id }}"
+        clientId: "${ secrets.google.client-id }"
     produceOptions:
       headers:
         - key: langstream-client-user-id
@@ -178,7 +178,7 @@ gateways:
     authentication:
       provider: google
       configuration:
-        clientId: "{{ secrets.google.client-id }}"
+        clientId: "${ secrets.google.client-id }"
     produceOptions:
       headers:
         - key: langstream-client-user-id
