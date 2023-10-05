@@ -35,7 +35,7 @@ Once the application is running, chat with the bot using the LangStream CLI:
 langstream gateway chat test -cg consume-output -pg produce-input -p sessionId=$(uuidgen)
 ```
 
-> [!NOTE]
+> **NOTE**
 > If you see an 'application not found' error, LangStream is still not ready to accept the connections. Wait a few seconds and try again.
 
 With LangStream installed and your environment set up, you're ready to build an application.
