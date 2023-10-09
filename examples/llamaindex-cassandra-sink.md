@@ -28,8 +28,6 @@ pipeline:
         table: vs_ll_openai
 ```
 
-
-
 ### Topics
 
 **Input**

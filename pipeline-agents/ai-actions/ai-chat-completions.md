@@ -25,11 +25,27 @@ The `ai-chat-completions` for OpenAI uses the /v1/chat/completions endpoint. Ref
 pipeline:
   - name: "ai-chat-completions"
     type: "ai-chat-completions"
+    output: "history-topic"
     configuration:
-      model: "gpt-3.5-turbo"
+      model: "${secrets.open-ai.chat-completions-model}" # This needs to be set to the model deployment name, not the base name
+      # on the log-topic we add a field with the answer
+      completion-field: "value.answer"
+      # we are also logging the prompt we sent to the LLM
+      log-field: "value.prompt"
+      # here we configure the streaming behavior
+      # as soon as the LLM answers with a chunk we send it to the answers-topic
+      stream-to-topic: "output-topic"
+      # on the streaming answer we send the answer as whole message
+      # the 'value' syntax is used to refer to the whole value of the message
+      stream-response-completion-field: "value"
+      # we want to stream the answer as soon as we have 10 chunks
+      # in order to reduce latency for the first message the agent sends the first message
+      # with 1 chunk, then with 2 chunks....up to the min-chunks-per-message value
+      # eventually we want to send bigger messages to reduce the overhead of each message on the topic
+      min-chunks-per-message: 10
       messages:
         - role: user
-          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{% value.question}}"
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question}}"
 ```
 
 ## Using VertexAI chat models
@@ -37,17 +53,19 @@ pipeline:
 Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
 
 ```yaml
-pipeline:
-  - name: "ai-chat-completions"
-    type: "ai-chat-completions"
+  - name: "ai-text-completions"
+    type: "ai-text-completions"
+    output: "answers"
     configuration:
-      model: "chat-bison"
-      max-tokens: 100
-      messages:
-        - role: user
-          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{% value.question}}"
+      model: "${secrets.vertex-ai.text-completions-model}"
+      # on the log-topic we add a field with the answer
+      completion-field: "value.answer"
+      # we are also logging the prompt we sent to the LLM
+      log-field: "value.prompt"
+      max-tokens: 20
+      prompt:
+        - "{{ value.question}}"
 ```
-
 
 ### Prompt limitations
 
