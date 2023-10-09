@@ -49,7 +49,7 @@ Want to get started a little quicker? Check out the [LangStream VSCode Extension
 This is referred to as the “application directory” because the main pipeline and its configuration are declared within.
 
 * pipeline.yaml: this is the declaration of topics and pipeline steps. It is required. [Learn more about building pipelines.](../pipeline-agents/agent-messaging.md)
-* gateways: gateways interact with an agent via a message topic. [Learn more about gateways.](../api-gateways/)
+* gateways: gateways interact with an agent via a message topic. [Learn more about gateways.](api-gateways/)
 * configuration.yaml: this is the declaration of additional services a step in the pipeline depends on. It is optional. [Learn more about configurations.](configuration.md)
 
 #### Instance.yaml

@@ -38,17 +38,14 @@
 * [Application Lifecycle](building-applications/application-lifecycle.md)
 * [Error Handling](building-applications/error-handling.md)
 * [.langstreamignore](building-applications/langstreamignore.md)
+* [API Gateways](building-applications/api-gateways/README.md)
+  * [Websocket](building-applications/api-gateways/websocket.md)
+  * [Message filtering](building-applications/api-gateways/message-filtering.md)
+  * [Gateway authentication](building-applications/api-gateways/gateway-authentication.md)
 * [API Reference](building-applications/api-reference/README.md)
   * [Agents](building-applications/api-reference/agents.md)
   * [Resources](building-applications/api-reference/resources.md)
   * [Assets](building-applications/api-reference/assets.md)
-
-***
-
-* [API Gateways](api-gateways/README.md)
-  * [Websocket](api-gateways/websocket.md)
-  * [Message filtering](api-gateways/message-filtering.md)
-  * [Gateway authentication](api-gateways/gateway-authentication.md)
 
 ## LangStream CLI
 
