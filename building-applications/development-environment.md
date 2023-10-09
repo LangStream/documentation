@@ -49,7 +49,7 @@ Want to get started a little quicker? Check out the [LangStream VSCode Extension
 This is referred to as the “application directory” because the main pipeline and its configuration are declared within.
 
 * pipeline.yaml: this is the declaration of topics and pipeline steps. It is required. [Learn more about building pipelines.](../pipeline-agents/agent-messaging.md)
-* gateways: gateways interact with an agent via a message topic. [Learn more about gateways.](api-gateways.md)
+* gateways: gateways interact with an agent via a message topic. [Learn more about gateways.](../api-gateways/)
 * configuration.yaml: this is the declaration of additional services a step in the pipeline depends on. It is optional. [Learn more about configurations.](configuration.md)
 
 #### Instance.yaml
@@ -72,7 +72,7 @@ Filename: instance-production.yaml
 
 #### Secrets.yaml
 
-This is a holder for secrets used within pipeline steps, configuration dependencies, and instance declarations. It is an optional value.&#x20;
+This is a holder for secrets used within pipeline steps, configuration dependencies, and instance declarations. It is an optional value.
 
 Secrets are held separately to create a separation of information. It’s not a good practice to hard code tokens in pipeline manifests. Instead, include a pointer to a secret that is managed in different ways. [Learn more about secrets.](secrets.md)
 
