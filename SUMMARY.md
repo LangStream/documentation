@@ -35,7 +35,6 @@
 * [Topics](building-applications/topics.md)
 * [Assets](building-applications/assets.md)
 * [Secrets](building-applications/secrets.md)
-* [Page](building-applications/page.md)
 * [Application Lifecycle](building-applications/application-lifecycle.md)
 * [Error Handling](building-applications/error-handling.md)
 * [.langstreamignore](building-applications/langstreamignore.md)
