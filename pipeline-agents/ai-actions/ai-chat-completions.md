@@ -53,18 +53,16 @@ pipeline:
 Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
 
 ```yaml
-  - name: "ai-text-completions"
-    type: "ai-text-completions"
-    output: "answers"
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
     configuration:
-      model: "${secrets.vertex-ai.text-completions-model}"
-      # on the log-topic we add a field with the answer
-      completion-field: "value.answer"
-      # we are also logging the prompt we sent to the LLM
-      log-field: "value.prompt"
-      max-tokens: 20
-      prompt:
-        - "{{ value.question}}"
+      model: "bert-base-uncased"
+      completion-field: "value.chatresult"
+      log-field: "value.request"
+      messages:
+        - role: user
+          content: "{{ value }} [MASK]"
 ```
 
 ### Prompt limitations
