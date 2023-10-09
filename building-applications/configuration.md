@@ -82,7 +82,24 @@ configuration:
         project-name: ""
 ```
 
+OSS Milvus and Zillis
 
+```yaml
+  - type: "datasource"
+    name: "MilvusDatasource"
+    configuration:
+      service: "milvus"
+      ## OSS Milvus
+      username: "${secrets.milvus.username}"
+      password: "${secrets.milvus.password}"
+      host: "${secrets.milvus.host}"
+      port: "${secrets.milvus.port}"
+      ## Set to "upsert" for OSS Milvus, on Zills use "delete-insert"
+      write-mode: "${secrets.milvus.write-mode}"
+      ## Zillis
+      url: "${secrets.milvus.url}"
+      token: "${secrets.milvus.token}"
+```
 
 ### Manifest
 

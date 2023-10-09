@@ -1,6 +1,6 @@
 # Vector Databases
 
-Vector databases are a crucial part of the generative AI workflow. Vector databases store vector representations (embeddings) of text, images, sound, etc. They include search tools to enable similarity search across the vector representations to find semanitically similar data.   
+Vector databases are a crucial part of the generative AI workflow. Vector databases store vector representations (embeddings) of text, images, sound, etc. They include search tools to enable similarity search across the vector representations to find semantically similar data.
 
 Vector databases are typically used as part of retrieval augmented generation (RAG). In the RAG workflow, relevant documents or passages are retrieved from a vector database based on their semantic relevance. These documents or passages are then included in the LLM prompt to provide additional context for the LLM to use when generating a response. This pattern is used to:
 
@@ -126,37 +126,39 @@ The compute agent structures the output into values the final compute step can w
     type: "compute"
     configuration:
       fields:
-         - name: "value.filename"
-           expression: "properties.name"
-           type: STRING
-         - name: "value.chunk_id"
-           expression: "properties.chunk_id"
-           type: STRING
-         - name: "value.language"
-           expression: "properties.language"
-           type: STRING
-         - name: "value.chunk_num_tokens"
-           expression: "properties.chunk_num_tokens"
-           type: STRING
+        - name: "value.filename"
+          expression: "properties.url"
+          type: STRING
+        - name: "value.chunk_id"
+          expression: "properties.chunk_id"
+          type: STRING
+        - name: "value.language"
+          expression: "properties.language"
+          type: STRING
+        - name: "value.chunk_num_tokens"
+          expression: "properties.chunk_num_tokens"
+          type: STRING
 ```
 
 Now that the text is processed and structured, an agent computes embeddings and sends them to the Kafka "chunks-topic".
 
 ```yaml
-  - name: "compute-embeddings"
+ - name: "compute-embeddings"
     id: "step1"
     type: "compute-ai-embeddings"
-    output: "chunks-topic"
+    output: chunks-topic
     configuration:
-      model: "text-embedding-ada-002" 
+      model: "text-embedding-ada-002" # This needs to match the name of the model deployment, not the base model
       embeddings-field: "value.embeddings_vector"
-      text: "{{% value.text }}"
+      text: "{{ value.text }}"
+      batch-size: 10
+      flush-interval: 500
 ```
 
 The final agent takes the embeddings from the "chunks-topic" and writes them to an Astra vector database. As with the S3 agent, these credentials are pulled from secrets.yaml.
 
 ```yaml
-  - name: "Write to vector database"
+  - name: "Write to Astra"
     type: "vector-db-sink"
     input: "chunks-topic"
     resources:
@@ -174,8 +176,3 @@ Now, all the information from your PDFs is embedded in a vector database. Try se
 
 Do you have a website lying around just waiting to be turned into useful, vectorized text?\
 This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.&#x20;
-
-
-
-
-[^1]: 
