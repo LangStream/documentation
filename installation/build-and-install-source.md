@@ -14,7 +14,7 @@ layout:
 
 # Build and install (source)
 
-LangStream uses Maven as its build system. When the below script is run the project source will be tested, compiled, and the container images will be built.
+LangStream uses Maven as its build system. When the below script is run the project source will be tested and compiled, and the container images will be built.
 
 ### Requirements
 
@@ -51,24 +51,23 @@ mini-langstream dev start
 
 This command will build the images in the `minikube` context and install all the LangStream services with the snapshot image.
 
-Once the cluster is running, if you want to build abd load a new version of a specific service you can run:
+Once the cluster is running, if you want to build and load a new version of a specific service, run:
 
 ```bash
 mini-langstream dev build <service>
 ```
 
-or for all the services
+... or for all the services:
 ```bash
 mini-langstream dev build
 ```
 
-
 ### Locate the CLI
 
-During the build, the latest CLI has created in the `bin` folder.
+During the build, the latest CLI is created in the `bin` folder.
 
 ```bash
 ./bin/langstream --version
 ```
 
-Please note that this CLI uses the conf/cli.yaml file and it does not behave the same way as the CLI installed with brew, that uses the $HOME/.langstream/config file with a different format.
+Please note that this CLI uses the conf/cli.yaml file for configuration, and it does not behave the same way as the CLI installed with brew, which uses the $HOME/.langstream/config file with a different format.

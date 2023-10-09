@@ -37,7 +37,7 @@ langstream -h
 ```
 
 ### Enable auto-completion
-Installing directly the binary will enable auto-completion for the CLI. 
+Installing the binary directly will enable auto-completion for the CLI.
 
 If you installed the CLI with Homebrew, you can enable auto-completion with the following command:
 

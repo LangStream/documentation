@@ -6,18 +6,6 @@ To create a LangStream cluster locally, it's recommended to use [minikube](https
 
 ## Install mini-langstream
 
-MacOS:
-
-```bash
-brew install LangStream/langstream/mini-langstream
-```
-
-Unix:
-
-```bash
-curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/mini-langstream/get-mini-langstream.sh" | bash
-```
-
 mini-langstream requires the following commands to be already installed:
 - Docker
 - Minikube
@@ -30,31 +18,41 @@ mini-langstream requires the following commands to be already installed:
 If you install mini-langstream using Brew, all the dependencies are automatically installed.
 {% endhint %}
 
+MacOS:
+
+```bash
+brew install LangStream/langstream/mini-langstream
+```
+
+Unix:
+
+```bash
+curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/mini-langstream/get-mini-langstream.sh" | bash
+```
 
 ## Start the cluster
 
 mini-langstream will do all the setup for you, in particular:
-- it starts `minikube` in a dedicated context
-- it deploys LangStream components using `helm`
-- it runs a stateful Kafka broker as docker container
-- it runs a stateful s3-compatible storage (MinIO) as docker container
-- it forwards the control plane and API Gateways ports locally
-- it creates a dedicated LangStream CLI profile to interact with the cluster
-- it wraps all the common k8s tools to inspect the cluster (`mini-langstream kubectl`, `mini-langstream helm`, `mini-langstream k9s`)
+- start `minikube` in a dedicated context
+- deploy LangStream components using `helm`
+- run a stateful Kafka broker as docker container
+- run a stateful s3-compatible storage (MinIO) as docker container
+- forward the control plane and API Gateways ports locally
+- create a dedicated LangStream CLI profile to interact with the cluster
+- wrap all the common k8s tools to inspect the cluster (`mini-langstream kubectl`, `mini-langstream helm`, `mini-langstream k9s`)
 
-
-Start or ensure the cluster is running:
+1. Start or ensure the cluster is running:
 
 ```bash
 mini-langstream start
 ```
 
-Now try to use the CLI:
+2. Try to use the CLI:
 
 ```bash
 mini-langstream cli apps list
 ```
-and deploy an application:
+3. Deploy an application:
 
 ```bash
 export OPENAI_API_KEY=<your-openai-api-key>
