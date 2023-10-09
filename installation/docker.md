@@ -23,21 +23,27 @@ This is why the LangStream CLI provides a simple way to run your application loc
 
 ### Running your application on docker
 
-Using the [LangStream CLI](../installation/langstream-cli.md) you can run your application directly:
+Using the [LangStream CLI](../installation/langstream-cli.md), you can run your application directly:
 
 ```bash
- langstream docker run super-cool-app -app ./application  -s ./secrets.yaml
+langstream docker run super-cool-app -app ./application  -s ./secrets.yaml
 ```
 
-This commands starts a docker container using the same version of the CLI.
+This command starts a docker container using the same version of the CLI.
 
-The container by default runs all the LangStream components, a Kafka Broker, and an S3 service (using Minio).
+The container by default runs all the LangStream components, a Kafka Broker, and an S3 service (using [Minio](https://min.io/docs/minio/kubernetes/upstream/index.html)).
 
 The docker container exposes the Control Plane on the default port (8090) and the API Gateway on the default port (8091),
 so you can run most of the CLI commands against the local container, especially the commands to interact with the API Gateway.
 
 When you kill the application with Ctrl-C, the environment is automatically disposed of.
-If you need to persist your topics or the S3 environment then you have to build your own instance.yaml file and pass it using the "-i" flag.
+If you need to persist your topics or the S3 environment, then you have to build your own instance.yaml file and pass it using the "-i" flag.
+
+```bash
+langstream docker run super-cool-app -app ./application \
+-i ./instance.yaml \
+-s ./secrets.yaml
+```
 
 ### Selecting the services to run
 
@@ -50,11 +56,11 @@ You can use the following flags to select the services to run:
 * --start-webservices true|false: starts the LangStream HTTP components (control plane and API gateway) (default is `true`)
 * --start-database true|false: starts an embedded vector JDBC compliant database (HerdDB) (default is `true`)
 
-For example, if you are using an external Apache Kafka or Pulsar broker you don't need to start Kafka in the container and you can save local resources.
+For example, if you are using an external Apache Kafka or Pulsar broke, you don't need to start Kafka in the container and you can save local resources by not running the service.
 
 ### Running a single agent
 
-By default the "docker run" mode runs all the agents in the application.
+By default the "docker run" mode runs all the agents in the application pipeline.
 If you want to debug or work on a single agent you can use the `--only-agent` flag to specify the agent to run.
 
 The id of the agent is the same id of the "executors" section in the application descriptor. You can see this id with the "langstream apps get -o yaml" command.
@@ -65,10 +71,10 @@ the id would be the id of a Statefulset.
 
 When you run your application in "docker run" mode, the container runs a simplified environment that doesn't need Kubernetes, but this comes with a few simplifications to the execution runtime.
 
-In production mode, on Kubernetes, the LangStream planner builds an execution plan from your pipeline files, and then it submits the execution plan to the Kubernetes cluster in the form of Statefulsets. Each Statefulset is responsible for running a single agent. You can configure the number of replicas for each agent in the "resources" section of the pipeline.yaml file. 
+In production mode on Kubernetes, the LangStream planner builds an execution plan from your pipeline files, and then it submits the execution plan to the Kubernetes cluster in the form of Statefulsets. Each Statefulset is responsible for running a single agent. You can configure the number of replicas for each agent in the "resources" section of the pipeline.yaml file.
 
 In docker mode there is only one Java process that runs all the agents, and for each agent it starts only one execution flow, like having a Statefulset with only one replica.
-The resources (JVM and CPU) are shared between all the agents, so if you have a lot of agents in your application you may need to increase the resources of the docker container.
+The resources (JVM and CPU) are shared between all the agents, so if you have a lot of agents in your application you may need to increase the resources of the docker container (see "Tuning the docker container" below).
 
 The initialisation of the assets is always performed independently from the agents that are running, for all the assets declared in the application. This is because the assets are shared between all the agents, even if they are declared in some pipeline file.
 
