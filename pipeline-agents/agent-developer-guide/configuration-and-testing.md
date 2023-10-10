@@ -51,8 +51,9 @@ The command assumes you are running it from the “application” folder and you
 docker run --rm \
     -v $(pwd):/app-code-download \
     --entrypoint "" \
+    -w /app-code-download/python \
     ghcr.io/langstream/langstream-runtime:0.1.0 \
-    /bin/bash -c 'pip3 install --target /app-code-download/python/lib --upgrade --prefer-binary -r requirements.txt'
+    /bin/bash -c 'pip3 install --target ./lib --upgrade --prefer-binary -r requirements.txt'
 ```
 
 {% hint style="info" %}
@@ -69,16 +70,18 @@ Using unittest:
 docker run --rm \
     -v $(pwd):/app-code-download \
     --entrypoint "" \
+    -w /app-code-download/python \
     ghcr.io/langstream/langstream-runtime:0.1.0 \
-    /bin/bash -c 'python3 -m unittest discover -s test'
+    /bin/bash -c 'PYTHONPATH=$PYTHONPATH:/app-code-download/python/lib python3 -m unittest'
 ```
 
 Using tox:
 
 ```bash
 docker run --rm \
-    -v ${pwd}:/app-code-download \
+    -v $(pwd):/app-code-download \
     --entrypoint "" \
+    -w /app-code-download/python \
     ghcr.io/langstream/langstream-runtime:0.1.0 \
     /bin/bash -c 'tox'
 ```
