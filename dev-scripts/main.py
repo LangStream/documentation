@@ -22,9 +22,9 @@ def escape_html(text, link = None):
 def generate_single_entity_table(entity_name, entity_ref, description, properties, is_nested=False):
     result = []
     if is_nested:
-        table = f"<br><h4 data-full-width=\"true\"><a name=\"{entity_ref}\"></a>{entity_name}</h4>"
-    else:
         table = f"<br><h3 data-full-width=\"true\"><a name=\"{entity_ref}\"></a>{entity_name}</h3>"
+    else:
+        table = f"<br><h2 data-full-width=\"true\"><a name=\"{entity_ref}\"></a>{entity_name}</h2>"
 
     if description:
         table += f"<p data-full-width=\"true\">{escape_html(description)}</p>\n\n"
@@ -64,20 +64,17 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
 
 def generate_entity_tables(title, version, data, output_file):
 
-    markdown_content = f"<h1> {title}</h1>"
-    markdown_content += f"<p>LangStream Version: <strong>{version}</strong></p>\n\n"
-    markdown_content += gen_entity("", data)
+    content = f"<h1>{title}</h1>"
+    content += f"<p>LangStream Version: <strong>{version}</strong></p>\n\n"
+    content += gen_entity(data)
             
     with open(output_file, 'w') as file:
-        file.write(markdown_content)
+        file.write(content)
 
     print(f"Tables generated and saved to {output_file}")
 
-def gen_entity(title, data):
-    if title:
-        content = f"<h2>{title}</h2>\n\n"
-    else: 
-        content = "\n\n"
+def gen_entity(data):
+    content = "\n\n"
 
     for key, value in data.items():
         if value:

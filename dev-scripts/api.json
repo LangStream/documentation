@@ -1,5 +1,5 @@
 {
-  "version" : "0.1.0",
+  "version" : "0.2.0",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
@@ -162,6 +162,16 @@
           "required" : false,
           "type" : "object"
         },
+        "logprobs" : {
+          "description" : "Logprobs parameter (only valid for OpenAI).",
+          "required" : false,
+          "type" : "string"
+        },
+        "logprobs-field" : {
+          "description" : "Log probabilities to a field.",
+          "required" : false,
+          "type" : "string"
+        },
         "max-tokens" : {
           "description" : "Parameter for the completion request. The parameters are passed to the AI Service as is.",
           "required" : false,
@@ -236,6 +246,55 @@
         },
         "when" : {
           "description" : "Execute the step only when the condition is met.\nYou can use the expression language to reference the message.\nExample: when: \"value.first == 'f1' && value.last.toUpperCase() == 'L1'\"",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "azure-blob-storage-source" : {
+      "name" : "Azure Blob Storage Source",
+      "description" : "Reads data from Azure blobs. There are three supported ways to authenticate:\n- SAS token\n- Storage account name and key\n- Storage account connection string",
+      "properties" : {
+        "container" : {
+          "description" : "The name of the Azure econtainer to read from.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "langstream-azure-source"
+        },
+        "endpoint" : {
+          "description" : "Endpoint to connect to. Usually it's https://<storage-account>.blob.core.windows.net.",
+          "required" : true,
+          "type" : "string"
+        },
+        "file-extensions" : {
+          "description" : "Comma separated list of file extensions to filter by.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "pdf,docx,html,htm,md,txt"
+        },
+        "idle-time" : {
+          "description" : "Time in seconds to sleep after polling for new files.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "5"
+        },
+        "sas-token" : {
+          "description" : "Azure SAS token. If not provided, storage account name and key must be provided.",
+          "required" : false,
+          "type" : "string"
+        },
+        "storage-account-connection-string" : {
+          "description" : "Azure storage account connection string. If not provided, SAS token must be provided.",
+          "required" : false,
+          "type" : "string"
+        },
+        "storage-account-key" : {
+          "description" : "Azure storage account key. If not provided, SAS token must be provided.",
+          "required" : false,
+          "type" : "string"
+        },
+        "storage-account-name" : {
+          "description" : "Azure storage account name. If not provided, SAS token must be provided.",
           "required" : false,
           "type" : "string"
         }
@@ -361,6 +420,11 @@
           "type" : "integer",
           "defaultValue" : "0"
         },
+        "loop-over" : {
+          "description" : "Execute the agent over a list of documents",
+          "required" : false,
+          "type" : "string"
+        },
         "model" : {
           "description" : "Model to use for the embeddings. The model must be available in the configured AI Service.",
           "required" : false,
@@ -386,6 +450,40 @@
           "description" : "Execute the step only when the condition is met.\nYou can use the expression language to reference the message.\nExample: when: \"value.first == 'f1' && value.last.toUpperCase() == 'L1'\"",
           "required" : false,
           "type" : "string"
+        }
+      }
+    },
+    "dispatch" : {
+      "name" : "Dispatch agent",
+      "description" : "Dispatches messages to different destinations based on conditions.",
+      "properties" : {
+        "routes" : {
+          "description" : "Routes.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "Routes.",
+            "required" : false,
+            "type" : "object",
+            "properties" : {
+              "destination" : {
+                "description" : "Destination of the message.",
+                "required" : false,
+                "type" : "string"
+              },
+              "action" : {
+                "description" : "Action on the message. Possible values are \"dispatch\" or \"drop\".",
+                "required" : false,
+                "type" : "string",
+                "defaultValue" : "dispatch"
+              },
+              "when" : {
+                "description" : "Condition to activate the route. This is a standard EL expression.",
+                "required" : false,
+                "type" : "string"
+              }
+            }
+          }
         }
       }
     },
@@ -456,6 +554,32 @@
         }
       }
     },
+    "flare-controller" : {
+      "name" : "Flare Controller",
+      "description" : "Apply to the Flare pattern to enhance the quality of text completion results.",
+      "properties" : {
+        "logprobs-field" : {
+          "description" : "The field that contains the logprobs of tokens returned by the ai-text-completion agent.",
+          "required" : true,
+          "type" : "string"
+        },
+        "loop-topic" : {
+          "description" : "Name of the topic to forward the message in case of requesting more documents.",
+          "required" : true,
+          "type" : "string"
+        },
+        "retrieve-documents-field" : {
+          "description" : "Name of the field to set in order to request the retrival of more documents.",
+          "required" : true,
+          "type" : "string"
+        },
+        "tokens-field" : {
+          "description" : "The field that contains the list of tokens returned by the ai-text-completion agent.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
     "flatten" : {
       "name" : "Flatten record fields",
       "description" : "Converts structured nested data into a new single-hierarchy-level structured data. The names of the new fields are built by concatenating the intermediate level field names.",
@@ -480,6 +604,55 @@
         "when" : {
           "description" : "Execute the step only when the condition is met.\nYou can use the expression language to reference the message.\nExample: when: \"value.first == 'f1' && value.last.toUpperCase() == 'L1'\"",
           "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "http-request" : {
+      "name" : "Http Request",
+      "description" : "Agent for enriching data with an HTTP request.",
+      "properties" : {
+        "allow-redirects" : {
+          "description" : "Whether or not to follow redirects.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "body" : {
+          "description" : "Body to send with the request. You can use the Mustache syntax to inject value from the context.",
+          "required" : false,
+          "type" : "string"
+        },
+        "handle-cookies" : {
+          "description" : "Whether or not to handle cookies during the redirects.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "headers" : {
+          "description" : "Headers to send with the request. You can use the Mustache syntax to inject value from the context.",
+          "required" : false,
+          "type" : "object"
+        },
+        "method" : {
+          "description" : "Http method to use for the request.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "GET"
+        },
+        "output-field" : {
+          "description" : "The field that will hold the results, it can be the same as \"field\" to override it.",
+          "required" : true,
+          "type" : "string"
+        },
+        "query-string" : {
+          "description" : "Query string to append to the url. You can use the Mustache syntax to inject value from the context.\nNote that the values will be automatically escaped.",
+          "required" : false,
+          "type" : "object"
+        },
+        "url" : {
+          "description" : "Url to send the request to. For adding query string parameters, use the `query-string` field.",
+          "required" : true,
           "type" : "string"
         }
       }
@@ -597,6 +770,11 @@
             "type" : "string"
           }
         },
+        "loop-over" : {
+          "description" : "Loop over a list of items taken from the record. For instance value.documents.\nIt must refer to a list of maps. In this case the output-field parameter\nbut be like \"record.fieldname\" in order to replace or set a field in each record\nwith the results of the query. In the query parameters you can refer to the\nrecord fields using \"record.field\".",
+          "required" : false,
+          "type" : "string"
+        },
         "only-first" : {
           "description" : "If true, only the first result of the query is stored in the output field.",
           "required" : false,
@@ -644,6 +822,11 @@
             "required" : false,
             "type" : "string"
           }
+        },
+        "loop-over" : {
+          "description" : "Loop over a list of items taken from the record. For instance value.documents.\nIt must refer to a list of maps. In this case the output-field parameter\nbut be like \"record.fieldname\" in order to replace or set a field in each record\nwith the results of the query. In the query parameters you can refer to the\nrecord fields using \"record.field\".",
+          "required" : false,
+          "type" : "string"
         },
         "only-first" : {
           "description" : "If true, only the first result of the query is stored in the output field.",
@@ -763,7 +946,7 @@
           "defaultValue" : "pdf,docx,html,htm,md,txt"
         },
         "idle-time" : {
-          "description" : "Region for the S3 server.",
+          "description" : "Time in seconds to sleep after polling for new files.",
           "required" : false,
           "type" : "integer",
           "defaultValue" : "5"
