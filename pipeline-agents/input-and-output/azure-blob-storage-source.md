@@ -26,4 +26,4 @@ az storage blob upload -f <localfile.txt> -c documents -n new-file.txt
 
 ### Configuration
 
-Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#azure-blob-storage).
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#azure-blob-storage-source).
