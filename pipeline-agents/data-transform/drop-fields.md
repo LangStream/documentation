@@ -8,8 +8,8 @@ Given the input:
 
 ```json
 {
- name: value1, 
- password: value2
+ "name": "value1", 
+ "password": "value2"
 }
 ```
 
@@ -46,4 +46,4 @@ The output would be:
 
 ### Configuration
 
-<table><thead><tr><th width="113.33333333333331">Label</th><th width="181">Type</th><th>Description</th></tr></thead><tbody><tr><td>fields</td><td>string (required)</td><td>A comma-separated list of fields to drop.</td></tr><tr><td>part</td><td>string (optional)</td><td><p>When used with KeyValue data, defines if the transform function is done on the key or on the value. If null or absent the transform function applies to both the key and the value.</p><p></p><p>Supported values are “key” or “value”.</p></td></tr></tbody></table>
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#drop-fields).

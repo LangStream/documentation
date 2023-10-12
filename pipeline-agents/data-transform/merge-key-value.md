@@ -8,11 +8,11 @@ Given the input:
 
 ```json
 {
-  key: {
-    keyField: key
+  "key": {
+    "keyField": "key"
   },
-  value: {
-    valueField: value
+  "value": {
+    "valueField": "value"
   }
 }
 ```
@@ -54,4 +54,4 @@ The output would be:
 
 ### Configuration
 
-(no configuration options)
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#merge-key-value).

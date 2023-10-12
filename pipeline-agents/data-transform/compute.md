@@ -145,3 +145,8 @@ The `when` condition supports the expression language syntax, which provides acc
 
 You can use the `.` operator to access top level or nested properties on a schema-full key or value.\
 For example, `key.keyField1` or `value.valueFiled1.nestedValueField`.
+
+
+### Configuration
+
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#compute).
