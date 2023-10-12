@@ -28,8 +28,6 @@ With the configuration above and an input of "HI there with a TRAILING space ", 
 * Structured text [?](../agent-messaging.md#implicit-input-and-output-topics)
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
-### **Configuration**
+### Configuration
 
-<table><thead><tr><th width="173.33333333333331">Label</th><th width="134">Type</th><th>Description</th></tr></thead><tbody><tr><td>makeLowercase</td><td>Boolean (optional)</td><td><p>Transform the provided text to all lowercase.</p><p></p><p>Defaults to a value of “true”</p></td></tr><tr><td>trimSpaces</td><td>Boolean (optional)</td><td><p>Trim empty spaces from each line of text.</p><p></p><p>Defaults to a value of “true”</p></td></tr></tbody></table>
-
-\
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#text-normaliser).

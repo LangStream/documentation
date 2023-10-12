@@ -8,8 +8,8 @@ Given the input:
 
 ```json
 {
-  firstName: value1,
-  lastName: value2
+  "firstName": "value1",
+  "lastName": "value2"
 }
 ```
 
@@ -41,5 +41,4 @@ There would be no output because the message is dropped.
 
 ### Configuration
 
-<table><thead><tr><th width="153.33333333333331">Label</th><th width="160">Type</th><th>Description</th></tr></thead><tbody><tr><td>when</td><td>string (optional)</td><td><p>By default, the record is dropped. Set this parameter to selectively choose when to drop a message (do not include mustache brackets, the agent will fill the value correctly).<br></p><p>Example:</p><p>when: “value.userId == 5”</p></td></tr></tbody></table>
-
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#drop).

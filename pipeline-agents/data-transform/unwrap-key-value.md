@@ -8,11 +8,11 @@ Given the input:
 
 ```json
 {
-  key: {
-    keyField: key
+  "key": {
+    "keyField": "key"
   },
-  value: {
-    valueField: value
+  "value": {
+    "valueField": "value"
   }
 
 ```
@@ -50,4 +50,4 @@ The output would be:
 
 ### Configuration
 
-<table><thead><tr><th width="136.33333333333331">Label</th><th width="149">Type</th><th>Description</th></tr></thead><tbody><tr><td>unwrapKey</td><td>boolean (optional)</td><td><p>By default, the KeyValue’s value is unwrapped. Set this parameter to true to unwrap the key instead.<br></p><p>Default value is “false”</p></td></tr></tbody></table>
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#unwrap-key-value).

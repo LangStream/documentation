@@ -28,6 +28,7 @@ To configure the CLI, see [Configuration](langstream-cli-configuration.md).
 | download   | Download LangStream application code | Example: langstream apps download myapp -o /myfile.zip                                                                               |
 | update     | Update an existing application       | Example: langstream apps update my-app-id --app “./my-app-files” --i “./instances.yaml” --s “./secrets.yaml”                         |
 | logs       | Get application logs                 | Example: langstream apps logs my-app-id -f “some-app-worker, another-app-worker”                                                     |
+| ui         | Start the UI for the application     | Example: langstream apps ui my-app-id                                                                                                |
 
 ## configure
 
@@ -55,6 +56,8 @@ Configuration is deprecated. Use [langstream profiles](langstream-cli-commands.m
 | --start-broker      | Start the broker              | Example: --start-broker="true" Should the broker be started? Default: true.                          |
 | --start-s3          | Start the S3 service          | Example: --start-s3="true" Should the S3 service be started? Default: true.                          |
 | --start-webservices | Start LangStream web services | Example: --start-webservices="true" Should LangStream web services be started? Default: true.        |
+| --start-database    | Start Vector-JDBC database    | Example: --start-database="true" Should LangStream vector database be started? Default: true.        |
+| --start-ui          | Start local UI                | Example: --start-ui="true" Should LangStream apps UI be started? Default: true.                      |
 | --only-agent        | Run only one agent            | Example: --only-agent="AgentID" ID of a single agent to run (optional).                              |
 | --secrets, -s       | Secrets file path             | Example: --secrets="./secrets.yaml" Optional; path to the secrets file.                              |
 | --memory            | Memory for Docker             | Example: --memory="4G" Memory allocated to the Docker container.                                     |

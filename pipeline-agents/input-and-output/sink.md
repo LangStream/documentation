@@ -61,4 +61,4 @@ Then the agent would implement the sink connector with appropriate values
 
 ### Configuration
 
-<table><thead><tr><th width="108.33333333333331">Label</th><th width="114">Type</th><th>Description</th></tr></thead><tbody><tr><td>name</td><td>string (required)</td><td>The sink type name</td></tr><tr><td>&#x3C;any></td><td><br></td><td>Additional configuration properties specific to the sink type.</td></tr></tbody></table>
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#sink).

@@ -38,8 +38,6 @@ output: "re"
 * Structured text [?](../agent-messaging.md#implicit-input-and-output-topics)
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
-### **Configuration**
+### Configuration
 
-<table><thead><tr><th width="140.33333333333331">Label</th><th width="165">Type</th><th>Description</th></tr></thead><tbody><tr><td>chunk-size</td><td>Integer (optional)</td><td><p>The number of characters to break a document’s contents into.</p><p></p><p>Default to a value of 1000 characters.</p></td></tr></tbody></table>
-
-\
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#text-splitter).

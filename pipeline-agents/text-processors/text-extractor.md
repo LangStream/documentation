@@ -25,8 +25,6 @@ An example text-extractor agent step:
 * Structured text [?](../agent-messaging.md#implicit-input-and-output-topics)
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
-### **Configuration**
+### Configuration
 
-N/A
-
-\
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#text-extractor).
