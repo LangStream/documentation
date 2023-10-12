@@ -1,6 +1,7 @@
 import json
 import argparse
 import os
+import html
 
 
 def escape_html(text, link = None):
@@ -12,7 +13,7 @@ def escape_html(text, link = None):
     if not text:
         return ''
     text = str(text)
-    text = text.replace('|', '\|').replace('\n', '<br>')
+    text = html.escape(text).replace('\n', '<br>')
     if link:
         return f"<a href=\"{link}\">{text}</a>"
     return text
