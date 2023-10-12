@@ -22,12 +22,12 @@ def escape_html(text, link = None):
 def generate_single_entity_table(entity_name, entity_ref, description, properties, is_nested=False):
     result = []
     if is_nested:
-        table = f"<br><h4><a name=\"{entity_ref}\"></a>{entity_name}</h4>"
+        table = f"<br><h4 data-full-width=\"true\"><a name=\"{entity_ref}\"></a>{entity_name}</h4>"
     else:
-        table = f"<br><h3><a name=\"{entity_ref}\"></a>{entity_name}</h3>"
+        table = f"<br><h3 data-full-width=\"true\"><a name=\"{entity_ref}\"></a>{entity_name}</h3>"
 
     if description:
-        table += f"<p>{escape_html(description)}</p>\n\n"
+        table += f"<p data-full-width=\"true\">{escape_html(description)}</p>\n\n"
 
     table += "<table data-full-width=\"true\">"
     table += "<thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody>"
