@@ -1,147 +1,46 @@
-# Resources
-
-LangStream Version: **0.1.0**
+<h1>Resources</h1><p>LangStream Version: <strong>0.2.0</strong></p>
 
 
 
+<br><h2 data-full-width="true"><a name="datasource_astra"></a>Astra (<code>datasource</code>)</h2><p data-full-width="true">Connect to DataStax Astra Database service.</p>
 
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>clientId</code></td><td>Astra Token clientId to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>database</code></td><td>Astra Database name to connect to. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>environment</code></td><td>Astra environment.</td><td>string</td><td></td><td>PROD</td></tr><tr><td><code>password</code></td><td>DEPRECATED: use secret instead.</td><td>string</td><td></td><td></td></tr><tr><td><code>secret</code></td><td>Astra Token secret to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>secureBundle</code></td><td>Secure bundle of the database. Must be encoded in base64.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to 'astra'</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>username</code></td><td>DEPRECATED: use clientId instead.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
-### <a name="datasource_astra"></a>Astra (`datasource`)
+<br><h2 data-full-width="true"><a name="datasource_cassandra"></a>Cassandra (<code>datasource</code>)</h2><p data-full-width="true">Connect to Apache cassandra.</p>
 
-Connect to DataStax Astra Database service.
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>contact-points</code></td><td>Contact points of the cassandra cluster.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>loadBalancing-localDc</code></td><td>Load balancing local datacenter.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>password</code></td><td>User password.</td><td>string</td><td></td><td></td></tr><tr><td><code>port</code></td><td>Cassandra port.</td><td>integer</td><td></td><td>9042</td></tr><tr><td><code>service</code></td><td>Service type. Set to 'cassandra'</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>username</code></td><td>User username.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `clientId` | Astra Token clientId to use. | string | ✓ |  |
-| `database` | Astra Database name to connect to. If secureBundle is provided, this field is ignored. | string |  |  |
-| `environment` | Astra environment. | string |  | PROD |
-| `password` | DEPRECATED: use secret instead. | string |  |  |
-| `secret` | Astra Token secret to use. | string | ✓ |  |
-| `secureBundle` | Secure bundle of the database. Must be encoded in base64. | string |  |  |
-| `service` | Service type. Set to 'astra' | string | ✓ |  |
-| `token` | Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored. | string |  |  |
-| `username` | DEPRECATED: use clientId instead. | string |  |  |
+<br><h2 data-full-width="true"><a name="datasource_jdbc"></a>JDBC (<code>datasource</code>)</h2><p data-full-width="true">Connect to any JDBC compatible database. The driver must be provided as dependency. All the extra configuration properties are passed as is to the JDBC driver.</p>
 
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>driverClass</code></td><td>JDBC entry-point driver class.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to 'jdbc'</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>url</code></td><td>JDBC connection url.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
-### <a name="datasource_cassandra"></a>Cassandra (`datasource`)
+<br><h2 data-full-width="true"><a name="hugging-face-configuration"></a>Hugging Face (<code>hugging-face-configuration</code>)</h2><p data-full-width="true">Connect to Hugging Face service.</p>
 
-Connect to Apache cassandra.
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>access-key</code></td><td>The access key to use for "api" provider.</td><td>string</td><td></td><td></td></tr><tr><td><code>api-url</code></td><td>The URL of the Hugging Face API. Relevant only if provider is "api".</td><td>string</td><td></td><td>https://api-inference.huggingface.co/pipeline/feature-extraction/</td></tr><tr><td><code>model-check-url</code></td><td>The model url to use. Relevant only if provider is "api".</td><td>string</td><td></td><td>https://huggingface.co/api/models/</td></tr><tr><td><code>provider</code></td><td>The provider to use. Either "local" or "api".</td><td>string</td><td></td><td>api</td></tr></tbody></table>
 
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `contact-points` | Contact points of the cassandra cluster. | string | ✓ |  |
-| `loadBalancing-localDc` | Load balancing local datacenter. | string | ✓ |  |
-| `password` | User password. | string |  |  |
-| `port` | Cassandra port. | integer |  | 9042 |
-| `service` | Service type. Set to 'cassandra' | string | ✓ |  |
-| `username` | User username. | string |  |  |
+<br><h2 data-full-width="true"><a name="open-ai-configuration"></a>Open AI (<code>open-ai-configuration</code>)</h2><p data-full-width="true">Connect to OpenAI API or Azure OpenAI API.</p>
 
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>access-key</code></td><td>The access key to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>provider</code></td><td>The provider to use. Either "openai" or "azure".</td><td>string</td><td></td><td>openai</td></tr><tr><td><code>url</code></td><td>Url for Azure OpenAI API. Required only if provider is "azure".</td><td>string</td><td></td><td></td></tr></tbody></table>
 
-### <a name="datasource_jdbc"></a>JDBC (`datasource`)
+<br><h2 data-full-width="true"><a name="vector-database_astra"></a>Astra (<code>vector-database</code>)</h2><p data-full-width="true">Connect to DataStax Astra Database service.</p>
 
-Connect to any JDBC compatible database. The driver must be provided as dependency. All the extra configuration properties are passed as is to the JDBC driver.
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>clientId</code></td><td>Astra Token clientId to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>database</code></td><td>Astra Database name to connect to. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>environment</code></td><td>Astra environment.</td><td>string</td><td></td><td>PROD</td></tr><tr><td><code>password</code></td><td>DEPRECATED: use secret instead.</td><td>string</td><td></td><td></td></tr><tr><td><code>secret</code></td><td>Astra Token secret to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>secureBundle</code></td><td>Secure bundle of the database. Must be encoded in base64.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to 'astra'</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>username</code></td><td>DEPRECATED: use clientId instead.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `driverClass` | JDBC entry-point driver class. | string | ✓ |  |
-| `service` | Service type. Set to 'jdbc' | string | ✓ |  |
-| `url` | JDBC connection url. | string | ✓ |  |
+<br><h2 data-full-width="true"><a name="vector-database_cassandra"></a>Cassandra (<code>vector-database</code>)</h2><p data-full-width="true">Connect to Apache cassandra.</p>
 
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>contact-points</code></td><td>Contact points of the cassandra cluster.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>loadBalancing-localDc</code></td><td>Load balancing local datacenter.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>password</code></td><td>User password.</td><td>string</td><td></td><td></td></tr><tr><td><code>port</code></td><td>Cassandra port.</td><td>integer</td><td></td><td>9042</td></tr><tr><td><code>service</code></td><td>Service type. Set to 'cassandra'</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>username</code></td><td>User username.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
-### <a name="hugging-face-configuration"></a>Hugging Face (`hugging-face-configuration`)
+<br><h2 data-full-width="true"><a name="vector-database_milvus"></a>Milvus (<code>vector-database</code>)</h2><p data-full-width="true">Connect to Milvus/Zillis service.</p>
 
-Connect to Hugging Face service.
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>host</code></td><td>Host parameter for connecting to Milvus.</td><td>string</td><td></td><td></td></tr><tr><td><code>index-name</code></td><td>Url parameter for connecting to Zillis service.</td><td>string</td><td></td><td></td></tr><tr><td><code>password</code></td><td>Password parameter for connecting to Milvus.</td><td>string</td><td></td><td></td></tr><tr><td><code>port</code></td><td>Port parameter for connecting to Milvus.</td><td>integer</td><td></td><td>19530</td></tr><tr><td><code>service</code></td><td>Service type. Set to 'milvus'</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Token parameter for connecting to Zillis service.</td><td>string</td><td></td><td></td></tr><tr><td><code>user</code></td><td>User parameter for connecting to Milvus.</td><td>string</td><td></td><td>default</td></tr></tbody></table>
 
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `access-key` | The access key to use for "api" provider. | string |  |  |
-| `api-url` | The URL of the Hugging Face API. Relevant only if provider is "api". | string |  | https://api-inference.huggingface.co/pipeline/feature-extraction/ |
-| `model-check-url` | The model url to use. Relevant only if provider is "api". | string |  | https://huggingface.co/api/models/ |
-| `provider` | The provider to use. Either "local" or "api". | string |  | api |
+<br><h2 data-full-width="true"><a name="vector-database_pinecone"></a>Pinecone (<code>vector-database</code>)</h2><p data-full-width="true">Connect to Pinecone service.</p>
 
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>api-key</code></td><td>Api key for connecting to the Pinecone service.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>endpoint</code></td><td>Endpoint of the Pinecone service.</td><td>string</td><td></td><td></td></tr><tr><td><code>environment</code></td><td>Environment parameter for connecting to the Pinecone service.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>index-name</code></td><td>Index name parameter for connecting to the Pinecone service.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>project-name</code></td><td>Project name parameter for connecting to the Pinecone service.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>server-side-timeout-sec</code></td><td>Server side timeout parameter for connecting to the Pinecone service.</td><td>integer</td><td></td><td>10</td></tr><tr><td><code>service</code></td><td>Service type. Set to 'pinecone'</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
-### <a name="open-ai-configuration"></a>Open AI (`open-ai-configuration`)
+<br><h2 data-full-width="true"><a name="vertex-configuration"></a>Vertex AI (<code>vertex-configuration</code>)</h2><p data-full-width="true">Connect to VertexAI API.</p>
 
-Connect to OpenAI API or Azure OpenAI API.
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>project</code></td><td>GCP project name for the Vertex API.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>region</code></td><td>GCP region for the Vertex API.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>serviceAccountJson</code></td><td>Specify service account credentials. Refer to the GCP documentation on how to download it</td><td>string</td><td></td><td></td></tr><tr><td><code>token</code></td><td>Access key for the Vertex API.</td><td>string</td><td></td><td></td></tr><tr><td><code>url</code></td><td>URL connection for the Vertex API.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `access-key` | The access key to use. | string | ✓ |  |
-| `provider` | The provider to use. Either "openai" or "azure". | string |  | openai |
-| `url` | Url for Azure OpenAI API. Required only if provider is "azure". | string |  |  |
-
-
-### <a name="vector-database_astra"></a>Astra (`vector-database`)
-
-Connect to DataStax Astra Database service.
-
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `clientId` | Astra Token clientId to use. | string | ✓ |  |
-| `database` | Astra Database name to connect to. If secureBundle is provided, this field is ignored. | string |  |  |
-| `environment` | Astra environment. | string |  | PROD |
-| `password` | DEPRECATED: use secret instead. | string |  |  |
-| `secret` | Astra Token secret to use. | string | ✓ |  |
-| `secureBundle` | Secure bundle of the database. Must be encoded in base64. | string |  |  |
-| `service` | Service type. Set to 'astra' | string | ✓ |  |
-| `token` | Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored. | string |  |  |
-| `username` | DEPRECATED: use clientId instead. | string |  |  |
-
-
-### <a name="vector-database_cassandra"></a>Cassandra (`vector-database`)
-
-Connect to Apache cassandra.
-
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `contact-points` | Contact points of the cassandra cluster. | string | ✓ |  |
-| `loadBalancing-localDc` | Load balancing local datacenter. | string | ✓ |  |
-| `password` | User password. | string |  |  |
-| `port` | Cassandra port. | integer |  | 9042 |
-| `service` | Service type. Set to 'cassandra' | string | ✓ |  |
-| `username` | User username. | string |  |  |
-
-
-### <a name="vector-database_milvus"></a>Milvus (`vector-database`)
-
-Connect to Milvus/Zillis service.
-
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `host` | Host parameter for connecting to Milvus. | string |  |  |
-| `index-name` | Url parameter for connecting to Zillis service. | string |  |  |
-| `password` | Password parameter for connecting to Milvus. | string |  |  |
-| `port` | Port parameter for connecting to Milvus. | integer |  | 19530 |
-| `service` | Service type. Set to 'milvus' | string | ✓ |  |
-| `token` | Token parameter for connecting to Zillis service. | string |  |  |
-| `user` | User parameter for connecting to Milvus. | string |  | default |
-
-
-### <a name="vector-database_pinecone"></a>Pinecone (`vector-database`)
-
-Connect to Pinecone service.
-
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `api-key` | Api key for connecting to the Pinecone service. | string | ✓ |  |
-| `endpoint` | Endpoint of the Pinecone service. | string |  |  |
-| `environment` | Environment parameter for connecting to the Pinecone service. | string | ✓ |  |
-| `index-name` | Index name parameter for connecting to the Pinecone service. | string | ✓ |  |
-| `project-name` | Project name parameter for connecting to the Pinecone service. | string | ✓ |  |
-| `server-side-timeout-sec` | Server side timeout parameter for connecting to the Pinecone service. | integer |  | 10 |
-| `service` | Service type. Set to 'pinecone' | string | ✓ |  |
-
-
-### <a name="vertex-configuration"></a>Vertex AI (`vertex-configuration`)
-
-Connect to VertexAI API.
-
-|  | Description | Type | Required | Default Value |
-| --- | --- | --- | --- | --- |
-| `project` | GCP project name for the Vertex API. | string | ✓ |  |
-| `region` | GCP region for the Vertex API. | string | ✓ |  |
-| `serviceAccountJson` | Specify service account credentials. Refer to the GCP documentation on how to download it | string |  |  |
-| `token` | Access key for the Vertex API. | string |  |  |
-| `url` | URL connection for the Vertex API. | string | ✓ |  |
 
 
