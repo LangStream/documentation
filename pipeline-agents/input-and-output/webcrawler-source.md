@@ -242,3 +242,8 @@ The webcrawler then passes the document on to the next agent.
       keyspace: "documents"
       mapping: "filename=value.filename, chunk_id=value.chunk_id, language=value.language, text=value.text, embeddings_vector=value.embeddings_vector, num_tokens=value.chunk_num_tokens"
 ```
+
+
+### Configuration
+
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#webcrawler-source).
