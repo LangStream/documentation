@@ -12,9 +12,7 @@ layout:
     visible: false
 ---
 
-# Custom Agents
+# Flow control agents
 
 
-* [Python Source](python-source.md)
-* [Python Processor](python-function.md)
-* [Python Sink](python-sink.md)
+* [Dispatch](dispatch.md)
