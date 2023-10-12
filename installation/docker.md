@@ -55,6 +55,7 @@ You can use the following flags to select the services to run:
 * --start-s3 true|false: starts the S3 service (default is `true`)
 * --start-webservices true|false: starts the LangStream HTTP components (control plane and API gateway) (default is `true`)
 * --start-database true|false: starts an embedded vector JDBC compliant database (HerdDB) (default is `true`)
+* --start-ui true|false: starts and open a UI application that helps you to test the application
 
 For example, if you are using an external Apache Kafka or Pulsar broke, you don't need to start Kafka in the container and you can save local resources by not running the service.
 
