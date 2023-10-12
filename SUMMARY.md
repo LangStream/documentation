@@ -70,6 +70,12 @@
 
 * [Agent Messaging](pipeline-agents/agent-messaging.md)
 * [Builtin agents](pipeline-agents/builtin-agents.md)
+  * [Input & Output](pipeline-agents/input-and-output/README.md)
+    * [webcrawler-source](pipeline-agents/input-and-output/webcrawler-source.md)
+    * [s3-source](pipeline-agents/input-and-output/s3-source.md)
+    * [azure-blob-storage-source](pipeline-agents/input-and-output/azure-blob-storage-source.md)
+    * [sink](pipeline-agents/input-and-output/sink.md)
+    * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)
   * [AI Agents](pipeline-agents/ai-actions/README.md)
     * [ai-chat-completions](pipeline-agents/ai-actions/ai-chat-completions.md)
     * [ai-text-completions](pipeline-agents/ai-actions/ai-text-completions.md)
@@ -83,12 +89,7 @@
     * [text-normaliser](pipeline-agents/text-processors/text-normaliser.md)
     * [text-extractor](pipeline-agents/text-processors/text-extractor.md)
     * [text-splitter](pipeline-agents/text-processors/text-splitter.md)
-  * [Input & Output](pipeline-agents/input-and-output/README.md)
-    * [webcrawler-source](pipeline-agents/input-and-output/webcrawler-source.md)
-    * [s3-source](pipeline-agents/input-and-output/s3-source.md)
-    * [azure-blob-storage-source](pipeline-agents/input-and-output/azure-blob-storage-source.md)
-    * [sink](pipeline-agents/input-and-output/sink.md)
-    * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)
+    * [http-request](pipeline-agents/text-processors/http-request.md)
   * [Data Transform](pipeline-agents/data-transform/README.md)
     * [cast](pipeline-agents/data-transform/cast.md)
     * [compute](pipeline-agents/data-transform/compute.md)
@@ -105,12 +106,13 @@
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
 
-## Examples
-
-* [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)
 
 ## Messaging
 
 * [Messaging](configuration-resources/messaging/README.md)
   * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
   * [Apache Kafka](configuration-resources/messaging/kafka.md)
+
+## Examples
+
+* [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)

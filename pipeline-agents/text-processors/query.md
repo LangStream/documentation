@@ -56,8 +56,6 @@ Reference that datasource and submit a query using input message values:
 * Structured text [?](../agent-messaging.md#implicit-input-and-output-topics)
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
-### **Configuration**
+### Configuration
 
-<table><thead><tr><th width="155.33333333333331">Label</th><th width="115">Type</th><th>Description</th></tr></thead><tbody><tr><td>datasource</td><td>string</td><td>A reference to the datasource name declared in resources.datasources of the configuration.yaml manifest.</td></tr><tr><td>query</td><td>string</td><td><p>The query statement to run. Each placeholder “?” will be replaced with fields value in order.<br></p><p>Example:</p><p>SELECT * FROM products WHERE id = ?</p></td></tr><tr><td>fields</td><td>string[]</td><td><p>A collection of field values. Each value will be used in order to replace placeholders in the query (do not include mustache brackets, this not a templated value).<br></p><p>Example collection:</p><ul><li>“value.id”</li></ul><p>If value.id == 123 then the query would be</p><p>SELECT * FROM products WHERE id = 123</p></td></tr><tr><td>output-field</td><td>string</td><td><p>The name of an additional field to be added to message data containing query result (do not include mustache brackets, this is not a templated value).</p><p></p><p>Provide in the form: “value.&#x3C;field-name>”</p></td></tr></tbody></table>
-
-\
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#query).

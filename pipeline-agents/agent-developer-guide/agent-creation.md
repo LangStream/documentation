@@ -1,3 +1,7 @@
+---
+description: Part 2 of the Agent Developer Guide
+---
+
 # Agent Creation
 
 {% hint style="info" %}
