@@ -77,8 +77,4 @@ langstream profiles get-current
 langstream profiles get default
 ```
 
-All the commands always refer to the current tenant configured in the current profile.
-
-## Configure env vars
-
-<table data-header-hidden><thead><tr><th width="295">Var label</th><th>Description</th></tr></thead><tbody><tr><td>LANGSTREAM_webServiceUrl</td><td><p>The fully qualified URL to the control plane service</p><p><br></p><p>Example: https://controlplane.my-domain.com:XXX</p></td></tr><tr><td>LANGSTREAM_tenant</td><td>The tenant to use for app interactions</td></tr><tr><td>LANGSTREAM_apiGatewayUrl</td><td>The fully qualified URL to the gateway api service</td></tr><tr><td>LANGSTREAM_token</td><td>unused</td></tr></tbody></table>
+All the other commands always refer to the current tenant configured in the current profile.
