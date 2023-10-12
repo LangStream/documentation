@@ -86,7 +86,7 @@
   * [text-extractor](pipeline-agents/text-processors/text-extractor.md)
   * [text-splitter](pipeline-agents/text-processors/text-splitter.md)
 * [Input & Output](pipeline-agents/input-and-output/README.md)
-* * [webcrawler-source](pipeline-agents/input-and-output/webcrawler-source.md)
+  * [webcrawler-source](pipeline-agents/input-and-output/webcrawler-source.md)
   * [s3-source](pipeline-agents/input-and-output/s3-source.md)
   * [azure-blob-storage-source](pipeline-agents/input-and-output/azure-blob-storage-source.md)
   * [sink](pipeline-agents/input-and-output/sink.md)
