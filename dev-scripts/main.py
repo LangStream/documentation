@@ -65,7 +65,7 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
 def generate_entity_tables(title, version, data, output_file):
 
     markdown_content = f"<h1> {title}</h1>"
-    markdown_content += f"<p>LangStream Version: <strong>{version}</strong>\n\n"
+    markdown_content += f"<p>LangStream Version: <strong>{version}</strong></p>\n\n"
     markdown_content += gen_entity("", data)
             
     with open(output_file, 'w') as file:
@@ -81,7 +81,7 @@ def gen_entity(title, data):
 
     for key, value in data.items():
         if value:
-            label = f"{value.get('name')} (`{value.get('type', key)}`)"
+            label = f"{value.get('name')} (<code>{value.get('type', key)}</code>)"
             tables = generate_single_entity_table(label, key, value.get('description', ''), value.get("properties", {}))
             for nested_table in tables:
                 content += nested_table
