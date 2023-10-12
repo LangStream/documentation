@@ -3,7 +3,7 @@ import argparse
 import os
 
 
-def escape_markdown(text, link = None):
+def escape_html(text, link = None):
     if type(text) == bool:
         if text:
             return "✓"
@@ -22,15 +22,15 @@ def escape_markdown(text, link = None):
 def generate_single_entity_table(entity_name, entity_ref, description, properties, is_nested=False):
     result = []
     if is_nested:
-        table = f"\n\n#### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
+        table = f"<br><h4><a name=\"{entity_ref}\"></a>{entity_name}</h4>"
     else:
-        table = f"\n\n### <a name=\"{entity_ref}\"></a>{entity_name}\n\n"
+        table = f"<br><h3><a name=\"{entity_ref}\"></a>{entity_name}</h3>"
 
     if description:
-        table += f"{escape_markdown(description)}\n\n"
+        table += f"<p>{escape_html(description)}</p>\n\n"
 
-    table += "|  | Description | Type | Required | Default Value |\n"
-    table += "| --- | --- | --- | --- | --- |\n"
+    table += "<table data-full-width=\"true\">"
+    table += "<thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody>"
 
     if properties:
         for key, value in properties.items():
@@ -44,7 +44,9 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
                         prop_type = f"array of object"
                     else:
                         prop_type = f"array of {items.get('type', '')}"
-            table += f"| `{escape_markdown(key)}` | {escape_markdown(value.get('description', ''))} | {escape_markdown(prop_type, link)} | {escape_markdown(value.get('required', ''))} | {escape_markdown(value.get('defaultValue', ''))} |\n"
+            table += f"<tr><td><code>{escape_html(key)}</code></td><td>{escape_html(value.get('description', ''))}</td><td>{escape_html(prop_type, link)}</td><td>{escape_html(value.get('required', ''))}</td><td>{escape_html(value.get('defaultValue', ''))}</td></tr>"
+    
+    table += "</tbody></table>\n\n"
 
     result.append(table)
 
@@ -62,34 +64,34 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
 
 def generate_entity_tables(title, version, data, output_file):
 
-    markdown_content = f"# {title}\n\n"
-    markdown_content += f"LangStream Version: **{version}**\n\n"
+    markdown_content = f"<h1> {title}</h1>"
+    markdown_content += f"<p>LangStream Version: <strong>{version}</strong>\n\n"
     markdown_content += gen_entity("", data)
             
     with open(output_file, 'w') as file:
         file.write(markdown_content)
 
-    print(f"Markdown tables generated and saved to {output_file}")
+    print(f"Tables generated and saved to {output_file}")
 
 def gen_entity(title, data):
     if title:
-        markdown_content = f"## {title}\n\n"
+        content = f"<h2>{title}</h2>\n\n"
     else: 
-        markdown_content = "\n\n"
+        content = "\n\n"
 
     for key, value in data.items():
         if value:
             label = f"{value.get('name')} (`{value.get('type', key)}`)"
             tables = generate_single_entity_table(label, key, value.get('description', ''), value.get("properties", {}))
             for nested_table in tables:
-                markdown_content += nested_table
-    markdown_content += "\n\n"
-    return markdown_content
+                content += nested_table
+    content += "\n\n"
+    return content
 
 def main():
-    parser = argparse.ArgumentParser(description='Generate Markdown tables from JSON data.')
+    parser = argparse.ArgumentParser(description='Generate HTML tables from JSON data.')
     parser.add_argument('input_file', type=str, help='Path to the input JSON file')
-    parser.add_argument('output_directory', type=str, help='Path to save the output Markdown file')
+    parser.add_argument('output_directory', type=str, help='Path to save the output HTML file')
 
     args = parser.parse_args()
 
