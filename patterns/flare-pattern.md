@@ -1,6 +1,6 @@
 # FLARE pattern
 
-The Flare pattern is an extension of the [The Retrieval Augmented Generation (RAG) pattern](../patterns/rag-pattern.md) that adds a feedback loop to improve the quality of the answers provided by the LLM.
+The Flare pattern is an extension of the [The Retrieval Augmented Generation (RAG) pattern](./rag-pattern.md) that adds a feedback loop to improve the quality of the answers provided by the LLM.
 
 You can read the original paper describing the FLARE pattern [here](https://arxiv.org/abs/2305.06983).
 
