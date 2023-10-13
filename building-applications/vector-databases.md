@@ -8,17 +8,15 @@ Vector databases are typically used as part of retrieval augmented generation (R
 * Provide more accurate, up-to-date, and context-aware responses
 * Extend the knowledge base of the LLM
 
-LangStream makes it easy to build applications using the [RAG pattern](./rag-pattern.md). It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/)
-and [Apache Cassandra](https://cassandra.apache.org).&#x20;
+LangStream makes it easy to build applications using the [RAG pattern](../patterns/rag-pattern.md). It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/) and [Apache Cassandra](https://cassandra.apache.org).
 
-When working with a vector database you will either be writing vector embeddings to a vector database or performing semantic similarity queries across the vectors in the database. Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) for writing to vector databases and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for querying.&#x20;
+When working with a vector database you will either be writing vector embeddings to a vector database or performing semantic similarity queries across the vectors in the database. Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) for writing to vector databases and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for querying.
 
 There is also built-in support for querying and writing to any database which has a [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) driver.
 
-Please refer to the [Data Storage section](../configuration-resources/data-storage/README.md) for more information on how to configure your vector database.
+Please refer to the [Data Storage section](../configuration-resources/data-storage/) for more information on how to configure your vector database.
 
 You can also write to any database with an available [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html) connector.
-
 
 ### Vectorization example
 
@@ -31,14 +29,14 @@ A similarity search with this query is performed in the vector database. This in
 The system retrieves the top N documents with the highest similarity scores to the query vector, and the retrieved documents are presented to the user, providing articles that are thematically or contextually similar to the query text.
 
 {% hint style="info" %}
-[Vectorization refers to the process of converting data into vectors, while embeddings are a form of vectorization specifically for natural language processing.](#user-content-fn-1)[^1]
+[Vectorization refers to the process of converting data into vectors, while embeddings are a form of vectorization specifically for natural language processing.](vector-databases.md#user-content-fn-1)\[^1]
 {% endhint %}
 
 ### Similarity search application
 
-Let’s put this similarity search example in the context of a LangStream application - for example, we have a bucket full of PDFs (unstructured data) and we want to turn them into meaningful embeddings.&#x20;
+Let’s put this similarity search example in the context of a LangStream application - for example, we have a bucket full of PDFs (unstructured data) and we want to turn them into meaningful embeddings.
 
-A LangStream application is a series of steps called a pipeline. At each step, an agent acts on messages streamed through the application.&#x20;
+A LangStream application is a series of steps called a pipeline. At each step, an agent acts on messages streamed through the application.
 
 Here’s how you would make a text similarity search application in LangStream. The full pipeline yaml is available [here](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot).
 
@@ -75,7 +73,7 @@ In the second step the agent extracts metadata and text from records using Apach
     type: "text-extractor"
 ```
 
-The text normaliser agent forces the text into lower case and removes leading and trailing spaces.&#x20;
+The text normaliser agent forces the text into lower case and removes leading and trailing spaces.
 
 ```yaml
   - name: "Normalise text"
@@ -109,7 +107,7 @@ The records are split into chunks of text. This is an important part of the vect
       length_function: "cl100k_base"
 ```
 
-This agent converts the unstructured data to structured JSON.&#x20;
+This agent converts the unstructured data to structured JSON.
 
 ```yaml
   - name: "Convert to structured data"
@@ -175,4 +173,4 @@ Now, all the information from your PDFs is embedded in a vector database. Try se
 ### What’s next?
 
 Do you have a website lying around just waiting to be turned into useful, vectorized text?\
-This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.&#x20;
+This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.

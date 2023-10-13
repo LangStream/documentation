@@ -1,26 +1,48 @@
-<h1>Assets</h1><p>LangStream Version: <strong>0.2.0</strong></p>
+# Assets
+
+LangStream Version: **0.2.0**
+
+\
 
 
+## Astra keyspace (`astra-keyspace`) <a href="#astra-keyspace" id="astra-keyspace"></a>
 
-<br><h2 data-full-width="true"><a name="astra-keyspace"></a>Astra keyspace (<code>astra-keyspace</code>)</h2><p data-full-width="true">Manage a DataStax Astra keyspace.</p>
+Manage a DataStax Astra keyspace.
 
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>keyspace</code></td><td>Name of the keyspace to create.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
-<br><h2 data-full-width="true"><a name="cassandra-keyspace"></a>Cassandra keyspace (<code>cassandra-keyspace</code>)</h2><p data-full-width="true">Manage a Cassandra keyspace.</p>
+\
 
-<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>create-statements</code></td><td>List of the statement to execute to create the keyspace. They will be executed every time the application is deployed or upgraded.</td><td>array of string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>delete-statements</code></td><td>List of the statement to execute to cleanup the keyspace. They will be executed when the application is deleted only if &#x27;deletion-mode&#x27; is &#x27;delete&#x27;.</td><td>array of string</td><td></td><td></td></tr><tr><td><code>keyspace</code></td><td>Name of the keyspace to create.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
-<br><h2 data-full-width="true"><a name="cassandra-table"></a>Cassandra table (<code>cassandra-table</code>)</h2><p data-full-width="true">Manage a Cassandra table in existing keyspace.</p>
+## Cassandra keyspace (`cassandra-keyspace`) <a href="#cassandra-keyspace" id="cassandra-keyspace"></a>
 
-<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>create-statements</code></td><td>List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.</td><td>array of string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>delete-statements</code></td><td>List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if &#x27;deletion-mode&#x27; is &#x27;delete&#x27;.</td><td>array of string</td><td></td><td></td></tr><tr><td><code>keyspace</code></td><td>Name of the keyspace where the table is located.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>table-name</code></td><td>Name of the table.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
+Manage a Cassandra keyspace.
 
-<br><h2 data-full-width="true"><a name="jdbc-table"></a>JDBC table (<code>jdbc-table</code>)</h2><p data-full-width="true">Manage a JDBC table.</p>
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>create-statements</code></td><td>List of the statement to execute to create the keyspace. They will be executed every time the application is deployed or upgraded.</td><td>array of string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>delete-statements</code></td><td>List of the statement to execute to cleanup the keyspace. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.</td><td>array of string</td><td></td><td></td></tr><tr><td><code>keyspace</code></td><td>Name of the keyspace to create.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
-<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>create-statements</code></td><td>List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.</td><td>array of string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>delete-statements</code></td><td>List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if &#x27;deletion-mode&#x27; is &#x27;delete&#x27;.</td><td>array of string</td><td></td><td></td></tr><tr><td><code>table-name</code></td><td>Name of the table.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
+\
 
-<br><h2 data-full-width="true"><a name="milvus-collection"></a>Milvus collection (<code>milvus-collection</code>)</h2><p data-full-width="true">Manage a Milvus collection.</p>
+
+## Cassandra table (`cassandra-table`) <a href="#cassandra-table" id="cassandra-table"></a>
+
+Manage a Cassandra table in existing keyspace.
+
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>create-statements</code></td><td>List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.</td><td>array of string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>delete-statements</code></td><td>List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.</td><td>array of string</td><td></td><td></td></tr><tr><td><code>keyspace</code></td><td>Name of the keyspace where the table is located.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>table-name</code></td><td>Name of the table.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
+
+\
+
+
+## JDBC table (`jdbc-table`) <a href="#jdbc-table" id="jdbc-table"></a>
+
+Manage a JDBC table.
+
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>create-statements</code></td><td>List of the statement to execute to create the table. They will be executed every time the application is deployed or upgraded.</td><td>array of string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>delete-statements</code></td><td>List of the statement to execute to cleanup the table. They will be executed when the application is deleted only if 'deletion-mode' is 'delete'.</td><td>array of string</td><td></td><td></td></tr><tr><td><code>table-name</code></td><td>Name of the table.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
+
+\
+
+
+## Milvus collection (`milvus-collection`) <a href="#milvus-collection" id="milvus-collection"></a>
+
+Manage a Milvus collection.
 
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>collection-name</code></td><td>Name of the collection.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>create-statements</code></td><td>List of the statement to execute to create the collection. They will be executed every time the application is deployed or upgraded.</td><td>array of string</td><td>✓</td><td></td></tr><tr><td><code>database-name</code></td><td>Name of the database where to create the collection.</td><td>string</td><td></td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
-
-
-

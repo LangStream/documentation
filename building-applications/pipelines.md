@@ -78,4 +78,4 @@ When you place multiple yaml manifests in the same "application" folder, LangStr
 
 In this structure, both pipeline.yaml and second-pipeline.yaml will be created as a single application, with a separate module for each pipeline.
 
-See the [webcrawler pipeline agent ](../pipeline-agents/input-and-output/webcrawler-source.md)and its [source code](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source) for an example.
+See the [webcrawler pipeline agent ](broken-reference)and its [source code](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source) for an example.

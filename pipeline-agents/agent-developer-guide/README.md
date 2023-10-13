@@ -11,8 +11,8 @@ Developing your own agent for LangStream is quite simple, using Python best prac
 The Agent Developer Guide is broken into three milestones:
 
 1\. [Agent Types](agent-types.md) - Understand the three main Python agents you'll use in your applications.\
-2\. [Deploying Agents](agent-creation.md) - Create agents to process records. Handle exceptions for each agent type.\
-3\. [Configuration and Testing](configuration-and-testing.md) - Configure, test, and package your agents for production.
+2\. [Deploying Agents](broken-reference) - Create agents to process records. Handle exceptions for each agent type.\
+3\. [Configuration and Testing](broken-reference) - Configure, test, and package your agents for production.
 
 Get started with [Part 1: Agent Types.](agent-types.md)
 

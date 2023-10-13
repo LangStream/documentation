@@ -1,30 +1,28 @@
-# The Retrieval Augmented Generation (RAG) Pattern
+# RAG pattern
 
 The Retrieval Augmented Generation (RAG) pattern is a powerful way to extend the knowledge base of a language model. It is used to:
-- Provide more accurate, up-to-date, and context-aware responses
-- Extend the knowledge base of the LLM
-- Improve the quality of the generated text
 
+* Provide more accurate, up-to-date, and context-aware responses
+* Extend the knowledge base of the LLM
+* Improve the quality of the generated text
 
-LangStream makes it easy to build applications using the RAG pattern. It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/)
-and [Apache Cassandra](https://cassandra.apache.org).&#x20;
+LangStream makes it easy to build applications using the RAG pattern. It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/) and [Apache Cassandra](https://cassandra.apache.org).
 
-Please refer to the [Data Storage section](../configuration-resources/data-storage/README.md) for more information on how to configure your vector database.
+Please refer to the [Data Storage section](../configuration-resources/data-storage/) for more information on how to configure your vector database.
 
 ### Vector search example
 
-Once you have your [vector database](./vector-databases.md) populated with text and vector embeddings, you can use the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) to perform a similarity search.
-
+Once you have your [vector database](../building-applications/vector-databases.md) populated with text and vector embeddings, you can use the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) to perform a similarity search.
 
 The flow of a vector search application with the RAG pattern is as follows:
 
-- Start from a query text
-- Compute the [embeddings](../pipeline-agents/ai-actions/compute-ai-embeddings.md) of the query text
-- [Query](../pipeline-agents/text-processors/query-vector-db.md) the vector database to get the most similar documents
-- [Re-rank](../pipeline-agents/text-processors/rerank.md) the results to get the most relevant documents
-- Build a prompt with the query text and the most relevant documents
-- [Query the LLM](../pipeline-agents/ai-actions/ai-chat-completions.md) with the prompt to get the final response
-- Finally, return the response to the user
+* Start from a query text
+* Compute the [embeddings](../pipeline-agents/ai-actions/compute-ai-embeddings.md) of the query text
+* [Query](../pipeline-agents/text-processors/query-vector-db.md) the vector database to get the most similar documents
+* [Re-rank](broken-reference) the results to get the most relevant documents
+* Build a prompt with the query text and the most relevant documents
+* [Query the LLM](../pipeline-agents/ai-actions/ai-chat-completions.md) with the prompt to get the final response
+* Finally, return the response to the user
 
 ```yaml
 pipeline:
@@ -99,11 +97,7 @@ pipeline:
           content: "{{% value.question}}"          
 ```
 
-
 ### What’s next?
 
 Do you have a website lying around just waiting to be turned into a useful chatbot ?\
-This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.&#x20;
-
-
-[^1]: 
+This complete pipeline is available in the [LangStream repo](https://github.com/LangStream/langstream/tree/main/examples/applications/docker-chatbot), and running it on your own is no sweat.

@@ -1,4 +1,6 @@
-### Connecting to a JDBC Compliant Database
+# JDBC
+
+#### Connecting to a JDBC Compliant Database
 
 Connect to any JDBC-compliant database using the "datasource" resource type.
 
@@ -34,7 +36,7 @@ configuration:
 
 The `driverClass` class parameter is required - it is the entry point for bootstrapping the JDBC driver.
 
-## Loading the JDBC driver
+### Loading the JDBC driver
 
 To load the JDBC driver, provide a dependency to the driver jar file.
 
@@ -44,7 +46,7 @@ To load the JDBC driver, provide a dependency to the driver jar file.
       url: "https://jdbc.postgresql.org/download/postgresql-42.6.0.jar"
       sha512sum: "ec3b57d8377715ef6286d457b610a2e056aa99dbf036f750c5e07370fc8b01414b2aef5e0232d561c50f22abf0da961ee432e53734cc193a3e9bdaf6231d4fa1"
       type: "java-library"
-```   
+```
 
 With this syntax, the LangStream CLI downloads the file and stores it in the `java/lib` folder.
 
@@ -52,12 +54,11 @@ Add a .gitignore rule to avoid committing the jar file to your git repository.
 
 This is a sample .gitignore file to put at the root of your application directory in order to not commit the jar file to your git repository:
 
-
 ```gitignore
 java/lib/*
 ```
 
-### Querying a JDBC datasource
+#### Querying a JDBC datasource
 
 You can query a JDBC datasource using the "query" or the "query-vector-db" agent in your pipeline.
 
@@ -72,13 +73,11 @@ pipeline:
         - "value.question_embeddings"
 ```
 
-As usual you can use the '?' symbol as a placeholder for the fields that you specify in the "query" section.
-The syntax for performing an Approximate Nearest Neighbor search is specific to the database you are using, in the example above we are using the HerdDB syntax.
+As usual you can use the '?' symbol as a placeholder for the fields that you specify in the "query" section. The syntax for performing an Approximate Nearest Neighbor search is specific to the database you are using, in the example above we are using the HerdDB syntax.
 
-## Special assets for JDBC datasources
+### Special assets for JDBC datasources
 
 You can automatically manage the tables on your JDBC datasource using the "jdbc-table" asset type.
-
 
 ```yaml
 assets:
@@ -103,11 +102,9 @@ assets:
         - "DROP TABLE IF EXISTS documents"
 ```
 
-
 You can specify any number of statements in the "create-statements" and in the "delete-statements" sections, for instance to create indexes or other objects.
 
-
-### Writing to a JDBC datasource
+#### Writing to a JDBC datasource
 
 Use the "vector-db-sink" agent with the following parameters to write to a JDBC database:
 
@@ -135,7 +132,4 @@ Use the "vector-db-sink" agent with the following parameters to write to a JDBC 
           expression: "value.chunk_num_tokens"
 ```
 
-Set the table-name to the name of the table you want to write to.
-Define the fields in the "fields" list.
-This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields.
-It is important that you tag the fields that are part of the primary key of the table with "primary-key: true". This is needed to correctly manage upserts and deletion from the table.
+Set the table-name to the name of the table you want to write to. Define the fields in the "fields" list. This works similarly to the ['compute' agent](broken-reference), and you can use the same syntax to define the fields. It is important that you tag the fields that are part of the primary key of the table with "primary-key: true". This is needed to correctly manage upserts and deletion from the table.

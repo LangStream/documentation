@@ -24,7 +24,6 @@
 ## Building Applications
 
 * [Vector Databases](building-applications/vector-databases.md)
-* [RAG pattern](building-applications/rag-pattern.md)
 * [Application structure](building-applications/development-environment.md)
   * [Pipelines](building-applications/pipelines.md)
   * [Instances](building-applications/instances.md)
@@ -108,7 +107,6 @@
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
 
-
 ## Messaging
 
 * [Messaging](configuration-resources/messaging/README.md)
@@ -117,7 +115,7 @@
 
 ## Patterns
 
-* [RAG pattern](building-applications/rag-pattern.md)
+* [RAG pattern](patterns/rag-pattern.md)
 * [FLARE pattern](building-applications/flare-pattern.md)
 
 ## Examples
