@@ -77,6 +77,58 @@ Then the agent should be:
     text: "{{% value }}"
 ```
 
+### Automatically repeating the query to the Embeddings Service over a list of inputs
+
+It is possible to perform the same computation over a list of inputs. This is useful when you want to perform a computation over a list of inputs, for example, a list of questions.
+You can take the [Flare pattern](../../building-applications/flare-pattern.md) as an example.
+
+In the example below we use the 'loop-over' capability to compute the embeddings for each document in the list of documents to retrieve.
+
+```yaml
+  - name: "compute-embeddings"
+    type: "compute-ai-embeddings"
+    configuration:
+      loop-over: "value.documents_to_retrieve"
+      model: "${secrets.open-ai.embeddings-model}"
+      embeddings-field: "record.embeddings"
+      text: "{{ record.text }}"
+```   
+
+When you use "loop-over" it means that the agent executes for each element in a list instead that operating on the whole message.
+You use "record.xxx" in order to refer to the current element in the list.
+
+The snippet above computes the embeddings for each element in the list "documents_to_retrive" that is expected to be a struct like this:
+
+```json
+{
+  "documents_to_retrieve": [
+      {
+        "text": "the text of the first document"
+      },
+      {
+        "text": "the text of the second document"
+      }
+    ]
+}
+```
+
+After running the agent the contents of the list are:
+
+```json
+{
+  "documents_to_retrieve": [
+      {
+        "text": "the text of the first document",
+        "embeddings": [1,2,3,4,5]
+       },
+       {
+        "text": "the text of the second document",
+        "embeddings": [6,7,8,9,10]
+       }
+    ]
+}
+```
+
 ### Topics
 
 #### Input

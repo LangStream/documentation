@@ -56,9 +56,9 @@ The agents handles for you the step 5, 6 and 7 of the flow above:
 In order to handle the number of iterations the Flare controller agents uses a field in the message called by default "flare_iterations".
 
 
-### Queries the embeeding service and the vector database during Flare
+### Using the embeeding service over a list of documents
 
-In order to implement the Flare pattern you need to query the embedding service and the vector database multiple times.
+In order to implement the Flare pattern you need to query the embedding service multiple times.
 LangStream provides an easy way to perform the same operation over a list of documents with the 'loop-over' capability.
 
 In the example below we use the 'loop-over' capability to query the embedding service for each document in the list of documents to retrieve.
@@ -107,6 +107,88 @@ After running the agent the contents of the list are:
     ]
 }
 ```
+
+### Querying the vector database over a list of documents
+
+In order to implement the Flare pattern you need to query the vector database to look up documents reletant to a set of input queries and not only one.
+LangStream provides an easy way to perform the same operation over a list of documents with the 'loop-over' capability.
+
+In the example below we use the 'loop-over' capability to query the database for each document in the list of documents to retrieve.
+
+```yaml
+  - name: "lookup-related-documents"
+    type: "query-vector-db"
+    configuration:
+      datasource: "JdbcDatasource"
+      # execute the agent for all the document in documents_to_retrieve
+      # you can refer to each document with "record.xxx"
+      loop-over: "value.documents_to_retrieve"
+      query: |
+              SELECT text,embeddings_vector
+              FROM documents
+              ORDER BY cosine_similarity(embeddings_vector, CAST(? as FLOAT ARRAY)) DESC LIMIT 5
+      fields:
+        - "record.embeddings"
+      # as we are looping over a list of document, the result of the query
+      # is the union of all the results
+      output-field: "value.retrieved_documents"
+```   
+
+When you use "loop-over" it means that the agent executes for each element in a list instead that operating on the whole message.
+You use "record.xxx" in order to refer to the current element in the list.
+
+The snippet above performs and query for each element in in the list "documents_to_retrive" that is expected to be a struct like this:
+
+```json
+{
+  "documents_to_retrieve": [
+      {
+        "text": "the text of the first document",
+        "embeddings": [1,2,3,4,5]
+       },
+       {
+        "text": "the text of the second document",
+        "embeddings": [6,7,8,9,10]
+       }
+    ]
+}
+```
+
+Then it adds all the results to as a new field "retrieved_documents" in the message.
+
+After running the agent the contents of the list are:
+
+```json
+{
+    "documents_to_retrieve": [
+      {
+        "text": "the text of the first document",
+        "embeddings": [1,2,3,4,5]
+       },
+       {
+        "text": "the text of the second document",
+        "embeddings": [6,7,8,9,10]
+       }
+    ],
+  "retrieved_documents": [
+      {
+        "text": "the text of some document relevant",
+        "embeddings_vector": [0.2,7,8,9,5]
+       },
+       {
+        "text": "the text of another document",
+        "embeddings_vector": [0.2,3,8,9,2]
+       },
+       {
+        "text": "the text of another document",
+        "embeddings_vector": [1.2,9,3,3,3]
+       }
+    ]
+}
+```
+
+This behaviour is different from the "compute-ai-embeddings" agent, in fact the "query-vector-db" agent adds the results to the message instead of replacing the original list and also the results are all added to the same field.
+
 
 ### Example
 
