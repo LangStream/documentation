@@ -67,7 +67,6 @@
 
 ## Pipeline Agents
 
-
 * [Agent Messaging](pipeline-agents/agent-messaging.md)
 * [Builtin agents](pipeline-agents/builtin-agents.md)
   * [Input & Output](pipeline-agents/input-and-output/README.md)
@@ -114,6 +113,10 @@
 * [Messaging](configuration-resources/messaging/README.md)
   * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
   * [Apache Kafka](configuration-resources/messaging/kafka.md)
+
+## Advanced techniques
+
+* [FLARE pattern](building-applications/flare-pattern.md)
 
 ## Examples
 
