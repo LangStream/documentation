@@ -4,7 +4,7 @@ The Flare pattern is an extension of the [The Retrieval Augmented Generation (RA
 
 You can read the original paper describing the FLARE pattern [here](https://arxiv.org/abs/2305.06983).
 
-Please note that currently FLARE can be implemented only with OpenAI models and the [ai-text-completions](../pipeline-agents/ai-actions/ai-text-completions.md) agent because it requires the probability of correctness (logprobs) for each token.
+Please note that FLARE can currently be implemented only with OpenAI models and the [ai-text-completions](../pipeline-agents/ai-actions/ai-text-completions.md) agent because it requires the probability of correctness (logprobs) for each token.
 
 ### How does Flare work ?
 
