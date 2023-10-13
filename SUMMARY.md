@@ -116,7 +116,7 @@
 ## Patterns
 
 * [RAG pattern](patterns/rag-pattern.md)
-* [FLARE pattern](building-applications/flare-pattern.md)
+* [FLARE pattern](patterns/flare-pattern.md)
 
 ## Examples
 
