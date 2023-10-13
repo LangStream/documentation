@@ -77,7 +77,7 @@ Then the agent should be:
     text: "{{% value }}"
 ```
 
-### Automatically repeating the query to the Embeddings Service over a list of inputs
+### Automatically computing the embeddings over a list of inputs
 
 It is possible to perform the same computation over a list of inputs. This is useful when you want to perform a computation over a list of inputs, for example, a list of questions.
 You can take the [Flare pattern](../../building-applications/flare-pattern.md) as an example.
