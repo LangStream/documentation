@@ -51,6 +51,85 @@ Please refer to the documentation of the vector database you are using for more 
 - [Milvus.io](../../configuration-resources/data-storage/milvus.md)
 - [JDBC](../../configuration-resources/data-storage/jdbc.md)
 
+### Automatically repeating the query over a list of inputs
+
+It is possible to perform the same computation over a list of inputs - for example, a list of questions.
+You can take the [Flare pattern](../../building-applications/flare-pattern.md) as an example.
+
+In the example below we use the 'loop-over' capability to query the database for each document in the list of documents to retrieve.
+
+```yaml
+  - name: "lookup-related-documents"
+    type: "query-vector-db"
+    configuration:
+      datasource: "JdbcDatasource"
+      # execute the agent for all the document in documents_to_retrieve
+      # you can refer to each document with "record.xxx"
+      loop-over: "value.documents_to_retrieve"
+      query: |
+              SELECT text,embeddings_vector
+              FROM documents
+              ORDER BY cosine_similarity(embeddings_vector, CAST(? as FLOAT ARRAY)) DESC LIMIT 5
+      fields:
+        - "record.embeddings"
+      # as we are looping over a list of document, the result of the query
+      # is the union of all the results
+      output-field: "value.retrieved_documents"
+```   
+
+When you use "loop-over", the agent executes for each element in a list instead of operating on the whole message.
+Use "record.xxx" to refer to the current element in the list.
+
+The snippet above computes the embeddings for each element in the list "documents_to_retrieve". The list is expected to be a struct like this:
+
+```json
+{
+  "documents_to_retrieve": [
+      {
+        "text": "the text of the first document",
+        "embeddings": [1,2,3,4,5]
+       },
+       {
+        "text": "the text of the second document",
+        "embeddings": [6,7,8,9,10]
+       }
+    ]
+}
+```
+
+The agent then adds all the results to a new field named "retrieved_documents" in the message.
+
+After running the agent the contents of the list are:
+
+```json
+{
+    "documents_to_retrieve": [
+      {
+        "text": "the text of the first document",
+        "embeddings": [1,2,3,4,5]
+       },
+       {
+        "text": "the text of the second document",
+        "embeddings": [6,7,8,9,10]
+       }
+    ],
+  "retrieved_documents": [
+      {
+        "text": "the text of some document relevant",
+        "embeddings_vector": [0.2,7,8,9,5]
+       },
+       {
+        "text": "the text of another document",
+        "embeddings_vector": [0.2,3,8,9,2]
+       },
+       {
+        "text": "the text of another document",
+        "embeddings_vector": [1.2,9,3,3,3]
+       }
+    ]
+}
+```
+
 
 ### **Topics**
 

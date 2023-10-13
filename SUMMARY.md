@@ -67,7 +67,6 @@
 
 ## Pipeline Agents
 
-
 * [Agent Messaging](pipeline-agents/agent-messaging.md)
 * [Builtin agents](pipeline-agents/builtin-agents.md)
   * [Input & Output](pipeline-agents/input-and-output/README.md)
@@ -80,6 +79,7 @@
     * [ai-chat-completions](pipeline-agents/ai-actions/ai-chat-completions.md)
     * [ai-text-completions](pipeline-agents/ai-actions/ai-text-completions.md)
     * [compute-ai-embeddings](pipeline-agents/ai-actions/compute-ai-embeddings.md)
+    * [flare-controller](pipeline-agents/ai-actions/flare-controller.md)
   * [Text Processors](pipeline-agents/text-processors/README.md)
     * [document-to-json](pipeline-agents/text-processors/document-to-json.md)
     * [language-detector](pipeline-agents/text-processors/language-detector.md)
@@ -114,6 +114,11 @@
 * [Messaging](configuration-resources/messaging/README.md)
   * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
   * [Apache Kafka](configuration-resources/messaging/kafka.md)
+
+## Patterns
+
+* [RAG pattern](building-applications/rag-pattern.md)
+* [FLARE pattern](building-applications/flare-pattern.md)
 
 ## Examples
 
