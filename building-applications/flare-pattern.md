@@ -8,7 +8,7 @@ Plese note that currently Flare can be implemented only with OpenAI models and w
 
 ### How does Flare work ?
 
-The idea behing Flare is quite simple. Using the Completions API an LLM returns a "probability" for each token in the generated text.
+The idea behind Flare is quite simple. Using the Completions API the LLM returns a "probability" for each token in the generated text.
 With this information we can identify the tokens that are more likely to be wrong and retrieve more pieces of information (documents) in order 
 to automatically build a better prompt for the LLM.
 
@@ -16,7 +16,7 @@ This is the flow of a Flare pipeline:
 1. Start with a query text
 2. Add the query text to the list of queries for the vector database ("documents to retrieve")
 3. Compute the embeddings for each document to retrieve
-4. Lookup relevant documents from a vector database](./vector-databases.md)
+4. Lookup relevant documents from a [vector database](./vector-databases.md)
 5. Add the results to the list of documents to use to build the prompt
 3. Build a prompt with the query text and the most relevant documents
 4. [Query the LLM](../pipeline-agents/ai-actions/ai-text-completions.md) with the prompt to get the final response, and the logprobs for each token
@@ -29,9 +29,12 @@ As you can see at point 6 there is a feedback loop that allows us to improve the
 
 In LangStream we implement the loop by sending the current record to the topic that is used as input for the pipeline at step 3.
 
-This is pretty easy an intuitive and allows you to implement a Flare pipeline with just a few lines of code.
+This is pretty easy and intuitive and allows you to implement a Flare pipeline with just a few lines of code.
 
-Benefits of using a topic to perform the loop:
+### Benefits of using a topic to perform the loop
+
+The presence of a buffer topic to implement the loop has several benefits:
+
 - You can retry in case of failure while computing the embeddings or querying the vector database
 - Back pressure is handled automatically by the platform
 - You can deal with multiple queries at the same time
