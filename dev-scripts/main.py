@@ -55,7 +55,7 @@ def generate_single_entity_table(entity_name, entity_ref, description, propertie
         for key, value in properties.items():
             nested_properties = value.get('properties', {})
             if nested_properties:
-                nested_tables = generate_single_entity_table(f"{entity_name}.{key}", f"{entity_ref}.{key}", '', nested_properties, is_nested)
+                nested_tables = generate_single_entity_table(f"{entity_name}.{key}", f"{entity_ref}.{key}", '', nested_properties, True)
                 result.extend(nested_tables)
             items = value.get('items', {})
             if items and items.get('properties', {}):
