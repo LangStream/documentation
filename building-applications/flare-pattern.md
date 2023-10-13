@@ -1,15 +1,15 @@
 # Active Retrieval Augmented Generation (FLARE) Pattern
 
-The Flare patten is an extension of the [The Retrieval Augmented Generation (RAG) pattern](./rag-pattern.md) that adds a feedback loopin order to improve the quality of the answers provided by LLM.
+The Flare pattern is an extension of the [The Retrieval Augmented Generation (RAG) pattern](./rag-pattern.md) that adds a feedback loop to improve the quality of the answers provided by the LLM.
 
-You can find at https://arxiv.org/abs/2305.06983 the original paper describing the FLARE pattern.
+You can read the original paper describing the FLARE pattern [here](https://arxiv.org/abs/2305.06983).
 
-Plese note that currently Flare can be implemented only with OpenAI models and with the [ai-text-completions](../pipeline-agents/ai-actions/ai-text-completions.md) agent because it needs the probability of correctness (logprobs) for each token.
+Please note that currently FLARE can be implemented only with OpenAI models and the [ai-text-completions](../pipeline-agents/ai-actions/ai-text-completions.md) agent because it requires the probability of correctness (logprobs) for each token.
 
 ### How does Flare work ?
 
-The idea behind Flare is quite simple. Using the Completions API the LLM returns a "probability" for each token in the generated text.
-With this information we can identify the tokens that are more likely to be wrong and retrieve more pieces of information (documents) in order 
+The idea behind Flare is quite simple: using the Completions API, the LLM returns a "probability" for each token in the generated text.
+With this information, we can identify the tokens that are more likely to be wrong and retrieve more pieces of information (documents) 
 to automatically build a better prompt for the LLM.
 
 This is the flow of a Flare pipeline:
@@ -25,7 +25,7 @@ This is the flow of a Flare pipeline:
 7. If there is no uncertain span or we did too many iterations, return the response to the user
 
 
-As you can see at point 6 there is a feedback loop that allows us to improve the quality of the answer.
+As you can see at point 6, there is a feedback loop that allows us to improve the quality of the answer.
 
 In LangStream we implement the loop by sending the current record to the topic that is used as input for the pipeline at step 3.
 
@@ -42,23 +42,23 @@ The presence of a buffer topic to implement the loop has several benefits:
 - You can batch requests to the vector database
 - You can prevent the vector database and the embedding service from being overloaded
 
-This generally allows you to build a scalable version of the Flare pattern.
+Basically, a buffer topic allows you to build a scalable version of the Flare pattern.
 
 ### Using the Flare Controller Agent
 
 The FLARE loop is handled by the [flare-controller](../pipeline-agents/ai-actions/flare-controller.md) agent.
-The agents handles for you the step 5, 6 and 7 of the flow above:
+The flare controller agent handles steps 5, 6 and 7 of the flow above:
 - collects the list of uncertain spans
 - adds the uncertain spans to the list of documents to retrieve
 - triggers the loop (by writing to the input topic of the flare loop)
 - handles the maximum number of iterations
 
-In order to handle the number of iterations the Flare controller agents uses a field in the message called by default "flare_iterations".
+The flare-controller agent uses a field in the message called "flare_iterations" by default to handle the number of iterations.
 
 
-### Using the embeeding service over a list of documents
+### Using the embedding service over a list of documents
 
-In order to implement the Flare pattern you need to query the embedding service multiple times.
+To implement the Flare pattern, you need to query the embedding service multiple times.
 LangStream provides an easy way to perform the same operation over a list of documents with the 'loop-over' capability.
 
 In the example below we use the 'loop-over' capability to query the embedding service for each document in the list of documents to retrieve.
@@ -73,10 +73,10 @@ In the example below we use the 'loop-over' capability to query the embedding se
       text: "{{ record.text }}"
 ```   
 
-When you use "loop-over" it means that the agent executes for each element in a list instead that operating on the whole message.
-You use "record.xxx" in order to refer to the current element in the list.
+When you use "loop-over", the agent executes for each element in a list instead of operating on the whole message.
+Use "record.xxx" to refer to the current element in the list.
 
-The snippet above computes the embeddings for each element in the list "documents_to_retrive" that is expected to be a struct like this:
+The snippet above computes the embeddings for each element in the list "documents_to_retrieve". The list is expected to be a struct like this:
 
 ```json
 {
@@ -110,7 +110,7 @@ After running the agent the contents of the list are:
 
 ### Querying the vector database over a list of documents
 
-In order to implement the Flare pattern you need to query the vector database to look up documents reletant to a set of input queries and not only one.
+To implement the Flare pattern, you need to query the vector database to look up documents relevant to more than one input query.
 LangStream provides an easy way to perform the same operation over a list of documents with the 'loop-over' capability.
 
 In the example below we use the 'loop-over' capability to query the database for each document in the list of documents to retrieve.
@@ -134,10 +134,10 @@ In the example below we use the 'loop-over' capability to query the database for
       output-field: "value.retrieved_documents"
 ```   
 
-When you use "loop-over" it means that the agent executes for each element in a list instead that operating on the whole message.
-You use "record.xxx" in order to refer to the current element in the list.
+When you use "loop-over", the agent executes for each element in a list instead of operating on the whole message.
+Use "record.xxx" to refer to the current element in the list.
 
-The snippet above performs and query for each element in in the list "documents_to_retrive" that is expected to be a struct like this:
+The snippet above computes the embeddings for each element in the list "documents_to_retrieve". The list is expected to be a struct like this:
 
 ```json
 {
@@ -154,7 +154,7 @@ The snippet above performs and query for each element in in the list "documents_
 }
 ```
 
-Then it adds all the results to as a new field "retrieved_documents" in the message.
+The agent then adds all the results to a new field named "retrieved_documents" in the message.
 
 After running the agent the contents of the list are:
 
@@ -187,7 +187,7 @@ After running the agent the contents of the list are:
 }
 ```
 
-This behaviour is different from the "compute-ai-embeddings" agent, in fact the "query-vector-db" agent adds the results to the message instead of replacing the original list and also the results are all added to the same field.
+This behaviour is different from the "compute-ai-embeddings" agent. The "query-vector-db" agent used here adds the results to the message instead of replacing the original list, and the results are all added to the same field.
 
 
 ### Example

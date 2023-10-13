@@ -115,8 +115,9 @@
   * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
   * [Apache Kafka](configuration-resources/messaging/kafka.md)
 
-## Advanced techniques
+## Patterns
 
+* [RAG pattern](building-applications/rag-pattern.md)
 * [FLARE pattern](building-applications/flare-pattern.md)
 
 ## Examples

@@ -53,7 +53,7 @@ Please refer to the documentation of the vector database you are using for more 
 
 ### Automatically repeating the query over a list of inputs
 
-It is possible to perform the same query over a list of inputs. This is useful when you want to perform a query over a list of inputs, for example, a list of questions.
+It is possible to perform the same computation over a list of inputs - for example, a list of questions.
 You can take the [Flare pattern](../../building-applications/flare-pattern.md) as an example.
 
 In the example below we use the 'loop-over' capability to query the database for each document in the list of documents to retrieve.
@@ -77,10 +77,10 @@ In the example below we use the 'loop-over' capability to query the database for
       output-field: "value.retrieved_documents"
 ```   
 
-When you use "loop-over" it means that the agent executes for each element in a list instead that operating on the whole message.
-You use "record.xxx" in order to refer to the current element in the list.
+When you use "loop-over", the agent executes for each element in a list instead of operating on the whole message.
+Use "record.xxx" to refer to the current element in the list.
 
-The snippet above performs and query for each element in in the list "documents_to_retrive" that is expected to be a struct like this:
+The snippet above computes the embeddings for each element in the list "documents_to_retrieve". The list is expected to be a struct like this:
 
 ```json
 {
@@ -97,7 +97,7 @@ The snippet above performs and query for each element in in the list "documents_
 }
 ```
 
-Then it adds all the results to as a new field "retrieved_documents" in the message.
+The agent then adds all the results to a new field named "retrieved_documents" in the message.
 
 After running the agent the contents of the list are:
 
