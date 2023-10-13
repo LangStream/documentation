@@ -1,5 +1,5 @@
 {
-  "version" : "0.2.0",
+  "version" : "0.2.1-SNAPSHOT",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
@@ -1080,14 +1080,311 @@
         }
       }
     },
-    "vector-db-sink" : {
-      "name" : "Vector database sink",
-      "description" : "Store vectors in a vector database.\nConfiguration properties depends on the vector database implementation, specified by the \"datasource\" property.",
+    "vector-db-sink_astra" : {
+      "type" : "vector-db-sink",
+      "name" : "Cassandra/Astra",
+      "description" : "Writes data to Apache Cassandra or DataStax Astra service.\nAll the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html",
       "properties" : {
         "datasource" : {
-          "description" : "The defined datasource ID to use to store the vectors.",
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'astra'.",
           "required" : true,
           "type" : "string"
+        },
+        "keyspace" : {
+          "description" : "The keyspace of the table to write to.",
+          "required" : false,
+          "type" : "string"
+        },
+        "mapping" : {
+          "description" : "Comma separated list of mapping between the table column and the record field. e.g. my_colum_id=key, my_column_name=value.name.",
+          "required" : true,
+          "type" : "string"
+        },
+        "table-name" : {
+          "description" : "The name of the table to write to. The table must already exist.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-db-sink_cassandra" : {
+      "type" : "vector-db-sink",
+      "name" : "Cassandra/Astra",
+      "description" : "Writes data to Apache Cassandra or DataStax Astra service.\nAll the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html",
+      "properties" : {
+        "datasource" : {
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'cassandra'.",
+          "required" : true,
+          "type" : "string"
+        },
+        "keyspace" : {
+          "description" : "The keyspace of the table to write to.",
+          "required" : false,
+          "type" : "string"
+        },
+        "mapping" : {
+          "description" : "Comma separated list of mapping between the table column and the record field. e.g. my_colum_id=key, my_column_name=value.name.",
+          "required" : true,
+          "type" : "string"
+        },
+        "table-name" : {
+          "description" : "The name of the table to write to. The table must already exist.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-db-sink_jdbc" : {
+      "type" : "vector-db-sink",
+      "name" : "JDBC",
+      "description" : "Writes data to any JDBC compatible database.",
+      "properties" : {
+        "datasource" : {
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'jdbc'.",
+          "required" : true,
+          "type" : "string"
+        },
+        "fields" : {
+          "description" : "Fields of the table to write to.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields of the table to write to.",
+            "required" : true,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "JSTL Expression for computing the field value.",
+                "required" : true,
+                "type" : "string"
+              },
+              "name" : {
+                "description" : "Field name",
+                "required" : true,
+                "type" : "string"
+              },
+              "primary-key" : {
+                "description" : "Is this field part of the primary key?",
+                "required" : false,
+                "type" : "boolean",
+                "defaultValue" : "false"
+              }
+            }
+          }
+        },
+        "table-name" : {
+          "description" : "The name of the table to write to. The table must already exist.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-db-sink_milvus" : {
+      "type" : "vector-db-sink",
+      "name" : "Milvus",
+      "description" : "Writes data to Milvus/Zillis service.",
+      "properties" : {
+        "collection-name" : {
+          "description" : "Collection name",
+          "required" : false,
+          "type" : "string"
+        },
+        "database-name" : {
+          "description" : "Collection name",
+          "required" : false,
+          "type" : "string"
+        },
+        "datasource" : {
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'milvus'.",
+          "required" : true,
+          "type" : "string"
+        },
+        "fields" : {
+          "description" : "Fields definition.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields definition.",
+            "required" : true,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "JSTL Expression for computing the field value.",
+                "required" : true,
+                "type" : "string"
+              },
+              "name" : {
+                "description" : "Field name",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "vector-db-sink_opensearch" : {
+      "type" : "vector-db-sink",
+      "name" : "OpenSearch",
+      "description" : "Writes data to OpenSearch or AWS OpenSearch serverless.",
+      "properties" : {
+        "batch-size" : {
+          "description" : "Batch size for bulk operations. Hitting the batch size will trigger a flush.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "10"
+        },
+        "bulk-parameters" : {
+          "description" : "OpenSearch bulk URL parameters.",
+          "required" : false,
+          "type" : "object",
+          "properties" : {
+            "pipeline" : {
+              "description" : "The pipeline ID for preprocessing documents.\nRefer to the OpenSearch documentation for more details.",
+              "required" : false,
+              "type" : "string"
+            },
+            "routing" : {
+              "description" : "Routes the request to the specified shard.\nRefer to the OpenSearch documentation for more details.",
+              "required" : false,
+              "type" : "string"
+            },
+            "require_alias" : {
+              "description" : "Set to true to require that all actions target an index alias rather than an index.\nRefer to the OpenSearch documentation for more details.",
+              "required" : false,
+              "type" : "boolean"
+            },
+            "refresh" : {
+              "description" : "Whether to refresh the affected shards after performing the indexing operations. Default is false. true makes the changes show up in search results immediately, but hurts cluster performance. wait_for waits for a refresh. Requests take longer to return, but cluster performance doesn’t suffer.\nNote that AWS OpenSearch supports only false.\nRefer to the OpenSearch documentation for more details.",
+              "required" : false,
+              "type" : "string"
+            },
+            "wait_for_active_shards" : {
+              "description" : "Specifies the number of active shards that must be available before OpenSearch processes the bulk request. Default is 1 (only the primary shard). Set to all or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the request to succeed.\nRefer to the OpenSearch documentation for more details.",
+              "required" : false,
+              "type" : "string"
+            },
+            "timeout" : {
+              "description" : "How long to wait for the request to return.\nRefer to the OpenSearch documentation for more details.",
+              "required" : false,
+              "type" : "string"
+            }
+          }
+        },
+        "datasource" : {
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'opensearch'.",
+          "required" : true,
+          "type" : "string"
+        },
+        "fields" : {
+          "description" : "Index fields definition.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "Index fields definition.",
+            "required" : true,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "JSTL Expression for computing the field value.",
+                "required" : true,
+                "type" : "string"
+              },
+              "name" : {
+                "description" : "Field name",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "flush-interval" : {
+          "description" : "Flush interval in milliseconds",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "1000"
+        },
+        "id" : {
+          "description" : "JSTL Expression to compute the index _id field. Leave it empty to let OpenSearch auto-generate the _id field.",
+          "required" : false,
+          "type" : "string"
+        },
+        "index-name" : {
+          "description" : "The name of the index to write to. The index must already exist.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-db-sink_pinecone" : {
+      "type" : "vector-db-sink",
+      "name" : "Pinecone",
+      "description" : "Writes data to Pinecone service.",
+      "properties" : {
+        "datasource" : {
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'pinecone'.",
+          "required" : true,
+          "type" : "string"
+        },
+        "vector.id" : {
+          "description" : "JSTL Expression to compute the id.",
+          "required" : false,
+          "type" : "string"
+        },
+        "vector.metadata" : {
+          "description" : "Metadata to append. The key is the metadata name and the value the JSTL Expression to compute the actual value.",
+          "required" : false,
+          "type" : "object"
+        },
+        "vector.namespace" : {
+          "description" : "JSTL Expression to compute the namespace.",
+          "required" : false,
+          "type" : "string"
+        },
+        "vector.vector" : {
+          "description" : "JSTL Expression to compute the vector.",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-db-sink_solr" : {
+      "type" : "vector-db-sink",
+      "name" : "Solr",
+      "description" : "Writes data to Solr service.\n    The collection-name is configured at datasource level.",
+      "properties" : {
+        "commit-within" : {
+          "description" : "Commit within option",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "1000"
+        },
+        "datasource" : {
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'solr'.",
+          "required" : true,
+          "type" : "string"
+        },
+        "fields" : {
+          "description" : "Fields definition.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields definition.",
+            "required" : true,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "JSTL Expression for computing the field value.",
+                "required" : true,
+                "type" : "string"
+              },
+              "name" : {
+                "description" : "Field name",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
         }
       }
     },
@@ -1337,6 +1634,50 @@
         }
       }
     },
+    "datasource_opensearch" : {
+      "type" : "datasource",
+      "name" : "OpenSearch",
+      "description" : "Connect to OpenSearch service or AWS OpenSearch Service/Serverless.",
+      "properties" : {
+        "host" : {
+          "description" : "Host parameter for connecting to OpenSearch.\nValid both for OpenSearch and AWS OpenSearch Service/Serverless.",
+          "required" : true,
+          "type" : "string"
+        },
+        "https" : {
+          "description" : "Whether to use https or not.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "password" : {
+          "description" : "Basic authentication for connecting to OpenSearch.\nIn case of AWS OpenSearch Service/Serverless, this is the secret key.",
+          "required" : false,
+          "type" : "string"
+        },
+        "port" : {
+          "description" : "Port parameter for connecting to OpenSearch service.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "9200"
+        },
+        "region" : {
+          "description" : "Region parameter for connecting to AWS OpenSearch Service/Serveless.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'opensearch'",
+          "required" : true,
+          "type" : "string"
+        },
+        "username" : {
+          "description" : "Basic authentication for connecting to OpenSearch.\nIn case of AWS OpenSearch Service/Serverless, this is the access key.",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
     "hugging-face-configuration" : {
       "type" : "hugging-face-configuration",
       "name" : "Hugging Face",
@@ -1491,11 +1832,6 @@
           "required" : false,
           "type" : "string"
         },
-        "index-name" : {
-          "description" : "Url parameter for connecting to Zillis service.",
-          "required" : false,
-          "type" : "string"
-        },
         "password" : {
           "description" : "Password parameter for connecting to Milvus.",
           "required" : false,
@@ -1517,11 +1853,60 @@
           "required" : false,
           "type" : "string"
         },
+        "url" : {
+          "description" : "Url parameter for connecting to Zillis service.",
+          "required" : false,
+          "type" : "string"
+        },
         "user" : {
           "description" : "User parameter for connecting to Milvus.",
           "required" : false,
           "type" : "string",
           "defaultValue" : "default"
+        }
+      }
+    },
+    "vector-database_opensearch" : {
+      "type" : "vector-database",
+      "name" : "OpenSearch",
+      "description" : "Connect to OpenSearch service or AWS OpenSearch Service/Serverless.",
+      "properties" : {
+        "host" : {
+          "description" : "Host parameter for connecting to OpenSearch.\nValid both for OpenSearch and AWS OpenSearch Service/Serverless.",
+          "required" : true,
+          "type" : "string"
+        },
+        "https" : {
+          "description" : "Whether to use https or not.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "password" : {
+          "description" : "Basic authentication for connecting to OpenSearch.\nIn case of AWS OpenSearch Service/Serverless, this is the secret key.",
+          "required" : false,
+          "type" : "string"
+        },
+        "port" : {
+          "description" : "Port parameter for connecting to OpenSearch service.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "9200"
+        },
+        "region" : {
+          "description" : "Region parameter for connecting to AWS OpenSearch Service/Serveless.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'opensearch'",
+          "required" : true,
+          "type" : "string"
+        },
+        "username" : {
+          "description" : "Basic authentication for connecting to OpenSearch.\nIn case of AWS OpenSearch Service/Serverless, this is the access key.",
+          "required" : false,
+          "type" : "string"
         }
       }
     },
@@ -1564,6 +1949,44 @@
         "service" : {
           "description" : "Service type. Set to 'pinecone'",
           "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-database_solr" : {
+      "type" : "vector-database",
+      "name" : "Solr",
+      "description" : "Connect to Solr or Solr Cloud service.",
+      "properties" : {
+        "collection-name" : {
+          "description" : "Collection to use in Solr.",
+          "required" : false,
+          "type" : "string"
+        },
+        "host" : {
+          "description" : "Host parameter for connecting to Solr.",
+          "required" : false,
+          "type" : "string"
+        },
+        "password" : {
+          "description" : "Password parameter for connecting to Solr.",
+          "required" : false,
+          "type" : "string"
+        },
+        "port" : {
+          "description" : "Port parameter for connecting to Solr.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "8983"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'solr'",
+          "required" : true,
+          "type" : "string"
+        },
+        "user" : {
+          "description" : "Username parameter for connecting to Solr.",
+          "required" : false,
           "type" : "string"
         }
       }
@@ -1754,6 +2177,67 @@
           "description" : "Name of the database where to create the collection.",
           "required" : false,
           "type" : "string"
+        },
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "opensearch-index" : {
+      "name" : "OpenSearch index",
+      "description" : "Manage OpenSearch index.",
+      "properties" : {
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        },
+        "index-name" : {
+          "description" : "Index name.",
+          "required" : true,
+          "type" : "string"
+        },
+        "mappings" : {
+          "description" : "JSON containing index mappings configuration.",
+          "required" : false,
+          "type" : "string"
+        },
+        "settings" : {
+          "description" : "JSON containing index settings configuration.",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "solr-collection" : {
+      "name" : "Solr collection",
+      "description" : "Manage a Solr collection.",
+      "properties" : {
+        "create-statements" : {
+          "description" : "List of the statement to execute to create the collection. They will be executed every time the application is deployed or upgraded.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "List of the statement to execute to create the collection. They will be executed every time the application is deployed or upgraded.",
+            "required" : true,
+            "type" : "object",
+            "properties" : {
+              "method" : {
+                "required" : false,
+                "type" : "string"
+              },
+              "api" : {
+                "required" : false,
+                "type" : "string"
+              },
+              "body" : {
+                "required" : false,
+                "type" : "string"
+              }
+            }
+          }
         },
         "datasource" : {
           "description" : "Reference to a datasource id configured in the application.",
