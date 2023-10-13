@@ -21,7 +21,7 @@ Let's run a simple LangStream Application that implements a ChatBot using OpenAI
 You need to get an OpenAI API key from [here](https://beta.openai.com/).
 
 ```bash
-export OPENAI_API_KEY=<your-openai-api-key>
+export OPEN_AI_ACCESS_KEY=<your-openai-api-key>
 langstream docker run test -app https://github.com/LangStream/langstream/tree/main/examples/applications/openai-completions -s https://github.com/LangStream/langstream/blob/main/examples/secrets/secrets.yaml
 ```
 
