@@ -15,7 +15,7 @@ This is the flow of a Flare pipeline:
 1. Start with a query text
 2. Add the query text to the list of queries for the vector database ("documents to retrieve")
 3. Compute the embeddings for each document to retrieve
-4. Lookup relevant documents from a [vector database](vector-databases.md)
+4. Lookup relevant documents from a [vector database](../building-applications/vector-databases.md)
 5. Add the results to the list of documents to use to build the prompt
 6. Build a prompt with the query text and the most relevant documents
 7. [Query the LLM](../pipeline-agents/ai-actions/ai-text-completions.md) with the prompt to get the final response, and the logprobs for each token
