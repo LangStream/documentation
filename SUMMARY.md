@@ -62,6 +62,7 @@
   * [Cassandra](configuration-resources/data-storage/cassandra.md)
   * [Pinecone](configuration-resources/data-storage/pinecone.md)
   * [Milvus](configuration-resources/data-storage/milvus.md)
+  * [Solr](configuration-resources/data-storage/solr.md)
   * [JDBC](configuration-resources/data-storage/jdbc.md)
 
 ## Pipeline Agents

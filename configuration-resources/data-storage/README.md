@@ -35,6 +35,7 @@ resources:
 - [Pinecone](./pinecone.md)
 - [Milvus](./milvus.md)
 - [JDBC](./jdbc.md)
+- [Solr](./solr.md)
 
 
 ### Supporting a new service

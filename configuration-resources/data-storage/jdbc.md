@@ -132,4 +132,4 @@ Use the "vector-db-sink" agent with the following parameters to write to a JDBC 
           expression: "value.chunk_num_tokens"
 ```
 
-Set the table-name to the name of the table you want to write to. Define the fields in the "fields" list. This works similarly to the ['compute' agent](broken-reference), and you can use the same syntax to define the fields. It is important that you tag the fields that are part of the primary key of the table with "primary-key: true". This is needed to correctly manage upserts and deletion from the table.
+Set the table-name to the name of the table you want to write to. Define the fields in the "fields" list. This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields. It is important that you tag the fields that are part of the primary key of the table with "primary-key: true". This is needed to correctly manage upserts and deletion from the table.
