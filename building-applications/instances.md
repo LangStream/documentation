@@ -44,7 +44,7 @@ instance:
 {% hint style="info" %}
 **DataStax Astra users**
 
-To use your streaming tenant as the streaming cluster with LangStream, by enabling the Starlight for Kafka feature. Doing so will provide you with the needed bootstrap and security information to use the kafka type.
+To use your Astra streaming tenant as the streaming cluster with LangStream, enable the Starlight for Kafka feature. Doing so will provide you with the needed bootstrap and security information to use the kafka type.
 
 Read more about enabling Starlight for Kafka in Astra Streaming in the [documentation](https://docs.datastax.com/en/streaming/astra-streaming/developing/astream-kafka.html) and also in the [learning site](https://docs.datastax.com/en/streaming/streaming-learning/use-cases-architectures/starlight/kafka/index.html). Learn more about the Starlight for Kafka project [here](https://docs.datastax.com/en/streaming/starlight-for-kafka/2.10.1.x/index.html).
 {% endhint %}

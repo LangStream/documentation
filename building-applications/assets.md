@@ -58,19 +58,4 @@ For more on how AstraDatasource, CassandraDataSource, and LangStream assets inte
 
 ### Configuration
 
-| Asset Type         | Field             | Type   | Description                                                                                       |
-| ------------------ | ----------------- | ------ | ------------------------------------------------------------------------------------------------- |
-| cassandra-table    | table-name        | String | Name of the table.                                                                                |
-|                    | keyspace          | String | Name of the keyspace.                                                                             |
-|                    | create-statements | List   | List of statements to create the table.                                                           |
-|                    | delete-statements | List   | List of statements to delete the table. Required only if `deletion-mode` is set to `"delete"`.    |
-| cassandra-keyspace | keyspace          | String | Name of the keyspace.                                                                             |
-|                    | create-statements | List   | List of statements to create the keyspace.                                                        |
-|                    | delete-statements | List   | List of statements to delete the keyspace. Required only if `deletion-mode` is set to `"delete"`. |
-|                    | secureBundle      | N/A    | If present, an exception is thrown indicating that `"astra-keyspace"` should be used.             |
-|                    | database          | N/A    | If present, an exception is thrown indicating that `"astra-keyspace"` should be used.             |
-| astra-keyspace     | keyspace          | String | Name of the keyspace.                                                                             |
-|                    | token             | String | Token for accessing AstraDB.                                                                      |
-|                    | database          | String | Name of the database in AstraDB.                                                                  |
-| All Asset Types    | datasource        | Map    | Nested configuration containing a `configuration` field with datasource-specific configurations.  |
-
+<table data-full-width="true"><thead><tr><th>Asset Type</th><th>Field</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>cassandra-table</td><td>table-name</td><td>String</td><td>Name of the table.</td></tr><tr><td></td><td>keyspace</td><td>String</td><td>Name of the keyspace.</td></tr><tr><td></td><td>create-statements</td><td>List</td><td>List of statements to create the table.</td></tr><tr><td></td><td>delete-statements</td><td>List</td><td>List of statements to delete the table. Required only if <code>deletion-mode</code> is set to <code>"delete"</code>.</td></tr><tr><td>cassandra-keyspace</td><td>keyspace</td><td>String</td><td>Name of the keyspace.</td></tr><tr><td></td><td>create-statements</td><td>List</td><td>List of statements to create the keyspace.</td></tr><tr><td></td><td>delete-statements</td><td>List</td><td>List of statements to delete the keyspace. Required only if <code>deletion-mode</code> is set to <code>"delete"</code>.</td></tr><tr><td></td><td>secureBundle</td><td>N/A</td><td>If present, an exception is thrown indicating that <code>"astra-keyspace"</code> should be used.</td></tr><tr><td></td><td>database</td><td>N/A</td><td>If present, an exception is thrown indicating that <code>"astra-keyspace"</code> should be used.</td></tr><tr><td>astra-keyspace</td><td>keyspace</td><td>String</td><td>Name of the keyspace.</td></tr><tr><td></td><td>token</td><td>String</td><td>Token for accessing AstraDB.</td></tr><tr><td></td><td>database</td><td>String</td><td>Name of the database in AstraDB.</td></tr><tr><td>All Asset Types</td><td>datasource</td><td>Map</td><td>Nested configuration containing a <code>configuration</code> field with datasource-specific configurations.</td></tr></tbody></table>
