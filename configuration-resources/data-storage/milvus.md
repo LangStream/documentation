@@ -163,4 +163,4 @@ When you use the "vector-db-sink" agent to write to Milvus, you can use the foll
           expression: "value.chunk_num_tokens"
 ````
 
-Set the collection-name to the name of the collection you want to write to. Then you define the fields in the "fields" list. This works similarly to the ['compute' agent](broken-reference), and you can use the same syntax to define the fields.
+Set the collection-name to the name of the collection you want to write to. Then you define the fields in the "fields" list. This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields.

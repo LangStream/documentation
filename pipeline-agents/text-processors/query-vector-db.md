@@ -50,6 +50,7 @@ Please refer to the documentation of the vector database you are using for more 
 - [Pinecone.io](../../configuration-resources/data-storage/pinecone.md)
 - [Milvus.io](../../configuration-resources/data-storage/milvus.md)
 - [JDBC](../../configuration-resources/data-storage/jdbc.md)
+- [Apache Solr](../../configuration-resources/data-storage/solr.md)
 
 ### Automatically repeating the query over a list of inputs
 
