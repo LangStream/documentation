@@ -22,7 +22,7 @@ resources:
       
 ```
 
-Explanatation for the parameters:
+Explanation for the parameters:
 
 * username: the username
 * password: the password
@@ -39,9 +39,9 @@ LangStream uses the official Apache Solr Java client to connect to Solr.
 
 You can use both Solr and Solr Cloud. If you use Solr Cloud then you can also manage the collections using the Solr Cloud API.
 
-In order to do that, you need to create special assets in your pipeline: "solr-collection".
+To do that, you need to create special assets in your pipeline: "solr-collection".
 
-This is an example about how to craete a collection named "documents" with a dense vector, as required to perform Vector Similarity Searches:
+Here is an example of creating a collection named "documents" with a dense vector, as required to perform Vector Similarity Searches:
 
 ```yaml
 assets:
@@ -107,7 +107,7 @@ If you set "api" to "/api/collections" then you are using the [Solr Collections 
 
 #### Querying Solr
 
-When you use the "query-vector-db" agent to query Solr, you can use the following parameters:
+Use the "query-vector-db" agent to query Solr with the following parameters:
 
 ```yaml
   - name: "lookup-related-documents"
@@ -125,15 +125,15 @@ When you use the "query-vector-db" agent to query Solr, you can use the followin
 
 As usual you can use the '?' symbol as a placeholder for the fields that you specify in the "q" section.
 
-For Apache Solr you write in the "query" field a JSON that describes the parameters to pass in the Solr query.
-Usually you provide a value for "q" that is the main query string, and then you can add other parameters.
+For Apache Solr, the "query" field requires a JSON that describes the parameters to pass in the Solr query.
+Usually you provide a value for "q" for the main query string, and then add other parameters.
 
-In the example above, we are using the "knn" query parser to perform a [Vector Similarity Search]((https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html)).
+In the example above, we are using the "knn" query parser to perform a [Vector Similarity Search](https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html).
 
 
 ### Writing to Solr
 
-When you use the "vector-db-sink" agent to write to Solr, you can use the following parameters:
+Use the "vector-db-sink" agent to write to Solr with the following parameters:
 
 ```yaml
   - name: "Write to Solr"
@@ -151,4 +151,4 @@ When you use the "vector-db-sink" agent to write to Solr, you can use the follow
           expression: "value.text"
 ````
 
-Set the collection-name to the name of the collection you want to write to. Then you define the fields in the "fields" list. This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), you can define the name of the field and the expression to compute the value of the field.
+Set the collection-name to the name of the collection you want to write to, and define the fields in the "fields" list. This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), where you define the name of the field and the expression to compute the value of the field.
