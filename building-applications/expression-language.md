@@ -71,7 +71,7 @@ Utility methods available under the `fn` namespace. For example, to get the curr
 ## Conditional when steps
 
 Each step accepts an optional `when` configuration that is evaluated at step execution time.
-For example, the [Dispatch agent](../pipeline-agents/flow-control/dispatch.md) evaluates the output from the language-detector agent and routes messages based on whether the value in the "properties.language" field is "en" or "fr". (If neither, it routes to default-topic).
+For example, the [Dispatch agent](../pipeline-agents/flow-control/dispatch.md) evaluates the output from the language-detector agent and routes messages based on whether the value in the "properties.language" field is "en" or "fr". If neither, it routes to default-topic.
 ```yaml
   - name: "Detect language"
     type: "language-detector"
