@@ -33,7 +33,7 @@ The Expression Language supports the following operators:
 
 ## Functions
 
-Utility methods available under the `fn` namespace. For example, to get the current timestamp, use `fn:now()`. The Expression Language supports the following functions:\
+Utility methods available under the `fn` namespace. For example, to get the current timestamp, use `fn:now()`. The Expression Language supports the following functions:
 
 
 | **Name (field)**                  | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
