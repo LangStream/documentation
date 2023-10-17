@@ -1,6 +1,27 @@
 # Expression Language
 
-To support [Conditional steps](compute.md#conditional-steps) and the Compute Transform, an expression language is required to evaluate the conditional step `when` or the compute step `expression`. The syntax is [EL](https://javaee.github.io/tutorial/jsf-el001.html#BNAHQ), which uses the dot notation to access field properties or map keys. It supports the following operators and functions:
+LangStream uses an expression language to reference fields of a LangStream record.
+See [Structure of a record](topics.md#structure-of-a-message) for more on the parts of a record.
+
+The expression language is required to evaluate the conditional step `when` or the compute step `expression`. The syntax is [EL](https://javaee.github.io/tutorial/jsf-el001.html#BNAHQ), which uses dot notation to access field properties or map keys.
+
+For example, when the [query-vector-db](../pipeline-agents/text-processors/query-vector-db.md) agent queries a Pinecone vector database, the agent uses the expression language to reference the values in "embeddings" and "query-result" with "value.embeddings" and "value.query-result".
+```yaml
+- name: "Execute Query"
+  type: "query-vector-db"
+  configuration:
+    datasource: "PineconeDatasource"
+    query: |
+      {
+            "vector": ?,
+            "topK": 5,
+            "filter":
+              {"$or": [{"genre": "comedy"}, {"year":2019}]}
+       }
+    fields:
+      - "value.embeddings"
+    output-field: "value.query-result"
+```
 
 ## Operators
 
@@ -49,10 +70,31 @@ Utility methods available under the `fn` namespace. For example, to get the curr
 
 ## Conditional Steps
 
-Each `step` accepts an optional `when` configuration that is evaluated at step execution time against current records (the current step in the transform pipeline).
+Each step accepts an optional `when` configuration that is evaluated at step execution time.
+For example, the [Dispatch agent](../pipeline-agents/flow-control/dispatch.md) evaluates the output from the language-detector agent and routes messages based on whether the value in the "properties.language" field is "en" or "fr". (If neither, it routes to default-topic).
+```yaml
+  - name: "Detect language"
+    type: "language-detector"
+    input: "input-topic"
+    configuration:
+      property: "language"
 
-\
-The `when` condition supports the expression language syntax, which provides access to the record attributes as follows:
+  - name: "Dispatch"
+    type: "dispatch"
+    output: default-topic
+    configuration:
+      routes:
+        - when: properties.language == "en"
+          destination: topic-english
+        - when: properties.language == "fr"
+          destination: topic-french
+        - when: properties.language == "none"
+          action: drop
+```
+Use the `.` operator to access top level or nested properties on a schema-full key or value.\
+For example, `properties.language` or `properties.language.nestedValueField`.
+
+The `when` condition supports the expression language syntax by providing access to the record fields below:
 
 | **Name (field)**  | **Description**                                                                                                                    |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -64,10 +106,3 @@ The `when` condition supports the expression language syntax, which provides acc
 | eventTime:        | the optional timestamp attached to the record from its source. For example, the original timestamp attached to the pulsar message. |
 | properties:       | the optional user-defined properties attached to record.                                                                           |
 
-You can use the `.` operator to access top level or nested properties on a schema-full key or value.\
-For example, `key.keyField1` or `value.valueFiled1.nestedValueField`.
-
-
-## Configuration
-
-Check out the full configuration properties in the [API Reference page](building-applications/api-reference/agents.md#compute).
