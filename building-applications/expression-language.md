@@ -68,7 +68,7 @@ Utility methods available under the `fn` namespace. For example, to get the curr
 | timestampAdd(input, delta, unit)  | Returns a timestamp formed by adding `delta` in `unit` to the `input` timestamp. `input` is a timestamp to add to. `delta` is a `long` amount of `unit` to add to `input`. Can be a negative value to perform subtraction. `unit` the string unit of time to add or subtract. Can be one of [`years`, `months`, `days`, `hours`, `minutes`, `seconds`, `millis`]. |
 
 
-## Conditional Steps
+## Conditional when steps
 
 Each step accepts an optional `when` configuration that is evaluated at step execution time.
 For example, the [Dispatch agent](../pipeline-agents/flow-control/dispatch.md) evaluates the output from the language-detector agent and routes messages based on whether the value in the "properties.language" field is "en" or "fr". (If neither, it routes to default-topic).
