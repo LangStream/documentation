@@ -105,4 +105,5 @@ The `when` condition supports the expression language syntax by providing access
 | destinationTopic: | the name of the topic on which the transformed record will be sent (aka. Output Topic).                                            |
 | eventTime:        | the optional timestamp attached to the record from its source. For example, the original timestamp attached to the pulsar message. |
 | properties:       | the optional user-defined properties attached to record.                                                                           |
+| record:         | the name of a "current record" the agent is processing within a list, ex. [loop-over](/patterns/flare-pattern.md#using-the-embedding-service-over-a-list-of-documents) loops over the list `value.documents_to_retrieve` of individual records `record.embeddings`. Must be `record.value`, can't use nested properties like `record.value.nestedProperties`. |
 
