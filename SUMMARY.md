@@ -37,6 +37,7 @@
 * [Sample App](building-applications/build-a-sample-app.md)
 * [Develop, test and deploy](building-applications/development-workflow.md)
 * [Application Lifecycle](building-applications/application-lifecycle.md)
+* [Expression Language](building-applications/expression-language.md)
 * [API Gateways](building-applications/api-gateways/README.md)
   * [Websocket](building-applications/api-gateways/websocket.md)
   * [Message filtering](building-applications/api-gateways/message-filtering.md)

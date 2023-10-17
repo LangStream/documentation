@@ -76,7 +76,7 @@ In the example below we use the 'loop-over' capability to query the database for
       # as we are looping over a list of document, the result of the query
       # is the union of all the results
       output-field: "value.retrieved_documents"
-```   
+```
 
 When you use "loop-over", the agent executes for each element in a list instead of operating on the whole message.
 Use "record.xxx" to refer to the current element in the list.
@@ -152,7 +152,7 @@ After running the agent the contents of the list are:
 "filter":
 {"$or": [{"genre": "comedy"}, {"year":2019}]}
 }
-</code></pre></td></tr><tr><td>fields</td><td>string[]</td><td><p>A collection of field values. Each value will be used in order to replace placeholders in the query (do not include mustache brackets, this not a templated value).<br></p><p>Example collection:</p><ul><li>“value.embeddings”</li></ul></td></tr><tr><td>output-field</td><td>string</td><td><p>The name of an additional field to be added to message data containing query result (do not include mustache brackets, this is not a templated value).</p><p></p><p>Provide in the form: “value.&#x3C;field-name>”</p></td></tr></tbody></table>
+</code></pre></td></tr><tr><td>fields</td><td>string[]</td><td><p>A collection of field values. Each value will be used in order to replace placeholders in the query (do not include mustache brackets, this is not a templated value).<br></p><p>Example collection:</p><ul><li>“value.embeddings”</li></ul></td></tr><tr><td>output-field</td><td>string</td><td><p>The name of an additional field to be added to message data containing query result (do not include mustache brackets, this is not a templated value).</p><p></p><p>Provide in the form: “value.&#x3C;field-name>”</p></td></tr></tbody></table>
 
 ### What's next?
 
