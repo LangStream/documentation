@@ -88,7 +88,7 @@ You can also customise all the properties provided by the underlying broker by s
 
 ```yaml
     topics:
-        - name: "offset-topic"
+      - name: "offset-topic"
         creation-mode: create-if-not-exists
         partitions: 1
         options:
@@ -126,7 +126,7 @@ But you must be aware that the main way to control the ordering of messages is b
 
 ### **Implicit topics**
 
-The LangStream planner may decide to create additional topics to connect the agents. This is because most of the agents may run together in the same kubernetes pod, but under some conditions this is not possible, for example:
+The LangStream planner may decide to create additional topics to connect the agents. This is because most of the agents may run together in the same Kubernetes pod, but under some conditions this is not possible, for example:
 
 * two agents in the same pipeline have different resource requirements, so they must live in separate pods
 * some agents require a direct connection to a topic
@@ -207,3 +207,54 @@ When you mark an agent with **on-failure: deadletter**, this means that in case 
 In this case, the LangStream planner automatically creates a topic next to the input topic of the agent, with the same schema and with a name as `topicname + “-deadletter”`.
 
 You can read more about error handling [here](error-handling.md).
+
+### Stream-to-topic parameter
+
+Some agents allow you to configure the "stream-to-topic" parameter in the pipeline:
+
+```yaml
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    output: "history-topic"
+    configuration:
+      model: "${secrets.open-ai.chat-completions-model}"
+      # on the log-topic we add a field with the answer
+      completion-field: "value.answer"
+      # we are also logging the prompt we sent to the LLM
+      log-field: "value.prompt"
+      # here we configure the streaming behavior
+      # as soon as the LLM answers with a chunk we send it to the answers-topic
+      stream-to-topic: "output-topic"
+      # on the streaming answer we send the answer as whole message
+      # the 'value' syntax is used to refer to the whole value of the message
+      stream-response-completion-field: "value"
+      # we want to stream the answer as soon as we have 10 chunks
+      # in order to reduce latency for the first message the agent sends the first message
+      # with 1 chunk, then with 2 chunks....up to the min-chunks-per-message value
+      # eventually we want to send bigger messages to reduce the overhead of each message on the topic
+      min-chunks-per-message: 10
+      messages:
+        - role: user
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question}}"
+```
+
+In this case the agent writes any tokens coming from the LLM to the topic defined in "stream-to-topic".
+
+In fact, LLMs internally work "one token at a time", and the native streaming capabilities of LangStream leverage this behavior for more "real-time" LLM interactions with lower latency.
+
+There are two main configuration properties:
+
+* stream-to-topic: the name of the topic to stream to
+* stream-response-completion-field: the field to set in the records sent to the stream-to-topic topic
+
+Usually the value for "stream-response-completion-field" is "value". This means that the token from the LLM replaces the entire content of the "value" part of the message and you can serve it with a [gateway](./api-gateways/README.md) directly. Use "value" to write the result without a structured schema, or use "value.<field>" to write the result in a specific field.
+
+The regular output of the agent is not changed by using "stream-to-topic". The message is still sent to the downstream agent (or output topic) when the whole sequence of tokens is received.
+
+The agent groups tokens to limit the number of writes to the broker by creating sequences of up to "min-chunks-per-message". The first token is sent as soon as possible, then 2 chunks, then 4 chunks, and continues doubling until reaching the limit defined in "min-chunks-per-message".
+
+Messages sent on the "stream-to-topic" are marked with special properties:
+
+* stream-id: this is a string, that is the id of the whole answer
+* stream-index: this is a number (as string) of the index of the token in the sequence
+* stream-last-message: this is a boolean (as string, "true" or "false") that if "true" then the message is the last of the answer
