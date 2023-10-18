@@ -26,7 +26,7 @@ Example of reading from a container, extracting the document text, splitting the
           action: drop
 ```
 
-This example detect the language of the input record and then decides to send english and french records to different topics. 
+This example detects the language of the input record and then decides to send english and french records to different topics. 
 You could then implement another pipeline to perform different computation based on the language.
 
 In case the language is not recognized, the message will be dropped.
