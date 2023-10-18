@@ -4,7 +4,7 @@ This agent enables you to dispatch records to different topics, based on conditi
 
 ### Example
 
-Example of reading from a container, extracting the document text, splitting the text into chunks, and outputting each chunk as a message to the output topic.
+This is an example about how to use the `dispatch` agent to dispatch records to different topics based on the language of the text.
 
 ```yaml
   - name: "Detect language"
@@ -31,7 +31,6 @@ You could then implement another pipeline to perform different computation based
 
 In case the language is not recognized, the message will be dropped.
 In case the language is recognized but the it's neither english or french, it will continue the pipeline - in this case it will be written in the `default-topic`
-
 
 
 ### Configuration
