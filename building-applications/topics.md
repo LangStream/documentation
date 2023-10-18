@@ -210,7 +210,7 @@ You can read more about error handling [here](error-handling.md).
 
 ### Stream-to-topic parameter
 
-Some agents allow you to configure the "stream-to-topic" parameter in the pipeline:
+Some agents allow you to configure the "stream-to-topic" parameter in the pipeline as below:
 
 ```yaml
   - name: "ai-chat-completions"
