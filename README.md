@@ -8,7 +8,7 @@ LangStream is a framework for building and running Generative AI (Gen AI) applic
 
 Using LangStream you can develop and test your Gen AI applications on your laptop and then deploy to a production environment powered by Kubernetes and Kafka with a single CLI command.
 
-LangStream applications are fundamentally event-driven. This architecture makes it easy to build reactive Gen AI applications that have scalabiity, fault-tolerance, and high availability.
+LangStream applications are fundamentally event-driven. This architecture makes it easy to build reactive Gen AI applications that have scalability, fault-tolerance, and high availability.
 
 To make it easy to build Gen AI applications, LangStream comes with several pre-built, configuration-driven agents. There are agents for working with AI chat APIs, vector databases, and text processing, to name a few. If the pre-built agents don't meet your needs, you can easily create your own agents using Python. The LangStream runtime comes preloaded with recent versions of popular Gen AI libraries like LangChain and LlamaIndex.
 
