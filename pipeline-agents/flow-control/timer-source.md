@@ -1,10 +1,10 @@
 # timer-source
 
-This source agent enables you to periodically emit a new record (an "event") and pass it to the pipeline.
+This source agent periodically emits a new record (an "event") and passes it to the pipeline.
 
 ### Example
 
-This is an example about how to use the `timer-source` agent to emit a new record every 60 seconds.
+This is an example using the `timer-source` agent to emit a new record every 60 seconds.
 
 ```yaml
   pipeline:
