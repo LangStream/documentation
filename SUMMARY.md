@@ -100,6 +100,8 @@
     * [unwrap-key-value](pipeline-agents/data-transform/unwrap-key-value.md)
   * [Flow control](pipeline-agents/flow-control/README.md)
     * [dispatch](pipeline-agents/flow-control/dispatch.md)
+    * [timer-source](pipeline-agents/flow-control/timer-source.md)
+    * [trigger-event](pipeline-agents/flow-control/trigger-event.md)
 * [Custom Agents](pipeline-agents/custom-agents/README.md)
   * [Agent Developer Guide](pipeline-agents/agent-developer-guide/README.md)
     * [Agent Types](pipeline-agents/agent-developer-guide/agent-types.md)
