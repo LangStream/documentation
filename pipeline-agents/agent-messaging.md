@@ -25,7 +25,7 @@ If the input message to an agent is in plain text, then you refer to it as “\{
 ```yaml
 messages:
   - role: user
-    content: "What can you tell me about {{% value}} ?"
+    content: "What can you tell me about {{ value}} ?"
 ```
 
 Or in the query agent if you wanted to include the input message as a part of the query you would:

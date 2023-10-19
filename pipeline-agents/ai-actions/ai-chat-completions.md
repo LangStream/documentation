@@ -19,7 +19,10 @@ Given the AI model specified in an application's configuration resources, this a
 
 ## Using OpenAI chat models
 
-The `ai-chat-completions` for OpenAI uses the /v1/chat/completions endpoint. Refer to the [OpenAI documentation](https://platform.openai.com/docs/models/model-endpoint-compatibility) to know which models are compatible.
+> The `ai-chat-completions` for OpenAI uses the /v1/chat/completions endpoint. Refer to the [OpenAI documentation](https://platform.openai.com/docs/models/model-endpoint-compatibility) to know which models are compatible.
+
+Setup the OpenAI LLM [configuration](../../configuration-resources/large-language-models-llms/open-ai-configuration.md).
+Add the `ai-chat-completions` agent:
 
 ```yaml
 pipeline:
@@ -27,7 +30,7 @@ pipeline:
     type: "ai-chat-completions"
     output: "history-topic"
     configuration:
-      model: "${secrets.open-ai.chat-completions-model}" # This needs to be set to the model deployment name, not the base name
+      model: "gpt-3.5-turbo"
       # on the log-topic we add a field with the answer
       completion-field: "value.answer"
       # we are also logging the prompt we sent to the LLM
@@ -45,25 +48,85 @@ pipeline:
       min-chunks-per-message: 10
       messages:
         - role: user
-          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question}}"
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question }}"
 ```
 
 ## Using VertexAI chat models
 
-Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
+> Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
+
+Setup the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
+Add the `ai-chat-completions` agent:
 
 ```yaml
 pipeline:
   - name: "ai-chat-completions"
     type: "ai-chat-completions"
     configuration:
-      model: "bert-base-uncased"
+      model: "chat-bison"
+      max-tokens: 100
       completion-field: "value.chatresult"
       log-field: "value.request"
       messages:
         - role: user
-          content: "{{ value }} [MASK]"
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question }}"
 ```
+
+
+## Using Amazon Bedrock AI21 Jurassic-2 models
+
+> Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-jurassic2) for other parameters and options.
+
+Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Add the `ai-chat-completions` agent:
+
+```yaml
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    configuration:
+      model: "ai21.j2-mid-v1"
+      completion-field: "value.answer"
+      options:
+        request-parameters:
+          # here you can add all the supported parameters
+          temperature: 0.5
+          maxTokens: 300
+        # expression to retrieve the completion from the response JSON. It varies depending on the model 
+        response-completions-expression: "completions[0].data.text"
+      messages:
+        - content: "{{ value.question }}"
+```
+
+
+
+## Using Amazon Bedrock Anthropic Claude models
+
+> Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-claude) to learn other parameters and options.
+
+Setup the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Add the `ai-chat-completions` agent:
+
+```yaml
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    configuration:
+      model: "anthropic.claude-v2"
+      completion-field: "value.answer"
+      options:
+        request-parameters:
+          # here you can add all the supported parameters
+          temperature: 0.5
+          max_tokens_to_sample: 300
+          top_p: 0.9
+          top_k: 250
+        # expression to retrieve the completion from the response JSON. It varies depending on the model 
+        response-completions-expression: "completion"
+      messages:
+        - content: "{{ value.question }}"
+```
+
 
 ### Prompt limitations
 
@@ -88,8 +151,4 @@ Some public LLMs offer a free tier and then automatically begin charging per pro
 
 ### Configuration
 
-<table><thead><tr><th width="182.33333333333331">Label</th><th width="162">Type</th><th>Description</th></tr></thead><tbody><tr><td>model</td><td>string (required)</td><td><p>Given the AI model set in the configuration resources, this is the corresponding model name to use.<br></p><p>Example using the OpenAI model: “gpt-3.5-turbo”</p></td></tr><tr><td>completion-field</td><td>string (required)</td><td><p>The name of an additional field that will be added to the output message data containing the LLM completion.<br></p><p>Provide in the form: “value.&#x3C;field-name>” (do not include mustache brackets, this not a templated value).</p></td></tr><tr><td>log-field</td><td>string (optional)</td><td>This is the final prompt that was submitted to the model.</td></tr><tr><td>stream-to-topic</td><td>string (optional)</td><td></td></tr><tr><td>stream-response-completion-field</td><td>string (optional)</td><td></td></tr><tr><td>messages</td><td>object[]</td><td><p>A collection of LLM prompt messages, see the reference table.</p><p></p><p>Example collection:</p><ul><li>role: user<br>message: “answer the question: {{% value }}”</li><li>role: system<br>message: “You are a friendly customer service agent”</li></ul></td></tr></tbody></table>
-
-#### messages
-
-<table><thead><tr><th width="124.33333333333331">Label</th><th width="165">Type</th><th>Description</th></tr></thead><tbody><tr><td>role</td><td>string (required)</td><td>Values are limited to what the chosen LLM model supports. Typical values are “user” or “system”.</td></tr><tr><td>content</td><td>string (required)</td><td><p>A templated value that will be sent to the LLM. Refer to message structure and templating for templating options.<br><br></p><p>Example of combining preset prompt and entire input value:</p><p>“You are a friendly customer service agent and like answering questions like: {{% value }}”</p><p><br></p><p>Example of combining preset prompt and specific input value:</p><p>“You are a friendly customer service agent speaking with {{% value.first-name}}. Help them with the question: {{% value.user-question }}”</p></td></tr></tbody></table>
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#ai-chat-completions).

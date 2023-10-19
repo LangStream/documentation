@@ -36,7 +36,7 @@ pipeline:
     configuration:
       model: "${secrets.open-ai.embeddings-model}" # This needs to match the name of the model deployment, not the base model
       embeddings-field: "value.question_embeddings"
-      text: "{{% value.question }}"
+      text: "{{ value.question }}"
       flush-interval: 0
   - name: "lookup-related-documents"
     type: "query-vector-db"
@@ -90,11 +90,11 @@ pipeline:
               Do not provide information that is not related to the LangStream project.
             
               Documents:
-              {{%# value.related_documents}}
-              {{% text}}
-              {{%/ value.related_documents}}
+              {{# value.related_documents}}
+              {{ text}}
+              {{/ value.related_documents}}
         - role: user
-          content: "{{% value.question}}"          
+          content: "{{ value.question}}"          
 ```
 
 ### What’s next?

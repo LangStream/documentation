@@ -26,7 +26,7 @@ pipeline:
     configuration:
       model: "text-embedding-ada-002"
       embeddings-field: "value.question_embeddings"
-      text: "{{% value.question }}"
+      text: "{{ value.question }}"
 ```
 
 Source agents do not have configurable error handling.
