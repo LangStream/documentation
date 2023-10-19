@@ -47,8 +47,8 @@ pipeline:
 
 ### Using Open AI
 
-Setup the OpenAI LLM [configuration](../../configuration-resources/large-language-models-llms/open-ai-configuration.md).
-Then add the `compute-ai-embeddings` agent:
+Set up the OpenAI LLM [configuration](../../configuration-resources/large-language-models-llms/open-ai-configuration.md).
+Add the `compute-ai-embeddings` agent:
 
 
 ```yaml
@@ -64,8 +64,8 @@ Then add the `compute-ai-embeddings` agent:
 
 ### Using Google Vertex AI
 
-Setup the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
-Then add the `compute-ai-embeddings` agent:
+Set up the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
+Add the `compute-ai-embeddings` agent:
 
 
 ```yaml
@@ -81,8 +81,8 @@ Then add the `compute-ai-embeddings` agent:
 
 ### Using Amazon Bedrock 
 
-Setup the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
-Then add the `compute-ai-embeddings` agent:
+Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Add the `compute-ai-embeddings` agent:
 
 ```yaml
 - name: "compute-embeddings"

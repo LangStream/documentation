@@ -1,6 +1,6 @@
 # open-ai-configuration
 
-The resource `bedrock-configuration` allows you to configure the access to the Amazon Bedrock models for embeddings and completions.
+The resource `bedrock-configuration` configures access to the Amazon Bedrock models for embeddings and completions.
 
 `configuration.yaml`
 ```yaml

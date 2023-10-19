@@ -21,7 +21,7 @@ Given the AI model specified in an application's configuration resources, this a
 > The `ai-text-completions` for OpenAI uses the /v1/completions endpoint. Refer to the [OpenAI documentation](https://platform.openai.com/docs/models/model-endpoint-compatibility) to know which models are compatible.
 
 Setup the OpenAI LLM [configuration](../../configuration-resources/large-language-models-llms/open-ai-configuration.md).
-Then add the `ai-text-completions` agent:
+Add the `ai-text-completions` agent:
 
 
 ```yaml
@@ -54,8 +54,8 @@ pipeline:
 
 Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text) to know which models are compatible.
 
-Setup the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
-Then add the `ai-text-completions` agent:
+Set up the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
+Add the `ai-text-completions` agent:
 
 
 
@@ -84,7 +84,7 @@ VertexAI text completions accepts only one `prompt` value.
 > Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-jurassic2) to learn other parameters and options.
 
 Setup the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
-Then add the `ai-text-completions` agent:
+Add the `ai-text-completions` agent:
 
 ```yaml
 pipeline:
@@ -110,8 +110,8 @@ pipeline:
 
 > Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-claude) to learn other parameters and options.
 
-Setup the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
-Then add the `ai-text-completions` agent:
+Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Add the `ai-text-completions` agent:
 
 ```yaml
 pipeline:
