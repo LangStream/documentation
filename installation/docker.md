@@ -33,8 +33,10 @@ This command starts a docker container using the same version of the CLI.
 
 The container by default runs all the LangStream components, a Kafka Broker, and an S3 service (using [Minio](https://min.io/docs/minio/kubernetes/upstream/index.html)).
 
-The docker container exposes the Control Plane on the default port (8090) and the API Gateway on the default port (8091),
-so you can run most of the CLI commands against the local container, especially the commands to interact with the API Gateway.
+The docker container exposes the Control Plane on the default port (`8090`) and the API Gateway on the default port (`8091`),
+so you can run most of the CLI commands against the local container, especially the commands to interact with the API Gateway. See this [section](#connect-to-the-docker-application) to learn more.
+
+Note that one of the two port is not available, the command will fail. Parallel executions of local run is not supported. 
 
 When you kill the application with Ctrl-C, the environment is automatically disposed of.
 If you need to persist your topics or the S3 environment, then you have to build your own instance.yaml file and pass it using the "-i" flag.
@@ -100,3 +102,19 @@ The following flags are available:
 If you have built [the CLI locally from the sources](../installation/build-and-install-source.md) the docker image defaults to the local docker image
 
 You can also override the command used to launch the container, the default value is `docker`, but you can pass the `--docker-command` flag to use a different binary path.
+
+
+### Connect to the docker application
+The docker container exposes the API gateway on port `8091` and the control plane on port `8090` of your local machine. 
+When using CLI commands targeting the docker container it's highly suggested to use a special profile named `local-docker-run`.
+
+For example, starting the chat gateway:
+```bash
+langstream -p local-docker-run gateway chat test chat
+```
+
+or for getting the application description:
+```bash
+langstream -p local-docker-run apps get test -o yaml
+```
+
