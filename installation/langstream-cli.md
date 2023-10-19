@@ -14,15 +14,32 @@ To configure the LangStream CLI, see [CLI configuration.](../langstream-cli/lang
 brew install LangStream/langstream/langstream
 ```
 
+or for a specific version:
+```bash
+brew install LangStream/langstream/langstream@x.y.z
+```
+
 ### Linux
 
 ```bash
 curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh" | bash
 ```
 
+or for a specific version:
+
+```bash
+version=x.y.z
+export LANGSTREAM_CLI_URL="https://github.com/LangStream/langstream/releases/download/v$version/langstream-cli-$version.zip"
+curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh" | bash
+```
+
+
 ### Windows
 
 Use [WSL](https://learn.microsoft.com/en-us/windows/wsl/about).
+
+Alternatevely, you can run the `.bat` file present inside the CLI tarball. You can download the tarball from [Github Releases](https://github.com/LangStream/langstream/releases)
+
 
 {% hint style="info" %}
 Want to get started a little quicker? Check out the [LangStream VSCode Extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) for pre-made applications and agent code snippets.
