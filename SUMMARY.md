@@ -3,7 +3,7 @@
 * [LangStream Documentation](README.md)
 * [❤ Langstream.ai](https://langstream.ai)
 * [⭐ LangStream GitHub Repo](https://github.com/LangStream/langstream)
-* [📜 Changelog](https://github.com/LangStream/langstream/releases/latest)
+* [📜 Changelog](https://langstream.ai/changelog/)
 
 ## about
 
