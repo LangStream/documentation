@@ -87,3 +87,7 @@ Set the keyspace to the name of the keyspace you want to write to.
 The mapping field is a comma-separated list of field mappings, in the form "field-name=expression". The expression is a expression that can reference the value of the current message, for instance "value.filename".
 
 Internally LangStream is using the DataStax Connector for Apache Kafka and Pulsar to write to Cassandra. You can find more information about the mapping parameters in the [documentation](https://docs.datastax.com/en/pulsar-connector/docs/cfgPulsarMapTopicTable.html).
+
+### Configuration
+
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/resources.md#datasource_cassandra).

@@ -1,6 +1,6 @@
 # JDBC
 
-#### Connecting to a JDBC Compliant Database
+### Connecting to a JDBC Compliant Database
 
 Connect to any JDBC-compliant database using the "datasource" resource type.
 
@@ -58,7 +58,7 @@ This is a sample .gitignore file to put at the root of your application director
 java/lib/*
 ```
 
-#### Querying a JDBC datasource
+### Querying a JDBC datasource
 
 You can query a JDBC datasource using the "query" or the "query-vector-db" agent in your pipeline.
 
@@ -104,7 +104,7 @@ assets:
 
 You can specify any number of statements in the "create-statements" and in the "delete-statements" sections, for instance to create indexes or other objects.
 
-#### Writing to a JDBC datasource
+### Writing to a JDBC datasource
 
 Use the "vector-db-sink" agent with the following parameters to write to a JDBC database:
 
@@ -133,3 +133,8 @@ Use the "vector-db-sink" agent with the following parameters to write to a JDBC 
 ```
 
 Set the table-name to the name of the table you want to write to. Define the fields in the "fields" list. This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields. It is important that you tag the fields that are part of the primary key of the table with "primary-key: true". This is needed to correctly manage upserts and deletion from the table.
+
+
+### Configuration
+
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/resources.md#datasource_jdbc).

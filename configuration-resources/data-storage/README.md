@@ -36,6 +36,7 @@ resources:
 - [Milvus](./milvus.md)
 - [JDBC](./jdbc.md)
 - [Solr](./solr.md)
+- [OpenSearch](./opensearch.md)
 
 
 ### Supporting a new service
