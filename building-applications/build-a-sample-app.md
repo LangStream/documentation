@@ -98,7 +98,7 @@ pipeline:
       completion-field: "value"
       messages:
         - role: user
-          content: "What can you tell me about {{% value}} ?"
+          content: "What can you tell me about {{ value}} ?"
 ```
 
 {% hint style="info" %}
@@ -196,7 +196,7 @@ application:
         configuration:
           completion-field: "value"
           messages:
-          - content: "What can you tell me about {{% value}} ?"
+          - content: "What can you tell me about {{ value}} ?"
             role: "user"
           model: "gpt-35-turbo"
         resources:

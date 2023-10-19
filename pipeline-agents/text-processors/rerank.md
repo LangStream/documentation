@@ -41,7 +41,7 @@ pipeline:
     configuration:
       model: "${secrets.open-ai.embeddings-model}" # This needs to match the name of the model deployment, not the base model
       embeddings-field: "value.question_embeddings"
-      text: "{{% value.question }}"
+      text: "{{ value.question }}"
       flush-interval: 0
   - name: "lookup-related-documents"
     type: "query-vector-db"

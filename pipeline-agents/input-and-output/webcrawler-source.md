@@ -223,7 +223,7 @@ The webcrawler then passes the document on to the next agent.
     configuration:
       model: "text-embedding-ada-002" # This needs to match the name of the model deployment, not the base model
       embeddings-field: "value.embeddings_vector"
-      text: "{{% value.text }}"
+      text: "{{ value.text }}"
       batch-size: 10
       flush-interval: 500
 ```

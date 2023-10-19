@@ -59,7 +59,7 @@ Then add the `compute-ai-embeddings` agent:
   configuration:
     model: "text-embedding-ada-002"
     embeddings-field: "value.embeddings"
-    text: "{{% value }}"
+    text: "{{ value }}"
 ```
 
 ### Using Google Vertex AI
@@ -76,7 +76,7 @@ Then add the `compute-ai-embeddings` agent:
   configuration:
     model: "textembedding-gecko"
     embeddings-field: "value.embeddings"
-    text: "{{% value }}"
+    text: "{{ value }}"
 ```
 
 ### Using Amazon Bedrock 
@@ -92,7 +92,7 @@ Then add the `compute-ai-embeddings` agent:
   configuration:
     model: "amazon.titan-embed-text-v1"
     embeddings-field: "value.embeddings"
-    text: "{{% value }}"
+    text: "{{ value }}"
 ```
 
 ### Automatically computing the embeddings over a list of inputs

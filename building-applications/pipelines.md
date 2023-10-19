@@ -21,7 +21,7 @@ pipeline:
       completion-field: "value"
       messages:
         - role: user
-          content: "What can you tell me about {{% value}} ?"
+          content: "What can you tell me about {{ value}} ?"
 ```
 
 ## Pipeline configuration
