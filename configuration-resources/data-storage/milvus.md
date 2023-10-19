@@ -1,6 +1,6 @@
 # Milvus
 
-#### Connecting to Milvus.io
+### Connecting to Milvus.io
 
 To use Milvus.io as a vector database, create a "vector-database" resource in your configuration.yaml file.
 
@@ -46,7 +46,7 @@ The values for **write-mode**:
 * "upsert": use upserts
 * "delete-insert": delete the document and then insert it again
 
-#### Special assets for Milvus
+### Special assets for Milvus
 
 You can automatically create Collections and Indexes in Milvus as part of the deployment of your LangStream application.
 
@@ -115,11 +115,11 @@ As you can see in the "create-statements" section above, you can configure a num
 * load-collection: load the collection in Milvus, to allow searches
 * create-index: create a Vector index, this is required if you are using the "create-collection" command
 
-#### Querying Milvus
+### Querying Milvus
 
 When you use the "query-vector-db" agent to query Milvus, you can use the following parameters:
 
-````yaml
+```yaml
 pipeline:
   - name: "lookup-related-documents"
     type: "query-vector-db"
@@ -135,7 +135,7 @@ pipeline:
       fields:
         - "value.question_embeddings"
       output-field: "value.related_documents"
-``
+```
 
 As usual you can use the '?' symbol as a placeholder for the fields that you specify in the "fields" section.
 
@@ -161,6 +161,11 @@ When you use the "vector-db-sink" agent to write to Milvus, you can use the foll
           expression: "value.text"
         - name: "num_tokens"
           expression: "value.chunk_num_tokens"
-````
+```
 
 Set the collection-name to the name of the collection you want to write to. Then you define the fields in the "fields" list. This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), and you can use the same syntax to define the fields.
+
+
+### Configuration
+
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/resources.md#datasource_milvus).

@@ -27,7 +27,7 @@ Optional parameters:
 - environment: this is the environment provided by the Astra DB service, it can be PROD, STAGING or DEV, depending on the environment you are using (default is PROD, the other values are useful only for Astra developers)
 
 
-## Handling the secure bundle zip file
+### Handling the secure bundle zip file
 
 The secure bundle is a file that contains some TLS certificates and endpoint information to connect to the Astra DB service.
 
@@ -51,7 +51,7 @@ it is not recommended to store secrets in a configuration file, but only referen
 
 
 
-## Special assets for Astra
+### Special assets for Astra
 
 For "Vector Database" resources based on Astra, you can use special `assets`in your pipeline file: "astra-keyspace" and "cassandra-table".
 
@@ -86,3 +86,7 @@ With the "cassandra-table" asset you can create a table in your Astra DB instanc
 ### Reading and writing to Astra
 
 Astra is compatible with Cassandra, so you can use the same agents you use for Cassandra to read and write to Astra. See the documentation [here](./cassandra.md).
+
+### Configuration
+
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/resources.md#datasource_astra).

@@ -4,7 +4,7 @@ LangStream allows you to use Apache Solr as a vector database. This is useful if
 
 You can find more about how to perform Vector Search in Apache Solr in the [official documentation](https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html)
 
-#### Connecting to Solr
+### Connecting to Solr
 
 To use Apache Solr as a vector database, create a "vector-database" resource in your configuration.yaml file.
 
@@ -35,7 +35,7 @@ Currently LangStream supports connecting to one Collection at a time, so you nee
 LangStream uses the official Apache Solr Java client to connect to Solr.
 
 
-#### Special assets for Apache Solr Cloud
+### Special assets for Apache Solr Cloud
 
 You can use both Solr and Solr Cloud. If you use Solr Cloud then you can also manage the collections using the Solr Cloud API.
 
@@ -105,7 +105,7 @@ If you set "api" to "/schema" then you are using the [Solr Schema API](https://s
 If you set "api" to "/api/collections" then you are using the [Solr Collections API](https://solr.apache.org/guide/solr/latest/configuration-guide/collections-api.html).
 
 
-#### Querying Solr
+### Querying Solr
 
 Use the "query-vector-db" agent to query Solr with the following parameters:
 
@@ -149,6 +149,11 @@ Use the "vector-db-sink" agent to write to Solr with the following parameters:
           expression: "fn:toListOfFloat(value.embeddings_vector)"
         - name: "text"
           expression: "value.text"
-````
+```
 
 Set the collection-name to the name of the collection you want to write to, and define the fields in the "fields" list. This works similarly to the ['compute' agent](../../pipeline-agents/data-transform/compute.md), where you define the name of the field and the expression to compute the value of the field.
+
+
+### Configuration
+
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/resources.md#datasource_solr).

@@ -72,3 +72,8 @@ pipeline:
 
 To write to Pinecone, define the values for the vector.id, vector.vector and vector.metadata fields.
 You can add as many vector.metadata fields as you want, but you need to specify the prefix "vector.metadata." for each field.
+
+
+### Configuration
+
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/resources.md#datasource_pinecone).
