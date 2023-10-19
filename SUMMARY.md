@@ -65,6 +65,7 @@
   * [Milvus](configuration-resources/data-storage/milvus.md)
   * [Solr](configuration-resources/data-storage/solr.md)
   * [JDBC](configuration-resources/data-storage/jdbc.md)
+  * [OpenSearch](configuration-resources/data-storage/opensearch.md)
 
 ## Pipeline Agents
 
