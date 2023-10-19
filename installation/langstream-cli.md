@@ -10,7 +10,7 @@ To configure the LangStream CLI, see [CLI configuration.](../langstream-cli/lang
 
 ### Mac
 
-Install the latest version:
+**Install the latest version**:
 
 ```bash
 brew install LangStream/langstream/langstream
@@ -33,7 +33,7 @@ brew upgrade LangStream/langstream/langstream@x.y.z
 
 ### Linux
 
-Install the latest version:
+**Install the latest version**:
 
 ```bash
 curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh" | bash
