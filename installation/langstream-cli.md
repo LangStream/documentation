@@ -1,46 +1,44 @@
 # LangStream CLI
 
-Use the CLI to manage your control plane, deploy applications, and interact with an application's gateway.
+Use the CLI to test, verify and deploy applications.
 
 For LangStream CLI commands, see [CLI commands.](../langstream-cli/langstream-cli-commands.md)
-
 To configure the LangStream CLI, see [CLI configuration.](../langstream-cli/langstream-cli-configuration.md)
 
-## Download the CLI
+## Installation
 
 ### Mac
 
-**Install the latest version**:
+Install the latest version
 
 ```bash
 brew install LangStream/langstream/langstream
 ```
 
-Install a specific version:
+Install a specific version
 ```bash
 brew install LangStream/langstream/langstream@x.y.z
 ```
 
-To upgrade:
+To upgrade
 ```bash
 brew upgrade LangStream/langstream/langstream
 ```
 
-To upgrade to a specific version:
+To upgrade to a specific version
 ```bash
 brew upgrade LangStream/langstream/langstream@x.y.z
 ```
 
 ### Linux
 
-**Install the latest version**:
+Install the latest version
 
 ```bash
 curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh" | bash
 ```
 
-or for a specific version:
-
+Install a specific version
 ```bash
 version=x.y.z
 export LANGSTREAM_CLI_URL="https://github.com/LangStream/langstream/releases/download/v$version/langstream-cli-$version.zip"
