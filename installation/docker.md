@@ -106,7 +106,8 @@ You can also override the command used to launch the container, the default valu
 
 ### Connect to the docker application
 The docker container exposes the API gateway on port `8091` and the control plane on port `8090` of your local machine. 
-When using CLI commands targeting the docker container it's highly suggested to use a special profile named `local-docker-run`.
+To connect to the docker container it's highly suggested to use a special profile named `local-docker-run`.
+This profile ensures you will always connect to the right endpoints.
 
 For example, starting the chat gateway:
 ```bash
