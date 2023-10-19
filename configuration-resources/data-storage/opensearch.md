@@ -176,4 +176,5 @@ You can customize the [bulk parameters](https://opensearch.org/docs/latest/api-r
 The request will be flushed depending on `flush-interval` and `batch-size` parameters.
 
 ### Configuration
+
 Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/resources.md#datasource_opensearch).

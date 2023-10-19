@@ -48,6 +48,8 @@ LangStream has built-in support for a few Databases and Vector databases (no nee
 
 [Apache Solr](configuration.md#apache-solr)
 
+[OpenSearch](configuration.md#opensearch)
+
 #### Cassandra (with Vector support)
 
 ```yaml
@@ -125,6 +127,22 @@ configuration:
       host: "${secrets.solr.host}"
       port: "${secrets.solr.port}"
       collection-name: "documents"
+      
+</code></pre>
+
+#### OpenSearch
+
+<pre class="language-yaml"><code class="lang-yaml">configuration:
+resources:
+    - type: "vector-database"
+      name: "OpenSearch"
+      configuration:
+        service: "opensearch"        
+        username: "${secrets.opensearch.username}"
+        password: "${secrets.opensearch.password}"
+        host: "${secrets.opensearch.host}"
+        port: "${secrets.opensearch.port}"
+        index-name: "my-index-000"
       
 </code></pre>
 

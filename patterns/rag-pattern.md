@@ -6,10 +6,6 @@ The Retrieval Augmented Generation (RAG) pattern is a powerful way to extend the
 * Extend the knowledge base of the LLM
 * Improve the quality of the generated text
 
-LangStream makes it easy to build applications using the RAG pattern. It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/) and [Apache Cassandra](https://cassandra.apache.org).
-
-Please refer to the [Data Storage section](../configuration-resources/data-storage/) for more information on how to configure your vector database.
-
 ### Vector search example
 
 Once you have your [vector database](../building-applications/vector-databases.md) populated with text and vector embeddings, you can use the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) to perform a similarity search.

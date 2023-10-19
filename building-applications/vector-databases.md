@@ -8,7 +8,7 @@ Vector databases are typically used as part of retrieval augmented generation (R
 * Provide more accurate, up-to-date, and context-aware responses
 * Extend the knowledge base of the LLM
 
-LangStream makes it easy to build applications using the [RAG pattern](../patterns/rag-pattern.md). It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/) and [Apache Cassandra](https://cassandra.apache.org).
+LangStream makes it easy to build applications using the [RAG pattern](../patterns/rag-pattern.md). It currently has native support for [DataStax Astra DB](https://www.datastax.com/products/vector-search), [Pinecone](https://www.pinecone.io/), [Milvus/Zilliz](https://milvus.io/), [OpenSearch](https://opensearch.org/docs/latest/) and [Apache Cassandra](https://cassandra.apache.org).
 
 When working with a vector database you will either be writing vector embeddings to a vector database or performing semantic similarity queries across the vectors in the database. Check out the [vector-db-sink agent](../pipeline-agents/input-and-output/vector-db-sink.md) for writing to vector databases and the [query-vector-db agent](../pipeline-agents/text-processors/query-vector-db.md) for querying.
 
