@@ -53,11 +53,11 @@ By default the docker container runs all the LangStream components, a Kafka Brok
 
 You can use the following flags to select the services to run:
 
-* --start-broker true|false: starts the Kafka broker (default is `true`)
-* --start-s3 true|false: starts the S3 service (default is `true`)
-* --start-webservices true|false: starts the LangStream HTTP components (control plane and API gateway) (default is `true`)
-* --start-database true|false: starts an embedded vector JDBC compliant database (HerdDB) (default is `true`)
-* --start-ui true|false: starts and open a UI application that helps you to test the application
+* `--start-broker`: starts the Kafka broker (default is `true`)
+* `--start-s3`: starts the S3 service (default is `true`)
+* `--start-webservices`: starts the LangStream HTTP components (control plane and API gateway) (default is `true`)
+* `--start-database`: starts an embedded vector JDBC compliant database (HerdDB) (default is `true`)
+* `--start-ui`: starts and open a UI application that helps you to test the application (default is `true`)
 
 For example, if you are using an external Apache Kafka or Pulsar broke, you don't need to start Kafka in the container and you can save local resources by not running the service.
 
@@ -74,14 +74,14 @@ the id would be the id of a Statefulset.
 
 When you run your application in "docker run" mode, the container runs a simplified environment that doesn't need Kubernetes, but this comes with a few simplifications to the execution runtime.
 
-In production mode on Kubernetes, the LangStream planner builds an execution plan from your pipeline files, and then it submits the execution plan to the Kubernetes cluster in the form of Statefulsets. Each Statefulset is responsible for running a single agent. You can configure the number of replicas for each agent in the "resources" section of the pipeline.yaml file.
+In production mode on Kubernetes, the LangStream planner builds an execution plan from your pipeline files, and then it submits the execution plan to the Kubernetes cluster in the form of Statefulsets. Each Statefulset is responsible for running a single executor (one or many agents). You can configure the number of replicas for each agent in the `resources` section of the pipeline.yaml file. In docker mode, the resources configuration is ignored.
 
 In docker mode there is only one Java process that runs all the agents, and for each agent it starts only one execution flow, like having a Statefulset with only one replica.
-The resources (JVM and CPU) are shared between all the agents, so if you have a lot of agents in your application you may need to increase the resources of the docker container (see "Tuning the docker container" below).
+The resources (memory and CPU) are shared between all the agents, so if you have a lot of agents in your application you may need to increase the resources of the docker container (see [Tuning the docker container](#tuning-the-docker-container) below).
 
-The initialisation of the assets is always performed independently from the agents that are running, for all the assets declared in the application. This is because the assets are shared between all the agents, even if they are declared in some pipeline file.
+The initialisation of the assets is always performed independently from the agents that are running, for all the assets declared in the application. The deletion of the assets is not performed in this mode.
 
-You cannot select which logs to display, as all the agents share the same output (but you can still run one agent at a time). The "langstream apps logs" command is not available in this mode.
+You cannot select which logs to display, as all the agents share the same output (but you can still run one agent at a time). The `langstream apps logs` command is not available in this mode.
 
 
 ### Tuning the docker container
