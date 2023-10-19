@@ -18,7 +18,7 @@ This agent uses the configured AI model’s embedding feature to transform a str
 
 ### JSON and String inputs
 
-This agent currently only accepts JSON-formatted inputs.&#x20;
+This agent currently only accepts JSON-formatted inputs.
 
 Either ensure the input is JSON, or put the [document-to-json](../text-processors/document-to-json.md) agent before the compute-ai-embeddings agent in your pipeline:
 
@@ -45,34 +45,52 @@ pipeline:
       flush-interval: 500
 ```
 
-### Example
+### Using Open AI
 
-If the configuration set Google Vertex as its AI model:
+Setup the OpenAI LLM [configuration](../../configuration-resources/large-language-models-llms/open-ai-configuration.md).
+Then add the `compute-ai-embeddings` agent:
 
-```yaml
-configuration:
-  resources:
-    - type: "vertex-configuration"
-      name: "Google Vertex AI configuration"
-      configuration:
-        url: "${ secrets.vertex-ai.url }"
-        # use triple quotes in order to turn off escaping
-        serviceAccountJson: "${ secrets.vertex-ai.serviceAccountJson }"
-        token: "${ secrets.vertex-ai.token }"
-        region: "${ secrets.vertex-ai.region }"
-        project: "${ secrets.vertex-ai.project }"
-```
-
-Then the agent should be:
 
 ```yaml
 - name: "compute-embeddings"
-  id: "step1"
+  type: "compute-ai-embeddings"
+  input: "input-topic" # optional
+  output: "output-topic" # optional
+  configuration:
+    model: "text-embedding-ada-002"
+    embeddings-field: "value.embeddings"
+    text: "{{% value }}"
+```
+
+### Using Google Vertex AI
+
+Setup the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
+Then add the `compute-ai-embeddings` agent:
+
+
+```yaml
+- name: "compute-embeddings"
   type: "compute-ai-embeddings"
   input: "input-topic" # optional
   output: "output-topic" # optional
   configuration:
     model: "textembedding-gecko"
+    embeddings-field: "value.embeddings"
+    text: "{{% value }}"
+```
+
+### Using Amazon Bedrock 
+
+Setup the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Then add the `compute-ai-embeddings` agent:
+
+```yaml
+- name: "compute-embeddings"
+  type: "compute-ai-embeddings"
+  input: "input-topic" # optional
+  output: "output-topic" # optional
+  configuration:
+    model: "amazon.titan-embed-text-v1"
     embeddings-field: "value.embeddings"
     text: "{{% value }}"
 ```
@@ -144,4 +162,4 @@ After running the agent the contents of the list are:
 
 ### Configuration
 
-<table><thead><tr><th width="187.33333333333331">Label</th><th width="161">Type</th><th>Description</th></tr></thead><tbody><tr><td>model</td><td>string (required)</td><td><p>Given the AI model set in the configuration, this is the corresponding embedding type to use.<br></p><p>Example using the OpenAI model: “text-embedding-ada-002”</p></td></tr><tr><td>embeddings-field</td><td>string (required)</td><td><p>The name of an additional field that will be added to output message data containing generated embedding.<br></p><p>Provide in the form: “value.&#x3C;field-name>” (do not include mustache brackets, this not a templated value)</p></td></tr><tr><td>text</td><td>string (required)</td><td>The text to use.</td></tr></tbody></table>
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#compute-ai-embeddings).

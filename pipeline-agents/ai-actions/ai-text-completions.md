@@ -18,7 +18,11 @@ Given the AI model specified in an application's configuration resources, this a
 
 ## Using OpenAI text models
 
-The `ai-text-completions` for OpenAI uses the /v1/completions endpoint. Refer to the [OpenAI documentation](https://platform.openai.com/docs/models/model-endpoint-compatibility) to know which models are compatible.
+> The `ai-text-completions` for OpenAI uses the /v1/completions endpoint. Refer to the [OpenAI documentation](https://platform.openai.com/docs/models/model-endpoint-compatibility) to know which models are compatible.
+
+Setup the OpenAI LLM [configuration](../../configuration-resources/large-language-models-llms/open-ai-configuration.md).
+Then add the `ai-text-completions` agent:
+
 
 ```yaml
 pipeline:
@@ -26,7 +30,7 @@ pipeline:
     type: "ai-text-completions"
     output: "debug"
     configuration:
-      model: "${secrets.open-ai.text-completions-model}"
+      model: "gpt-3.5-turbo-instruct"
       # on the log-topic we add a field with the answer
       completion-field: "value.answer"
       # we are also logging the prompt we sent to the LLM
@@ -49,12 +53,18 @@ pipeline:
 ## Using VertexAI text models
 
 Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text) to know which models are compatible.
+
+Setup the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
+Then add the `ai-text-completions` agent:
+
+
+
 ```yaml
 - name: "ai-text-completions"
     type: "ai-text-completions"
     output: "answers"
     configuration:
-      model: "${secrets.vertex-ai.text-completions-model}"
+      model: "text-bison"
       # on the log-topic we add a field with the answer
       completion-field: "value.answer"
       # we are also logging the prompt we sent to the LLM
@@ -67,6 +77,61 @@ Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/ge
 {% hint style="info" %}
 VertexAI text completions accepts only one `prompt` value.
 {% endhint %}
+
+
+## Using Amazon Bedrock AI21 Jurassic-2 models
+
+> Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-jurassic2) to learn other parameters and options.
+
+Setup the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Then add the `ai-text-completions` agent:
+
+```yaml
+pipeline:
+  - name: "ai-text-completions"
+    type: "ai-text-completions"
+    configuration:
+      model: "ai21.j2-mid-v1"
+      completion-field: "value.answer"
+      options:
+        request-parameters:
+          # here you can add all the supported parameters
+          temperature: 0.5
+          maxTokens: 300
+        # expression to retrieve the completion from the response JSON. It varies depending on the model 
+        response-completions-expression: "completions[0].data.text"
+      prompt:
+        - "{{ value.question }}"
+```
+
+
+
+## Using Amazon Bedrock Anthropic Claude models
+
+> Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-claude) to learn other parameters and options.
+
+Setup the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Then add the `ai-text-completions` agent:
+
+```yaml
+pipeline:
+  - name: "ai-text-completions"
+    type: "ai-text-completions"
+    configuration:
+      model: "anthropic.claude-v2"
+      completion-field: "value.answer"
+      options:
+        request-parameters:
+          # here you can add all the supported parameters
+          temperature: 0.5
+          max_tokens_to_sample: 300
+          top_p: 0.9
+          top_k: 250
+        # expression to retrieve the completion from the response JSON. It varies depending on the model 
+        response-completions-expression: "completion"
+      prompt:
+        - "{{ value.question }}"
+```
 
 
 ### Prompt limitations
@@ -92,5 +157,5 @@ Some public LLMs offer a free tier and then automatically begin charging per pro
 
 ### Configuration
 
-<table><thead><tr><th width="182.33333333333331">Label</th><th width="162">Type</th><th>Description</th></tr></thead><tbody><tr><td>model</td><td>string (required)</td><td><p>Given the AI model set in the configuration resources, this is the corresponding model name to use.<br></p><p>Example using the OpenAI model: “gpt-3.5-turbo-instruct”</p></td></tr><tr><td>completion-field</td><td>string (required)</td><td><p>The name of an additional field that will be added to the output message data containing the LLM completion.<br></p><p>Provide in the form: “value.&#x3C;field-name>” (do not include mustache brackets, this not a templated value).</p></td></tr><tr><td>log-field</td><td>string (optional)</td><td>This is the final prompt that was submitted to the model.</td></tr><tr><td>stream-to-topic</td><td>string (optional)</td><td></td></tr><tr><td>stream-response-completion-field</td><td>string (optional)</td><td></td></tr><tr><td>prompt</td><td>string[]</td><td><p>A collection of LLM prompt messages</p><p></p><p>Example collection:</p><ul><li>- “Translate from English to Italian: {{% value }}”</li></ul></td></tr></tbody></table>
+Check out the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#ai-text-completions).
 
