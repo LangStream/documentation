@@ -10,16 +10,30 @@ To configure the LangStream CLI, see [CLI configuration.](../langstream-cli/lang
 
 ### Mac
 
+Install the latest version:
+
 ```bash
 brew install LangStream/langstream/langstream
 ```
 
-or for a specific version:
+Install a specific version:
 ```bash
 brew install LangStream/langstream/langstream@x.y.z
 ```
 
+To upgrade:
+```bash
+brew upgrade LangStream/langstream/langstream
+```
+
+To upgrade to a specific version:
+```bash
+brew upgrade LangStream/langstream/langstream@x.y.z
+```
+
 ### Linux
+
+Install the latest version:
 
 ```bash
 curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh" | bash
@@ -33,6 +47,7 @@ export LANGSTREAM_CLI_URL="https://github.com/LangStream/langstream/releases/dow
 curl -Ls "https://raw.githubusercontent.com/LangStream/langstream/main/bin/get-cli.sh" | bash
 ```
 
+To upgrade the CLI version, you can run the installer again.
 
 ### Windows
 
