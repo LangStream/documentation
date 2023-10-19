@@ -53,7 +53,7 @@ To upgrade the CLI version, you can run the installer again.
 
 Use [WSL](https://learn.microsoft.com/en-us/windows/wsl/about).
 
-Alternatevely, you can run the `.bat` file present inside the CLI tarball. You can download the tarball from [Github Releases](https://github.com/LangStream/langstream/releases)
+Alternatively, you can run the `.bat` file present inside the CLI tarball. You can download the tarball from [Github Releases](https://github.com/LangStream/langstream/releases)
 
 
 {% hint style="info" %}
