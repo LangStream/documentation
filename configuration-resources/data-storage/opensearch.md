@@ -1,8 +1,8 @@
 # OpenSearch
 
-LangStream allows you to use OpenSearch as a vector database. 
+LangStream supports using OpenSearch as a vector database. 
 
-You can find more about how to perform Vector Search with OpenSearch in the [official documentation](https://opensearch.org/docs/latest/search-plugins/knn/index/)
+Learn more about performing vector search with OpenSearch in the [official documentation](https://opensearch.org/docs/latest/search-plugins/knn/index/)
 
 > Only OpenSearch 2.x is officially supported.
 
@@ -39,16 +39,16 @@ resources:
         index-name: "my-index-000"
 ```
 
-- `username` is the AWS Access Key.
-- `password` is the AWS Secret Key.
+- `username` is the AWS Access Key
+- `password` is the AWS Secret Key
 - `host` is the endpoint provided by AWS. e.g. for AWS OpenSearch serverless it looks like this: xxxx.<region>.aoss.amazonaws.com
-- `region` is the AWS region. It has to match with the one used in the endpoint.
+- `region` is the AWS region. It has to match with the one used in the endpoint
 
 
 
 #### Declare an index as asset
 
-To bind the application startup to the OpenSearch index creation, you need to use the `opensearch-index` asset type.
+To bind the application to the OpenSearch index creation at startup, you must use the `opensearch-index` asset type.
 
 You can configure `settings` and `mappings` as you prefer. Other configuration fields are not supported.
 
@@ -86,7 +86,7 @@ Refer to the [mappings](https://opensearch.org/docs/latest/field-types/index/) d
 
 #### Search
 
-Use the `query-vector-db` agent to perform searches on the index, with the following parameters:
+Use the `query-vector-db` agent with the following parameters to perform searches on the index created above :
 
 ```yaml
   - name: "lookup-related-documents"
@@ -110,19 +110,19 @@ Use the `query-vector-db` agent to perform searches on the index, with the follo
       output-field: "value.related_documents"
 ```
 
-As usual you can use the '?' symbol as a placeholder for the fields.
+You can use the '?' symbol as a placeholder for the fields.
 
 The `query` is the body sent to OpenSearch. Refer to the [documentation](https://opensearch.org/docs/latest/query-dsl/index/) to learn which parameters are supported.
-Note that the query will be executed on the configured index. Multi-indexes queries are not supported, altough you can declare multiple datasources and deal with different indexes in the same application.
+Note that the query will be executed on the configured index. Multi-index queries are not supported, but you can declare multiple datasources and query different indexes in the same application.
 
-The `output-field` will contain the result. 
-The result is in form of array, where each item contains:
+The `output-field` will contain the query result. 
+The result is an array with the following elements:
 - `id`: the document ID
 - `document`: the document source 
 - `score`: the document score
 - `index`: the index name
 
-For example, if you want keep only a relevant field from the first result you can use the `compute` agent after the search:
+For example, if you want to keep only one relevant field from the first result, use the `compute` agent after the search:
 
 ```yaml
   - name: "lookup-related-documents"
@@ -170,7 +170,7 @@ Use the `vector-db-sink` agent to index data, with the following parameters:
 ```
 
 
-All the indexes are performed using the Bulk operation.
+All indexing is performed using the Bulk operation.
 You can customize the [bulk parameters](https://opensearch.org/docs/latest/api-reference/document-apis/bulk/#url-parameters) with the `bulk-parameters` property.
 
 The request will be flushed depending on `flush-interval` and `batch-size` parameters.
