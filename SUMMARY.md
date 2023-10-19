@@ -15,10 +15,10 @@
 
 ## installation
 
+* [LangStream CLI](installation/langstream-cli.md)
+* [Docker](installation/docker.md)
 * [Minikube (mini-langstream)](installation/get-started-minikube.md)
 * [Kubernetes](installation/kubernetes.md)
-* [Docker](installation/docker.md)
-* [LangStream CLI](installation/langstream-cli.md)
 * [Build and install from source](installation/build-and-install-source.md)
 
 ## Building Applications
