@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Resources
 
 LangStream Version: **0.2.0**
@@ -7,11 +8,22 @@ LangStream Version: **0.2.0**
 =======
 <h1>Resources</h1><p>LangStream Version: <strong>0.2.1-SNAPSHOT</strong></p>
 >>>>>>> d816e58 (Agents API Ref: add vector database as single agents)
+=======
+<h1>Resources</h1><p>LangStream Version: <strong>0.3.0</strong></p>
+>>>>>>> 68bdfda (add)
 
 
 ## Astra (`datasource`) <a href="#datasource_astra" id="datasource_astra"></a>
 
+<<<<<<< HEAD
 Connect to DataStax Astra Database service.
+=======
+<br><h2 data-full-width="true"><a name="bedrock-configuration"></a>AWS Bedrock (<code>bedrock-configuration</code>)</h2><p data-full-width="true">Connect to AWS Bedrock API.</p>
+
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>access-key</code></td><td>Aws access key.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>endpoint-override</code></td><td>Override default AWS endpoint. Useful for testing and debugging. If using AWS, please only set the region.</td><td>string</td><td></td><td></td></tr><tr><td><code>region</code></td><td>AWS region for Bedrock endpoints.</td><td>string</td><td></td><td>us-east-1</td></tr><tr><td><code>secret-key</code></td><td>Aws secret key.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
+
+<br><h2 data-full-width="true"><a name="datasource_astra"></a>Astra (<code>datasource</code>)</h2><p data-full-width="true">Connect to DataStax Astra Database service.</p>
+>>>>>>> 68bdfda (add)
 
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>clientId</code></td><td>Astra Token clientId to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>database</code></td><td>Astra Database name to connect to. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>environment</code></td><td>Astra environment.</td><td>string</td><td></td><td>PROD</td></tr><tr><td><code>password</code></td><td>DEPRECATED: use secret instead.</td><td>string</td><td></td><td></td></tr><tr><td><code>secret</code></td><td>Astra Token secret to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>secureBundle</code></td><td>Secure bundle of the database. Must be encoded in base64.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to 'astra'</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>username</code></td><td>DEPRECATED: use clientId instead.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
@@ -27,7 +39,7 @@ Connect to Apache cassandra.
 =======
 <br><h2 data-full-width="true"><a name="datasource_opensearch"></a>OpenSearch (<code>datasource</code>)</h2><p data-full-width="true">Connect to OpenSearch service or AWS OpenSearch Service/Serverless.</p>
 
-<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>host</code></td><td>Host parameter for connecting to OpenSearch.<br>Valid both for OpenSearch and AWS OpenSearch Service/Serverless.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>https</code></td><td>Whether to use https or not.</td><td>boolean</td><td></td><td>true</td></tr><tr><td><code>password</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the secret key.</td><td>string</td><td></td><td></td></tr><tr><td><code>port</code></td><td>Port parameter for connecting to OpenSearch service.</td><td>integer</td><td></td><td>9200</td></tr><tr><td><code>region</code></td><td>Region parameter for connecting to AWS OpenSearch Service/Serveless.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;opensearch&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>username</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the access key.</td><td>string</td><td></td><td></td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>host</code></td><td>Host parameter for connecting to OpenSearch.<br>Valid both for OpenSearch and AWS OpenSearch Service/Serverless.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>https</code></td><td>Whether to use https or not.</td><td>boolean</td><td></td><td>true</td></tr><tr><td><code>index-name</code></td><td>Name of the index to to connect to.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>password</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the secret key.</td><td>string</td><td></td><td></td></tr><tr><td><code>port</code></td><td>Port parameter for connecting to OpenSearch service.</td><td>integer</td><td></td><td>9200</td></tr><tr><td><code>region</code></td><td>Region parameter for connecting to AWS OpenSearch Service/Serveless.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;opensearch&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>username</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the access key.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
 <br><h2 data-full-width="true"><a name="hugging-face-configuration"></a>Hugging Face (<code>hugging-face-configuration</code>)</h2><p data-full-width="true">Connect to Hugging Face service.</p>
 >>>>>>> d816e58 (Agents API Ref: add vector database as single agents)
@@ -53,8 +65,12 @@ Connect to Hugging Face service.
 
 <br><h2 data-full-width="true"><a name="vector-database_opensearch"></a>OpenSearch (<code>vector-database</code>)</h2><p data-full-width="true">Connect to OpenSearch service or AWS OpenSearch Service/Serverless.</p>
 
+<<<<<<< HEAD
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>host</code></td><td>Host parameter for connecting to OpenSearch.<br>Valid both for OpenSearch and AWS OpenSearch Service/Serverless.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>https</code></td><td>Whether to use https or not.</td><td>boolean</td><td></td><td>true</td></tr><tr><td><code>password</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the secret key.</td><td>string</td><td></td><td></td></tr><tr><td><code>port</code></td><td>Port parameter for connecting to OpenSearch service.</td><td>integer</td><td></td><td>9200</td></tr><tr><td><code>region</code></td><td>Region parameter for connecting to AWS OpenSearch Service/Serveless.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;opensearch&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>username</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the access key.</td><td>string</td><td></td><td></td></tr></tbody></table>
 >>>>>>> d816e58 (Agents API Ref: add vector database as single agents)
+=======
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>host</code></td><td>Host parameter for connecting to OpenSearch.<br>Valid both for OpenSearch and AWS OpenSearch Service/Serverless.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>https</code></td><td>Whether to use https or not.</td><td>boolean</td><td></td><td>true</td></tr><tr><td><code>index-name</code></td><td>Name of the index to to connect to.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>password</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the secret key.</td><td>string</td><td></td><td></td></tr><tr><td><code>port</code></td><td>Port parameter for connecting to OpenSearch service.</td><td>integer</td><td></td><td>9200</td></tr><tr><td><code>region</code></td><td>Region parameter for connecting to AWS OpenSearch Service/Serveless.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;opensearch&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>username</code></td><td>Basic authentication for connecting to OpenSearch.<br>In case of AWS OpenSearch Service/Serverless, this is the access key.</td><td>string</td><td></td><td></td></tr></tbody></table>
+>>>>>>> 68bdfda (add)
 
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>access-key</code></td><td>The access key to use for "api" provider.</td><td>string</td><td></td><td></td></tr><tr><td><code>api-url</code></td><td>The URL of the Hugging Face API. Relevant only if provider is "api".</td><td>string</td><td></td><td>https://api-inference.huggingface.co/pipeline/feature-extraction/</td></tr><tr><td><code>model-check-url</code></td><td>The model url to use. Relevant only if provider is "api".</td><td>string</td><td></td><td>https://huggingface.co/api/models/</td></tr><tr><td><code>provider</code></td><td>The provider to use. Either "local" or "api".</td><td>string</td><td></td><td>api</td></tr></tbody></table>
 

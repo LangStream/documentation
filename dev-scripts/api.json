@@ -1,5 +1,5 @@
 {
-  "version" : "0.2.1-SNAPSHOT",
+  "version" : "0.3.0",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
@@ -73,6 +73,11 @@
           "description" : "The model to use for chat completions. The model must be available in the AI Service.",
           "required" : true,
           "type" : "string"
+        },
+        "options" : {
+          "description" : "Additional options for the model configuration. The structure depends on the model and AI provider.",
+          "required" : false,
+          "type" : "object"
         },
         "presence-penalty" : {
           "description" : "Parameter for the completion request. The parameters are passed to the AI Service as is.",
@@ -187,6 +192,11 @@
           "description" : "The model to use for text completions. The model must be available in the AI Service.",
           "required" : true,
           "type" : "string"
+        },
+        "options" : {
+          "description" : "Additional options for the model configuration. The structure depends on the model and AI provider.",
+          "required" : false,
+          "type" : "object"
         },
         "presence-penalty" : {
           "description" : "Parameter for the completion request. The parameters are passed to the AI Service as is.",
@@ -349,7 +359,8 @@
               "expression" : {
                 "description" : "It is evaluated at runtime and the result of the evaluation is assigned to the field.\nRefer to the language expression documentation for more information on the expression syntax.",
                 "required" : true,
-                "type" : "string"
+                "type" : "string",
+                "extendedValidationType" : "EL_EXPRESSION"
               },
               "name" : {
                 "description" : "The name of the field to be computed. Prefix with key. or value. to compute the fields in the key or value parts of the message.\nIn addition, you can compute values on the following message headers [destinationTopic, messageKey, properties.].\nPlease note that properties is a map of key/value pairs that are referenced by the dot notation, for example properties.key0.",
@@ -431,8 +442,8 @@
           "type" : "string",
           "defaultValue" : "text-embedding-ada-002"
         },
-        "modelUrl" : {
-          "description" : "URL of the model to use. (HuggingFace only). The default is computed from the model: \"djl://ai.djl.huggingface.pytorch{model}\"",
+        "model-url" : {
+          "description" : "URL of the model to use. (HuggingFace only). The default is computed from the model: \"djl://ai.djl.huggingface.pytorch/{model}\"",
           "required" : false,
           "type" : "string"
         },
@@ -480,7 +491,8 @@
               "when" : {
                 "description" : "Condition to activate the route. This is a standard EL expression.",
                 "required" : false,
-                "type" : "string"
+                "type" : "string",
+                "extendedValidationType" : "EL_EXPRESSION"
               }
             }
           }
@@ -684,6 +696,42 @@
         }
       }
     },
+    "log-event" : {
+      "name" : "Log an event",
+      "description" : "Log a line in the agent logs when a record is received.",
+      "properties" : {
+        "fields" : {
+          "description" : "Fields to log.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields to log.",
+            "required" : false,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "Expression to compute the value of the field. This is a standard EL expression.",
+                "required" : true,
+                "type" : "string",
+                "extendedValidationType" : "EL_EXPRESSION"
+              },
+              "name" : {
+                "description" : "Name of the field like value.xx, key.xxx, properties.xxx",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "when" : {
+          "description" : "Condition to trigger the operation. This is a standard EL expression.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "true",
+          "extendedValidationType" : "EL_EXPRESSION"
+        }
+      }
+    },
     "merge-key-value" : {
       "name" : "Merge key-value format",
       "description" : "Merges the fields of KeyValue records where both the key and value are structured types of the same schema type. Only AVRO and JSON are supported.",
@@ -767,13 +815,32 @@
           "items" : {
             "description" : "Fields of the record to use as input parameters for the query.",
             "required" : false,
+            "type" : "string",
+            "extendedValidationType" : "EL_EXPRESSION"
+          },
+          "extendedValidationType" : "EL_EXPRESSION"
+        },
+        "generated-keys" : {
+          "description" : "List of fields to use as generated keys. The generated keys are returned in the output, depending on the database.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "List of fields to use as generated keys. The generated keys are returned in the output, depending on the database.",
+            "required" : false,
             "type" : "string"
           }
         },
         "loop-over" : {
           "description" : "Loop over a list of items taken from the record. For instance value.documents.\nIt must refer to a list of maps. In this case the output-field parameter\nbut be like \"record.fieldname\" in order to replace or set a field in each record\nwith the results of the query. In the query parameters you can refer to the\nrecord fields using \"record.field\".",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "extendedValidationType" : "EL_EXPRESSION"
+        },
+        "mode" : {
+          "description" : "Execution mode: query or execute. In query mode, the query is executed and the results are returned. In execute mode, the query is executed and the result is the number of rows affected (depending on the database).",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "query"
         },
         "only-first" : {
           "description" : "If true, only the first result of the query is stored in the output field.",
@@ -820,13 +887,32 @@
           "items" : {
             "description" : "Fields of the record to use as input parameters for the query.",
             "required" : false,
+            "type" : "string",
+            "extendedValidationType" : "EL_EXPRESSION"
+          },
+          "extendedValidationType" : "EL_EXPRESSION"
+        },
+        "generated-keys" : {
+          "description" : "List of fields to use as generated keys. The generated keys are returned in the output, depending on the database.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "List of fields to use as generated keys. The generated keys are returned in the output, depending on the database.",
+            "required" : false,
             "type" : "string"
           }
         },
         "loop-over" : {
           "description" : "Loop over a list of items taken from the record. For instance value.documents.\nIt must refer to a list of maps. In this case the output-field parameter\nbut be like \"record.fieldname\" in order to replace or set a field in each record\nwith the results of the query. In the query parameters you can refer to the\nrecord fields using \"record.field\".",
           "required" : false,
-          "type" : "string"
+          "type" : "string",
+          "extendedValidationType" : "EL_EXPRESSION"
+        },
+        "mode" : {
+          "description" : "Execution mode: query or execute. In query mode, the query is executed and the results are returned. In execute mode, the query is executed and the result is the number of rows affected (depending on the database).",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "query"
         },
         "only-first" : {
           "description" : "If true, only the first result of the query is stored in the output field.",
@@ -1057,6 +1143,88 @@
         }
       }
     },
+    "timer-source" : {
+      "name" : "Timer source",
+      "description" : "Periodically emits records to trigger the execution of pipelines.",
+      "properties" : {
+        "fields" : {
+          "description" : "Fields of the generated records.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields of the generated records.",
+            "required" : false,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "Expression to compute the value of the field. This is a standard EL expression.",
+                "required" : true,
+                "type" : "string",
+                "extendedValidationType" : "EL_EXPRESSION"
+              },
+              "name" : {
+                "description" : "Name of the field like value.xx, key.xxx, properties.xxx",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "period-seconds" : {
+          "description" : "Period of the timer in seconds.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "60"
+        }
+      }
+    },
+    "trigger-event" : {
+      "name" : "Trigger event",
+      "description" : "Emits a record on a side destination when a record is received.",
+      "properties" : {
+        "continue-processing" : {
+          "description" : "Whether to continue processing the record downstream after emitting the event.\nIf the when condition is false, the record is passed downstream anyway.\nThis flag allows you to stop processing system events and trigger a different pipeline.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "destination" : {
+          "description" : "Destination of the message.",
+          "required" : true,
+          "type" : "string"
+        },
+        "fields" : {
+          "description" : "Fields of the generated records.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields of the generated records.",
+            "required" : false,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "Expression to compute the value of the field. This is a standard EL expression.",
+                "required" : true,
+                "type" : "string",
+                "extendedValidationType" : "EL_EXPRESSION"
+              },
+              "name" : {
+                "description" : "Name of the field like value.xx, key.xxx, properties.xxx",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "when" : {
+          "description" : "Condition to trigger the event. This is a standard EL expression.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "true",
+          "extendedValidationType" : "EL_EXPRESSION"
+        }
+      }
+    },
     "unwrap-key-value" : {
       "name" : "Unwrap key-value format",
       "description" : "If the record value is in KeyValue format, extracts the KeyValue's key or value and make it the record value.",
@@ -1082,8 +1250,8 @@
     },
     "vector-db-sink_astra" : {
       "type" : "vector-db-sink",
-      "name" : "Cassandra/Astra",
-      "description" : "Writes data to Apache Cassandra or DataStax Astra service.\nAll the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html",
+      "name" : "Astra",
+      "description" : "Writes data to DataStax Astra service.\nAll the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html",
       "properties" : {
         "datasource" : {
           "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'astra'.",
@@ -1109,8 +1277,8 @@
     },
     "vector-db-sink_cassandra" : {
       "type" : "vector-db-sink",
-      "name" : "Cassandra/Astra",
-      "description" : "Writes data to Apache Cassandra or DataStax Astra service.\nAll the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html",
+      "name" : "Cassandra",
+      "description" : "Writes data to Apache Cassandra.\nAll the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html",
       "properties" : {
         "datasource" : {
           "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'cassandra'.",
@@ -1308,11 +1476,6 @@
           "description" : "JSTL Expression to compute the index _id field. Leave it empty to let OpenSearch auto-generate the _id field.",
           "required" : false,
           "type" : "string"
-        },
-        "index-name" : {
-          "description" : "The name of the index to write to. The index must already exist.",
-          "required" : true,
-          "type" : "string"
         }
       }
     },
@@ -1350,8 +1513,8 @@
     },
     "vector-db-sink_solr" : {
       "type" : "vector-db-sink",
-      "name" : "Solr",
-      "description" : "Writes data to Solr service.\n    The collection-name is configured at datasource level.",
+      "name" : "Apache Solr",
+      "description" : "Writes data to Apache Solr service.\n    The collection-name is configured at datasource level.",
       "properties" : {
         "commit-within" : {
           "description" : "Commit within option",
@@ -1521,6 +1684,34 @@
     }
   },
   "resources" : {
+    "bedrock-configuration" : {
+      "type" : "bedrock-configuration",
+      "name" : "AWS Bedrock",
+      "description" : "Connect to AWS Bedrock API.",
+      "properties" : {
+        "access-key" : {
+          "description" : "Aws access key.",
+          "required" : true,
+          "type" : "string"
+        },
+        "endpoint-override" : {
+          "description" : "Override default AWS endpoint. Useful for testing and debugging. If using AWS, please only set the region.",
+          "required" : false,
+          "type" : "string"
+        },
+        "region" : {
+          "description" : "AWS region for Bedrock endpoints.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "us-east-1"
+        },
+        "secret-key" : {
+          "description" : "Aws secret key.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
     "datasource_astra" : {
       "type" : "datasource",
       "name" : "Astra",
@@ -1649,6 +1840,11 @@
           "required" : false,
           "type" : "boolean",
           "defaultValue" : "true"
+        },
+        "index-name" : {
+          "description" : "Name of the index to to connect to.",
+          "required" : true,
+          "type" : "string"
         },
         "password" : {
           "description" : "Basic authentication for connecting to OpenSearch.\nIn case of AWS OpenSearch Service/Serverless, this is the secret key.",
@@ -1881,6 +2077,11 @@
           "required" : false,
           "type" : "boolean",
           "defaultValue" : "true"
+        },
+        "index-name" : {
+          "description" : "Name of the index to to connect to.",
+          "required" : true,
+          "type" : "string"
         },
         "password" : {
           "description" : "Basic authentication for connecting to OpenSearch.\nIn case of AWS OpenSearch Service/Serverless, this is the secret key.",
@@ -2191,11 +2392,6 @@
       "properties" : {
         "datasource" : {
           "description" : "Reference to a datasource id configured in the application.",
-          "required" : true,
-          "type" : "string"
-        },
-        "index-name" : {
-          "description" : "Index name.",
           "required" : true,
           "type" : "string"
         },

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Assets
 
 LangStream Version: **0.2.0**
@@ -7,6 +8,9 @@ LangStream Version: **0.2.0**
 =======
 <h1>Assets</h1><p>LangStream Version: <strong>0.2.1-SNAPSHOT</strong></p>
 >>>>>>> d816e58 (Agents API Ref: add vector database as single agents)
+=======
+<h1>Assets</h1><p>LangStream Version: <strong>0.3.0</strong></p>
+>>>>>>> 68bdfda (add)
 
 
 ## Astra keyspace (`astra-keyspace`) <a href="#astra-keyspace" id="astra-keyspace"></a>
@@ -55,7 +59,7 @@ Manage a Milvus collection.
 
 <br><h2 data-full-width="true"><a name="opensearch-index"></a>OpenSearch index (<code>opensearch-index</code>)</h2><p data-full-width="true">Manage OpenSearch index.</p>
 
-<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>index-name</code></td><td>Index name.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>mappings</code></td><td>JSON containing index mappings configuration.</td><td>string</td><td></td><td></td></tr><tr><td><code>settings</code></td><td>JSON containing index settings configuration.</td><td>string</td><td></td><td></td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>mappings</code></td><td>JSON containing index mappings configuration.</td><td>string</td><td></td><td></td></tr><tr><td><code>settings</code></td><td>JSON containing index settings configuration.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
 <br><h2 data-full-width="true"><a name="solr-collection"></a>Solr collection (<code>solr-collection</code>)</h2><p data-full-width="true">Manage a Solr collection.</p>
 
