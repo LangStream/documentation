@@ -79,7 +79,7 @@ Add the `compute-ai-embeddings` agent:
     text: "{{ value }}"
 ```
 
-### Using Amazon Bedrock 
+### Using Amazon Bedrock
 
 Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
 Add the `compute-ai-embeddings` agent:
@@ -94,6 +94,43 @@ Add the `compute-ai-embeddings` agent:
     embeddings-field: "value.embeddings"
     text: "{{ value }}"
 ```
+
+### Using Huggingface
+
+Set up the Huggingface resource [configuration](../../configuration-resources/large-language-models-llms/hugging-face-configuration.md).
+Add the `compute-ai-embeddings` agent:
+
+```yaml
+  - name: "compute-embeddings"
+    id: "step1"
+    type: "compute-ai-embeddings"
+    input: "input-topic"
+    output: "output-topic"
+    configuration:
+      model: "${secrets.open-ai.embeddings-model}" # This needs to match the name of the model deployment, not the base model
+      embeddings-field: "value.embeddings"
+      text: "{{ value.name }} {{ value.description }}"
+      batch-size: 10
+      # this is in milliseconds. It is important to take this value into consideration when using this agent in the chat response pipeline
+      # in fact this value impacts the latency of the response
+      # for latency sensitive applications, consider to set batch-size to 1 or flush-interval to 0
+      flush-interval: 500
+```
+
+Set `HUGGING_FACE_PROVIDER=api` and provide your Huggingface key and embeddings model to use the HF inference API:
+```yaml
+export HUGGING_FACE_PROVIDER=api
+export HUGGING_FACE_ACCESS_KEY=your_access_key
+export HUGGING_FACE_EMBEDDINGS_MODEL=multilingual-e5-small
+```
+
+To compute text embeddings with a local model instead of calling the Huggingface API, set `HUGGING_FACE_PROVIDER=local` and set your embeddings model.
+```yaml
+HUGGING_FACE_PROVIDER=local
+HUGGING_FACE_EMBEDDINGS_MODEL=multilingual-e5-small
+HUGGING_FACE_EMBEDDINGS_MODEL_URL=djl://ai.djl.huggingface.pytorch/intfloat/multilingual-e5-small
+```
+The above example will use the multilingual-e5-small Huggingface model locally via the [Deep Java Library](https://github.com/deepjavalibrary/djl/blob/master/extensions/tokenizers/README.md#use-djl-huggingface-model-converter-experimental).
 
 ### Automatically computing the embeddings over a list of inputs
 
@@ -110,7 +147,7 @@ In the example below we use the 'loop-over' capability to compute the embeddings
       model: "${secrets.open-ai.embeddings-model}"
       embeddings-field: "record.embeddings"
       text: "{{ record.text }}"
-```   
+```
 
 When you use "loop-over", the agent executes for each element in a list instead of operating on the whole message.
 Use "record.xxx" to refer to the current element in the list.
