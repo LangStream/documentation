@@ -31,5 +31,41 @@ To make it easy to build Gen AI applications, LangStream comes with several pre-
 * Automatic text summarization pipelines
 * Personalized recommendation pipelines
 
+### Architecture
+
+```mermaid
+flowchart TD
+
+    %% LangStream
+    subgraph "LangStream"
+        A1["Agent\nOSS embedding"]
+        C["Control\nPlane and API"]
+        W["WebSocket\nGateway"]
+        A2["Agent\nchat completion"]
+
+    end
+
+    %% Kubernetes
+    subgraph "Kubernetes"
+        LO["LangStream Operator"]
+    end
+
+    %% Kafka
+    subgraph "Kafka"
+        K["Kafka"]
+    end
+
+    %% Connections between LangStream, Kubernetes, and Kafka
+    A1 --> LO
+    A2 --> LO
+    LO --> K
+    K --> AIS
+    K --> VDB
+    K --> DB
+
+    %% AI Services, Vector DB, and DB
+    AIS[(AI Services)]
+    VDB[(Vector DB)]
+```
 
 Get started [here!](get-started.md)
