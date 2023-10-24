@@ -61,7 +61,6 @@ flowchart TD
     LO --> K
     K --> AIS
     K --> VDB
-    K --> DB
 
     %% AI Services, Vector DB, and DB
     AIS[(AI Services)]
