@@ -14,7 +14,7 @@ layout:
 
 # Kubernetes
 
-LangStream container images are available on the (Github packages registry)[https://github.com/orgs/LangStream/packages?repo_name=langstream]. A LangStream cluster is made up of the following images:
+LangStream container images are available on the [Github packages registry](https://github.com/orgs/LangStream/packages?repo\_name=langstream). A LangStream cluster is made up of the following images:
 
 * [datastax/langstream-deployer](https://github.com/LangStream/langstream/pkgs/container/langstream-deployer)
 * [datastax/langstream-control-plane](https://github.com/LangStream/langstream/pkgs/container/langstream-control-plane)
