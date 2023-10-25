@@ -42,10 +42,10 @@ For example, this instance defines `topicName` as a global parameter with the va
 instance:
   globals:
     topicName: "input-topic"
-    otherTopicName: "${OTHER_TOPIC_NAME:-other-topic-name}"
+    otherTopicName: "${OTHER_TOPIC_NAME:-default-topic-name}"
 ```
 
-The second global `otherTopicName` uses an alternate declaration method where the value is loaded from a dotenv file containing a `OTHER_TOPIC_NAME="value"` line. The `:-` characters allow you to designate a default value - in this case, `other-topic-name`.
+The second global `otherTopicName` uses an alternate declaration method where the value is loaded from a dotenv file containing a `OTHER_TOPIC_NAME="value"` line. The `:-` characters allow you to designate a default value - in this case, `default-topic-name`.
 
 The `topicName` parameter can now be referenced wherever you need it, perhaps in your application's pipeline.yaml file:
 ```yaml
