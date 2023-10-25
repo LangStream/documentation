@@ -33,6 +33,27 @@ instance:
     type: "kubernetes"
 ```
 
+### Globals
+
+Within instance.yaml, use "globals" to define values for parameters across your application.
+
+For example, this instance defines topicName as a global parameter with the value "input-topic":
+```yaml
+instance:
+  globals:
+    topicName: "input-topic"
+```
+
+The topicName parameter can now be referenced wherever you need it, perhaps in your application's pipeline.yaml file:
+```yaml
+topics:
+  - name: "${globals.topicName}"
+    creation-mode: create-if-not-exists
+    deletion-mode: delete
+```
+
+You can also use these parameters when creating assets, as in `CREATE TABLE IF NOT EXISTS ${globals.vectorKeyspace}.${globals.vectorTable}`.
+
 ### Manifest
 
 <table><thead><tr><th width="119">Root</th><th width="167">Node</th><th width="94">Type</th><th>Description</th></tr></thead><tbody><tr><td>instance</td><td><br></td><td><br></td><td>Top-level node</td></tr><tr><td><br></td><td>globals</td><td>object</td><td><p>A set of name:value pairs that should be applied to all clusters.</p><p><br></p><p>Example:</p><p>tableName: "vsearch.products"</p></td></tr><tr><td><br></td><td>streamingCluster</td><td>object</td><td>The settings of the messaging platform use to stream data. See the ref below for more.</td></tr><tr><td><br></td><td>computeCluster</td><td>object</td><td>The settings of the cluster where agents process data. See the ref below for more.</td></tr></tbody></table>
