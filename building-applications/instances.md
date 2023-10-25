@@ -37,17 +37,23 @@ instance:
 
 Within instance.yaml, use "globals" to define values for parameters across your application.
 
-For example, this instance defines topicName as a global parameter with the value "input-topic":
+For example, this instance defines `topicName` as a global parameter with the value "input-topic":
 ```yaml
 instance:
   globals:
     topicName: "input-topic"
+    otherTopicName: "${OTHER_TOPIC_NAME:-other-topic-name}"
 ```
 
-The topicName parameter can now be referenced wherever you need it, perhaps in your application's pipeline.yaml file:
+The second global `otherTopicName` uses an alternate declaration method where the value is loaded from a dotenv file containing a `OTHER_TOPIC_NAME="value"` line. The `:-` characters allow you to designate a default value - in this case, `other-topic-name`.
+
+The `topicName` parameter can now be referenced wherever you need it, perhaps in your application's pipeline.yaml file:
 ```yaml
 topics:
   - name: "${globals.topicName}"
+    creation-mode: create-if-not-exists
+    deletion-mode: delete
+  - name: "${globals.otherTopicName}"
     creation-mode: create-if-not-exists
     deletion-mode: delete
 ```
