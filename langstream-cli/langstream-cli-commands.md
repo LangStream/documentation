@@ -28,7 +28,7 @@ To configure the CLI, see [Configuration](langstream-cli-configuration.md).
 | download   | Download LangStream application code | Example: langstream apps download myapp -o /myfile.zip                                                                               |
 | update     | Update an existing application       | Example: langstream apps update my-app-id --app “./my-app-files” --i “./instances.yaml” --s “./secrets.yaml”                         |
 | logs       | Get application logs                 | Example: langstream apps logs my-app-id -f “some-app-worker, another-app-worker”                                                     |
-| ui         | Start the UI for the application     | Example: langstream apps ui my-app-id                                                                                                |
+| ui         | Start the UI for the application     | Example: langstream apps ui my-app-id --port="8092" (if set to 0, a random port will be used)                                                                                         |
 
 ## configure
 
@@ -49,7 +49,7 @@ Configuration is deprecated. Use [langstream profiles](langstream-cli-commands.m
 `docker run` is a command with no subcommands, so this table has arguments that are passed to the `docker run` command.
 {% endhint %}
 
-| Arguments           | Description                   | Example                                                                                              |
+| Arguments           | Description                          |     Example                                                                                              |
 | ------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
 | --application, -app | Application directory path    | Example: --application="./app-files" Path where the application files are located. Required.         |
 | --instance, -i      | Instance file path            | Example: --instance="./instance.yaml" Optional; path to the instance file.                           |
@@ -62,8 +62,9 @@ Configuration is deprecated. Use [langstream profiles](langstream-cli-commands.m
 | --secrets, -s       | Secrets file path             | Example: --secrets="./secrets.yaml" Optional; path to the secrets file.                              |
 | --memory            | Memory for Docker             | Example: --memory="4G" Memory allocated to the Docker container.                                     |
 | --cpus              | CPU for Docker                | Example: --cpus="2" CPU cores allocated to the Docker container.                                     |
-| --docker-args       | Additional Docker arguments   | Example: --docker-args "--add-host=example.com:192.168.1.10" Additional arguments to pass to Docker. |
-| --docker-command    | Command to run Docker         | Example: --docker-command="docker-compose" Command used to run                                       |
+| --docker-args       | Additional Docker arguments   | Example: --docker-args "--add-host=example.com:192.168.1.10" |
+| --docker-command    | Command to run Docker         | Example: --docker-command="docker-compose"                                      |
+| --ui-port, -up       | Port for the local webserver and UI. If 0, a random port is used. | Example: --ui-port="8092" |
 
 ## gateway
 
