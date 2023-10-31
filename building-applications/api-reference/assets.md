@@ -1,4 +1,4 @@
-<h1>Assets</h1><p>LangStream Version: <strong>0.3.0</strong></p>
+<h1>Assets</h1><p>LangStream Version: <strong>0.4.0</strong></p>
 
 
 
