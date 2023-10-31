@@ -1,5 +1,5 @@
 {
-  "version" : "0.3.0",
+  "version" : "0.4.0",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
@@ -307,6 +307,33 @@
           "description" : "Azure storage account name. If not provided, SAS token must be provided.",
           "required" : false,
           "type" : "string"
+        }
+      }
+    },
+    "camel-source" : {
+      "name" : "Apache Camel Source",
+      "description" : "Use Apache Camel components as Source",
+      "properties" : {
+        "component-options" : {
+          "description" : "Additional parmaters to pass to the Camel component in the query string format.\nThe values are automatically encoded",
+          "required" : false,
+          "type" : "object"
+        },
+        "component-uri" : {
+          "description" : "The Camel URI of the component to use as Source.",
+          "required" : true,
+          "type" : "string"
+        },
+        "key-header" : {
+          "description" : "Header to use as key of the record",
+          "required" : false,
+          "type" : "string"
+        },
+        "max-buffered-records" : {
+          "description" : "Maximum number of records to buffer",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "100"
         }
       }
     },
@@ -674,6 +701,96 @@
       "description" : "Simple agent to move data from the input to the output. Could be used for testing or sample applications.",
       "properties" : { }
     },
+    "langserve-invoke" : {
+      "name" : "Invoke LangServe",
+      "description" : "Agent for invoking LangServe based applications",
+      "properties" : {
+        "allow-redirects" : {
+          "description" : "Whether or not to follow redirects.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "content-field" : {
+          "description" : "Field in the response that will be used as the content of the record.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "content"
+        },
+        "debug" : {
+          "description" : "Field in the response that will be used as the content of the record.",
+          "required" : false,
+          "type" : "boolean"
+        },
+        "fields" : {
+          "description" : "Fields of the generated records.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields of the generated records.",
+            "required" : false,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "Expression to compute the value of the field. This is a standard EL expression.",
+                "required" : true,
+                "type" : "string",
+                "extendedValidationType" : "EL_EXPRESSION"
+              },
+              "name" : {
+                "description" : "Name of the field like value.xx, key.xxx, properties.xxx",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "handle-cookies" : {
+          "description" : "Whether or not to handle cookies during the redirects.",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "true"
+        },
+        "headers" : {
+          "description" : "Headers to send with the request. You can use the Mustache syntax to inject value from the context.",
+          "required" : false,
+          "type" : "object"
+        },
+        "method" : {
+          "description" : "Http method to use for the request.",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "POST"
+        },
+        "min-chunks-per-message" : {
+          "description" : "Minimum number of chunks to send to the stream-to-topic topic. The chunks are sent as soon as they are available.\nThe chunks are sent in the order they are received from the AI Service.\nTo improve the TTFB (Time-To-First-Byte), the chunk size starts from 1 and doubles until it reaches the max-chunks-per-message value.",
+          "required" : false,
+          "type" : "integer",
+          "defaultValue" : "20"
+        },
+        "output-field" : {
+          "description" : "The field that will hold the results, it can be the same as \"field\" to override it.",
+          "required" : true,
+          "type" : "string",
+          "defaultValue" : "value"
+        },
+        "stream-response-field" : {
+          "description" : "Field to use to store the completion results in the stream-to-topic topic. Use \"value\" to write the result without a structured schema. Use \"value.<field>\" to write the result in a specific field.",
+          "required" : false,
+          "type" : "string"
+        },
+        "stream-to-topic" : {
+          "description" : "Enable streaming of the results. If enabled, the results are streamed to the specified topic in small chunks. The entire messages will be sent to the output topic instead.",
+          "required" : false,
+          "type" : "string"
+        },
+        "url" : {
+          "description" : "Url to send the request to. For adding query string parameters, use the `query-string` field.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
     "language-detector" : {
       "name" : "Language detector",
       "description" : "Detect the language of a message’s data and limit further processing based on language codes.",
@@ -763,6 +880,17 @@
     "python-processor" : {
       "name" : "Python custom processor",
       "description" : "Run a your own Python processor.\nAll the configuration properties are available the class init method.",
+      "properties" : {
+        "className" : {
+          "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
+    "python-service" : {
+      "name" : "Python custom service",
+      "description" : "Run a your own Python service.\nAll the configuration properties are available in the class init method.",
       "properties" : {
         "className" : {
           "description" : "Python class name to instantiate. This class must be present in the application's \"python\" files.",
@@ -1673,6 +1801,12 @@
             "required" : false,
             "type" : "string"
           }
+        },
+        "state-storage" : {
+          "description" : "State  storage configuration. \"s3\" or \"disk\"",
+          "required" : false,
+          "type" : "string",
+          "defaultValue" : "s3"
         },
         "user-agent" : {
           "description" : "User agent to use for the requests.",
