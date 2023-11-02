@@ -104,7 +104,7 @@ If you have built [the CLI locally from the sources](../installation/build-and-i
 You can also override the command used to launch the container, the default value is `docker`, but you can pass the `--docker-command` flag to use a different binary path.
 
 
-### Connect to the docker application
+### Connect to the docker application using the CLI
 The docker container exposes the API gateway on port `8091` and the control plane on port `8090` of your local machine. 
 To connect to the docker container it's highly suggested to use a special profile named `local-docker-run`.
 This profile ensures you will always connect to the right endpoints.
@@ -119,3 +119,12 @@ or for getting the application description:
 langstream -p local-docker-run apps get test -o yaml
 ```
 
+### Connect to the docker application using a Web interface
+
+By default the CLI start a web interface that you can use to test your application. The web interface is available at [http://localhost:8092/](http://localhost:8092/).
+This interfaces shows:
+
+* the application logs
+* a chatbot like interface to interact with the gateways
+* a diagram of the application pipelines
+* the JSON description of the application, both the logical and the physical description (execution plan)

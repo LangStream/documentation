@@ -52,6 +52,7 @@
 
 * [CLI Commands](langstream-cli/langstream-cli-commands.md)
 * [CLI Configuration](langstream-cli/langstream-cli-configuration.md)
+* [Web interface](langstream-cli/langstream-ui.md)
 
 ## Integrations
 
