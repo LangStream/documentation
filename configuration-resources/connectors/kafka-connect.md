@@ -80,10 +80,10 @@ This is not a special requirement of LangStream, please checkout the Kafka Conne
               cleanup.policy: compact
     pipeline:
         - name: "source1"
-        id: "step1"
-        type: "source"
-        output: "output-topic"
-        configuration:
+          id: "step1"
+          type: "source"
+          output: "output-topic"
+          configuration:
             connector.class: myconnector.ClassName
             num-messages: 5
             offset.storage.topic: "offset-topic"
