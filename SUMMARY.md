@@ -119,6 +119,7 @@
 * [Messaging](configuration-resources/messaging/README.md)
   * [Apache Pulsar](configuration-resources/messaging/pulsar.md)
   * [Apache Kafka](configuration-resources/messaging/kafka.md)
+  * [Pravega.io](configuration-resources/messaging/pravega.md)
 
 ## Patterns
 
