@@ -2,7 +2,7 @@
 description: Part 4 of the Agent Developer Guide
 ---
 
-# Passing enviroment variables to the agent
+# Passing environment variables to the agent
 
 {% hint style="info" %}
 This is Part 4 of the Agent Developer Guide. Start at the beginning [here.](./)
@@ -12,7 +12,7 @@ Many Python libraries, especially LangChain, use ENV variables to configure thei
 
 You can easily map ENV variables to secrets and to global variables using the enviroment configuration entry.
 
-This is an example about how to pass the OPENAI_API_KEY to the agent and also configure LangSmith integration:
+This is an example of passing the OPENAI_API_KEY to the agent and also configuring LangSmith integration:
 
 
 ```yaml

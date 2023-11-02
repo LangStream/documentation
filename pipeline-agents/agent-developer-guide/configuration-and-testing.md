@@ -58,7 +58,7 @@ langstream python load-pip-requirements -app /path/to/application
 
 {% hint style="info" %}
 The command above will create a “python/lib” folder with the dependencies installed. This folder is added to the PYTHONPATH environment variable when the agent is run on LangStream. It uses the same docker image as the runtime, with the same version of Python and of the core libraries that will run in production.
-This is very important, especiacially if you are using Mac or Windows to develop your agent.
+This is very important, especially if you are using Mac or Windows to develop your agent.
 {% endhint %}
 
 #### **Unit testing**
@@ -84,4 +84,4 @@ If your LangStream application consists of more than one custom agent and you ha
 
 ### What's next?
 
-Continue on to Part 4 of the Agent Developer Guide, [Environment variables.](enviroment.md)
+Continue on to Part 4 of the Agent Developer Guide, [Environment variables.](environment.md)

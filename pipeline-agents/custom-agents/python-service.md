@@ -24,7 +24,7 @@ For more on developing custom Python source agents, see the [Agent Developer Gui
 
 ### Example
 
-Example python esrvice located at ./application/python/example.py:
+Example python service located at ./application/python/example.py:
 
 ```python
 
@@ -85,7 +85,7 @@ pipeline:
 
 ```
 
-It is important that the service listens on port 8000, that is a special port that is mapped to the LangStream service.
+It is important that the service listens on port 8000 - this port is a special port that is mapped to the LangStream service.
 The LangStream operator will make sure that the service is reachable from the LangStream Gateway API Service.
 
 Then you can expose your service using a gateway of type "service".

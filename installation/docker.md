@@ -121,10 +121,10 @@ langstream -p local-docker-run apps get test -o yaml
 
 ### Connect to the docker application using a Web interface
 
-By default the CLI start a web interface that you can use to test your application. The web interface is available at [http://localhost:8092/](http://localhost:8092/).
-This interfaces shows:
+By default the CLI starts a web interface that you can use to test your application. The web interface is available at [http://localhost:8092/](http://localhost:8092/).
+This interface displays:
 
 * the application logs
-* a chatbot like interface to interact with the gateways
+* a chatbot-like interface to interact with the gateways
 * a diagram of the application pipelines
 * the JSON description of the application, both the logical and the physical description (execution plan)

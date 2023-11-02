@@ -28,8 +28,8 @@ To include the agent as a step in the pipeline, set the className to match the e
 
 ### Development enviroment
 
-You can run your application locally, in a docker container. This is the recommended way to develop your agent.
-You can use your IDE, like VS Studio code (you can also use the VS Code LangStream Extension), to develop your agent.
+You can run your application locally in a docker container. This is the recommended way to develop your agent.
+You can use your IDE, like VS Studio Code, to develop your agent. You can also use the [VS Code LangStream Extension](https://github.com/LangStream/vscode-extension) to get started even faster.
 
 Start the application locally using this command:
     
@@ -37,7 +37,7 @@ Start the application locally using this command:
 langstream docker run test -app /path/to/application
 ```
 
-This launches a docker container with a docker images that contains the same runtime that you are going to use in production.
+This launches a docker container with a docker image containing the same runtime that you are going to use in production.
 The container will run your application and will print the logs to the console.
 If you have a gateways.yaml file, it will also start a local gateway that you can use to test your agent.
 
@@ -45,8 +45,8 @@ The UI runs at http://localhost:8092/
 
 The application runs in a process inside the container.
 
-When you change and save a Python file the process is automatically reloaded in order to pick up your changes.
-This way you don't need to restart the container or the python process manually.
+When you change and save a Python file, the process is automatically reloaded in order to pick up your changes.
+This way you don't need to restart the container or the Python process manually.
 
 
 ### Agent records

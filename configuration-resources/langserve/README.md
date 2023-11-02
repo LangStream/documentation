@@ -18,9 +18,9 @@ layout:
 
 LangStream natively integrates with LangServe and allows you to invoke services exposed by LangServe applications.
 
-In order to implement this integration you use the built-in agent `langserve-invoke`.
+Use the built-in `langserve-invoke` agent to implement this integration.
 
-This is a basic example:
+This example invokes a LangServe application that exposes a service at `http://localhost:8000/chain/stream`.
 
 ```yaml
 topics:
@@ -50,12 +50,11 @@ pipeline:
           expression: "value"
 ```
 
-This example invokes a LangServe application that exposes a service at `http://localhost:8000/chain/stream`.
 
 When you run the LangStream application in docker the URL is `http://host.docker.internal:8000/chain/stream` due to how docker desktop works.
 
 
-In order to allow your LangStream applicaion to be accessible from a UI you have to configure a gateway
+To allow your LangStream application to be accessible from a UI, you have to configure a gateway:
 ```yaml
 gateways:
   - id: chat
@@ -98,7 +97,7 @@ if __name__ == "__main__":
     uvicorn.run(app, host="localhost", port=8000)
 ```
 
-In order to start the LangServe application you can use the following command:
+Start the LangServe application with the following command:
 
 ```bash
 export OPENAI_API_KEY=...
@@ -108,7 +107,7 @@ python example.py
 
 ## Starting the LangStream application locally
 
-You can run the LangStream application on docker locally
+To run the LangStream application on docker locally:
 
 ```bash
 langstream docker run -app /path/to/applicationn 
