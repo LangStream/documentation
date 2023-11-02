@@ -112,7 +112,7 @@
     * [Agent Types](pipeline-agents/agent-developer-guide/agent-types.md)
     * [Agent Creation](pipeline-agents/agent-developer-guide/agent-creation.md)
     * [Configuration and Testing](pipeline-agents/agent-developer-guide/configuration-and-testing.md)
-    * [Enviroment variables](pipeline-agents/agent-developer-guide/enviroment.md)
+    * [Environment variables](pipeline-agents/agent-developer-guide/enviroment.md)
   * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
