@@ -8,7 +8,7 @@ description: Part 2 of the Agent Developer Guide
 This is Part 2 of the Agent Developer Guide. Start at the beginning [here.](./)
 {% endhint %}
 
-Once you have built, tested, and packaged the agent you will need to include it as a part of the LangStream application deployment. Within the “application” directory create a directory named “python”. Within that directory place all the files included in packaging.
+Within the “application” directory create a directory named “python”. Within that directory place all the files included in packaging.
 
 ```
 |- application
@@ -25,6 +25,29 @@ To include the agent as a step in the pipeline, set the className to match the e
   configuration:
     className: main.MySourceAgent
 ```
+
+### Development enviroment
+
+You can run your application locally in a docker container. This is the recommended way to develop your agent.
+You can use your IDE, like VS Studio Code, to develop your agent. You can also use the [VS Code LangStream Extension](https://github.com/LangStream/vscode-extension) to get started even faster.
+
+Start the application locally using this command:
+    
+```bash
+langstream docker run test -app /path/to/application
+```
+
+This launches a docker container with a docker image containing the same runtime that you are going to use in production.
+The container will run your application and will print the logs to the console.
+If you have a gateways.yaml file, it will also start a local gateway that you can use to test your agent.
+
+The UI runs at http://localhost:8092/
+
+The application runs in a process inside the container.
+
+When you change and save a Python file, the process is automatically reloaded in order to pick up your changes.
+This way you don't need to restart the container or the Python process manually.
+
 
 ### Agent records
 

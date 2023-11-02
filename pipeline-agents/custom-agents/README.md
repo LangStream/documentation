@@ -18,3 +18,4 @@ layout:
 * [Python Source](python-source.md)
 * [Python Processor](python-function.md)
 * [Python Sink](python-sink.md)
+* [Python Service](python-service.md)
