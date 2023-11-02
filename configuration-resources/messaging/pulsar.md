@@ -22,12 +22,12 @@ This is how a configuration for a Pulsar instance looks:
 
 ```yaml
     streamingCluster:
-    type: "pulsar"
-    configuration:
-        admin:
-            serviceUrl: "http://localhost:8080"
-        service:
-            serviceUrl: "pulsar://localhost:6650"
-        defaultTenant: "public"
-        defaultNamespace: "default"
+        type: "pulsar"
+        configuration:
+            admin:
+                serviceUrl: "http://localhost:8080"
+            service:
+                serviceUrl: "pulsar://localhost:6650"
+            defaultTenant: "public"
+            defaultNamespace: "default"
 ```

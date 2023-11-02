@@ -14,7 +14,9 @@ layout:
 
 # Messaging Brokers
 
-LangStream supports both Apache Kafka and Apache Pulsar as message brokers to store and exchange data between agents.
+LangStream supports both [Apache Kafka](https://kafka.apache.org) and [Apache Pulsar](https://pulsar.apache.org) as message brokers to store and exchange data between agents.
+
+There is also experimental support for [Pravega.io](https://pravega.io).
 
 A LangStream application chooses the message broker at deployment time, and the choice is made in the instance.yaml file.
 
