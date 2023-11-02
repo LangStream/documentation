@@ -24,7 +24,7 @@ configuration:
 You have to bundle all the jars needed by the connector, in this example the Apache Camel GitHub component requires the org.eclipse.egit.github.core jar file.
 
 The jar files are downloaded by the LangStream CLI when you are deploying the application and then copied to the java/lib directory.
-You are not required to use this mechanism, you can copy manuallly the jar files.
+You are not required to use this mechanism, you can copy manually the jar files.
 But if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the files to make sure that they are not corrupted.
 
 It is suggested to add a .gitignore file into your application in order to not commit the jar file into your git repository.
