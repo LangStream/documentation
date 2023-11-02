@@ -18,7 +18,7 @@ configuration:
 ```
 
 The jar file is downloaded by the LangStream CLI when you are deploying the application and it is copied to the java/lib directory.
-You are not required to use this mechanism, you can copy manuallly the jar file.
+You are not required to use this mechanism, you can copy manually the jar file.
 But if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the file to make sure that the file is not corrupted.
 
 It is suggested to add a .gitignore file into your application in order to not commit the jar file into your git repository.
