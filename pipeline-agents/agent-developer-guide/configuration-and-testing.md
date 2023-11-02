@@ -84,4 +84,4 @@ If your LangStream application consists of more than one custom agent and you ha
 
 ### What's next?
 
-Continue on to Part 4 of the Agent Developer Guide, [Environment variables.](environment.md)
+Continue on to Part 4 of the Agent Developer Guide, [Environment variables.](pipeline-agents/agent-developer-guide/environment.md)
