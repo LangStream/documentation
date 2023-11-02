@@ -2,18 +2,17 @@
 description: Part 4 of the Agent Developer Guide
 ---
 
-# Passing environment variables to the agent
+# Environment variables
 
 {% hint style="info" %}
 This is Part 4 of the Agent Developer Guide. Start at the beginning [here.](./)
 {% endhint %}
 
-Many Python libraries, especially LangChain, use ENV variables to configure their behavior and these ENV variables often contain secrets like the OPENAI_API_KEY.
+Many Python libraries, especially LangChain, use ENV variables to configure their behavior and these ENV variables often contain secrets like the OPENAI\_API\_KEY.
 
 You can easily map ENV variables to secrets and to global variables using the enviroment configuration entry.
 
-This is an example of passing the OPENAI_API_KEY to the agent and also configuring LangSmith integration:
-
+This is an example of passing the OPENAI\_API\_KEY to the agent and also configuring LangSmith integration:
 
 ```yaml
     configuration:
@@ -34,7 +33,7 @@ With this syntax you can leverage the secrets management of LangStream to pass s
 
 If you have multiple agents in the same pipeline, they won't have access to the secrets of each other.
 
-
 ### What's next?
 
-Continue on to Part 3 of the Agent Developer Guide, [Configuration and Testing.](configuration-and-testing.md)
+You've reached the end of the Agent Developer Guide. Well done!
+
