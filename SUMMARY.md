@@ -42,6 +42,7 @@
 * [Expression Language](building-applications/expression-language.md)
 * [API Gateways](building-applications/api-gateways/README.md)
   * [Websocket](building-applications/api-gateways/websocket.md)
+  * [HTTP](building-applications/api-gateways/http.md)
   * [Message filtering](building-applications/api-gateways/message-filtering.md)
   * [Gateway authentication](building-applications/api-gateways/gateway-authentication.md)
 * [API Reference](building-applications/api-reference/README.md)

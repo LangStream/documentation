@@ -1,6 +1,6 @@
 # API Gateways
 
-API gateways in LangStream are WebSocket endpoints that allow applications to interact with agents via message topics.
+API gateways in LangStream are HTTP/WebSocket endpoints that allow applications to interact with agents via message topics.
 
 Messages contain a key, a value, and headers for metadata. This metadata is used to connect clients to topics and can be used to [filter messages.](message-filtering.md)
 
@@ -8,9 +8,13 @@ LangStream applications can have three different gateway types:
 
 **Producer** gateways are clients that create a message and write it to a topic.&#x20;
 
-**Consumer** gateways are clients that watch a topic for new messages.&#x20;
+**Consumer** gateways are clients that watch a topic for messages from a given position. This gateway can only be accessed via WebSocket. &#x20;
 
-**Chat** gateways create a producer client ("questions-topic") and a consumer client ("answers-topic") across one connection, optimized for "chat" style interactions between client and server.
+**Chat** gateways create a producer client (`questions-topic`) and a consumer client (`answers-topic`) across one connection, optimized for "chat" style interactions between client and server. This gateway can only be accessed via WebSocket.&#x20;
+
+**Service (topics)** gateways create a producer client (`input-topic`) and a consumer client (`output-topic`), writing a single message and awaiting for the receivement of another message. This gateway can only be accessed via HTTP.&#x20;
+
+**Service (agents)** gateways send requests directly to a `service` agent and return the response to the client. This gateway can only be accessed via HTTP.
 
 ### Example gateways
 
@@ -29,8 +33,14 @@ gateways:
   - id: "chat"
     type: chat
     chat-options:
-      answers-topic: output-topic
-      questions-topic: input-topic
+      questions-topic: questions-topic
+      answers-topic: answers-topic
+
+  - id: "service"
+    type: service
+    service-options:
+      input-topic: questions-topic
+      output-topic: answers-topic
 ```
 
 The corresponding URLs to the gateways would be:
@@ -41,7 +51,12 @@ The corresponding URLs to the gateways would be:
 
 **Chat gateway:** ws://localhost:8091/consume/my-super-cool-tenant/some-application/chat
 
-The URL structure is ws://\<control-plane-domain>:\<api-gateway-port>/\<gateway-type>/\<tenant-name>/\<application-id>/\<gateway-id>
+**Service gateway:** http://localhost:8091/api/gateways/service/my-super-cool-tenant/some-application/service
+
+The URL structure is ws://\<control-plane-domain>:\<api-gateway-port>/\<gateway-type>/\<tenant-name>/\<application-id>/\<gateway-id> for WebSocket.
+
+The URL structure is http://\<control-plane-domain>:\<api-gateway-port>/api/gateways/\<gateway-type>/\<tenant-name>/\<application-id>/\<gateway-id> for HTTP.
+
 
 ### Gateways configuration
 
