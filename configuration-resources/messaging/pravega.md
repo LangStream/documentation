@@ -2,20 +2,20 @@
 
 Configuration for a LangStream streaming instance.
 
-Please note that support for Pravega.io is still experimental, it is not recommended for production use.
+Please note that support for Pravega.io is still experimental and is not recommended for production use.
 
 ### Configuration
 
-To connect to a Pravega broker, provide the following configuration:
+Connect to a Pravega broker with the following configuration:
 - The Controller URI
 - The Scope
 
-In Pravega a scope is like a tenant, is a namespace for your topics.
+In Pravega, a scope is like a tenant, which is a namespace for your topics.
 In Pravega the topics are called "streams".
 
 ### Examples
 
-This is how a configuration for a Pravega.io standalone instance looks:
+Configuration for a Pravega.io standalone instance looks like this:
 
 ```yaml
     streamingCluster:
@@ -26,13 +26,13 @@ This is how a configuration for a Pravega.io standalone instance looks:
             scope: "langstream"        
 ```
 
-In order to make this work you have to start a Pravega standalone instance with this command:
+Start the Pravega standalone instance with this command:
     
 ```bash
 docker run -it --rm -p 9090:9090 -e HOST_IP=host.docker.internal -p 12345:12345 pravega/pravega:0.13.0 standalone
 ```
 
-You can try the docker chatbot example with this command:
+Start the LangStream docker chatbot example with this command:
 
 ```bash
 export OPEN_AI_ACCESS_KEY=your-key-here
