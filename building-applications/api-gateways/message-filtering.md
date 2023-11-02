@@ -55,7 +55,7 @@ Chat gateways behave a little differently, because they open producers and consu
 
 ### headers
 
-<table><thead><tr><th width="244">Label</th><th width="113.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>key</td><td>string</td><td>An identifier of the value. This can be thought of as the name. Allowed characters are a-zA-Z0-9._-</td></tr><tr><td>valueFromParameters</td><td>string</td><td>The mapped name to connect a querystring value in the Gateway URL to message headers. This must match a value set in the parameters collection.</td></tr><tr><td>valueFromAuthentication</td><td>string</td><td>The mapped name to connect a provided querysting value with the identity provider’s handshake value. See <a href="gateway-authentication.md">Gateway authentication.</a></td></tr></tbody></table>
+<table><thead><tr><th width="244">Label</th><th width="113.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>key</td><td>string</td><td>An identifier of the value. This can be thought of as the name. Allowed characters are a-zA-Z0-9._-</td></tr><tr><td>value-from-parameters</td><td>string</td><td>The mapped name to connect a querystring value in the Gateway URL to message headers. This must match a value set in the parameters collection.</td></tr><tr><td>value-from-authentication</td><td>string</td><td>The mapped name to connect a provided querysting value with the identity provider’s handshake value. See <a href="gateway-authentication.md">Gateway authentication.</a></td></tr></tbody></table>
 
 ### Message offset
 

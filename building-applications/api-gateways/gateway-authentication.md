@@ -36,12 +36,12 @@ gateways:
       provider: google
       configuration:
         clientId: "{{ secrets.google.client-id }}"
-    produceOptions:
+    produce-options:
       headers:
         - key: langstream-client-user-id
-        valueFromAuthentication: subject
+          value-from-authentication: subject
         - key: langstream-client-session-id
-          valueFromParameters: sessionId
+          value-from-parameters: sessionId
 
   - id: "bot-output"
     type: consume
@@ -52,17 +52,17 @@ gateways:
       provider: google
       configuration:
         clientId: "{{ secrets.google.client-id }}"
-    produceOptions:
+    produce-options:
       headers:
         - key: langstream-client-user-id
-        valueFromAuthentication: subject
+          value-from-authentication: subject
         - key: langstream-client-session-id
-          valueFromParameters: sessionId
+          value-from-parameters: sessionId
 ```
 
 #### Google authentication
 
-Set `provider:google` to use a Google client ID to authenticate LangStream gateway connections.
+Set `provider: google` to use a Google client ID to authenticate LangStream gateway connections.
 
 The Google field that is exposed for authentication is "subject".
 
@@ -82,7 +82,7 @@ export GOOGLE_CLIENT_ID=99840107278-4363876v0hker43roujaubqom5g07or8.apps.google
 
 #### Github authentication
 
-Set `provider:github` to use a GitHub login to authenticate LangStream gateway connections.
+Set `provider: github` to use a GitHub login to authenticate LangStream gateway connections.
 
 The Github field that is exposed for authentication is "login".
 
