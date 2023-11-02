@@ -69,6 +69,9 @@
   * [Solr](configuration-resources/data-storage/solr.md)
   * [JDBC](configuration-resources/data-storage/jdbc.md)
   * [OpenSearch](configuration-resources/data-storage/opensearch.md)
+* [Integrations](configuration-resources/connectors/README.md)
+  * [Apache Kafka Connect](configuration-resources/connectors/kafka-connect.md)
+  * [Apache Camel](configuration-resources/connectors/camel.md)
 * [LangServe](configuration-resources/langserve/README.md)
 
 ## Pipeline Agents
