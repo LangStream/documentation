@@ -68,6 +68,7 @@
   * [Solr](configuration-resources/data-storage/solr.md)
   * [JDBC](configuration-resources/data-storage/jdbc.md)
   * [OpenSearch](configuration-resources/data-storage/opensearch.md)
+* [LangServe](configuration-resources/langserve/README.md)
 
 ## Pipeline Agents
 
