@@ -34,6 +34,7 @@
   * [Secrets](building-applications/secrets.md)
   * [YAML templating](building-applications/yaml-templates.md)
   * [Error Handling](building-applications/error-handling.md)
+  * [Stateful agents](building-applications/stateful-agents.md)
   * [.langstreamignore](building-applications/langstreamignore.md)
 * [Sample App](building-applications/build-a-sample-app.md)
 * [Develop, test and deploy](building-applications/development-workflow.md)
