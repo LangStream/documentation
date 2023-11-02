@@ -2,7 +2,10 @@
 
 The webcrawler-source agent crawls a website and outputs the site's URL and an HTML document. Crawling a website is an ideal first step in a [text embeddings pipeline](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source).
 
-The S3 bucket only stores metadata about the website and the status of the crawler - it won’t contain a copy of the crawl data, but a single JSON file with a name computed from the name of the agent and the id of the LangStream application.
+This agent keeps the status of the crawling in a persistent storage. Storage won’t contain a copy of the crawl data, but a single JSON file with a name computed from the name of the agent and the id of the LangStream application.
+
+By default, it requires an S3-compatible bucket that must be defined using `bucketName`, `endpoint`, `access-key`, `secret-key` and `region` properties.
+Another solution is to store the status in a [persistent disk provided by LangStream](../../building-applications/stateful-agents.md). This can be achieved by setting `state-storage: disk`.
 
 ### Example
 
@@ -27,11 +30,7 @@ pipeline:
       http-timeout: 10000
       handle-cookies: true
       max-unflushed-pages: 100
-      bucketName: "${secrets.s3.bucket-name}"
-      endpoint: "${secrets.s3.endpoint}"
-      access-key: "${secrets.s3.access-key}"
-      secret-key: "${secrets.s3.secret}"
-      region: "${secrets.s3.region}"
+      state-storage: disk
 ```
 
 #### Multiple URLs in pipeline
@@ -60,30 +59,12 @@ allowed-domains:
 * Structured text (JSON) [?](../agent-messaging.md)
 * Implicit topic [?](../agent-messaging.md#implicit-input-and-output-topics)
 
-### **Configuration**
+### Configuration
 
-| Label                     | Type                   | Description                                                                                              |
-| ------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------- |
-| seed-urls                 | List of Strings        | The starting URLs for the crawl.                                                                         |
-| allowed-domains           | List of Strings        | Domains that the crawler is allowed to access.                                                           |
-| forbidden-paths           | List of Strings        | Paths that the crawler is not allowed to access.                                                         |
-| min-time-between-requests | Integer (milliseconds) | Minimum time between two requests to the same domain.                                                    |
-| reindex-interval-seconds  | Integer (seconds)      | Time interval between reindexing of the pages.                                                           |
-| max-error-count           | Integer                | Maximum number of errors allowed before stopping.                                                        |
-| max-urls                  | Integer                | Maximum number of URLs that can be crawled. Defaults to 1000.                                            |
-| max-depth                 | Integer                | Maximum depth of the crawl.                                                                              |
-| handle-robots-file        | Boolean                | Whether to scan the HTML documents to find links to other pages (defaults to true)                       |
-| user-agent                | String                 | User-agent string, computed automatically unless overridden. Defaults to "langstream.ai-webcrawler/1.0". |
-| scan-html-documents       | Boolean                | Whether to scan HTML documents for links to other sites. Defaults to true.                               |
-| http-timeout              | Integer (milliseconds) | Timeout for HTTP requests.                                                                               |
-| handle-cookies            | Boolean                | Whether to handle cookies.                                                                               |
-| max-unflushed-pages       | Integer                | Maximum number of unflushed pages before the agent persists the crawl data.                              |
+Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#webcrawler-source).
 
-### S3 credentials
 
-<table><thead><tr><th width="147.33333333333331">Label</th><th width="165">Type</th><th>Description</th></tr></thead><tbody><tr><td>bucketName</td><td>string (required)</td><td>The name of the bucket. Defaults to "langstream-source".</td></tr><tr><td>endpoint</td><td>string (required)</td><td>The URL of the S3 service.  Defaults to "<a href="http://minio-endpoint.-not-set:9090">http://minio-endpoint.-not-set:9090</a>".</td></tr><tr><td>access-key</td><td>string (optional)</td><td>Optional user name credential. Defaults to "minioadmin".</td></tr><tr><td>secret-key</td><td>string (optional)</td><td>Optional password credential. Defaults to "minioadmin".</td></tr><tr><td>region</td><td>string </td><td>Region of S3 bucket.</td></tr></tbody></table>
-
-### Webcrawler-status
+### Webcrawler Status
 
 | Label         | Type   | Description                                                           |
 | ------------- | ------ | --------------------------------------------------------------------- |
@@ -123,11 +104,7 @@ pipeline:
       http-timeout: 10000
       handle-cookies: true
       max-unflushed-pages: 100
-      bucketName: "${secrets.s3.bucket-name}"
-      endpoint: "${secrets.s3.endpoint}"
-      access-key: "${secrets.s3.access-key}"
-      secret-key: "${secrets.s3.secret}"
-      region: "${secrets.s3.region}"
+      state-storage: disk
 ```
 
 The webcrawler itself uses the [Jsoup](https://jsoup.org/) library to parse HTML with the [WHATWG HTML spec](https://html.spec.whatwg.org/multipage/). The webcrawler explores the web starting from a list of seed URLs and follows links within pages to discover more content.&#x20;
@@ -242,8 +219,3 @@ The webcrawler then passes the document on to the next agent.
       keyspace: "documents"
       mapping: "filename=value.filename, chunk_id=value.chunk_id, language=value.language, text=value.text, embeddings_vector=value.embeddings_vector, num_tokens=value.chunk_num_tokens"
 ```
-
-
-### Configuration
-
-Checkout the full configuration properties in the [API Reference page](../../building-applications/api-reference/agents.md#webcrawler-source).
