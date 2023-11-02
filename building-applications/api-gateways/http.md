@@ -23,14 +23,13 @@ gateways:
 Then you can use whathever HTTP client you prefer to connect. This is the example with Curl:
 
 ```bash
-
-curl -X POST --body '{\"value\": \"hello\"}' "http://localhost:8091/api/gateways/produce/my-tenant/my-app/user-input?param:sessionId=12543yusi1"
+curl -X POST --body '{"value": "hello"}' "http://localhost:8091/api/gateways/produce/my-tenant/my-app/user-input?param:sessionId=12543yusi1"
 ```
 
 You can also use the LangStream CLI:
 
 ```bash
-langstream gateway produce my-app user-input --protocol http -v '{\"value\": \"hello\"}' -p sessionId=12543yusi1
+langstream gateway produce my-app user-input --protocol http -v '{"value": "hello"}' -p sessionId=12543yusi1
 ```
 
 
@@ -52,7 +51,7 @@ gateways:
 Then you can use whathever HTTP client you prefer to connect. This is the example with Curl:
 
 ```bash
-curl -X POST --body '{\"value\": \"hello\"}' "http://localhost:8091/api/gateways/service/my-tenant/my-app/user-input-await"
+curl -X POST --body '{"value": "hello"}' "http://localhost:8091/api/gateways/service/my-tenant/my-app/user-input-await"
 ```
 
 The timeout of the wait is the TCP timeout of the connection, usually 30 seconds (may vary depending on the http client).
@@ -87,7 +86,7 @@ Then you can use whathever HTTP client you prefer to connect. This is the exampl
 
 ```bash
 curl -X POST \
-    --body '{\"value\": \"hello\"}' \
+    --body '{"value": "hello"}' \
     --H 'Authorization: Bearer XXX' \
     "http://localhost:8091/api/gateways/service/my-tenant/my-app/my-service/the/custom/path?service-param-1=yes"
 ```
@@ -100,7 +99,7 @@ In the above case, the agent service will receive an equivalent request of:
 
 ```
 curl -X POST \
-    --body '{\"value\": \"hello\"}' \
+    --body '{"value": "hello"}' \
     --H 'Authorization: Bearer XXX' \
     "http://localhost:8000/the/custom/path?service-param-1=yes"
 ```
@@ -110,6 +109,3 @@ Exceptionally, the `credentials`, `test-credentials`, `option:xx`, `param:xx` ar
 Note that if the gateway has the authentication enabled, it will be performed as for other gateways.
 
 Leveraging the API gateway to expose your service, automatically covers aspects like authentication, HTTPS, high-availability and scalability out of the box. 
-
-
-The timeout of the wait is the TCP timeout of the connection, usually 30 seconds (may vary depending on the http client).
