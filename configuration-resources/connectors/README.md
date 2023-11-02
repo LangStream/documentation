@@ -40,7 +40,3 @@ You can find the docs at [https://camel.apache.org/](https://camel.apache.org/)
 LangStream currently supports using Camel components as sources.
 
 Check out the [Apache Camel](./camel.md) page for more information.
-
-## Reference
-
-Check out the reference configurations for [Apache Kafka](./kafka.md) and [Apache Pulsar](./pulsar.md)
