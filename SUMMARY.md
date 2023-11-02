@@ -52,6 +52,7 @@
 
 * [CLI Commands](langstream-cli/langstream-cli-commands.md)
 * [CLI Configuration](langstream-cli/langstream-cli-configuration.md)
+* [Web interface](langstream-cli/langstream-ui.md)
 
 ## Integrations
 
@@ -68,6 +69,7 @@
   * [Solr](configuration-resources/data-storage/solr.md)
   * [JDBC](configuration-resources/data-storage/jdbc.md)
   * [OpenSearch](configuration-resources/data-storage/opensearch.md)
+* [LangServe](configuration-resources/langserve/README.md)
 
 ## Pipeline Agents
 
@@ -110,9 +112,11 @@
     * [Agent Types](pipeline-agents/agent-developer-guide/agent-types.md)
     * [Agent Creation](pipeline-agents/agent-developer-guide/agent-creation.md)
     * [Configuration and Testing](pipeline-agents/agent-developer-guide/configuration-and-testing.md)
+    * [Enviroment variables](pipeline-agents/agent-developer-guide/enviroment.md)
   * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
+  * [Python service](pipeline-agents/custom-agents/python-service.md)
 
 ## Messaging
 
@@ -127,4 +131,5 @@
 
 ## Examples
 
+* [LangServe chatbot](configuration-resources/langserve/README.md)
 * [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)

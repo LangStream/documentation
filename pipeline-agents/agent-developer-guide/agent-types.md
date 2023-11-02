@@ -26,6 +26,12 @@ Processor agents are typically placed throughout an application’s pipeline.&#x
 
 A processor agent might manipulate data as it flows through the pipeline, or could add in context to help downstream agents make decisions. A processor agent is responsible for accepting a list of `Record`s as input, doing some processing as necessary, and returning a `Record` (or many `Record`s) as a result.
 
+### Service
+
+Service agents are generic applications that usually do not process streaming data in the scope of a pipeline.&#x20;
+
+Typically a Service exposes an API service that can be consumed by external applications. For instance you can build your ChatBot UI using a Service&#x20;
+
 ### What's next?
 
-Continue on to Part 2 of the Agent Developer Guide, [Agent Creation.](broken-reference)
+Continue on to Part 2 of the Agent Developer Guide, [Agent Creation.](agent-creation.md)

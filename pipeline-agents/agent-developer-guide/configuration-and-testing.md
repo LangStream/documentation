@@ -51,16 +51,14 @@ When you are ready to package the agent for deployment to LangStream, use the fo
 The command assumes you are running it from the “application” folder and your dependencies are declared in "python/requirements.txt"
 
 ```bash
-docker run --rm \
-    -v $(pwd):/app-code-download \
-    --entrypoint "" \
-    -w /app-code-download/python \
-    ghcr.io/langstream/langstream-runtime:0.1.0 \
-    /bin/bash -c 'pip3 install --target ./lib --upgrade --prefer-binary -r requirements.txt'
+
+langstream python load-pip-requirements -app /path/to/application
+
 ```
 
 {% hint style="info" %}
-Note the version of LangStream was provided as the image’s tag. This should match the version of LangStream you are developing for.
+The command above will create a “python/lib” folder with the dependencies installed. This folder is added to the PYTHONPATH environment variable when the agent is run on LangStream. It uses the same docker image as the runtime, with the same version of Python and of the core libraries that will run in production.
+This is very important, especially if you are using Mac or Windows to develop your agent.
 {% endhint %}
 
 #### **Unit testing**
@@ -70,25 +68,20 @@ Similar to packaging, the below Docker command is a starting suggestion of how t
 Using unittest:
 
 ```bash
-docker run --rm \
-    -v $(pwd):/app-code-download \
-    --entrypoint "" \
-    -w /app-code-download/python \
-    ghcr.io/langstream/langstream-runtime:0.1.0 \
-    /bin/bash -c 'PYTHONPATH=$PYTHONPATH:/app-code-download/python/lib python3 -m unittest'
+langstream python run-tests -app /path/to/application 
 ```
 
 Using tox:
 
 ```bash
-docker run --rm \
-    -v $(pwd):/app-code-download \
-    --entrypoint "" \
-    -w /app-code-download/python \
-    ghcr.io/langstream/langstream-runtime:0.1.0 \
-    /bin/bash -c 'tox'
+langstream python run-tests -app /path/to/application -c tox
 ```
 
-### Multiple Python apps in one LangStream application
+### Multiple Python apps with dependency conflicts
 
-If your LangStream application consists of more than one custom agent, it is recommended that you separate them into 2 different applications. They can share input or output topics or be put inline with one another indirectly by topic. Separating by application gives you two clear “python” folders to house your artifact. This will aid in dependency collisions and other effects of two apps trying to share the same folder.
+If your LangStream application consists of more than one custom agent and you have dependencies conflicts, it is recommended that you separate them into 2 different applications. They can share input or output topics or be put inline with one another indirectly by topic. Separating by application gives you two clear “python” folders to house your artifact. This will aid in dependency collisions and other effects of two apps trying to share the same folder.
+
+
+### What's next?
+
+Continue on to Part 4 of the Agent Developer Guide, [Environment variables.](environment.md)
