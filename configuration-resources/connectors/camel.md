@@ -1,8 +1,8 @@
-# Using Apache Camel connectors
+# Apache Camel
 
 Configuration for LangStream Sources using Apache Camel.
 
-### Deplying the component into your LangStream application
+### Deploying the component into your LangStream application
 
 LangStream doesn't bundle all the Camel connectors, but you can easily deploy them into your application.
 
@@ -23,11 +23,9 @@ configuration:
 
 You have to bundle all the jars needed by the connector - in this example the Apache Camel GitHub component requires the org.eclipse.egit.github.core jar file.
 
-The jar files are downloaded by the LangStream CLI when you are deploying the application and then copied to the java/lib directory.
-You are not required to use this mechanism - you can manually copy the jar files if you prefer - but if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the files to make sure that they are not corrupted.
+The jar files are downloaded by the LangStream CLI when you are deploying the application and then copied to the java/lib directory. You are not required to use this mechanism - you can manually copy the jar files if you prefer - but if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the files to make sure that they are not corrupted.
 
 We recommend adding a .gitignore file into your application so you don't commit the jar file into your git repository.
-
 
 ### Apache Camel Sources
 
@@ -60,6 +58,4 @@ pipeline:
 
 You must provide the component-uri and the component-options in the "configuration" section.
 
-All component-options are passed to the component as additional parameters in the query string, appended to the component-uri.
-This mechanism helps you in defining each property in a separate secret, so that you can easily rotate the secrets without changing the pipeline configuration.
-Additionally, the camel-source agent will automatically URL-encode the values of the parameters passed to the query string.
+All component-options are passed to the component as additional parameters in the query string, appended to the component-uri. This mechanism helps you in defining each property in a separate secret, so that you can easily rotate the secrets without changing the pipeline configuration. Additionally, the camel-source agent will automatically URL-encode the values of the parameters passed to the query string.
