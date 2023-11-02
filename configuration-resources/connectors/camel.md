@@ -6,7 +6,7 @@ Configuration for LangStream Sources using Apache Camel.
 
 LangStream doesn't bundle all the Camel connectors, but you can easily deploy them into your application.
 
-In your configuration.yaml file you declare the **dependency** to the connector, and LangStream will download it and deploy it into your application.
+Declare the **dependency** to the connector in your configuration.yaml file and LangStream will download it and deploy it into your application.
 
 ```yaml
 configuration:
@@ -21,20 +21,19 @@ configuration:
       type: "java-library"
 ```
 
-You have to bundle all the jars needed by the connector, in this example the Apache Camel GitHub component requires the org.eclipse.egit.github.core jar file.
+You have to bundle all the jars needed by the connector - in this example the Apache Camel GitHub component requires the org.eclipse.egit.github.core jar file.
 
 The jar files are downloaded by the LangStream CLI when you are deploying the application and then copied to the java/lib directory.
-You are not required to use this mechanism, you can copy manually the jar files.
-But if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the files to make sure that they are not corrupted.
+You are not required to use this mechanism - you can manually copy the jar files if you prefer - but if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the files to make sure that they are not corrupted.
 
-It is suggested to add a .gitignore file into your application in order to not commit the jar file into your git repository.
+We recommend adding a .gitignore file into your application so you don't commit the jar file into your git repository.
 
 
 ### Apache Camel Sources
 
 Once you have your connector deployed into your application, you can use it in your pipeline.
 
-This is an example about how to configure a Source that reads events from GitHub
+This is an example of configuring a Source connector that reads events from GitHub:
 
 ```yaml
 topics:
@@ -59,8 +58,8 @@ pipeline:
              expression: "value.body"
 ```
 
-In the "configuration" section you must provide the component-uri and the component-options.
+You must provide the component-uri and the component-options in the "configuration" section.
 
-All the component-options are passed to the component as additional parameters in the query string, appended to the component-uri.
+All component-options are passed to the component as additional parameters in the query string, appended to the component-uri.
 This mechanism helps you in defining each property in a separate secret, so that you can easily rotate the secrets without changing the pipeline configuration.
-Also The camel-source agent will automatically URL encode the values of the parameters passed to the querystring.
+Additionally, the camel-source agent will automatically URL-encode the values of the parameters passed to the query string.

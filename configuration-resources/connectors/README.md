@@ -14,14 +14,13 @@ layout:
 
 # Connectors
 
-With LangStream you can leverage a wide range of connectors to integrate your application with external systems.
+LangStream leverages the [Apache Kafka Connect](https://kafka.apache.org/documentation/#connect) and [Apache Camel](https://camel.apache.org/) frameworks to integrate your application with external systems.
 
-It is possible to use Apache Kafka Connectors and Apache Camel components.
 
 
 ## Apache Kafka Connect
 
-Apache Kafka Connect is a framework to connect Kafka with external systems such as databases, key-value stores, search indexes, and file systems, using so-called Connectors.
+Apache Kafka Connect is a framework to connect Kafka with external systems such as databases, key-value stores, search indexes, and file systems.
 
 You can find the docs at [https://kafka.apache.org/documentation/#connect](https://kafka.apache.org/documentation/#connect)
 

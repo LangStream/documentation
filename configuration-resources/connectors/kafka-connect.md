@@ -6,7 +6,7 @@ Configuration for LangStream Sources and Sinks using Kafka Connect.
 
 LangStream doesn't bundle all the Kafka Connect connectors, but you can easily deploy them into your application.
 
-In your configuration.yaml file you declare the **dependency** to the connector, and LangStream will download it and deploy it into your application.
+Declare the **dependency** to the connector in your configuration.yaml file and LangStream will download it and deploy it into your application.
 
 ```yaml
 configuration:
@@ -18,17 +18,16 @@ configuration:
 ```
 
 The jar file is downloaded by the LangStream CLI when you are deploying the application and it is copied to the java/lib directory.
-You are not required to use this mechanism, you can copy manually the jar file.
-But if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the file to make sure that the file is not corrupted.
+You are not required to use this mechanism - you can manually copy the jar files if you prefer - but if you use the dependency mechanism, the LangStream CLI will check the sha512sum of the files to make sure that they are not corrupted.
 
-It is suggested to add a .gitignore file into your application in order to not commit the jar file into your git repository.
+We recommend adding a .gitignore file into your application so you don't commit the jar file into your git repository.
 
 
 ### Kafka Connect Sinks
 
 Once you have your connector deployed into your application, you can use it in your pipeline.
 
-This is an example about how to configure a Sink that writes to Apache Cassandra.
+This is an example of configuring a Sink connector that writes to Apache Cassandra:
 
 ```yaml
 name: "Write to Cassandra"
@@ -53,17 +52,16 @@ pipeline:
       topic.input-topic.vsearch.products.mapping: "id=value.id,description=value.description,name=value.name"
 ```
 
-In the "configuration" section you can provide the configuration for the connector.
-you must provide connector.class, name, key.converter and value.converter, like for any other Kafka Connect connector.
-Check you the reference documentation of the connector you are using for more details about the configuration properties.
+Provide the configuration for the connector in the "configuration" section of the yaml file.
+You must provide `connector.class`, `name`, `key.converter` and `value.converter`, as you would for any other Kafka Connect connector.
+Check the reference documentation of the connector you are using for more details about its configuration properties.
 
 ### Kafka Connect Sources
 
-Kafka Connect sources works the same way as sinks but you have to provide an additional system topic that Kafka Connect uses to store
-the state of the source.
-In this example it is named "offset-topic".
+Kafka Connect source connectors work the same way as sinks, but you have to provide an additional system topic that Kafka Connect uses to store the state of the source connector.
+In this example the system topic is named "offset-topic".
 
-In order to make Kafka Connect runtime happy you have to configure the cleanup.policy to "compact" for the offset-topic.
+To make the Kafka Connect runtime happy you have to set the `cleanup.policy` config value to "compact" for the offset-topic.
 And you have to configure it in the configuration of the agent with the offset.storage.topic property.
 
 This is not a special requirement of LangStream, please checkout the Kafka Connect documentation for more details.
