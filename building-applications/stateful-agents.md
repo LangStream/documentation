@@ -10,7 +10,7 @@ Provisioning disks to agents offers several benefits:
 
 
 The agent must declare the `resources.disk` section to automatically ask for a persistent disk.
-Disks are automatically provided to the agents at runtime by LangStream: the provided disk are isolated from other agents and each agent can request different disk size and type.
+Disks are automatically provided to the agents at runtime by LangStream: the provided disks are isolated from other agents and each agent can request different disk sizes and types.
 
 ```yaml
 - name: "Stateful processing using Python"
@@ -24,16 +24,16 @@ Disks are automatically provided to the agents at runtime by LangStream: the pro
 
 
 The `disk` section provides these parameters:
-- `enabled` (boolean): wheter to provide the disk or not.
-- `size` (string): size of the disk to provision. e.g. 100K, 100M, 100G.
-- `type` (string): type of the disk. 
+- `enabled` (boolean): whether to provide the disk or not
+- `size` (string): size of the disk to provision. e.g. 100K, 100M, 100G
+- `type` (string): type of the disk
 
 
 At runtime LangStream converts the disk specification to the actual storage provisioner disk request, as configured in the LangStream cluster.
 The `type` option is statically mapped to a Kubernetes Storage class. The value `default` means to use the default Storage Class configured in Kubernetes.
 
 
-Once the agent requests the disk, it's mounted in the local file system of the agent.
+Once the agent requests the disk, the disk is mounted in the local file system of the agent.
 In Python, you can access the directory by calling `AgentContext.get_persistent_state_directory()`.
 
 ```python

@@ -2,7 +2,7 @@
 
 The webcrawler-source agent crawls a website and outputs the site's URL and an HTML document. Crawling a website is an ideal first step in a [text embeddings pipeline](https://github.com/LangStream/langstream/tree/main/examples/applications/webcrawler-source).
 
-This agent keeps the status of the crawling in a persistent storage, it won’t contain a copy of the crawl data, but a single JSON file with a name computed from the name of the agent and the id of the LangStream application.
+This agent keeps the status of the crawling in a persistent storage. Storage won’t contain a copy of the crawl data, but a single JSON file with a name computed from the name of the agent and the id of the LangStream application.
 
 By default, it requires an S3-compatible bucket that must be defined using `bucketName`, `endpoint`, `access-key`, `secret-key` and `region` properties.
 Another solution is to store the status in a [persistent disk provided by LangStream](../../building-applications/stateful-agents.md). This can be achieved by setting `state-storage: disk`.
