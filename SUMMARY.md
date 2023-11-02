@@ -130,4 +130,5 @@
 
 ## Examples
 
+* [LangServe chatbot](configuration-resources/langserve/README.md)
 * [LlamaIndex Cassandra sink](examples/llamaindex-cassandra-sink.md)
