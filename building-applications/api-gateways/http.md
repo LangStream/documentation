@@ -23,7 +23,7 @@ gateways:
 Once a gateway is configured, you can use whatever HTTP client you prefer to connect. This is an example with Curl:
 
 ```bash
-curl -X POST -d '{"value": "hello"}' "http://localhost:8091/api/gateways/produce/my-tenant/my-app/user-input?param:sessionId=12543yusi1"
+curl -X POST -d '{"value": "hello"}' -H 'Content-Type: application/json' "http://localhost:8091/api/gateways/produce/my-tenant/my-app/user-input?param:sessionId=12543yusi1"
 ```
 
 You can also use the LangStream CLI:
@@ -51,7 +51,7 @@ gateways:
 Once a gateway is configured, you can use whatever HTTP client you prefer to connect. This is an example with Curl:
 
 ```bash
-curl -X POST -d '{"value": "hello"}' "http://localhost:8091/api/gateways/service/my-tenant/my-app/user-input-await"
+curl -X POST -d '{"value": "hello"}' -H 'Content-Type: application/json' "http://localhost:8091/api/gateways/service/my-tenant/my-app/user-input-await"
 ```
 
 The timeout of the wait is the TCP timeout of the connection, which is usually 30 seconds (may vary depending on the http client).
@@ -88,6 +88,7 @@ Once a gateway is configured, you can use whatever HTTP client you prefer to con
 curl -X POST \
     -d '{"value": "hello"}' \
     -H 'Authorization: Bearer XXX' \
+    -H 'Content-Type: application/json' \
     "http://localhost:8091/api/gateways/service/my-tenant/my-app/my-service/the/custom/path?service-param-1=yes"
 ```
 
@@ -100,6 +101,7 @@ In the above case, the agent service will receive an equivalent request of:
 curl -X POST \
     -d '{"value": "hello"}' \
     -H 'Authorization: Bearer XXX' \
+    -H 'Content-Type: application/json' \
     "http://localhost:8000/the/custom/path?service-param-1=yes"
 ```
 
