@@ -23,8 +23,15 @@ gateways:
 Once a gateway is configured, you can use whatever HTTP client you prefer to connect. This is an example with Curl:
 
 ```bash
-curl -X POST -d '{"value": "hello"}' -H 'Content-Type: application/json' "http://localhost:8091/api/gateways/produce/my-tenant/my-app/user-input?param:sessionId=12543yusi1"
+curl -X POST -d "Hello" "http://localhost:8091/api/gateways/produce/my-tenant/my-app/user-input?param:sessionId=12543yusi1"
 ```
+
+or if you would like to add the record key, headers or a structured value you can pass the body as JSON setting `Content-Type: application/json`
+
+```bash
+curl -X POST -d '{"value": {"question": "hello"}, "key": "k1", headers: {"h1": "v1"}}' -H 'Content-Type: application/json' "http://localhost:8091/api/gateways/produce/my-tenant/my-app/user-input?param:sessionId=12543yusi1"
+```
+
 
 You can also use the LangStream CLI:
 
