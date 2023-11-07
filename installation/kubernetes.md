@@ -24,19 +24,44 @@ LangStream container images are available on the [Github packages registry](http
 
 ### Quick Start
 
-To create a LangStream control plane, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster.
+To create a LangStream control plane, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster with a recent version.
 
+Connect to your GCP cluster:
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
+gcloud container clusters get-credentials <langstream-cluster> --region us-east1 --project gcp-techpubs
+Fetching cluster endpoint and auth data.
+Kubernetes v1.21.0-alpha+eabdbc0a40fe7efda92e10270f27b0a3485fb743
+kubeconfig entry generated for langstream-cluster.
+```
+
+Add the LangStream chart repo to your Helm installation and update it to the latest version:
+```bash
 helm repo add langstream https://langstream.ai/charts
-helm repo update
+helm repo update langstream
+```
+
+Install the LangStream Helm chart:
+```bash
 helm upgrade \
     -i langstream \
     -n langstream \
     --create-namespace \
-    --values https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/simple.yaml \
+    --values https://raw.githubusercontent.com/LangStream/charts/main/charts/langstream/values.yaml \
     langstream/langstream
 ```
+
+Result:
+```
+Release "langstream" does not exist. Installing it now.
+NAME: langstream
+LAST DEPLOYED: Tue Nov  7 11:38:05 2023
+NAMESPACE: langstream
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+```
+
+In your GCP deployment, you should see four new pods in the `langstream` namespace.
 
 #### Open the control-plane and api-gateway ports
 
