@@ -22,7 +22,7 @@ LangStream container images are available on the [Github packages registry](http
 * [datastax/langstream-api-gateway](https://github.com/LangStream/langstream/pkgs/container/langstream-api-gateway)
 * [datastax/langstream-cli](https://github.com/LangStream/langstream/pkgs/container/langstream-cli)
 
-### Quickstart
+## Quickstart
 
 To create a LangStream control plane, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster with a recent version.
 
@@ -47,8 +47,11 @@ helm repo add langstream https://langstream.ai/charts
 helm repo update langstream
 ```
 
-Modify the [values.yaml](https://github.com/LangStream/charts/blob/main/charts/langstream/values.yaml) file you'll be deploying with to configure the external codeStorage component.
+### External codeStorage component
 This component stores the state of LangStream applications in an S3 API-compatible bucket or Azure blob.
+
+Modify the [values.yaml](https://github.com/LangStream/charts/blob/main/charts/langstream/values.yaml) file you'll be deploying with to configure the external codeStorage component.
+
 These values can be found in your storage provider's dashboard.
 
 Azure:
@@ -71,6 +74,14 @@ codeStorage:
     secret-key: <aws-secret-key>
 ```
 
+If you're using GKE Cloud Storage, see [Simple migration from Amazon S3 to Cloud Storage](https://cloud.google.com/storage/docs/aws-simple-migration) for using the Cloud Storage API to interact with an S3 bucket.
+
+To configure a local S3-compatible storage service, such as [minio](https://min.io/docs/minio/kubernetes/upstream/index.html), run:
+```bash
+kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/helm/examples/minio-dev.yaml
+```
+
+### Install LangStream
 Install the LangStream Helm chart:
 ```bash
 helm install \
