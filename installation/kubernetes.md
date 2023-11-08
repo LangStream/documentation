@@ -28,7 +28,7 @@ To create a LangStream control plane, you will need [kubectl](https://kubernetes
 
 Connect to your GCP cluster:
 ```bash
-gcloud container clusters get-credentials <langstream-cluster> --region us-east1 --project gcp-techpubs
+gcloud container clusters get-credentials <langstream-cluster> --region us-east1 --project <project-name>
 Fetching cluster endpoint and auth data.
 Kubernetes v1.21.0-alpha+eabdbc0a40fe7efda92e10270f27b0a3485fb743
 kubeconfig entry generated for langstream-cluster.
@@ -36,7 +36,7 @@ kubeconfig entry generated for langstream-cluster.
 
 Connect to your Azure cluster:
 ```bash
-az account set --subscription 249a85c0-95ce-41be-8ede-149bce428ae5
+az account set --subscription <subscription-name>
 az aks get-credentials --resource-group k8s-resource-group --name dev
 Merged "dev" as current context in /Users/mendon.kissling/.kube/config
 ```
@@ -47,8 +47,8 @@ helm repo add langstream https://langstream.ai/charts
 helm repo update langstream
 ```
 
-Modify the values.yaml file you'll be deploying with to configure the external codeStorage component.
-This component stores the state of LangStream applications in an S3 API-compatible bucket.
+Modify the [values.yaml](https://github.com/LangStream/charts/blob/main/charts/langstream/values.yaml) file you'll be deploying with to configure the external codeStorage component.
+This component stores the state of LangStream applications in an S3 API-compatible bucket or Azure blob.
 These values can be found in your storage provider's dashboard.
 
 Azure:
@@ -73,11 +73,11 @@ codeStorage:
 
 Install the LangStream Helm chart:
 ```bash
-helm upgrade \
+helm install \
     -i langstream \
     -n langstream \
     --create-namespace \
-    --values https://raw.githubusercontent.com/LangStream/charts/main/charts/langstream/values.yaml \
+    --values values.yaml \
     langstream/langstream
 ```
 
@@ -93,6 +93,7 @@ TEST SUITE: None
 ```
 
 In your Kubernetes cluster, you should see four new pods deploy in the `langstream` namespace.
+For more configuration options, see the [Helm charts documentation](https://langstream.ai/charts/).
 
 ### Deploy Kafka cluster
 
@@ -194,6 +195,8 @@ app packaged
 deploying application: test (1 KB)
 application test deployed
 ```
+
+To monitor deployment from the CLI, use `langstream apps get <app-name>`.
 
 `langstream-app-setup` and `langstream-runtime-deployer` pods will deploy in the `langstream-default` namespace in your Kubernetes cluster.
 When these pods reach a Completed state, your application pod(s) will deploy.
