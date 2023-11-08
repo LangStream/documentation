@@ -22,7 +22,7 @@ LangStream container images are available on the [Github packages registry](http
 * [datastax/langstream-api-gateway](https://github.com/LangStream/langstream/pkgs/container/langstream-api-gateway)
 * [datastax/langstream-cli](https://github.com/LangStream/langstream/pkgs/container/langstream-cli)
 
-### Quick Start
+### Quickstart
 
 To create a LangStream control plane, you will need [kubectl](https://kubernetes.io/docs/reference/kubectl/), [helm cli](https://helm.sh/docs/intro/install/), and a running K8s cluster with a recent version.
 
@@ -34,10 +34,41 @@ Kubernetes v1.21.0-alpha+eabdbc0a40fe7efda92e10270f27b0a3485fb743
 kubeconfig entry generated for langstream-cluster.
 ```
 
+Connect to your Azure cluster:
+```bash
+az account set --subscription 249a85c0-95ce-41be-8ede-149bce428ae5
+az aks get-credentials --resource-group k8s-resource-group --name dev
+Merged "dev" as current context in /Users/mendon.kissling/.kube/config
+```
+
 Add the LangStream chart repo to your Helm installation and update it to the latest version:
 ```bash
 helm repo add langstream https://langstream.ai/charts
 helm repo update langstream
+```
+
+Modify the values.yaml file you'll be deploying with to configure the external codeStorage component.
+This component stores the state of LangStream applications in an S3 API-compatible bucket.
+These values can be found in your storage provider's dashboard.
+
+Azure:
+```
+codeStorage:
+  type: azure
+  configuration:
+    endpoint: https://<storage-account>.blob.core.windows.net
+    container: langstream
+    storage-account-name: <storage-account>
+    storage-account-key: <storage-account-key>
+```
+
+S3:
+```
+codeStorage:
+  type: s3
+  configuration:
+    access-key: <aws-access-key>
+    secret-key: <aws-secret-key>
 ```
 
 Install the LangStream Helm chart:
@@ -61,7 +92,37 @@ REVISION: 1
 TEST SUITE: None
 ```
 
-In your GCP deployment, you should see four new pods in the `langstream` namespace.
+In your Kubernetes cluster, you should see four new pods deploy in the `langstream` namespace.
+
+### Deploy Kafka cluster
+
+Install the Strimzi Kafka operator.
+```bash
+helm repo add strimzi https://strimzi.io/charts/
+helm install strimzi-kafka strimzi/strimzi-kafka-operator
+```
+
+Install a [persistent Kafka cluster](https://github.com/strimzi/strimzi-kafka-operator/blob/main/examples/kafka/kafka-persistent-single.yaml) to the langstream namespace.
+
+```bash
+kubectl apply -f https://strimzi.io/examples/latest/kafka/kafka-persistent-single.yaml -n langstream
+kafka.kafka.strimzi.io/my-cluster created
+```
+
+The Strimzi operator will create and watch a single-ZooKeeper Kafka cluster.
+
+In your LangStream application's instance.yaml file, point the `bootstrap.servers` to your new Kafka bootstrap server's address.
+```yaml
+instance:
+  streamingCluster:
+    type: "kafka"
+    configuration:
+      admin:
+        bootstrap.servers: my-cluster-kafka-bootstrap.langstream.svc.cluster.local:9092
+```
+
+For production deployments, set the bootstrap server address as a secret value for KAFKA_BOOTSTRAP_SERVERS.
+For more, see [Secrets](../building-applications/secrets.md).
 
 #### Open the control-plane and api-gateway ports
 
