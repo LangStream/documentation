@@ -182,9 +182,20 @@ spec:
 
 ```
 
-### Your first application
 
-Here are a few ways to get started building LangStream applications:
+### Deploy sample application
 
-* [Set up your development environment](building-applications/development-environment.md) and learn how to build the needed manifests
-* [Install the VSCode extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) and use the provided starter applications & agent snippets
+Run a sample application to test your new environment.
+For more on building LangStream applications, see [Set up your development environment](../building-applications/development-environment.md).
+```bash
+langstream apps deploy test -app sample-app/application -s sample-app/secrets.yaml -i sample-app/instance.yaml
+packaging app: /Users/mendon.kissling/Documents/GitHub/LS Application/sample-app/application
+app packaged
+deploying application: test (1 KB)
+application test deployed
+```
+
+`langstream-app-setup` and `langstream-runtime-deployer` pods will deploy in the `langstream-default` namespace in your Kubernetes cluster.
+When these pods reach a Completed state, your application pod(s) will deploy.
+
+For integrating LangStream and your remote cluster into VSCode workflows, [Install the VSCode extension](https://marketplace.visualstudio.com/items?itemName=DataStax.langstream) and use the provided starter applications & agent snippets.
