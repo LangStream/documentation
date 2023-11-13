@@ -11,9 +11,10 @@ layout:
   pagination:
     visible: true
 ---
+
 # flare-controller
 
-This agent enables you to implement the Flare pattern. See the [Flare pattern documentation](../../building-applications/flare-pattern.md) for more information.
+This agent enables you to implement the Flare pattern. See the [Flare pattern documentation](../../patterns/flare-pattern.md) for more information.
 
 ### Configuration
 
