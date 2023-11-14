@@ -14,7 +14,7 @@ From the connector's documentation, you'll need the **component-uri** and the **
 
 `component options` are a map of additional options specific to the Camel component being used. These options are appended to the component-uri as query parameters to further configure the behavior of the Camel component.
 
-According to [the Camel documentation](https://camel.apache.org/components/4.0.x/azure-storage-blob-component.html), the Azure blob storage connector's URI structure is `azure-storage-blob://accountName[/containerName][?options]`. The component URI will be populated by the Azure `accountName/containerName`, and the `[?options]` would be a `Map.of("blobName", "value1", "credentialType", "accessKey")`.
+According to [the Camel documentation](https://camel.apache.org/components/4.0.x/azure-storage-blob-component.html), the Azure blob storage connector's URI structure is `azure-storage-blob://accountName[/containerName][?options]`. The component URI will be populated by the Azure `accountName/containerName`, and the `[?options]` is a `Map.of("blobName", "value1", "credentialType", "accessKey")`.
 
 Declare the **dependency** to the connector in your configuration.yaml file, and LangStream will download it and deploy it into your application.
 ```yaml
@@ -50,7 +50,7 @@ export CAMEL_AZURE_SOURCE_CONTAINER_NAME=langstream-container
 export CAMEL_AZURE_SOURCE_BLOB_NAME=logs
 ```
 
-You can now add the Camel source connector to your application pipeline:
+You can now add the camel-source agent to your application pipeline:
 ```yaml
 topics:
   - name: "output-topic"
