@@ -86,7 +86,7 @@
     * [azure-blob-storage-source](pipeline-agents/builtin-agents/input-and-output/azure-blob-storage-source.md)
     * [sink](pipeline-agents/input-and-output/sink.md)
     * [vector-db-sink](pipeline-agents/input-and-output/vector-db-sink.md)
-    * [camel-source](configuration-resources/connectors/camel.md)
+    * [camel-source](pipeline-agents/input-and-output/camel-source.md)
   * [AI Agents](pipeline-agents/ai-actions/README.md)
     * [ai-chat-completions](pipeline-agents/ai-actions/ai-chat-completions.md)
     * [ai-text-completions](pipeline-agents/ai-actions/ai-text-completions.md)

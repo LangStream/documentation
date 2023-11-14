@@ -21,6 +21,7 @@ Source agents are responsible for getting records into the pipeline from externa
 * [Web Crawler](webcrawler-source.md)
 * [S3 Source](s3-source.md)
 * [Azure Blob Storage Source](../builtin-agents/input-and-output/azure-blob-storage-source.md)
+* [Apache Camel source agent](camel-source.md)
 
 ## Sink agents
 
