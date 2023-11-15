@@ -11,7 +11,7 @@ You will need the (public) URL of the sink connector’s jar. Here are resources
 
 Once you have the jar, you’ll need its sha512 hash. Here are resources to calculate this:
 
-* [SHA512 File Hash online](https://emn178.github.io/online-tools/sha512\_file\_hash.html) (simple online tool)
+* [SHA512 File Hash online](https://emn178.github.io/online-tools/sha512_file_hash.html) (simple online tool)
 * [sha512sum compute](https://linux.die.net/man/1/sha512sum) (for linux, mac, & wsl)
 * [Get-FileHash](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash) (for powershell)
 
