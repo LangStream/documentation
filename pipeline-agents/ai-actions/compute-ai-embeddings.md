@@ -100,7 +100,7 @@ Add the `compute-ai-embeddings` agent:
 ```
 
 {% hint style="info" %}
-Ollama models may compute embeddings but currently they are not as good as the ones provided by OpenAI or Huggingface. In the future Ollama will models specifics for embeddings.
+Ollama models may compute embeddings but they are currently not as good as models provided by OpenAI or Huggingface. Ollama will provide models specifically for embeddings in the future.
 {% endhint %}
 
 ### Using Amazon Bedrock

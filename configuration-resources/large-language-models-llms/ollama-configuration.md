@@ -23,8 +23,8 @@ secrets:
       url: "${OLLAMA_URL:-http://host.docker.internal:11434}"
 ```
 
-This example uses host.docker.internal, that works well in case you are runnning Ollama
-on your local machine and run LangStream in docker.
+This example uses host.docker.internal at the default Ollama port 11434,. This works well if you are running Ollama
+on your local machine with LangStream in Docker.
 
 
 ## Configuration
