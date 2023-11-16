@@ -79,7 +79,7 @@ VertexAI text completions accepts only one `prompt` value.
 {% endhint %}
 
 
-## Using VertexAI text models
+## Using Ollama models
 
 > Refer to the [ollama documentation](https://ollama.ai/library) to find a list of models.
 

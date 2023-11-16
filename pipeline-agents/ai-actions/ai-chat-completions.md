@@ -51,7 +51,29 @@ pipeline:
           content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question }}"
 ```
 
-## Using Ollama chat models
+## Using VertexAI chat models
+
+> Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
+
+Setup the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
+Add the `ai-chat-completions` agent:
+
+```yaml
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    configuration:
+      model: "chat-bison"
+      max-tokens: 100
+      completion-field: "value.chatresult"
+      log-field: "value.request"
+      messages:
+        - role: user
+          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question }}"
+```
+
+
+## Using Ollama models
 
 > Refer to the [ollama documentation](https://ollama.ai/library) to find a list of models.
 
@@ -69,14 +91,14 @@ pipeline:
       log-field: "value.request"
       messages:
         - role: user
-          content: "This is my question.Please answer briefly:\n\n{{ value.question }}"
+          content: "You are a helpful assistant. Below you can find my question. Please try to help them the best way you can.\n\n This is my question: {{ value.question }}"
 ```
 
 ## Using Amazon Bedrock AI21 Jurassic-2 models
 
 > Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-jurassic2) for other parameters and options.
 
-Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/uration.md).
+Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
 Add the `ai-chat-completions` agent:
 
 ```yaml
