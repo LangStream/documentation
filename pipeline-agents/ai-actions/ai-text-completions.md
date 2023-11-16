@@ -79,6 +79,30 @@ VertexAI text completions accepts only one `prompt` value.
 {% endhint %}
 
 
+## Using Ollama models
+
+> Refer to the [ollama documentation](https://ollama.ai/library) to find a list of models.
+
+Setup the Ollama [configuration](../../configuration-resources/large-language-models-llms/ollama-configuration.md).
+
+Add the `ai-text-completions` agent:
+
+
+```yaml
+- name: "ai-text-completions"
+    type: "ai-text-completions"
+    output: "answers"
+    configuration:
+      model: "llama2"
+      # on the log-topic we add a field with the answer
+      completion-field: "value.answer"
+      # we are also logging the prompt we sent to the LLM
+      log-field: "value.prompt"
+      max-tokens: 20
+      prompt:
+        - "{{ value.question}}"
+```
+
 ## Using Amazon Bedrock AI21 Jurassic-2 models
 
 > Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-jurassic2) to learn other parameters and options.

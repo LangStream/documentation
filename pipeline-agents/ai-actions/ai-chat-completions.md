@@ -73,6 +73,27 @@ pipeline:
 ```
 
 
+## Using Ollama models
+
+> Refer to the [ollama documentation](https://ollama.ai/library) to find a list of models.
+
+Setup the Ollama [configuration](../../configuration-resources/large-language-models-llms/ollama-configuration.md).
+Add the `ai-chat-completions` agent:
+
+```yaml
+pipeline:
+  - name: "ai-chat-completions"
+    type: "ai-chat-completions"
+    configuration:
+      model: "llama2"
+      max-tokens: 100
+      completion-field: "value.chatresult"
+      log-field: "value.request"
+      messages:
+        - role: user
+          content: "You are a helpful assistant. Below you can find my question. Please try to help them the best way you can.\n\n This is my question: {{ value.question }}"
+```
+
 ## Using Amazon Bedrock AI21 Jurassic-2 models
 
 > Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-jurassic2) for other parameters and options.

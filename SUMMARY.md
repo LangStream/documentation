@@ -63,6 +63,7 @@
   * [Hugging Face](configuration-resources/large-language-models-llms/hugging-face-configuration.md)
   * [Google Vertex AI](configuration-resources/large-language-models-llms/vertex-configuration.md)
   * [Amazon Bedrock](configuration-resources/large-language-models-llms/bedrock-configuration.md)
+  * [Ollama](configuration-resources/large-language-models-llms/ollama-configuration.md)
 * [Data storage](configuration-resources/data-storage/README.md)
   * [Astra](configuration-resources/data-storage/astra.md)
   * [Cassandra](configuration-resources/data-storage/cassandra.md)
