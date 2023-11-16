@@ -18,3 +18,4 @@ layout:
 * [Hugging Face](hugging-face-configuration.md)
 * [Google Vertex AI](vertex-configuration.md)
 * [Amazon Bedrock](bedrock-configuration.md)
+* [Ollama](ollama-configuration.md)

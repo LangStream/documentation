@@ -79,6 +79,30 @@ Add the `compute-ai-embeddings` agent:
     text: "{{ value }}"
 ```
 
+### Using Ollama
+
+> Refer to the [ollama documentation](https://ollama.ai/library) to find a list of models.
+
+Setup the Ollama [configuration](../../configuration-resources/large-language-models-llms/ollama-configuration.md).
+
+Add the `compute-ai-embeddings` agent:
+
+
+```yaml
+- name: "compute-embeddings"
+  type: "compute-ai-embeddings"
+  input: "input-topic" # optional
+  output: "output-topic" # optional
+  configuration:
+    model: "llama2"
+    embeddings-field: "value.embeddings"
+    text: "{{ value }}"
+```
+
+{% hint style="info" %}
+Ollama models may compute embeddings but currently they are not as good as the ones provided by OpenAI or Huggingface. In the future Ollama will models specifics for embeddings.
+{% endhint %}
+
 ### Using Amazon Bedrock
 
 Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).

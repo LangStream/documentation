@@ -51,11 +51,11 @@ pipeline:
           content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question }}"
 ```
 
-## Using VertexAI chat models
+## Using Ollama chat models
 
-> Refer to the [VertexAI documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/text-chat) to know which models are compatible.
+> Refer to the [ollama documentation](https://ollama.ai/library) to find a list of models.
 
-Setup the Vertex LLM [configuration](../../configuration-resources/large-language-models-llms/vertex-configuration.md).
+Setup the Ollama [configuration](../../configuration-resources/large-language-models-llms/ollama-configuration.md).
 Add the `ai-chat-completions` agent:
 
 ```yaml
@@ -63,21 +63,20 @@ pipeline:
   - name: "ai-chat-completions"
     type: "ai-chat-completions"
     configuration:
-      model: "chat-bison"
+      model: "llama2"
       max-tokens: 100
       completion-field: "value.chatresult"
       log-field: "value.request"
       messages:
         - role: user
-          content: "You are a helpful assistant. Below you can find a question from the user. Please try to help them the best way you can.\n\n{{ value.question }}"
+          content: "This is my question.Please answer briefly:\n\n{{ value.question }}"
 ```
-
 
 ## Using Amazon Bedrock AI21 Jurassic-2 models
 
 > Refer to the [Amazon documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html#model-parameters-jurassic2) for other parameters and options.
 
-Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/bedrock-configuration.md).
+Set up the Amazon Bedrock LLM [configuration](../../configuration-resources/large-language-models-llms/uration.md).
 Add the `ai-chat-completions` agent:
 
 ```yaml
