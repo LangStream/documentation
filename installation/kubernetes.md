@@ -41,6 +41,12 @@ az aks get-credentials --resource-group k8s-resource-group --name dev
 Merged "dev" as current context in /Users/mendon.kissling/.kube/config
 ```
 
+Connect to your EKS cluster:
+```bash
+aws eks update-kubeconfig --region="us-east-2" --name="langstream-cluster"
+Added new context arn:aws:eks:us-east-2:423019603865:cluster/langstream-cluster to /Users/mendon.kissling/.kube/config
+```
+
 Add the LangStream chart repo to your Helm installation and update it to the latest version:
 ```bash
 helm repo add langstream https://langstream.ai/charts
@@ -84,8 +90,7 @@ kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/he
 ### Install LangStream
 Install the LangStream Helm chart:
 ```bash
-helm install \
-    -i langstream \
+helm install langstream \
     -n langstream \
     --create-namespace \
     --values values.yaml \
