@@ -41,6 +41,18 @@ az aks get-credentials --resource-group k8s-resource-group --name dev
 Merged "dev" as current context in /Users/mendon.kissling/.kube/config
 ```
 
+Connect to your EKS cluster:
+```bash
+aws eks update-kubeconfig --region="us-east-2" --name="langstream-cluster"
+Added new context arn:aws:eks:us-east-2:423019603865:cluster/langstream-cluster to /Users/mendon.kissling/.kube/config
+```
+
+Create a minikube cluster:
+```bash
+minikube start cpu="4"
+Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+```
+
 Add the LangStream chart repo to your Helm installation and update it to the latest version:
 ```bash
 helm repo add langstream https://langstream.ai/charts
@@ -74,6 +86,16 @@ codeStorage:
     secret-key: <aws-secret-key>
 ```
 
+Minio:
+```
+codeStorage:
+  type: s3
+  configuration:
+    endpoint: http://minio.minio-dev.svc.cluster.local:9000
+    access-key: minioadmin
+    secret-key: minioadmin
+```
+
 If you're using GKE Cloud Storage, see [Simple migration from Amazon S3 to Cloud Storage](https://cloud.google.com/storage/docs/aws-simple-migration) for using the Cloud Storage API to interact with an S3 bucket.
 
 To configure a local S3-compatible storage service, such as [minio](https://min.io/docs/minio/kubernetes/upstream/index.html), run:
@@ -84,8 +106,7 @@ kubectl apply -f https://raw.githubusercontent.com/LangStream/langstream/main/he
 ### Install LangStream
 Install the LangStream Helm chart:
 ```bash
-helm install \
-    -i langstream \
+helm install langstream \
     -n langstream \
     --create-namespace \
     --values values.yaml \
@@ -94,7 +115,6 @@ helm install \
 
 Result:
 ```
-Release "langstream" does not exist. Installing it now.
 NAME: langstream
 LAST DEPLOYED: Tue Nov  7 11:38:05 2023
 NAMESPACE: langstream
