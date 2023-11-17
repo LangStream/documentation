@@ -99,7 +99,6 @@ helm install langstream \
 
 Result:
 ```
-Release "langstream" does not exist. Installing it now.
 NAME: langstream
 LAST DEPLOYED: Tue Nov  7 11:38:05 2023
 NAMESPACE: langstream
