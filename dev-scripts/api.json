@@ -1,5 +1,5 @@
 {
-  "version" : "0.4.0",
+  "version" : "0.4.4",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
@@ -1610,7 +1610,7 @@
     "vector-db-sink_pinecone" : {
       "type" : "vector-db-sink",
       "name" : "Pinecone",
-      "description" : "Writes data to Pinecone service.",
+      "description" : "Writes data to Pinecone service.\n    To add metadata fields you can add vector.metadata.my-field: \"value.my-field\". The value is a JSTL Expression to compute the actual value.",
       "properties" : {
         "datasource" : {
           "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'pinecone'.",
@@ -1861,6 +1861,11 @@
           "required" : false,
           "type" : "string"
         },
+        "database-id" : {
+          "description" : "Astra Database ID name to connect to. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
         "environment" : {
           "description" : "Astra environment.",
           "required" : false,
@@ -2038,6 +2043,18 @@
         }
       }
     },
+    "ollama-configuration" : {
+      "type" : "ollama-configuration",
+      "name" : "Ollama",
+      "description" : "Connect to Ollama API.",
+      "properties" : {
+        "url" : {
+          "description" : "URL for the Ollama service.",
+          "required" : true,
+          "type" : "string"
+        }
+      }
+    },
     "open-ai-configuration" : {
       "type" : "open-ai-configuration",
       "name" : "Open AI",
@@ -2073,6 +2090,11 @@
         },
         "database" : {
           "description" : "Astra Database name to connect to. If secureBundle is provided, this field is ignored.",
+          "required" : false,
+          "type" : "string"
+        },
+        "database-id" : {
+          "description" : "Astra Database ID name to connect to. If secureBundle is provided, this field is ignored.",
           "required" : false,
           "type" : "string"
         },
