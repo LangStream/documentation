@@ -2,6 +2,9 @@
 
 To use DataStax Astra DB as a vector database, you have to create a "vector-database" resource in your configuration.yaml file.
 
+If you want to use the JSON based API then you have to create a "astra-vector-db" resource. See the documentation [here](./astra-vector-db.md).
+
+
 ```yaml
 resources:
   - type: "vector-database"

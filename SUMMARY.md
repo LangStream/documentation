@@ -65,6 +65,7 @@
   * [Amazon Bedrock](configuration-resources/large-language-models-llms/bedrock-configuration.md)
   * [Ollama](configuration-resources/large-language-models-llms/ollama-configuration.md)
 * [Data storage](configuration-resources/data-storage/README.md)
+  * [Astra Vector DB](configuration-resources/data-storage/astravectordb.md)
   * [Astra](configuration-resources/data-storage/astra.md)
   * [Cassandra](configuration-resources/data-storage/cassandra.md)
   * [Pinecone](configuration-resources/data-storage/pinecone.md)
