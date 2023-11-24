@@ -1,5 +1,5 @@
 {
-  "version" : "0.4.4",
+  "version" : "0.5.0",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
@@ -840,6 +840,11 @@
             }
           }
         },
+        "message" : {
+          "description" : "Template for a log message to print (Mustache).",
+          "required" : false,
+          "type" : "string"
+        },
         "when" : {
           "description" : "Condition to trigger the operation. This is a standard EL expression.",
           "required" : false,
@@ -1403,6 +1408,45 @@
         }
       }
     },
+    "vector-db-sink_astra-vector-db" : {
+      "type" : "vector-db-sink",
+      "name" : "Astra Vector DB",
+      "description" : "Writes data to Apache Cassandra.\nAll the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html",
+      "properties" : {
+        "collection-name" : {
+          "description" : "The name of the collection to write to. The collection must already exist.",
+          "required" : true,
+          "type" : "string"
+        },
+        "datasource" : {
+          "description" : "Resource id. The target resource must be type: 'datasource' or 'vector-database' and service: 'astra-vector-db'.",
+          "required" : true,
+          "type" : "string"
+        },
+        "fields" : {
+          "description" : "Fields of the collection to write to.",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "description" : "Fields of the collection to write to.",
+            "required" : true,
+            "type" : "object",
+            "properties" : {
+              "expression" : {
+                "description" : "JSTL Expression for computing the field value.",
+                "required" : true,
+                "type" : "string"
+              },
+              "name" : {
+                "description" : "Field name",
+                "required" : true,
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
     "vector-db-sink_cassandra" : {
       "type" : "vector-db-sink",
       "name" : "Cassandra",
@@ -1904,6 +1948,28 @@
         }
       }
     },
+    "datasource_astra-vector-db" : {
+      "type" : "datasource",
+      "name" : "Astra Vector DB",
+      "description" : "Connect to DataStax Astra Vector DB service.",
+      "properties" : {
+        "endpoint" : {
+          "description" : "API Endpoint.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'astra-vector-db'",
+          "required" : true,
+          "type" : "string"
+        },
+        "token" : {
+          "description" : "Astra Token (AstraCS:xxx) for connecting to the database.",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
     "datasource_cassandra" : {
       "type" : "datasource",
       "name" : "Cassandra",
@@ -2131,6 +2197,28 @@
         },
         "username" : {
           "description" : "DEPRECATED: use clientId instead.",
+          "required" : false,
+          "type" : "string"
+        }
+      }
+    },
+    "vector-database_astra-vector-db" : {
+      "type" : "vector-database",
+      "name" : "Astra Vector DB",
+      "description" : "Connect to DataStax Astra Vector DB service.",
+      "properties" : {
+        "endpoint" : {
+          "description" : "API Endpoint.",
+          "required" : false,
+          "type" : "string"
+        },
+        "service" : {
+          "description" : "Service type. Set to 'astra-vector-db'",
+          "required" : true,
+          "type" : "string"
+        },
+        "token" : {
+          "description" : "Astra Token (AstraCS:xxx) for connecting to the database.",
           "required" : false,
           "type" : "string"
         }
@@ -2382,6 +2470,27 @@
     }
   },
   "assets" : {
+    "astra-collection" : {
+      "name" : "Astra Collection",
+      "description" : "Manage a DataStax Astra Collection.",
+      "properties" : {
+        "collection-name" : {
+          "description" : "Name of the collection to create.",
+          "required" : true,
+          "type" : "string"
+        },
+        "datasource" : {
+          "description" : "Reference to a datasource id configured in the application.",
+          "required" : true,
+          "type" : "string"
+        },
+        "vector-dimension" : {
+          "description" : "Size of the vector.",
+          "required" : true,
+          "type" : "integer"
+        }
+      }
+    },
     "astra-keyspace" : {
       "name" : "Astra keyspace",
       "description" : "Manage a DataStax Astra keyspace.",
