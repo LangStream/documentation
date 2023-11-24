@@ -30,6 +30,7 @@ resources:
 
 ### Supported services
 
+- [Datastax Astra Vector DB](./astravectordb.md)
 - [Datastax Astra DB](./astra.md)
 - [Apache Cassandra](./cassandra.md)
 - [Pinecone](./pinecone.md)

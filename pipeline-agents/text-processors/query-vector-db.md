@@ -45,6 +45,7 @@ The query language depends on the underlying vector database. For example, Pinec
 
 Please refer to the documentation of the vector database you are using for more information on how to write queries:
 
+- [Astra Vector DB](../../configuration-resources/data-storage/astravectordb.md)
 - [Astra DB](../../configuration-resources/data-storage/astra.md)
 - [Apache Cassandra](../../configuration-resources/data-storage/cassandra.md)
 - [Pinecone.io](../../configuration-resources/data-storage/pinecone.md)
