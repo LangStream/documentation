@@ -1,4 +1,4 @@
-<h1>Agents</h1><p>LangStream Version: <strong>0.4.4</strong></p>
+<h1>Agents</h1><p>LangStream Version: <strong>0.5.0</strong></p>
 
 
 
@@ -80,7 +80,7 @@
 
 <br><h2 data-full-width="true"><a name="log-event"></a>Log an event (<code>log-event</code>)</h2><p data-full-width="true">Log a line in the agent logs when a record is received.</p>
 
-<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>fields</code></td><td>Fields to log.</td><td><a href="#log-event.fields">array of object</a></td><td></td><td></td></tr><tr><td><code>when</code></td><td>Condition to trigger the operation. This is a standard EL expression.</td><td>string</td><td></td><td>true</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>fields</code></td><td>Fields to log.</td><td><a href="#log-event.fields">array of object</a></td><td></td><td></td></tr><tr><td><code>message</code></td><td>Template for a log message to print (Mustache).</td><td>string</td><td></td><td></td></tr><tr><td><code>when</code></td><td>Condition to trigger the operation. This is a standard EL expression.</td><td>string</td><td></td><td>true</td></tr></tbody></table>
 
 <br><h3 data-full-width="true"><a name="log-event.fields"></a>Log an event (<code>log-event</code>).fields</h3><table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>expression</code></td><td>Expression to compute the value of the field. This is a standard EL expression.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>name</code></td><td>Name of the field like value.xx, key.xxx, properties.xxx</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
@@ -163,6 +163,12 @@
 <br><h2 data-full-width="true"><a name="vector-db-sink_astra"></a>Astra (<code>vector-db-sink</code>)</h2><p data-full-width="true">Writes data to DataStax Astra service.<br>All the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html</p>
 
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>datasource</code></td><td>Resource id. The target resource must be type: &#x27;datasource&#x27; or &#x27;vector-database&#x27; and service: &#x27;astra&#x27;.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>keyspace</code></td><td>The keyspace of the table to write to.</td><td>string</td><td></td><td></td></tr><tr><td><code>mapping</code></td><td>Comma separated list of mapping between the table column and the record field. e.g. my_colum_id=key, my_column_name=value.name.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>table-name</code></td><td>The name of the table to write to. The table must already exist.</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
+
+<br><h2 data-full-width="true"><a name="vector-db-sink_astra-vector-db"></a>Astra Vector DB (<code>vector-db-sink</code>)</h2><p data-full-width="true">Writes data to Apache Cassandra.<br>All the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html</p>
+
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>collection-name</code></td><td>The name of the collection to write to. The collection must already exist.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Resource id. The target resource must be type: &#x27;datasource&#x27; or &#x27;vector-database&#x27; and service: &#x27;astra-vector-db&#x27;.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>fields</code></td><td>Fields of the collection to write to.</td><td><a href="#vector-db-sink_astra-vector-db.fields">array of object</a></td><td>✓</td><td></td></tr></tbody></table>
+
+<br><h3 data-full-width="true"><a name="vector-db-sink_astra-vector-db.fields"></a>Astra Vector DB (<code>vector-db-sink</code>).fields</h3><table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>expression</code></td><td>JSTL Expression for computing the field value.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>name</code></td><td>Field name</td><td>string</td><td>✓</td><td></td></tr></tbody></table>
 
 <br><h2 data-full-width="true"><a name="vector-db-sink_cassandra"></a>Cassandra (<code>vector-db-sink</code>)</h2><p data-full-width="true">Writes data to Apache Cassandra.<br>All the options from DataStax Kafka Sink are supported: https://docs.datastax.com/en/kafka/doc/kafka/kafkaConfigTasksTOC.html</p>
 

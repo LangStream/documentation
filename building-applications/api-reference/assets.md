@@ -1,6 +1,10 @@
-<h1>Assets</h1><p>LangStream Version: <strong>0.4.4</strong></p>
+<h1>Assets</h1><p>LangStream Version: <strong>0.5.0</strong></p>
 
 
+
+<br><h2 data-full-width="true"><a name="astra-collection"></a>Astra Collection (<code>astra-collection</code>)</h2><p data-full-width="true">Manage a DataStax Astra Collection.</p>
+
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>collection-name</code></td><td>Name of the collection to create.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>datasource</code></td><td>Reference to a datasource id configured in the application.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>vector-dimension</code></td><td>Size of the vector.</td><td>integer</td><td>✓</td><td></td></tr></tbody></table>
 
 <br><h2 data-full-width="true"><a name="astra-keyspace"></a>Astra keyspace (<code>astra-keyspace</code>)</h2><p data-full-width="true">Manage a DataStax Astra keyspace.</p>
 

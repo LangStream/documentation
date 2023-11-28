@@ -1,4 +1,4 @@
-<h1>Resources</h1><p>LangStream Version: <strong>0.4.4</strong></p>
+<h1>Resources</h1><p>LangStream Version: <strong>0.5.0</strong></p>
 
 
 
@@ -9,6 +9,10 @@
 <br><h2 data-full-width="true"><a name="datasource_astra"></a>Astra (<code>datasource</code>)</h2><p data-full-width="true">Connect to DataStax Astra Database service.</p>
 
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>clientId</code></td><td>Astra Token clientId to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>database</code></td><td>Astra Database name to connect to. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>database-id</code></td><td>Astra Database ID name to connect to. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>environment</code></td><td>Astra environment.</td><td>string</td><td></td><td>PROD</td></tr><tr><td><code>password</code></td><td>DEPRECATED: use secret instead.</td><td>string</td><td></td><td></td></tr><tr><td><code>secret</code></td><td>Astra Token secret to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>secureBundle</code></td><td>Secure bundle of the database. Must be encoded in base64.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;astra&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>username</code></td><td>DEPRECATED: use clientId instead.</td><td>string</td><td></td><td></td></tr></tbody></table>
+
+<br><h2 data-full-width="true"><a name="datasource_astra-vector-db"></a>Astra Vector DB (<code>datasource</code>)</h2><p data-full-width="true">Connect to DataStax Astra Vector DB service.</p>
+
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>endpoint</code></td><td>API Endpoint.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;astra-vector-db&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Astra Token (AstraCS:xxx) for connecting to the database.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
 <br><h2 data-full-width="true"><a name="datasource_cassandra"></a>Cassandra (<code>datasource</code>)</h2><p data-full-width="true">Connect to Apache cassandra.</p>
 
@@ -37,6 +41,10 @@
 <br><h2 data-full-width="true"><a name="vector-database_astra"></a>Astra (<code>vector-database</code>)</h2><p data-full-width="true">Connect to DataStax Astra Database service.</p>
 
 <table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>clientId</code></td><td>Astra Token clientId to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>database</code></td><td>Astra Database name to connect to. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>database-id</code></td><td>Astra Database ID name to connect to. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>environment</code></td><td>Astra environment.</td><td>string</td><td></td><td>PROD</td></tr><tr><td><code>password</code></td><td>DEPRECATED: use secret instead.</td><td>string</td><td></td><td></td></tr><tr><td><code>secret</code></td><td>Astra Token secret to use.</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>secureBundle</code></td><td>Secure bundle of the database. Must be encoded in base64.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;astra&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Astra Token (AstraCS:xxx) for connecting to the database. If secureBundle is provided, this field is ignored.</td><td>string</td><td></td><td></td></tr><tr><td><code>username</code></td><td>DEPRECATED: use clientId instead.</td><td>string</td><td></td><td></td></tr></tbody></table>
+
+<br><h2 data-full-width="true"><a name="vector-database_astra-vector-db"></a>Astra Vector DB (<code>vector-database</code>)</h2><p data-full-width="true">Connect to DataStax Astra Vector DB service.</p>
+
+<table data-full-width="true"><thead><tr><th></th><th>Description</th><th>Type</th><th>Required</th><th>Default Value</th></tr></thead><tbody><tr><td><code>endpoint</code></td><td>API Endpoint.</td><td>string</td><td></td><td></td></tr><tr><td><code>service</code></td><td>Service type. Set to &#x27;astra-vector-db&#x27;</td><td>string</td><td>✓</td><td></td></tr><tr><td><code>token</code></td><td>Astra Token (AstraCS:xxx) for connecting to the database.</td><td>string</td><td></td><td></td></tr></tbody></table>
 
 <br><h2 data-full-width="true"><a name="vector-database_cassandra"></a>Cassandra (<code>vector-database</code>)</h2><p data-full-width="true">Connect to Apache cassandra.</p>
 
