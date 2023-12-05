@@ -1,5 +1,5 @@
 {
-  "version" : "0.5.0",
+  "version" : "0.5.2",
   "agents" : {
     "ai-chat-completions" : {
       "name" : "Compute chat completions",
@@ -1732,6 +1732,12 @@
           "required" : false,
           "type" : "string",
           "defaultValue" : "minioadmin"
+        },
+        "allow-non-html-contents" : {
+          "description" : "Whether to emit non HTML documents to the pipeline (i.e. PDF Files).",
+          "required" : false,
+          "type" : "boolean",
+          "defaultValue" : "false"
         },
         "allowed-domains" : {
           "description" : "Domains that the crawler is allowed to access.",
