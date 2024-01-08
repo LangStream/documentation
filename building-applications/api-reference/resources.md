@@ -1,4 +1,4 @@
-<h1>Resources</h1><p>LangStream Version: <strong>0.5.2</strong></p>
+<h1>Resources</h1><p>LangStream Version: <strong>0.6.0</strong></p>
 
 
 
