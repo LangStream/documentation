@@ -116,15 +116,15 @@
     * [timer-source](pipeline-agents/flow-control/timer-source.md)
     * [trigger-event](pipeline-agents/flow-control/trigger-event.md)
 * [Custom Agents](pipeline-agents/custom-agents/README.md)
-  * [Agent Developer Guide](pipeline-agents/agent-developer-guide/README.md)
-    * [Agent Types](pipeline-agents/agent-developer-guide/agent-types.md)
-    * [Agent Creation](pipeline-agents/agent-developer-guide/agent-creation.md)
-    * [Configuration and Testing](pipeline-agents/agent-developer-guide/configuration-and-testing.md)
-    * [Environment variables](pipeline-agents/agent-developer-guide/environment.md)
   * [Python sink](pipeline-agents/custom-agents/python-sink.md)
   * [Python source](pipeline-agents/custom-agents/python-source.md)
   * [Python processor](pipeline-agents/custom-agents/python-function.md)
   * [Python service](pipeline-agents/custom-agents/python-service.md)
+* [Agent Developer Guide](pipeline-agents/agent-developer-guide/README.md)
+  * [Agent Types](pipeline-agents/agent-developer-guide/agent-types.md)
+  * [Agent Creation](pipeline-agents/agent-developer-guide/agent-creation.md)
+  * [Configuration and Testing](pipeline-agents/agent-developer-guide/configuration-and-testing.md)
+  * [Environment variables](pipeline-agents/agent-developer-guide/environment.md)
 
 ## Messaging
 
